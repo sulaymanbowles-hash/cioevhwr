@@ -92,8 +92,16 @@ const Scene = memo(({ activeModel }: { activeModel: string }) => {
         resolution={512}
       />
 
-      {/* HDR environment */}
-      <Environment preset="city" environmentIntensity={1} />
+      {/* HDR environment - using color instead of preset to avoid loading external HDR files */}
+      <Environment
+        background={false}
+        environmentIntensity={1}
+      >
+        <mesh>
+          <sphereGeometry args={[50, 32, 32]} />
+          <meshBasicMaterial color="#f0f0f0" side={2} />
+        </mesh>
+      </Environment>
 
       {/* Post-processing */}
       <EffectComposer multisampling={8}>

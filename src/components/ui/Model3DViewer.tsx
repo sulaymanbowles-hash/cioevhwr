@@ -99,8 +99,16 @@ export const Model3DViewer = memo(({
             far={3}
           />
 
-          {/* High quality HDR environment */}
-          <Environment preset="city" environmentIntensity={0.8} />
+          {/* High quality environment - using color instead of preset to avoid loading external HDR files */}
+          <Environment
+            background={false}
+            environmentIntensity={0.8}
+          >
+            <mesh>
+              <sphereGeometry args={[50, 32, 32]} />
+              <meshBasicMaterial color="#e8e8e8" side={2} />
+            </mesh>
+          </Environment>
 
           {/* Post-processing effects */}
           {quality !== "low" && (
