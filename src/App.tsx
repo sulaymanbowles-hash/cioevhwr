@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Lenis from "lenis";
+import { ErrorBoundary } from "./components/ErrorBoundary";
 import { Header } from "./components/layout/Header";
 import { Footer } from "./components/layout/Footer";
 import { Home } from "./pages/Home";
@@ -13,11 +14,14 @@ import { Services } from "./pages/Services";
 function App() {
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 0.8,
-      easing: (t: number) => 1 - Math.pow(1 - t, 3),
+      duration: 1.2,
+      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 2,
+      infinite: false,
     });
 
     function raf(time: number) {
@@ -33,11 +37,12 @@ function App() {
   }, []);
 
   return (
-    <Router>
-      <div className="antialiased selection:bg-black selection:text-white min-h-screen flex flex-col">
-        <Header />
-        <main className="flex-grow">
-          <Routes>
+    <ErrorBoundary>
+      <Router>
+        <div className="antialiased selection:bg-black selection:text-white min-h-screen flex flex-col">
+          <Header />
+          <main className="flex-grow">
+            <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/product/:slug" element={<ProductDetail />} />
             <Route path="/catalog" element={<Catalog />} />
@@ -49,6 +54,7 @@ function App() {
         <Footer />
       </div>
     </Router>
+    </ErrorBoundary>
   );
 }
 
