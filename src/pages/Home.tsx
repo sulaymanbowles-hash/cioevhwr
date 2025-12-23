@@ -41,9 +41,9 @@ export const Home = () => {
           {/* Left: Text Content */}
           <div className="order-2 lg:order-1">
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
+              transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
             >
               <div className="flex items-center gap-3 mb-8">
                 <div className="h-px w-12 bg-black/20" />
@@ -52,9 +52,9 @@ export const Home = () => {
             </motion.div>
             
             <motion.h1
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1, ease: [0.19, 1, 0.22, 1] }}
+              transition={{ duration: 0.9, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
               className="text-6xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-[-0.03em] mb-8 text-gray-900"
             >
               High Integrity{" "}
@@ -64,9 +64,9 @@ export const Home = () => {
             </motion.h1>
             
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: [0.19, 1, 0.22, 1] }}
+              transition={{ duration: 0.9, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
               className="space-y-8"
             >
               <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-lg">
@@ -92,20 +92,24 @@ export const Home = () => {
                 </div>
               </div>
 
-              {/* CTA Buttons */}
+              {/* CTA Buttons - Enhanced with better visual hierarchy */}
               <div className="flex flex-col sm:flex-row gap-4">
                 <button 
                   onClick={() => navigate('/catalog')}
-                  className="group bg-black text-white px-10 py-5 text-xs font-bold uppercase tracking-[0.2em] hover:bg-gray-800 transition-all active:scale-[0.98] rounded-sm shadow-xl hover:shadow-2xl flex items-center justify-center gap-2"
+                  className="group relative bg-black text-white px-12 py-6 text-xs font-bold uppercase tracking-[0.2em] hover:bg-gray-900 transition-all duration-300 active:scale-[0.98] rounded-sm shadow-2xl hover:shadow-3xl overflow-hidden"
                 >
-                  View Catalog
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  <span className="relative z-10 flex items-center justify-center gap-3">
+                    View Catalog
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform duration-300" />
+                  </span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-gray-900 to-black opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </button>
                 <button 
                   onClick={() => navigate('/contact')}
-                  className="border-2 border-gray-300 px-10 py-5 text-xs font-bold uppercase tracking-[0.2em] hover:bg-gray-50 hover:border-gray-400 transition-all active:scale-[0.98] rounded-sm"
+                  className="group relative border-2 border-gray-900 px-12 py-6 text-xs font-bold uppercase tracking-[0.2em] hover:bg-gray-900 hover:text-white transition-all duration-300 active:scale-[0.98] rounded-sm overflow-hidden"
                 >
-                  Request Quote
+                  <span className="relative z-10">Request Quote</span>
+                  <div className="absolute inset-0 bg-gray-900 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
                 </button>
               </div>
             </motion.div>
@@ -113,9 +117,9 @@ export const Home = () => {
 
           {/* Right: 3D Model Viewer */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.3, ease: [0.19, 1, 0.22, 1] }}
+            transition={{ duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
             className="order-1 lg:order-2"
           >
             <Hero3DShowcase />

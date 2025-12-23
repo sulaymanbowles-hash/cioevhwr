@@ -49,84 +49,89 @@ const Scene = memo(({ activeModel }: { activeModel: string }) => {
 
   return (
     <>
-      {/* Advanced lighting */}
-      <ambientLight intensity={0.4} />
+      {/* Advanced lighting setup for dramatic effect */}
+      <ambientLight intensity={0.5} />
       
+      {/* Key light - main illumination */}
       <directionalLight 
-        position={[8, 10, 8]} 
-        intensity={1.6} 
+        position={[10, 12, 8]} 
+        intensity={2.0} 
         castShadow 
         shadow-mapSize={[2048, 2048]}
-        shadow-camera-far={25}
-        shadow-camera-left={-6}
-        shadow-camera-right={6}
-        shadow-camera-top={6}
-        shadow-camera-bottom={-6}
-        shadow-bias={-0.00015}
+        shadow-camera-far={30}
+        shadow-camera-left={-8}
+        shadow-camera-right={8}
+        shadow-camera-top={8}
+        shadow-camera-bottom={-8}
+        shadow-bias={-0.0001}
       />
       
-      <directionalLight position={[-5, 6, -5]} intensity={0.7} color="#b8d4ff" />
-      <directionalLight position={[0, -4, 0]} intensity={0.3} color="#ffd4a8" />
+      {/* Fill light - blue tinted for depth */}
+      <directionalLight position={[-6, 8, -6]} intensity={0.9} color="#c8d8ff" />
       
+      {/* Rim light - warm accent from below */}
+      <directionalLight position={[0, -5, 2]} intensity={0.5} color="#ffecd4" />
+      {/* Refined spotlight for focus */}
       <spotLight 
-        position={[0, 15, 0]} 
-        angle={0.22} 
+        position={[0, 18, 0]} 
+        angle={0.18} 
         penumbra={1} 
-        intensity={0.9} 
+        intensity={1.2} 
         castShadow
         shadow-mapSize={[2048, 2048]}
         color="#ffffff"
       />
 
-      <Bounds fit clip observe margin={1.2}>
+      <Bounds fit clip observe margin={1.3}>
         {renderModel()}
       </Bounds>
 
-      {/* Enhanced contact shadows */}
+      {/* Enhanced contact shadows for better grounding */}
       <ContactShadows
-        position={[0, -1.8, 0]}
-        opacity={0.35}
-        scale={12}
-        blur={2.5}
-        far={4}
-        resolution={512}
+        position={[0, -1.9, 0]}
+        opacity={0.4}
+        scale={14}
+        blur={3}
+        far={5}
+        resolution={1024}
       />
 
-      {/* HDR environment - using color instead of preset to avoid loading external HDR files */}
+      {/* High-quality environment for realistic reflections */}
       <Environment
         background={false}
-        environmentIntensity={1}
+        environmentIntensity={1.2}
       >
         <mesh>
-          <sphereGeometry args={[50, 32, 32]} />
-          <meshBasicMaterial color="#f0f0f0" side={2} />
+          <sphereGeometry args={[50, 64, 64]} />
+          <meshBasicMaterial color="#f5f5f5" side={2} />
         </mesh>
       </Environment>
 
-      {/* Post-processing */}
+      {/* Enhanced post-processing for premium look */}
       <EffectComposer multisampling={8}>
         <Bloom 
-          intensity={0.4}
-          luminanceThreshold={0.85}
-          luminanceSmoothing={0.95}
+          intensity={0.5}
+          luminanceThreshold={0.82}
+          luminanceSmoothing={0.98}
           mipmapBlur
+          radius={0.8}
         />
         <ToneMapping mode={ToneMappingMode.ACES_FILMIC} />
       </EffectComposer>
 
-      {/* Enhanced controls */}
+      {/* Improved controls for better interaction */}
       <OrbitControls
         enableZoom={false}
         enablePan={false}
-        minDistance={4.5}
-        maxDistance={6.5}
-        maxPolarAngle={Math.PI / 2}
-        minPolarAngle={Math.PI / 5}
+        minDistance={5}
+        maxDistance={7}
+        maxPolarAngle={Math.PI / 2.1}
+        minPolarAngle={Math.PI / 6}
         autoRotate={true}
-        autoRotateSpeed={1.2}
+        autoRotateSpeed={1.5}
         enableDamping
-        dampingFactor={0.04}
-        rotateSpeed={0.6}
+        dampingFactor={0.03}
+        rotateSpeed={0.5}
       />
     </>
   );

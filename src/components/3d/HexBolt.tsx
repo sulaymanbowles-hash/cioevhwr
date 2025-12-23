@@ -26,21 +26,21 @@ export const HexBolt = ({ scale = 1, autoRotate = true }: HexBoltProps) => {
   const threadPitch = 0.045;
   const threadDepth = 0.025;
 
-  // Advanced titanium material properties
+  // Advanced titanium material properties with enhanced realism
   const titaniumMaterial = useMemo(() => ({
-    color: "#b8c5d6",
-    metalness: 0.95,
-    roughness: 0.15,
-    envMapIntensity: 1.2,
-    clearcoat: 0.1,
-    clearcoatRoughness: 0.3,
+    color: "#c0cdd9",
+    metalness: 0.97,
+    roughness: 0.12,
+    envMapIntensity: 1.5,
+    clearcoat: 0.15,
+    clearcoatRoughness: 0.25,
   }), []);
 
   const threadMaterial = useMemo(() => ({
-    color: "#a0afc2",
-    metalness: 0.92,
-    roughness: 0.25,
-    envMapIntensity: 1.0,
+    color: "#a8b5c4",
+    metalness: 0.94,
+    roughness: 0.22,
+    envMapIntensity: 1.2,
   }), []);
 
   return (
