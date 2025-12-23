@@ -1,6 +1,6 @@
 import { useRef, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
-import { Mesh } from "three";
+import { Mesh, Group } from "three";
 
 interface SelfLockingNutProps {
   scale?: number;
@@ -9,7 +9,7 @@ interface SelfLockingNutProps {
 
 export const SelfLockingNut = ({ scale = 1, autoRotate = true }: SelfLockingNutProps) => {
   const nutRef = useRef<Mesh>(null);
-  const groupRef = useRef<any>(null);
+  const groupRef = useRef<Group>(null);
   
   useFrame((state) => {
     if (autoRotate && groupRef.current) {
@@ -26,18 +26,18 @@ export const SelfLockingNut = ({ scale = 1, autoRotate = true }: SelfLockingNutP
   const threadDepth = 0.015;
 
   const aluminumMaterial = useMemo(() => ({
-    color: "#d4dce8",
-    metalness: 0.88,
-    roughness: 0.22,
-    envMapIntensity: 1.3,
-    clearcoat: 0.15,
+    color: "#dce4ec",
+    metalness: 0.92,
+    roughness: 0.18,
+    envMapIntensity: 1.5,
+    clearcoat: 0.2,
   }), []);
 
   const nylonMaterial = useMemo(() => ({
-    color: "#1e3a5f",
-    metalness: 0.05,
-    roughness: 0.85,
-    envMapIntensity: 0.3,
+    color: "#2a4a72",
+    metalness: 0.08,
+    roughness: 0.82,
+    envMapIntensity: 0.4,
   }), []);
 
   return (

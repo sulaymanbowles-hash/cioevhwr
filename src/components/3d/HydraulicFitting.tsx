@@ -1,6 +1,6 @@
 import { useRef, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
-import { Mesh } from "three";
+import { Mesh, Group } from "three";
 
 interface HydraulicFittingProps {
   scale?: number;
@@ -9,7 +9,7 @@ interface HydraulicFittingProps {
 
 export const HydraulicFitting = ({ scale = 1, autoRotate = true }: HydraulicFittingProps) => {
   const fittingRef = useRef<Mesh>(null);
-  const groupRef = useRef<any>(null);
+  const groupRef = useRef<Group>(null);
   
   useFrame((state) => {
     if (autoRotate && groupRef.current) {
@@ -25,17 +25,18 @@ export const HydraulicFitting = ({ scale = 1, autoRotate = true }: HydraulicFitt
   const flareLength = 0.28;
 
   const brassMaterial = useMemo(() => ({
-    color: "#d4b896",
-    metalness: 0.78,
-    roughness: 0.32,
-    envMapIntensity: 1.1,
+    color: "#dcc4a0",
+    metalness: 0.82,
+    roughness: 0.28,
+    envMapIntensity: 1.3,
+    clearcoat: 0.1,
   }), []);
 
   const darkBrassMaterial = useMemo(() => ({
-    color: "#b89870",
-    metalness: 0.72,
-    roughness: 0.38,
-    envMapIntensity: 0.9,
+    color: "#c4a87c",
+    metalness: 0.76,
+    roughness: 0.35,
+    envMapIntensity: 1.0,
   }), []);
 
   return (

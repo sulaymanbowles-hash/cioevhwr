@@ -9,6 +9,9 @@ export const Contact = () => {
     email: "",
     company: "",
     phone: "",
+    inquiryType: "rfq",
+    partNumbers: "",
+    quantity: "",
     message: ""
   });
   const [submitted, setSubmitted] = useState(false);
@@ -19,7 +22,7 @@ export const Contact = () => {
     setSubmitted(true);
     setTimeout(() => {
       setSubmitted(false);
-      setFormData({ name: "", email: "", company: "", phone: "", message: "" });
+      setFormData({ name: "", email: "", company: "", phone: "", inquiryType: "rfq", partNumbers: "", quantity: "", message: "" });
     }, 3000);
   };
 
@@ -113,6 +116,53 @@ export const Contact = () => {
                       placeholder="+1 (555) 123-4567"
                     />
                   </div>
+
+                  <div>
+                    <label className="block text-sm font-semibold mb-2 text-gray-700">
+                      Inquiry Type *
+                    </label>
+                    <select
+                      required
+                      value={formData.inquiryType}
+                      onChange={(e) => setFormData({...formData, inquiryType: e.target.value})}
+                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-black focus:outline-none transition-colors bg-white"
+                    >
+                      <option value="rfq">Request for Quote (RFQ)</option>
+                      <option value="technical">Technical Support</option>
+                      <option value="general">General Inquiry</option>
+                      <option value="aog">AOG Emergency</option>
+                    </select>
+                  </div>
+
+                  {formData.inquiryType === "rfq" && (
+                    <>
+                      <div>
+                        <label className="block text-sm font-semibold mb-2 text-gray-700">
+                          Part Numbers
+                        </label>
+                        <input
+                          type="text"
+                          value={formData.partNumbers}
+                          onChange={(e) => setFormData({...formData, partNumbers: e.target.value})}
+                          className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-black focus:outline-none transition-colors"
+                          placeholder="NAS6204-12, MS21042-4, etc."
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-semibold mb-2 text-gray-700">
+                          Quantity Required
+                        </label>
+                        <input
+                          type="text"
+                          value={formData.quantity}
+                          onChange={(e) => setFormData({...formData, quantity: e.target.value})}
+                          className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-black focus:outline-none transition-colors"
+                          placeholder="e.g., 500 units"
+                        />
+                      </div>
+                    </>
+                  )}
 
                   <div>
                     <label className="block text-sm font-semibold mb-2 text-gray-700">

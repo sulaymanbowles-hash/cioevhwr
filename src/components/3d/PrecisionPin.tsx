@@ -1,6 +1,6 @@
 import { useRef, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
-import { Mesh } from "three";
+import { Mesh, Group } from "three";
 
 interface PrecisionPinProps {
   scale?: number;
@@ -9,7 +9,7 @@ interface PrecisionPinProps {
 
 export const PrecisionPin = ({ scale = 1, autoRotate = true }: PrecisionPinProps) => {
   const pinRef = useRef<Mesh>(null);
-  const groupRef = useRef<any>(null);
+  const groupRef = useRef<Group>(null);
   
   useFrame((state) => {
     if (autoRotate && groupRef.current) {
@@ -26,11 +26,11 @@ export const PrecisionPin = ({ scale = 1, autoRotate = true }: PrecisionPinProps
   const grooveWidth = 0.08;
 
   const stainlessMaterial = useMemo(() => ({
-    color: "#dce4f0",
-    metalness: 0.96,
-    roughness: 0.12,
-    envMapIntensity: 1.4,
-    clearcoat: 0.2,
+    color: "#e4ecf5",
+    metalness: 0.98,
+    roughness: 0.08,
+    envMapIntensity: 1.6,
+    clearcoat: 0.25,
   }), []);
 
   return (

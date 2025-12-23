@@ -1,6 +1,6 @@
 import { useRef, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
-import { Mesh } from "three";
+import { Mesh, Group } from "three";
 
 interface HexBoltProps {
   scale?: number;
@@ -9,7 +9,7 @@ interface HexBoltProps {
 
 export const HexBolt = ({ scale = 1, autoRotate = true }: HexBoltProps) => {
   const boltRef = useRef<Mesh>(null);
-  const groupRef = useRef<any>(null);
+  const groupRef = useRef<Group>(null);
   
   useFrame((state) => {
     if (autoRotate && groupRef.current) {
