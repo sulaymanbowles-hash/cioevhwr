@@ -2,33 +2,26 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { TechLabel } from "../ui/TechLabel";
-import { Link, useNavigate } from "react-router-dom";
 
 export const Header = () => {
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const navigate = useNavigate();
 
   return (
-    <header className="fixed top-0 w-full bg-white/95 backdrop-blur-lg z-50 border-b border-gray-200/80 shadow-sm">
-      <nav className="max-w-[1600px] mx-auto px-6 md:px-8 h-20 flex items-center justify-between">
-        <div className="flex items-center space-x-12 lg:space-x-16">
-          <Link to="/" className="text-xl font-semibold tracking-tighter uppercase group transition-all">
-            Aerospace<span className="font-light text-gray-500 group-hover:text-black transition-colors duration-300">Fasteners</span>
-          </Link>
+    <header className="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 border-b border-black/10">
+      <nav className="max-w-[1600px] mx-auto px-8 h-20 flex items-center justify-between">
+        <div className="flex items-center space-x-16">
+          <a href="/" className="text-xl font-semibold tracking-tighter uppercase group">
+            Aerospace<span className="font-light text-gray-400 group-hover:text-black transition-colors">Fasteners</span>
+          </a>
 
-          <div className="hidden lg:flex space-x-8 xl:space-x-10">
+          <div className="hidden lg:flex space-x-10">
             <div 
               className="relative"
               onMouseEnter={() => setActiveMenu("products")}
               onMouseLeave={() => setActiveMenu(null)}
             >
-              <button 
-                onClick={() => navigate('/catalog')}
-                className="nav-link cursor-pointer py-8 text-[11px] font-semibold uppercase tracking-[0.15em] text-gray-700 hover:text-black transition-colors"
-              >
-                Products
-              </button>
+              <span className="nav-link cursor-pointer py-8 text-xs font-semibold uppercase tracking-widest">Products</span>
               <AnimatePresence>
                 {activeMenu === "products" && (
                   <motion.div
@@ -36,23 +29,23 @@ export const Header = () => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.2, ease: [0.19, 1, 0.22, 1] }}
-                    className="absolute -left-12 top-full w-[640px] bg-white border border-gray-200 shadow-2xl rounded-sm mt-2"
+                    className="absolute -left-12 top-full w-[640px] bg-white border border-black/10 shadow-2xl"
                   >
                     <div className="p-10 grid grid-cols-2 gap-12">
                       <div>
                         <TechLabel className="mb-6 block">Structural Hardware</TechLabel>
                         <ul className="space-y-4 text-sm">
-                          <li><Link to="/catalog" className="block hover:translate-x-1 transition-transform text-gray-600 hover:text-black">Bolts & Screws</Link></li>
-                          <li><Link to="/catalog" className="block hover:translate-x-1 transition-transform text-gray-600 hover:text-black">Fittings & Fluid Systems</Link></li>
-                          <li><Link to="/catalog" className="block hover:translate-x-1 transition-transform text-gray-600 hover:text-black">Pins & Precision Collars</Link></li>
+                          <li><a href="#" className="block hover:translate-x-1 transition-transform">Bolts & Screws</a></li>
+                          <li><a href="#" className="block hover:translate-x-1 transition-transform">Fittings & Fluid Systems</a></li>
+                          <li><a href="#" className="block hover:translate-x-1 transition-transform">Pins & Precision Collars</a></li>
                         </ul>
                       </div>
                       <div>
                         <TechLabel className="mb-6 block">Secondary & Specialty</TechLabel>
                         <ul className="space-y-4 text-sm">
-                          <li><Link to="/catalog" className="block hover:translate-x-1 transition-transform text-gray-600 hover:text-black">Nuts & Locking Inserts</Link></li>
-                          <li><Link to="/catalog" className="block hover:translate-x-1 transition-transform text-gray-600 hover:text-black">O-Rings & Retaining Rings</Link></li>
-                          <li><Link to="/catalog" className="block hover:translate-x-1 transition-transform text-gray-600 hover:text-black">Rivets & Blind Fasteners</Link></li>
+                          <li><a href="#" className="block hover:translate-x-1 transition-transform">Nuts & Locking Inserts</a></li>
+                          <li><a href="#" className="block hover:translate-x-1 transition-transform">O-Rings & Retaining Rings</a></li>
+                          <li><a href="#" className="block hover:translate-x-1 transition-transform">Rivets & Blind Fasteners</a></li>
                         </ul>
                       </div>
                     </div>
@@ -66,12 +59,7 @@ export const Header = () => {
               onMouseEnter={() => setActiveMenu("services")}
               onMouseLeave={() => setActiveMenu(null)}
             >
-              <button 
-                onClick={() => navigate('/services')}
-                className="nav-link cursor-pointer py-8 text-[11px] font-semibold uppercase tracking-[0.15em] text-gray-700 hover:text-black transition-colors"
-              >
-                Services
-              </button>
+              <span className="nav-link cursor-pointer py-8 text-xs font-semibold uppercase tracking-widest">Services</span>
               <AnimatePresence>
                 {activeMenu === "services" && (
                   <motion.div
@@ -79,21 +67,21 @@ export const Header = () => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.2, ease: [0.19, 1, 0.22, 1] }}
-                    className="absolute -left-12 top-full w-[400px] bg-white border border-gray-200 shadow-2xl rounded-sm mt-2"
+                    className="absolute -left-12 top-full w-[400px] bg-white border border-black/10 shadow-2xl"
                   >
                     <div className="p-10">
                       <ul className="space-y-6 text-sm">
                         <li>
-                          <Link to="/services" className="group block">
-                            <span className="block font-medium uppercase text-xs mb-1 text-gray-900">Quality Control System</span>
-                            <span className="text-gray-500 text-xs group-hover:text-gray-700 transition-colors">AS9120B / ISO 9001:2015 Traceability</span>
-                          </Link>
+                          <a href="#" className="group block">
+                            <span className="block font-medium uppercase text-xs mb-1">Quality Control System</span>
+                            <span className="text-gray-400 text-xs">AS9120B / ISO 9001:2015 Traceability</span>
+                          </a>
                         </li>
                         <li>
-                          <Link to="/services" className="group block">
-                            <span className="block font-medium uppercase text-xs mb-1 text-gray-900">Inventory Management</span>
-                            <span className="text-gray-500 text-xs group-hover:text-gray-700 transition-colors">VMI, Kitting, and Consignment Programs</span>
-                          </Link>
+                          <a href="#" className="group block">
+                            <span className="block font-medium uppercase text-xs mb-1">Inventory Management</span>
+                            <span className="text-gray-400 text-xs">VMI, Kitting, and Consignment Programs</span>
+                          </a>
                         </li>
                       </ul>
                     </div>
@@ -102,24 +90,16 @@ export const Header = () => {
               </AnimatePresence>
             </div>
             
-            <button 
-              onClick={() => navigate('/about')}
-              className="nav-link cursor-pointer py-8 text-[11px] font-semibold uppercase tracking-[0.15em] text-gray-700 hover:text-black transition-colors"
-            >
-              Company
-            </button>
+            <span className="nav-link cursor-pointer py-8 text-xs font-semibold uppercase tracking-widest">Company</span>
           </div>
         </div>
 
-        <div className="flex items-center space-x-6 lg:space-x-8">
+        <div className="flex items-center space-x-8">
           <div className="hidden xl:flex flex-col items-end">
-            <TechLabel className="!text-[9px] mb-0.5">CAGE Code</TechLabel>
-            <span className="font-mono text-[11px] font-medium text-gray-700">0P9Z1</span>
+            <TechLabel className="!text-[9px]">CAGE Code</TechLabel>
+            <span className="font-mono text-[11px] font-medium">0P9Z1</span>
           </div>
-          <button 
-            onClick={() => navigate('/contact')}
-            className="hidden lg:block bg-black text-white px-8 py-3.5 text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-gray-800 transition-all active:scale-95 rounded-sm"
-          >
+          <button className="hidden lg:block bg-black text-white px-6 py-3 text-[10px] font-bold uppercase tracking-widest hover:bg-gray-800 transition-all active:scale-95">
             Request Quote
           </button>
           <button 
@@ -150,21 +130,14 @@ export const Header = () => {
               <div>
                 <TechLabel className="mb-4 block">Navigation</TechLabel>
                 <ul className="space-y-6 text-2xl font-light tracking-tight">
-                  <li><Link to="/catalog" onClick={() => setMobileMenuOpen(false)} className="block">Products</Link></li>
-                  <li><Link to="/services" onClick={() => setMobileMenuOpen(false)} className="block">Services</Link></li>
-                  <li><Link to="/about" onClick={() => setMobileMenuOpen(false)} className="block">About</Link></li>
-                  <li><Link to="/contact" onClick={() => setMobileMenuOpen(false)} className="block">Contact</Link></li>
+                  <li><a href="#" className="block">Products</a></li>
+                  <li><a href="#" className="block">Services</a></li>
+                  <li><a href="#" className="block">Company</a></li>
                 </ul>
               </div>
               <div>
                 <TechLabel className="mb-4 block">Contact</TechLabel>
-                <button 
-                  onClick={() => {
-                    setMobileMenuOpen(false);
-                    navigate('/contact');
-                  }}
-                  className="w-full bg-black text-white px-6 py-4 text-xs font-bold uppercase tracking-widest"
-                >
+                <button className="w-full bg-black text-white px-6 py-4 text-xs font-bold uppercase tracking-widest">
                   Request Quote
                 </button>
               </div>

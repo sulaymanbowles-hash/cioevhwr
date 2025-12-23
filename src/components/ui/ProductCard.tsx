@@ -1,60 +1,43 @@
 import { TechLabel } from "./TechLabel";
 import { TechnicalBorder } from "./TechnicalBorder";
-import { ArrowUpRight } from "lucide-react";
-import { Product3DViewer } from "./Product3DViewer";
-import { useNavigate } from "react-router-dom";
+import { Box, ArrowUpRight } from "lucide-react";
 
 interface ProductCardProps {
   title: string;
   category: string;
   partNumber: string;
   image?: string;
-  modelType?: "bolt" | "nut" | "fitting" | "pin";
-  slug?: string;
 }
 
-export const ProductCard = ({ title, category, partNumber, image, modelType, slug }: ProductCardProps) => {
-  const navigate = useNavigate();
-  
-  const handleClick = () => {
-    if (slug) {
-      navigate(`/product/${slug}`);
-    }
-  };
-
+export const ProductCard = ({ title, category, partNumber, image }: ProductCardProps) => {
   return (
-    <TechnicalBorder 
-      onClick={handleClick}
-      className="group p-10 border-r border-b border-gray-200 hover:bg-gradient-to-br hover:from-gray-50 hover:to-white transition-all duration-300 cursor-pointer relative overflow-hidden"
-    >
-      <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-        <ArrowUpRight className="w-5 h-5 text-gray-500" />
+    <TechnicalBorder className="group p-8 border-r border-b border-black/10 hover:bg-gray-50 transition-colors cursor-pointer relative overflow-hidden">
+      <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <ArrowUpRight className="w-4 h-4 text-gray-400" />
       </div>
 
       <div className="flex justify-between items-start mb-12">
         <TechLabel>{category}</TechLabel>
-        <span className="font-mono text-[10px] text-gray-500 tracking-wide">{partNumber}</span>
+        <span className="font-mono text-[10px] text-gray-400">{partNumber}</span>
       </div>
       
-      <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-50 mb-10 flex items-center justify-center overflow-hidden relative rounded-lg border border-gray-200/60 shadow-inner">
+      <div className="aspect-square bg-gray-50 mb-8 flex items-center justify-center overflow-hidden relative">
         {/* Technical Grid Background */}
-        <div className="absolute inset-0 opacity-[0.04]" 
-             style={{ backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '12px 12px' }} 
+        <div className="absolute inset-0 opacity-[0.03]" 
+             style={{ backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '10px 10px' }} 
         />
         
-        {modelType ? (
-          <div className="w-full h-full pointer-events-none">
-            <Product3DViewer type={modelType} />
-          </div>
-        ) : image ? (
+        {image ? (
           <img src={image} alt={title} className="w-full h-full object-cover mix-blend-multiply group-hover:scale-105 transition-transform duration-500" />
         ) : (
-          <div className="text-gray-400 text-sm font-mono">No Preview</div>
+          <div className="w-24 h-24 border border-gray-200 rounded-full flex items-center justify-center group-hover:border-gray-400 transition-colors">
+            <Box className="w-8 h-8 text-gray-300 group-hover:text-gray-500 transition-colors" strokeWidth={1} />
+          </div>
         )}
       </div>
 
-      <h3 className="text-lg font-semibold uppercase tracking-tight mb-3 text-gray-900 group-hover:text-black transition-colors">{title}</h3>
-      <div className="w-full h-px bg-gradient-to-r from-gray-300 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500" />
+      <h3 className="text-lg font-medium uppercase tracking-tight mb-2">{title}</h3>
+      <div className="w-full h-px bg-black/10 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500" />
     </TechnicalBorder>
   );
 };

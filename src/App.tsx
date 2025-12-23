@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Lenis from "lenis";
+import { ErrorBoundary } from "./components/ErrorBoundary";
 import { Header } from "./components/layout/Header";
 import { Footer } from "./components/layout/Footer";
 import { Home } from "./pages/Home";
@@ -33,11 +34,12 @@ function App() {
   }, []);
 
   return (
-    <Router>
-      <div className="antialiased selection:bg-black selection:text-white min-h-screen flex flex-col">
-        <Header />
-        <main className="flex-grow">
-          <Routes>
+    <ErrorBoundary>
+      <Router>
+        <div className="antialiased selection:bg-black selection:text-white min-h-screen flex flex-col">
+          <Header />
+          <main className="flex-grow">
+            <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/product/:slug" element={<ProductDetail />} />
             <Route path="/catalog" element={<Catalog />} />
@@ -49,6 +51,7 @@ function App() {
         <Footer />
       </div>
     </Router>
+    </ErrorBoundary>
   );
 }
 
