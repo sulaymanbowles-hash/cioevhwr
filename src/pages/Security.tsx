@@ -207,8 +207,8 @@ export const Security = () => {
               </p>
               <div className="space-y-2">
                 <p className="font-semibold">Security Team Contact:</p>
-                <p className="text-gray-300">Email: security@aerospacefasteners.com</p>
-                <p className="text-gray-300">Phone: +1 (714) 529-6144 (24/7 Security Hotline)</p>
+                <p className="text-gray-300">Email: sales@afastinc.com</p>
+                <p className="text-gray-300">Phone: 903-723-0693 (24/7 Security Hotline)</p>
                 <p className="text-sm text-gray-400 mt-4">PGP Key: Available upon request for encrypted communications</p>
               </div>
             </div>

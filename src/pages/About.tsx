@@ -121,9 +121,9 @@ export const About = () => {
           <div className="space-y-12">
             {[
               {
-                year: "1998",
-                title: "Founded in Southern California",
-                desc: "Started as a small aerospace fastener distributor serving local manufacturers in the greater Los Angeles area."
+                year: "1979",
+                title: "Founded in Palestine, Texas",
+                desc: "Established as a family-owned aerospace fastener distributor, beginning a legacy of serving commercial and military aerospace customers."
               },
               {
                 year: "2005",

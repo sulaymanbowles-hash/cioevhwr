@@ -147,9 +147,9 @@ export const Privacy = () => {
             <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 mb-12">
               <p className="font-semibold mb-2">Privacy Officer</p>
               <p className="text-gray-700">Aerospace Fasteners Inc.</p>
-              <p className="text-gray-700">2600 E. Imperial Hwy, Brea, CA 92821</p>
-              <p className="text-gray-700">Email: privacy@aerospacefasteners.com</p>
-              <p className="text-gray-700">Phone: +1 (714) 529-6144</p>
+              <p className="text-gray-700">255 N US 287, Palestine, TX 75803</p>
+              <p className="text-gray-700">Email: sales@afastinc.com</p>
+              <p className="text-gray-700">Phone: 903-723-0693</p>
             </div>
           </motion.div>
         </div>

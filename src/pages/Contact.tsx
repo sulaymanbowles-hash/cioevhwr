@@ -161,8 +161,8 @@ export const Contact = () => {
                     </div>
                     <div>
                       <h3 className="font-semibold mb-1">Phone</h3>
-                      <p className="text-gray-600">+1 (714) 529-6144</p>
-                      <p className="text-sm text-gray-500 mt-1">Mon-Fri 8AM-5PM PST</p>
+                      <p className="text-gray-600">903-723-0693</p>
+                      <p className="text-sm text-gray-500 mt-1">Monday - Friday, 8 AM - 5 PM CST</p>
                     </div>
                   </div>
 
@@ -172,7 +172,7 @@ export const Contact = () => {
                     </div>
                     <div>
                       <h3 className="font-semibold mb-1">Email</h3>
-                      <p className="text-gray-600">sales@aerospacefasteners.com</p>
+                      <p className="text-gray-600">sales@afastinc.com</p>
                       <p className="text-sm text-gray-500 mt-1">Response within 24 hours</p>
                     </div>
                   </div>
@@ -184,8 +184,8 @@ export const Contact = () => {
                     <div>
                       <h3 className="font-semibold mb-1">Address</h3>
                       <p className="text-gray-600">
-                        2600 E. Imperial Highway<br />
-                        Brea, California 92821<br />
+                        255 N US 287<br />
+                        Palestine, TX 75803<br />
                         United States
                       </p>
                     </div>
@@ -198,7 +198,7 @@ export const Contact = () => {
                     <div>
                       <h3 className="font-semibold mb-1">Business Hours</h3>
                       <p className="text-gray-600">
-                        Monday - Friday: 8:00 AM - 5:00 PM PST<br />
+                        Monday - Friday: 8:00 AM - 5:00 PM CST<br />
                         Saturday - Sunday: Closed
                       </p>
                       <p className="text-sm text-gray-500 mt-2">
@@ -216,7 +216,7 @@ export const Contact = () => {
                   For Aircraft On Ground (AOG) situations or time-critical orders, call our emergency hotline.
                 </p>
                 <a
-                  href="tel:+17145296144"
+                  href="tel:9037230693"
                   className="inline-block bg-white text-black px-8 py-3 text-xs font-bold uppercase tracking-widest hover:bg-gray-100 transition-all rounded"
                 >
                   Call Emergency Line

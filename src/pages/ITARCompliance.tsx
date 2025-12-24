@@ -249,10 +249,10 @@ export const ITARCompliance = () => {
               <div className="space-y-2">
                 <p className="font-semibold text-lg">Trade Compliance Department</p>
                 <p className="text-gray-300">Aerospace Fasteners Inc.</p>
-                <p className="text-gray-300">2600 E. Imperial Hwy, Brea, CA 92821</p>
-                <p className="text-gray-300">Email: itar@aerospacefasteners.com</p>
-                <p className="text-gray-300">Phone: +1 (714) 529-6144</p>
-                <p className="text-gray-300">Fax: +1 (714) 529-6145</p>
+                <p className="text-gray-300">255 N US 287, Palestine, TX 75803</p>
+                <p className="text-gray-300">Email: sales@afastinc.com</p>
+                <p className="text-gray-300">Phone: 903-723-0693</p>
+                <p className="text-gray-300">Fax: 903-723-3968</p>
               </div>
               <div className="mt-6 pt-6 border-t border-gray-700">
                 <p className="text-sm text-gray-400">

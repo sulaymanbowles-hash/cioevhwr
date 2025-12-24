@@ -97,11 +97,11 @@ const productsData: Record<string, ProductInfo> = {
       { label: "Diameter", value: "0.0625 inches ±0.0001" },
       { label: "Length", value: "0.500 inches" },
       { label: "Surface Finish", value: "16 RMS max" },
-      { label: "Hardness", value: "HRC 58-62" },
+      { label: "Hardness", value: "RC 50-58" },
       { label: "Straightness", value: "0.0005 TIR max" },
-      { label: "Material Spec", value: "AISI 4340 Alloy Steel" }
+      { label: "Material Spec", value: "416 Stainless Steel" }
     ],
-    materials: ["4340 Alloy Steel", "Hardened & Ground", "Passivated per QQ-P-35"],
+    materials: ["416 Stainless Steel", "Passivated per QQ-P-35"],
     applications: [
       "Hinge pin assemblies",
       "Jig and fixture alignment",
@@ -109,6 +109,175 @@ const productsData: Record<string, ProductInfo> = {
       "Structural joint registration"
     ],
     standards: ["MS16555", "AN385", "AS8879", "MIL-P-85490"]
+  },
+  "hex-head-cap-screw": {
+    title: "Hex Head Cap Screw",
+    category: "Structural",
+    partNumber: "NAS1351-4",
+    modelType: "bolt",
+    description: "Heavy-duty hex head design for structural applications requiring high tensile strength.",
+    specifications: [
+      { label: "Thread Size", value: "1/4-28 UNF" },
+      { label: "Material", value: "Titanium Grade 5" },
+      { label: "Tensile Strength", value: "160,000 PSI" }
+    ],
+    materials: ["Titanium Ti-6Al-4V"],
+    applications: ["Structural assembly", "Engine mounts"],
+    standards: ["NAS1351"]
+  },
+  "nylon-insert-lock-nut": {
+    title: "Nylon Insert Lock Nut",
+    category: "Fasteners",
+    partNumber: "MS21044-4",
+    modelType: "nut",
+    description: "Self-locking nut with nylon insert to prevent loosening under vibration.",
+    specifications: [
+      { label: "Thread Size", value: "1/4-28 UNF" },
+      { label: "Material", value: "303 Stainless Steel" }
+    ],
+    materials: ["Stainless Steel", "Nylon Insert"],
+    applications: ["Vibration environments", "Panel assembly"],
+    standards: ["MS21044"]
+  },
+  "tube-coupling": {
+    title: "Tube Coupling",
+    category: "Fluid Systems",
+    partNumber: "AN819-4",
+    modelType: "fitting",
+    description: "Coupling sleeve for connecting hydraulic tubing in high-pressure systems.",
+    specifications: [
+      { label: "Tube OD", value: "1/4 inch" },
+      { label: "Material", value: "Brass" }
+    ],
+    materials: ["CDA 360 Brass"],
+    applications: ["Hydraulic lines", "Fuel systems"],
+    standards: ["AN819"]
+  },
+  "clevis-pin": {
+    title: "Clevis Pin",
+    category: "Alignment",
+    partNumber: "AN392-12",
+    modelType: "pin",
+    description: "Structural pin with head and cotter pin hole for secure retention in linkage systems.",
+    specifications: [
+      { label: "Diameter", value: "0.375 inches" },
+      { label: "Material", value: "17-4PH Stainless" }
+    ],
+    materials: ["17-4PH Stainless Steel"],
+    applications: ["Control linkages", "Hinges"],
+    standards: ["AN392"]
+  },
+  "aerospace-hex-bolt": {
+    title: "Aerospace Hex Bolt",
+    category: "Structural",
+    partNumber: "NAS6204-16",
+    modelType: "bolt",
+    description: "Extended length titanium hex bolt for deep structural connections.",
+    specifications: [
+      { label: "Thread Size", value: "1/4-28 UNF" },
+      { label: "Length", value: "1.500 inches" }
+    ],
+    materials: ["Titanium Ti-6Al-4V"],
+    applications: ["Airframe structure"],
+    standards: ["NAS6204"]
+  },
+  "castle-nut": {
+    title: "Castle Nut",
+    category: "Fasteners",
+    partNumber: "AN310-4",
+    modelType: "nut",
+    description: "Castellated nut designed for use with cotter pins to positively lock the fastener.",
+    specifications: [
+      { label: "Thread Size", value: "1/4-28 UNF" },
+      { label: "Material", value: "CRES 303" }
+    ],
+    materials: ["Stainless Steel"],
+    applications: ["Safety critical joints", "Rotating assemblies"],
+    standards: ["AN310"]
+  },
+  "elbow-fitting-90": {
+    title: "Elbow Fitting 90°",
+    category: "Fluid Systems",
+    partNumber: "MS21904-4",
+    modelType: "fitting",
+    description: "90-degree elbow fitting for routing fluid lines in tight spaces.",
+    specifications: [
+      { label: "Angle", value: "90 degrees" },
+      { label: "Tube OD", value: "1/4 inch" }
+    ],
+    materials: ["2024-T4 Aluminum"],
+    applications: ["Hydraulic routing", "Fuel lines"],
+    standards: ["MS21904"]
+  },
+  "dowel-pin": {
+    title: "Dowel Pin",
+    category: "Alignment",
+    partNumber: "MS16555-4",
+    modelType: "pin",
+    description: "Precision ground dowel pin for exact alignment of mating components.",
+    specifications: [
+      { label: "Diameter", value: "0.125 inches" },
+      { label: "Material", value: "Stainless Steel" }
+    ],
+    materials: ["Stainless Steel"],
+    applications: ["Precision alignment"],
+    standards: ["MS16555"]
+  },
+  "socket-head-cap-screw": {
+    title: "Socket Head Cap Screw",
+    category: "Structural",
+    partNumber: "NAS1352-5",
+    modelType: "bolt",
+    description: "High-strength screw with internal socket drive for compact installation.",
+    specifications: [
+      { label: "Thread Size", value: "5/16-24 UNF" },
+      { label: "Drive", value: "Hex Socket" }
+    ],
+    materials: ["Titanium Grade 5"],
+    applications: ["Internal assemblies", "Access panels"],
+    standards: ["NAS1352"]
+  },
+  "all-metal-lock-nut": {
+    title: "All-Metal Lock Nut",
+    category: "Fasteners",
+    partNumber: "MS21042-6",
+    modelType: "nut",
+    description: "Lightweight, all-metal self-locking nut for high-temperature applications.",
+    specifications: [
+      { label: "Thread Size", value: "3/8-24 UNF" },
+      { label: "Temp Rating", value: "450°F" }
+    ],
+    materials: ["Aluminum Alloy"],
+    applications: ["Engine bays", "High temp zones"],
+    standards: ["MS21042"]
+  },
+  "straight-union": {
+    title: "Straight Union",
+    category: "Fluid Systems",
+    partNumber: "AN815-6",
+    modelType: "fitting",
+    description: "Standard straight union for connecting two fluid lines of equal size.",
+    specifications: [
+      { label: "Tube OD", value: "3/8 inch" },
+      { label: "Material", value: "Brass" }
+    ],
+    materials: ["CDA 360 Brass"],
+    applications: ["Fluid line extension"],
+    standards: ["AN815"]
+  },
+  "taper-pin": {
+    title: "Taper Pin",
+    category: "Alignment",
+    partNumber: "AN385-3",
+    modelType: "pin",
+    description: "Tapered pin for self-tightening alignment and secure positioning.",
+    specifications: [
+      { label: "Taper", value: "0.250 in/ft" },
+      { label: "Material", value: "Stainless Steel" }
+    ],
+    materials: ["Stainless Steel"],
+    applications: ["Shaft coupling", "Gear location"],
+    standards: ["AN385"]
   }
 };
 
