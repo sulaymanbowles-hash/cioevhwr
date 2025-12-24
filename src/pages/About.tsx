@@ -19,7 +19,7 @@ export const About = () => {
               Building the Future of<br/>Aerospace Distribution
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Since 1979, we've been the trusted family-owned partner for aerospace manufacturers worldwide, delivering precision hardware with unmatched reliability from Palestine, Texas.
+              Since 1979, we've been the trusted family-owned distributor of aircraft fastening hardware for commercial and military aerospace customers, delivering precision hardware with unmatched reliability from our 34,000+ square foot facility in Palestine, Texas.
             </p>
           </motion.div>
         </div>
@@ -33,7 +33,7 @@ export const About = () => {
               { number: "45+", label: "Years in Business", sublabel: "Since 1979" },
               { number: "34", label: "Employees", sublabel: "Small Business" },
               { number: "300+", label: "Active Customers", sublabel: "Worldwide" },
-              { number: "34,000+", label: "Square Feet", sublabel: "Facility Space" }
+              { number: "34,000+", label: "Square Feet", sublabel: "3 Buildings" }
             ].map((stat, i) => (
               <motion.div
                 key={i}
@@ -84,8 +84,8 @@ export const About = () => {
               {[
                 { icon: Target, title: "Precision", desc: "Every component meets exact specifications" },
                 { icon: Shield, title: "Quality", desc: "AS9100 Rev. D & ISO 9001:2015 certified" },
-                { icon: TrendingUp, title: "Reliability", desc: "99.8% on-time delivery rate" },
-                { icon: Globe, title: "Global Reach", desc: "Serving customers on 6 continents" }
+                { icon: TrendingUp, title: "Reliability", desc: "Consistent on-time delivery" },
+                { icon: Globe, title: "Global Reach", desc: "Serving customers worldwide" }
               ].map((value, i) => (
                 <div key={i} className="flex items-start gap-4 p-6 bg-gray-50 rounded-lg border border-gray-200">
                   <div className="p-3 bg-black text-white rounded-lg">
@@ -126,24 +126,24 @@ export const About = () => {
                 desc: "Established as a family-owned aerospace fastener distributor, beginning a legacy of serving commercial and military aerospace customers."
               },
               {
-                year: "2005",
+                year: "2010",
                 title: "AS9100 Certification Achieved",
-                desc: "Earned our first AS9100 certification, marking our commitment to aerospace quality management standards."
+                desc: "Earned our AS9100 certification, demonstrating commitment to aerospace quality management standards."
               },
               {
-                year: "2012",
+                year: "2015",
                 title: "Expanded Distribution Network",
-                desc: "Opened additional warehouse facilities and established partnerships with major OEMs and approved distributors."
+                desc: "Grew warehouse facilities and established partnerships with major OEMs and approved distributors."
               },
               {
-                year: "2018",
+                year: "2020",
                 title: "International Growth",
-                desc: "Began serving international customers across Europe, Asia, and South America with 24/7 AOG support."
+                desc: "Expanded to serve international customers with comprehensive AOG support capabilities."
               },
               {
-                year: "2023",
-                title: "Technology Integration",
-                desc: "Implemented advanced inventory management systems with real-time tracking and predictive analytics."
+                year: "2024",
+                title: "Continued Excellence",
+                desc: "Serving 300+ customers worldwide with AS9100 Rev. D and ISO 9001:2015 certifications."
               }
             ].map((milestone, i) => (
               <motion.div
@@ -190,9 +190,9 @@ export const About = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { name: "Michael Chen", role: "Chief Executive Officer", experience: "30+ years aerospace" },
-              { name: "Sarah Rodriguez", role: "VP of Operations", experience: "25+ years supply chain" },
-              { name: "David Thompson", role: "Director of Quality", experience: "20+ years QA/QC" }
+              { name: "Jason Elfarr", role: "President", experience: "Executive Leadership" },
+              { name: "Carole Elfarr", role: "Vice President", experience: "Operations Management" },
+              { name: "Travis Link", role: "Quality / Warehouse Manager", experience: "Quality Assurance" }
             ].map((member, i) => (
               <motion.div
                 key={i}
@@ -232,10 +232,10 @@ export const About = () => {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
-              { name: "AS9100D", desc: "Quality Management" },
+              { name: "AS9100 Rev. D", desc: "Quality Management" },
               { name: "ISO 9001:2015", desc: "International Standard" },
-              { name: "ITAR Registered", desc: "Export Compliance" },
-              { name: "CAGE Code", desc: "0P9Z1" }
+              { name: "ITAR Compliant", desc: "Export Compliance" },
+              { name: "CAGE: 4U021", desc: "Government Entity Code" }
             ].map((cert, i) => (
               <motion.div
                 key={i}

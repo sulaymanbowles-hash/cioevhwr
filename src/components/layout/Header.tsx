@@ -41,25 +41,20 @@ export const Header = () => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.2, ease: [0.19, 1, 0.22, 1] }}
-                    className="absolute -left-12 top-full w-[640px] bg-white border border-black/10 shadow-2xl"
+                    className="absolute -left-12 top-full w-[320px] bg-white border border-black/10 shadow-2xl"
                   >
-                    <div className="p-10 grid grid-cols-2 gap-12">
-                      <div>
-                        <TechLabel className="mb-6 block">Structural Hardware</TechLabel>
-                        <ul className="space-y-4 text-sm">
-                          <li><button onClick={() => { navigate('/catalog'); setActiveMenu(null); }} className="block hover:translate-x-1 transition-transform text-left">Bolts & Screws</button></li>
-                          <li><button onClick={() => { navigate('/catalog'); setActiveMenu(null); }} className="block hover:translate-x-1 transition-transform text-left">Fittings & Fluid Systems</button></li>
-                          <li><button onClick={() => { navigate('/catalog'); setActiveMenu(null); }} className="block hover:translate-x-1 transition-transform text-left">Pins & Precision Collars</button></li>
-                        </ul>
-                      </div>
-                      <div>
-                        <TechLabel className="mb-6 block">Secondary & Specialty</TechLabel>
-                        <ul className="space-y-4 text-sm">
-                          <li><button onClick={() => { navigate('/catalog'); setActiveMenu(null); }} className="block hover:translate-x-1 transition-transform text-left">Nuts & Locking Inserts</button></li>
-                          <li><button onClick={() => { navigate('/catalog'); setActiveMenu(null); }} className="block hover:translate-x-1 transition-transform text-left">O-Rings & Retaining Rings</button></li>
-                          <li><button onClick={() => { navigate('/catalog'); setActiveMenu(null); }} className="block hover:translate-x-1 transition-transform text-left">Rivets & Blind Fasteners</button></li>
-                        </ul>
-                      </div>
+                    <div className="p-8">
+                      <ul className="space-y-3 text-sm font-medium uppercase tracking-wide">
+                        <li><button onClick={() => { navigate('/catalog'); setActiveMenu(null); }} className="block hover:translate-x-1 transition-transform text-left w-full">Fittings</button></li>
+                        <li><button onClick={() => { navigate('/catalog'); setActiveMenu(null); }} className="block hover:translate-x-1 transition-transform text-left w-full">Screws</button></li>
+                        <li><button onClick={() => { navigate('/catalog'); setActiveMenu(null); }} className="block hover:translate-x-1 transition-transform text-left w-full">Bolts</button></li>
+                        <li><button onClick={() => { navigate('/catalog'); setActiveMenu(null); }} className="block hover:translate-x-1 transition-transform text-left w-full">Pins</button></li>
+                        <li><button onClick={() => { navigate('/catalog'); setActiveMenu(null); }} className="block hover:translate-x-1 transition-transform text-left w-full">Nuts</button></li>
+                        <li><button onClick={() => { navigate('/catalog'); setActiveMenu(null); }} className="block hover:translate-x-1 transition-transform text-left w-full">O-Rings & Retaining Rings</button></li>
+                        <li><button onClick={() => { navigate('/catalog'); setActiveMenu(null); }} className="block hover:translate-x-1 transition-transform text-left w-full">Rivets</button></li>
+                        <li><button onClick={() => { navigate('/catalog'); setActiveMenu(null); }} className="block hover:translate-x-1 transition-transform text-left w-full">Washers</button></li>
+                        <li><button onClick={() => { navigate('/catalog'); setActiveMenu(null); }} className="block hover:translate-x-1 transition-transform text-left w-full">Specialty Products</button></li>
+                      </ul>
                     </div>
                   </motion.div>
                 )}

@@ -1,9 +1,10 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, Package, Shield, Truck, FileText } from "lucide-react";
+import { ArrowLeft, Package, Shield, Truck, FileText, ShoppingCart, Factory, Tag, Phone, Mail } from "lucide-react";
 import { Product3DViewer } from "../components/ui/Product3DViewer";
 import { TechLabel } from "../components/ui/TechLabel";
 import { useState } from "react";
+import { useQuoteStore } from "../stores/quoteStore";
 
 interface ProductInfo {
   title: string;
@@ -16,12 +17,14 @@ interface ProductInfo {
   materials: string[];
   applications: string[];
   standards: string[];
+  manufacturers?: string[];
+  fittingType?: string;
 }
 
 const productsData: Record<string, ProductInfo> = {
   "titanium-hex-bolt": {
     title: "Titanium Hex Bolt",
-    category: "Structural Fasteners",
+    category: "Bolts",
     partNumber: "NAS6204-12",
     modelType: "bolt",
     modelFile: "nas6204-12.glb",
@@ -45,7 +48,7 @@ const productsData: Record<string, ProductInfo> = {
   },
   "self-locking-nut": {
     title: "Self-Locking Nut",
-    category: "Fastening Hardware",
+    category: "Nuts",
     partNumber: "MS21042-4",
     modelType: "nut",
     modelFile: "ms21042-4.glb",
@@ -69,11 +72,12 @@ const productsData: Record<string, ProductInfo> = {
   },
   "hydraulic-fitting": {
     title: "Hydraulic Fitting",
-    category: "Fluid Systems",
+    category: "Fittings",
     partNumber: "AN818-4",
     modelType: "fitting",
     modelFile: "an818-4.glb",
-    description: "Precision hydraulic adapter fitting designed for critical fluid system connections. Manufactured to exact tolerances ensuring leak-free operation under extreme pressures and temperatures. Compatible with MIL-PRF-5606 hydraulic fluid.",
+    fittingType: "Adapter - Flared Connection",
+    description: "Precision hydraulic adapter fitting designed for critical fluid system connections. Manufactured to exact tolerances ensuring leak-free operation under extreme pressures and temperatures. Available in flared, flareless, and standard configurations. Compatible with MIL-PRF-5606 hydraulic fluid and meeting AN, MS, and AS aerospace specifications.",
     specifications: [
       { label: "Connection Type", value: "37° Flare, Male" },
       { label: "Thread Size", value: "7/16-20 UNF-3A" },
@@ -82,18 +86,39 @@ const productsData: Record<string, ProductInfo> = {
       { label: "Burst Pressure", value: "12,000 PSI" },
       { label: "Temperature Range", value: "-65°F to 400°F" }
     ],
-    materials: ["Aluminum Alloy 2024-T4", "Anodized per MIL-A-8625"],
+    materials: ["Aluminum Alloy 2024-T4", "Anodized per MIL-A-8625", "Stainless Steel (select models)", "Brass (select models)"],
+    manufacturers: [
+      "Parker Hannifin Corporation",
+      "Eaton Aerospace",
+      "Safran Aerosystems",
+      "Triumph Group",
+      "Ametek",
+      "Senior Aerospace",
+      "TransDigm Group",
+      "Meggitt"
+    ],
     applications: [
       "Hydraulic brake systems",
       "Flight control actuators",
       "Landing gear systems",
-      "Utility hydraulic lines"
+      "Utility hydraulic lines",
+      "Fuel system connections",
+      "Pneumatic systems"
     ],
-    standards: ["AN818", "MS33656", "AS4395", "MIL-F-18280"]
+    standards: [
+      "AN774-AN894 Series",
+      "AN910-AN941 Series", 
+      "MS20819-MS20826 Series",
+      "MS21900-MS21926 Series",
+      "AS5160-AS5242 Series",
+      "AS21900-AS21945 Series",
+      "MS24387-MS24405 Series",
+      "MIL-F-18280"
+    ]
   },
   "precision-pin": {
     title: "Precision Pin",
-    category: "Alignment Hardware",
+    category: "Pins",
     partNumber: "MS16555-2",
     modelType: "pin",
     modelFile: "ms16555-2.glb",
@@ -117,7 +142,7 @@ const productsData: Record<string, ProductInfo> = {
   },
   "hex-head-cap-screw": {
     title: "Hex Head Cap Screw",
-    category: "Structural",
+    category: "Screws",
     partNumber: "NAS1351-4",
     modelType: "bolt",
     modelFile: "nas1351-4.glb",
@@ -133,7 +158,7 @@ const productsData: Record<string, ProductInfo> = {
   },
   "nylon-insert-lock-nut": {
     title: "Nylon Insert Lock Nut",
-    category: "Fasteners",
+    category: "Nuts",
     partNumber: "MS21044-4",
     modelType: "nut",
     modelFile: "ms21044-4.glb",
@@ -142,28 +167,35 @@ const productsData: Record<string, ProductInfo> = {
       { label: "Thread Size", value: "1/4-28 UNF" },
       { label: "Material", value: "303 Stainless Steel" }
     ],
-    materials: ["Stainless Steel", "Nylon Insert"],
-    applications: ["Vibration environments", "Panel assembly"],
+    materials: ["303 Stainless Steel"],
+    applications: ["Fastening", "Vibration resistance"],
     standards: ["MS21044"]
   },
   "tube-coupling": {
     title: "Tube Coupling",
-    category: "Fluid Systems",
+    category: "Fittings",
     partNumber: "AN819-4",
     modelType: "fitting",
     modelFile: "an819-4.glb",
+    fittingType: "Coupling - Straight Union",
     description: "Coupling sleeve for connecting hydraulic tubing in high-pressure systems.",
     specifications: [
       { label: "Tube OD", value: "1/4 inch" },
       { label: "Material", value: "Brass" }
     ],
     materials: ["CDA 360 Brass"],
+    manufacturers: [
+      "Parker Hannifin Corporation",
+      "Eaton Aerospace",
+      "Safran Aerosystems",
+      "Triumph Group"
+    ],
     applications: ["Hydraulic lines", "Fuel systems"],
     standards: ["AN819"]
   },
   "clevis-pin": {
     title: "Clevis Pin",
-    category: "Alignment",
+    category: "Pins",
     partNumber: "AN392-12",
     modelType: "pin",
     modelFile: "an392-12.glb",
@@ -178,7 +210,7 @@ const productsData: Record<string, ProductInfo> = {
   },
   "aerospace-hex-bolt": {
     title: "Aerospace Hex Bolt",
-    category: "Structural",
+    category: "Bolts",
     partNumber: "NAS6204-16",
     modelType: "bolt",
     modelFile: "nas6204-16.glb",
@@ -301,8 +333,9 @@ const productsData: Record<string, ProductInfo> = {
 export const ProductDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
+  const { addItem } = useQuoteStore();
   const [quantity, setQuantity] = useState(1);
-  const [showQuoteForm, setShowQuoteForm] = useState(false);
+  const [addedToCart, setAddedToCart] = useState(false);
 
   const product = slug ? productsData[slug] : null;
 
@@ -376,6 +409,19 @@ export const ProductDetail = () => {
               {product.description}
             </p>
 
+            {/* Fitting Type (for fittings only) */}
+            {product.fittingType && (
+              <div className="mb-12">
+                <h2 className="text-2xl font-semibold mb-6 flex items-center gap-2">
+                  <Tag className="w-5 h-5" />
+                  Fitting Type
+                </h2>
+                <div className="p-4 bg-blue-50 border-2 border-blue-200 rounded-lg">
+                  <span className="text-lg font-semibold text-blue-900">{product.fittingType}</span>
+                </div>
+              </div>
+            )}
+
             {/* Specifications */}
             <div className="mb-12">
               <h2 className="text-2xl font-semibold mb-6 flex items-center gap-2">
@@ -412,6 +458,26 @@ export const ProductDetail = () => {
               </ul>
             </div>
 
+            {/* Manufacturers (for fittings) */}
+            {product.manufacturers && product.manufacturers.length > 0 && (
+              <div className="mb-12">
+                <h2 className="text-2xl font-semibold mb-6 flex items-center gap-2">
+                  <Factory className="w-5 h-5" />
+                  Approved Manufacturers
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {product.manufacturers.map((manufacturer, i) => (
+                    <div key={i} className="p-4 bg-white border-2 border-gray-200 rounded-lg hover:border-gray-400 transition-colors">
+                      <span className="text-sm font-medium text-gray-900">{manufacturer}</span>
+                    </div>
+                  ))}
+                </div>
+                <p className="mt-4 text-sm text-gray-600 italic">
+                  All manufacturers meet or exceed aerospace quality standards and are approved for use in critical applications.
+                </p>
+              </div>
+            )}
+
             {/* Applications */}
             <div className="mb-12">
               <h2 className="text-2xl font-semibold mb-6 flex items-center gap-2">
@@ -445,77 +511,96 @@ export const ProductDetail = () => {
               </div>
             </div>
 
-            {/* Quote Section */}
-            <div className="p-8 bg-gradient-to-br from-gray-900 to-black text-white rounded-lg">
-              <h3 className="text-2xl font-semibold mb-4">Request a Quote</h3>
-              <p className="text-gray-400 mb-6">
-                Contact our sales team for pricing, lead times, and bulk orders.
-              </p>
-              
-              {!showQuoteForm ? (
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <div className="flex items-center gap-3">
-                    <label className="text-sm">Quantity:</label>
+            {/* Add to RFQ Section */}
+            <div className="border-2 border-gray-200 rounded-xl overflow-hidden shadow-lg">
+              {/* Header */}
+              <div className="bg-gradient-to-r from-gray-900 via-gray-800 to-black px-8 py-6">
+                <h3 className="text-2xl font-bold text-white mb-2">Request a Quote</h3>
+                <p className="text-gray-300 text-sm">
+                  Add to your RFQ cart or contact our sales team for pricing and lead times.
+                </p>
+              </div>
+
+              {/* Main Content */}
+              <div className="bg-white px-8 py-6">
+                <div className="flex flex-col lg:flex-row gap-6 items-start lg:items-center justify-between">
+                  {/* Quantity Selector */}
+                  <div className="flex items-center gap-4">
+                    <label className="text-sm font-semibold text-gray-700 uppercase tracking-wide">Quantity:</label>
                     <input
                       type="number"
                       min="1"
                       value={quantity}
                       onChange={(e) => setQuantity(parseInt(e.target.value) || 1)}
-                      className="w-20 px-3 py-2 bg-white text-black rounded text-center font-mono"
+                      className="w-24 px-4 py-3 border-2 border-gray-300 rounded-lg text-center font-mono text-lg font-semibold focus:border-black focus:outline-none transition-colors"
                     />
                   </div>
-                  <button
-                    onClick={() => setShowQuoteForm(true)}
-                    className="bg-white text-black px-8 py-3 text-xs font-bold uppercase tracking-widest hover:bg-gray-100 transition-all rounded"
-                  >
-                    Get Quote
-                  </button>
-                </div>
-              ) : (
-                <form className="space-y-4" onSubmit={(e) => {
-                  e.preventDefault();
-                  alert(`Quote request submitted for ${quantity} units of ${product.partNumber}`);
-                  setShowQuoteForm(false);
-                }}>
-                  <input
-                    type="text"
-                    placeholder="Company Name"
-                    required
-                    className="w-full px-4 py-3 bg-white text-black rounded text-sm"
-                  />
-                  <input
-                    type="email"
-                    placeholder="Email Address"
-                    required
-                    className="w-full px-4 py-3 bg-white text-black rounded text-sm"
-                  />
-                  <input
-                    type="tel"
-                    placeholder="Phone Number"
-                    className="w-full px-4 py-3 bg-white text-black rounded text-sm"
-                  />
-                  <textarea
-                    placeholder="Additional Requirements"
-                    rows={3}
-                    className="w-full px-4 py-3 bg-white text-black rounded text-sm resize-none"
-                  />
-                  <div className="flex gap-3">
+
+                  {/* Action Buttons */}
+                  <div className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
                     <button
-                      type="submit"
-                      className="flex-1 bg-white text-black px-6 py-3 text-xs font-bold uppercase tracking-widest hover:bg-gray-100 transition-all rounded"
+                      onClick={() => {
+                        for (let i = 0; i < quantity; i++) {
+                          addItem({ partNumber: product.partNumber, title: product.title });
+                        }
+                        setAddedToCart(true);
+                        setTimeout(() => setAddedToCart(false), 2000);
+                      }}
+                      className="group flex items-center justify-center gap-3 bg-black text-white px-8 py-4 text-sm font-bold uppercase tracking-wider hover:bg-gray-800 transition-all rounded-lg shadow-md hover:shadow-xl"
                     >
-                      Submit Request
+                      {addedToCart ? (
+                        <>
+                          <motion.svg
+                            initial={{ scale: 0, rotate: -180 }}
+                            animate={{ scale: 1, rotate: 0 }}
+                            transition={{ type: "spring", stiffness: 200 }}
+                            className="inline-block w-6 h-6 text-green-400"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                          </motion.svg>
+                          <span className="text-green-400">Added to RFQ</span>
+                        </>
+                      ) : (
+                        <>
+                          <ShoppingCart className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                          Add to RFQ Cart
+                        </>
+                      )}
                     </button>
                     <button
-                      type="button"
-                      onClick={() => setShowQuoteForm(false)}
-                      className="px-6 py-3 border border-white text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all rounded"
+                      onClick={() => navigate('/quote')}
+                      className="flex items-center justify-center gap-2 border-2 border-black text-black px-8 py-4 text-sm font-bold uppercase tracking-wider hover:bg-black hover:text-white transition-all rounded-lg"
                     >
-                      Cancel
+                      <ShoppingCart className="w-5 h-5" />
+                      View Cart
                     </button>
                   </div>
-                </form>
-              )}
+                </div>
+              </div>
+
+              {/* Contact Footer */}
+              <div className="bg-gray-50 px-8 py-6 border-t-2 border-gray-200">
+                <p className="text-sm font-semibold text-gray-700 mb-4">Need immediate assistance?</p>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <a 
+                    href="tel:+19037230693" 
+                    className="group flex items-center gap-3 px-6 py-3 bg-white border-2 border-gray-300 rounded-lg hover:border-black hover:bg-gray-900 hover:text-white transition-all"
+                  >
+                    <Phone className="w-5 h-5 flex-shrink-0" />
+                    <span className="font-semibold text-sm">(903) 723-0693</span>
+                  </a>
+                  <a 
+                    href="mailto:sales@afastinc.com" 
+                    className="group flex items-center gap-3 px-6 py-3 bg-white border-2 border-gray-300 rounded-lg hover:border-black hover:bg-gray-900 hover:text-white transition-all"
+                  >
+                    <Mail className="w-5 h-5 flex-shrink-0" />
+                    <span className="font-semibold text-sm">sales@afastinc.com</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>

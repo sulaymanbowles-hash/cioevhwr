@@ -70,7 +70,7 @@ export const ProductCard = ({ title, category, partNumber, image, modelType, slu
         {modelType ? (
           <div className="w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out">
             {shouldLoadModel ? (
-              <Product3DViewer type={modelType} quality="medium" />
+              <Product3DViewer type={modelType} />
             ) : (
               <div className="w-full h-full flex items-center justify-center text-gray-400 text-sm font-mono">
                 Loading...

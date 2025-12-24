@@ -24,10 +24,11 @@ export const Footer = () => {
           <div className="md:col-span-2">
             <TechLabel className="mb-8 block text-gray-600">Inventory</TechLabel>
             <ul className="text-xs space-y-4 uppercase tracking-widest">
-              <li><button onClick={() => navigate('/catalog')} className="hover:text-white transition-colors text-left">Bolts & Screws</button></li>
               <li><button onClick={() => navigate('/catalog')} className="hover:text-white transition-colors text-left">Fittings</button></li>
-              <li><button onClick={() => navigate('/catalog')} className="hover:text-white transition-colors text-left">Pins</button></li>
-              <li><button onClick={() => navigate('/catalog')} className="hover:text-white transition-colors text-left">Rivets</button></li>
+              <li><button onClick={() => navigate('/catalog')} className="hover:text-white transition-colors text-left">Bolts</button></li>
+              <li><button onClick={() => navigate('/catalog')} className="hover:text-white transition-colors text-left">Screws</button></li>
+              <li><button onClick={() => navigate('/catalog')} className="hover:text-white transition-colors text-left">Nuts</button></li>
+              <li><button onClick={() => navigate('/catalog')} className="hover:text-white transition-colors text-left">Washers</button></li>
             </ul>
           </div>
           <div className="md:col-span-2">

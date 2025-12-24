@@ -70,7 +70,7 @@ export const Home = () => {
               className="space-y-8"
             >
               <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-lg">
-                Trusted distributor of aircraft fastening hardware since 1979. AS9100 Rev. D / ISO 9001:2015 certified with full material traceability serving more than 300 customers worldwide.
+                Trusted distributor of aircraft fastening hardware for commercial and military aerospace since 1979. AS9100 Rev. D / ISO 9001:2015 certified with full material traceability serving more than 300 customers worldwide.
               </p>
 
               {/* Key Features */}
@@ -160,10 +160,10 @@ export const Home = () => {
         
         <div className="max-w-[1400px] mx-auto relative">
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
+            viewport={{ once: true, margin: "-150px" }}
+            transition={{ duration: 1.0, ease: [0.19, 1, 0.22, 1] }}
             className="max-w-4xl mx-auto text-center mb-32"
           >
             <div className="flex items-center justify-center gap-4 mb-10">
@@ -197,10 +197,10 @@ export const Home = () => {
             ].map((cert, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 60 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.8, delay: i * 0.2, ease: [0.19, 1, 0.22, 1] }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 1.0, delay: i * 0.1, ease: [0.19, 1, 0.22, 1] }}
                 className="group relative bg-black p-12 md:p-16 hover:bg-white hover:text-black transition-all duration-700"
               >
                 <div className="absolute top-0 left-0 w-full h-1 bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />
@@ -238,17 +238,10 @@ export const Home = () => {
               <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-500" />
             </button>
           </motion.div>
-                className="group flex items-center gap-3 text-sm font-bold uppercase tracking-[0.15em] hover:gap-5 transition-all"
-              >
-                View Full Catalog
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </motion.div>
-          </motion.div>
         </div>
       </section>
 
-      {/* Supply Chain Excellence - Redesigned */}
+      {/* Core Capabilities */}      {/* Supply Chain Excellence - Redesigned */}
       <section className="relative py-40 px-6 md:px-8 bg-white overflow-hidden">
         {/* Diagonal lines background */}
         <div 
@@ -259,13 +252,7 @@ export const Home = () => {
         />
         
         <div className="max-w-[1600px] mx-auto relative">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
-            className="text-center mb-32"
-          >
+          <div className="text-center mb-32">
             <div className="flex items-center justify-center gap-4 mb-10">
               <div className="h-px w-16 bg-black/20" />
               <TechLabel>Our Process</TechLabel>
@@ -279,7 +266,7 @@ export const Home = () => {
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
               Precision sourcing, rigorous quality control, and rapid logistics for mission-critical aerospace needs.
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-px bg-black">
             {[
@@ -304,10 +291,10 @@ export const Home = () => {
             ].map((capability, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 80 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.8, delay: i * 0.2, ease: [0.19, 1, 0.22, 1] }}
+                initial={{ opacity: 0, scale: 0.98 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, margin: "-150px" }}
+                transition={{ duration: 1.2, delay: i * 0.15, ease: [0.19, 1, 0.22, 1] }}
                 className="group relative bg-white p-16 hover:bg-black hover:text-white transition-all duration-700"
               >
                 {/* Number Badge */}
@@ -375,13 +362,7 @@ export const Home = () => {
         
         <div className="max-w-[1600px] mx-auto relative">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-20 items-center mb-32">
-            <motion.div
-              initial={{ opacity: 0, x: -60 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.9, ease: [0.19, 1, 0.22, 1] }}
-              className="lg:col-span-2"
-            >
+            <div className="lg:col-span-2">
               <div className="flex items-center gap-4 mb-10">
                 <div className="h-px w-12 bg-white/30" />
                 <TechLabel className="!text-white/50">Market Reach</TechLabel>
@@ -409,7 +390,7 @@ export const Home = () => {
                   Get in Touch
                 </button>
               </div>
-            </motion.div>
+            </div>
 
             <div className="lg:col-span-3 grid grid-cols-2 gap-px bg-white/10">
               {[
@@ -420,10 +401,10 @@ export const Home = () => {
               ].map((industry, i) => (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.6, delay: i * 0.12, ease: [0.19, 1, 0.22, 1] }}
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.8, delay: i * 0.08, ease: [0.19, 1, 0.22, 1] }}
                   className="group bg-black p-12 hover:bg-white hover:text-black transition-all duration-700"
                 >
                   <div className="mb-8">
@@ -442,32 +423,22 @@ export const Home = () => {
           </div>
 
           {/* Stats Bar */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.5, ease: [0.19, 1, 0.22, 1] }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-px bg-white/10"
-          >
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-white/10">
             {[
               { value: "300+", label: "Active Customers" },
               { value: "45+", label: "Years Experience" },
               { value: "99.9%", label: "On-Time Delivery" },
               { value: "34,000+", label: "Sq Ft Facility" }
             ].map((stat, i) => (
-              <motion.div
+              <div
                 key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.6 + i * 0.1, ease: [0.19, 1, 0.22, 1] }}
                 className="bg-black p-12 text-center hover:bg-white hover:text-black transition-all duration-500"
               >
                 <div className="text-4xl md:text-5xl font-mono font-bold mb-3">{stat.value}</div>
                 <div className="text-xs opacity-50 uppercase tracking-[0.15em]">{stat.label}</div>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -483,13 +454,7 @@ export const Home = () => {
         />
         
         <div className="max-w-[1600px] mx-auto relative">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
-            className="text-center mb-32"
-          >
+          <div className="text-center mb-32">
             <div className="flex items-center justify-center gap-4 mb-10">
               <div className="h-px w-16 bg-black/20" />
               <TechLabel>Quality Assurance</TechLabel>
@@ -503,7 +468,7 @@ export const Home = () => {
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
               Unwavering commitment to quality and continuous improvement in aerospace distribution.
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-black mb-24">
             {[
@@ -514,10 +479,10 @@ export const Home = () => {
             ].map((cert, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 60 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.7, delay: i * 0.15, ease: [0.19, 1, 0.22, 1] }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.9, delay: i * 0.1, ease: [0.19, 1, 0.22, 1] }}
                 className="group bg-white p-14 hover:bg-black hover:text-white transition-all duration-700"
               >
                 <div className="w-16 h-16 mb-10 border-2 border-black group-hover:border-white transition-colors duration-700 flex items-center justify-center">
@@ -580,91 +545,125 @@ export const Home = () => {
       </section>
 
       {/* Final CTA */}
-      <section className="py-32 px-6 md:px-8 bg-black text-white">
-        <div className="max-w-[1400px] mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <TechLabel className="mb-10 text-gray-500">Let's Work Together</TechLabel>
-            <h2 className="text-6xl md:text-8xl font-bold tracking-tighter mb-10 leading-[0.9]">
+      <section className="relative py-40 px-6 md:px-8 bg-black text-white overflow-hidden">
+        {/* Subtle grid overlay */}
+        <div 
+          className="absolute inset-0 opacity-[0.03]"
+          style={{ 
+            backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', 
+            backgroundSize: '100px 100px' 
+          }} 
+        />
+        
+        <div className="max-w-[1400px] mx-auto relative">
+          <div className="text-center mb-24">
+            <div className="flex items-center justify-center gap-4 mb-10">
+              <div className="h-px w-16 bg-white/30" />
+              <TechLabel className="!text-white/50">Let's Work Together</TechLabel>
+              <div className="h-px w-16 bg-white/30" />
+            </div>
+            <h2 className="text-6xl md:text-8xl font-bold tracking-[-0.02em] mb-12 leading-[0.95]">
               Partner With
-              <br />Proven Experts
+              <br />
+              <span className="text-white/40">Proven Experts</span>
             </h2>
-            <p className="text-2xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-2xl text-white/60 max-w-3xl mx-auto leading-relaxed">
               Join 300+ aerospace organizations that rely on certified fasteners and rapid turnaround.
             </p>
-          </motion.div>
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/10 mb-24">
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="group border-2 border-white/20 p-12 hover:bg-white hover:text-black transition-all duration-300"
+              transition={{ duration: 1.0, ease: [0.19, 1, 0.22, 1] }}
+              className="group relative bg-black p-16 hover:bg-white hover:text-black transition-all duration-700"
             >
-              <div className="text-4xl mb-6">📋</div>
-              <h3 className="text-3xl font-bold mb-4 tracking-tight">Request a Quote</h3>
-              <p className="opacity-70 mb-8 leading-relaxed">
-                Get instant pricing on our extensive inventory. Detailed quote within 24 hours.
-              </p>
+              <div className="absolute top-0 left-0 w-full h-1 bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />
+              
+              <div className="mb-12">
+                <div className="inline-flex items-center justify-center w-16 h-16 border-2 border-white group-hover:border-black transition-colors duration-700 mb-8">
+                  <span className="text-2xl font-mono font-bold">01</span>
+                </div>
+                <h3 className="text-4xl font-bold mb-6 tracking-tight">Request a Quote</h3>
+                <p className="text-lg opacity-70 leading-relaxed mb-8">
+                  Get instant pricing on our extensive inventory. Submit your requirements and receive a detailed quote within 24 hours.
+                </p>
+              </div>
+              
               <button
                 onClick={() => navigate('/quote')}
-                className="group/btn w-full bg-white text-black border-2 border-white px-10 py-5 text-sm font-bold uppercase tracking-wider hover:bg-transparent hover:text-white transition-all flex items-center justify-center gap-3"
+                className="group/btn inline-flex items-center gap-4 border-2 border-white group-hover:border-black px-10 py-5 text-xs font-bold uppercase tracking-[0.2em] group-hover:bg-black group-hover:text-white transition-all duration-700"
               >
                 Start Your RFQ
-                <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
+                <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-2 transition-transform duration-500" />
               </button>
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="group border-2 border-white/20 p-12 hover:bg-white hover:text-black transition-all duration-300"
+              transition={{ duration: 1.0, delay: 0.15, ease: [0.19, 1, 0.22, 1] }}
+              className="group relative bg-black p-16 hover:bg-white hover:text-black transition-all duration-700"
             >
-              <div className="text-4xl mb-6">💬</div>
-              <h3 className="text-3xl font-bold mb-4 tracking-tight">Talk to Our Team</h3>
-              <p className="opacity-70 mb-8 leading-relaxed">
-                Technical questions? AOG support? Our aerospace specialists are ready to help.
-              </p>
+              <div className="absolute top-0 left-0 w-full h-1 bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />
+              
+              <div className="mb-12">
+                <div className="inline-flex items-center justify-center w-16 h-16 border-2 border-white group-hover:border-black transition-colors duration-700 mb-8">
+                  <span className="text-2xl font-mono font-bold">02</span>
+                </div>
+                <h3 className="text-4xl font-bold mb-6 tracking-tight">Talk to Our Team</h3>
+                <p className="text-lg opacity-70 leading-relaxed mb-8">
+                  Technical questions? AOG support? Our aerospace specialists are ready to help you find the right solution.
+                </p>
+              </div>
+              
               <button
                 onClick={() => navigate('/contact')}
-                className="group/btn w-full border-2 border-white px-10 py-5 text-sm font-bold uppercase tracking-wider hover:bg-white hover:text-black transition-all flex items-center justify-center gap-3"
+                className="group/btn inline-flex items-center gap-4 border-2 border-white group-hover:border-black px-10 py-5 text-xs font-bold uppercase tracking-[0.2em] group-hover:bg-black group-hover:text-white transition-all duration-700"
               >
                 Contact Sales
-                <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
+                <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-2 transition-transform duration-500" />
               </button>
             </motion.div>
           </div>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="border-t border-white/20 pt-12 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left"
+            transition={{ duration: 0.8, delay: 0.4, ease: [0.19, 1, 0.22, 1] }}
+            className="border-t border-white/10 pt-16"
           >
-            <div>
-              <div className="text-xs text-gray-500 uppercase tracking-widest mb-2">Call Us Direct</div>
-              <a href="tel:+19037230693" className="text-xl font-mono font-bold hover:text-gray-300 transition-colors">
-                (903) 723-0693
-              </a>
-            </div>
-            <div>
-              <div className="text-xs text-gray-500 uppercase tracking-widest mb-2">Email Sales</div>
-              <a href="mailto:sales@afastinc.com" className="text-xl font-mono font-bold hover:text-gray-300 transition-colors">
-                sales@afastinc.com
-              </a>
-            </div>
-            <div>
-              <div className="text-xs text-gray-500 uppercase tracking-widest mb-2">Our Location</div>
-              <div className="text-lg font-semibold">Palestine, Texas 75803</div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+              <div className="text-center md:text-left">
+                <div className="text-xs font-bold uppercase tracking-[0.2em] text-white/40 mb-4">Call Us Direct</div>
+                <a 
+                  href="tel:+19037230693" 
+                  className="text-2xl font-mono font-bold hover:text-white/80 transition-colors inline-block"
+                >
+                  (903) 723-0693
+                </a>
+              </div>
+              <div className="text-center md:text-left">
+                <div className="text-xs font-bold uppercase tracking-[0.2em] text-white/40 mb-4">Email Sales</div>
+                <a 
+                  href="mailto:sales@afastinc.com" 
+                  className="text-2xl font-mono font-bold hover:text-white/80 transition-colors inline-block"
+                >
+                  sales@afastinc.com
+                </a>
+              </div>
+              <div className="text-center md:text-left">
+                <div className="text-xs font-bold uppercase tracking-[0.2em] text-white/40 mb-4">Our Location</div>
+                <div className="text-xl font-semibold">
+                  255 N US 287
+                  <br />
+                  Palestine, Texas 75803
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>
