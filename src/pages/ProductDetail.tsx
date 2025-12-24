@@ -10,6 +10,7 @@ interface ProductInfo {
   category: string;
   partNumber: string;
   modelType: "bolt" | "nut" | "fitting" | "pin";
+  modelFile: string;
   description: string;
   specifications: { label: string; value: string }[];
   materials: string[];
@@ -23,6 +24,7 @@ const productsData: Record<string, ProductInfo> = {
     category: "Structural Fasteners",
     partNumber: "NAS6204-12",
     modelType: "bolt",
+    modelFile: "nas6204-12.glb",
     description: "High-strength titanium hex head bolt designed for critical aerospace structural applications. Features precision machining and full material traceability. Meets or exceeds all NAS standards for dimensional accuracy and mechanical properties.",
     specifications: [
       { label: "Thread Size", value: "1/4-28 UNF-3A" },
@@ -46,6 +48,7 @@ const productsData: Record<string, ProductInfo> = {
     category: "Fastening Hardware",
     partNumber: "MS21042-4",
     modelType: "nut",
+    modelFile: "ms21042-4.glb",
     description: "All-metal self-locking nut with deformed threads providing reliable vibration resistance. Engineered for high-temperature applications where nylon inserts are unsuitable. Reusable design maintains locking torque through multiple installations.",
     specifications: [
       { label: "Thread Size", value: "1/4-28 UNF-3B" },
@@ -69,6 +72,7 @@ const productsData: Record<string, ProductInfo> = {
     category: "Fluid Systems",
     partNumber: "AN818-4",
     modelType: "fitting",
+    modelFile: "an818-4.glb",
     description: "Precision hydraulic adapter fitting designed for critical fluid system connections. Manufactured to exact tolerances ensuring leak-free operation under extreme pressures and temperatures. Compatible with MIL-PRF-5606 hydraulic fluid.",
     specifications: [
       { label: "Connection Type", value: "37° Flare, Male" },
@@ -92,6 +96,7 @@ const productsData: Record<string, ProductInfo> = {
     category: "Alignment Hardware",
     partNumber: "MS16555-2",
     modelType: "pin",
+    modelFile: "ms16555-2.glb",
     description: "Ultra-precision dowel pin manufactured to tight tolerances for critical alignment applications. Ground and polished finish ensures consistent fitment. Used in applications requiring precise positioning and load transfer between mating components.",
     specifications: [
       { label: "Diameter", value: "0.0625 inches ±0.0001" },
@@ -115,6 +120,7 @@ const productsData: Record<string, ProductInfo> = {
     category: "Structural",
     partNumber: "NAS1351-4",
     modelType: "bolt",
+    modelFile: "nas1351-4.glb",
     description: "Heavy-duty hex head design for structural applications requiring high tensile strength.",
     specifications: [
       { label: "Thread Size", value: "1/4-28 UNF" },
@@ -130,6 +136,7 @@ const productsData: Record<string, ProductInfo> = {
     category: "Fasteners",
     partNumber: "MS21044-4",
     modelType: "nut",
+    modelFile: "ms21044-4.glb",
     description: "Self-locking nut with nylon insert to prevent loosening under vibration.",
     specifications: [
       { label: "Thread Size", value: "1/4-28 UNF" },
@@ -144,6 +151,7 @@ const productsData: Record<string, ProductInfo> = {
     category: "Fluid Systems",
     partNumber: "AN819-4",
     modelType: "fitting",
+    modelFile: "an819-4.glb",
     description: "Coupling sleeve for connecting hydraulic tubing in high-pressure systems.",
     specifications: [
       { label: "Tube OD", value: "1/4 inch" },
@@ -158,6 +166,7 @@ const productsData: Record<string, ProductInfo> = {
     category: "Alignment",
     partNumber: "AN392-12",
     modelType: "pin",
+    modelFile: "an392-12.glb",
     description: "Structural pin with head and cotter pin hole for secure retention in linkage systems.",
     specifications: [
       { label: "Diameter", value: "0.375 inches" },
@@ -172,6 +181,7 @@ const productsData: Record<string, ProductInfo> = {
     category: "Structural",
     partNumber: "NAS6204-16",
     modelType: "bolt",
+    modelFile: "nas6204-16.glb",
     description: "Extended length titanium hex bolt for deep structural connections.",
     specifications: [
       { label: "Thread Size", value: "1/4-28 UNF" },
@@ -186,6 +196,7 @@ const productsData: Record<string, ProductInfo> = {
     category: "Fasteners",
     partNumber: "AN310-4",
     modelType: "nut",
+    modelFile: "an310-4.glb",
     description: "Castellated nut designed for use with cotter pins to positively lock the fastener.",
     specifications: [
       { label: "Thread Size", value: "1/4-28 UNF" },
@@ -200,6 +211,7 @@ const productsData: Record<string, ProductInfo> = {
     category: "Fluid Systems",
     partNumber: "MS21904-4",
     modelType: "fitting",
+    modelFile: "ms21904-4.glb",
     description: "90-degree elbow fitting for routing fluid lines in tight spaces.",
     specifications: [
       { label: "Angle", value: "90 degrees" },
@@ -214,6 +226,7 @@ const productsData: Record<string, ProductInfo> = {
     category: "Alignment",
     partNumber: "MS16555-4",
     modelType: "pin",
+    modelFile: "ms16555-4.glb",
     description: "Precision ground dowel pin for exact alignment of mating components.",
     specifications: [
       { label: "Diameter", value: "0.125 inches" },
@@ -228,6 +241,7 @@ const productsData: Record<string, ProductInfo> = {
     category: "Structural",
     partNumber: "NAS1352-5",
     modelType: "bolt",
+    modelFile: "nas1352-5.glb",
     description: "High-strength screw with internal socket drive for compact installation.",
     specifications: [
       { label: "Thread Size", value: "5/16-24 UNF" },
@@ -242,6 +256,7 @@ const productsData: Record<string, ProductInfo> = {
     category: "Fasteners",
     partNumber: "MS21042-6",
     modelType: "nut",
+    modelFile: "ms21042-6.glb",
     description: "Lightweight, all-metal self-locking nut for high-temperature applications.",
     specifications: [
       { label: "Thread Size", value: "3/8-24 UNF" },
@@ -256,6 +271,7 @@ const productsData: Record<string, ProductInfo> = {
     category: "Fluid Systems",
     partNumber: "AN815-6",
     modelType: "fitting",
+    modelFile: "an815-6.glb",
     description: "Standard straight union for connecting two fluid lines of equal size.",
     specifications: [
       { label: "Tube OD", value: "3/8 inch" },
@@ -270,6 +286,7 @@ const productsData: Record<string, ProductInfo> = {
     category: "Alignment",
     partNumber: "AN385-3",
     modelType: "pin",
+    modelFile: "an385-3.glb",
     description: "Tapered pin for self-tightening alignment and secure positioning.",
     specifications: [
       { label: "Taper", value: "0.250 in/ft" },
@@ -328,7 +345,7 @@ export const ProductDetail = () => {
             className="sticky top-32 self-start"
           >
             <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-50 rounded-lg border border-gray-200 shadow-xl overflow-hidden">
-              <Product3DViewer type={product.modelType} />
+              <Product3DViewer type={product.modelType} modelPath={product.modelFile} />
             </div>
             <div className="mt-6 p-6 bg-gray-50 rounded-lg border border-gray-200">
               <TechLabel className="mb-4 block">Interactive 3D Model</TechLabel>

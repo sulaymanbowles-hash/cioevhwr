@@ -2,14 +2,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import { TechLabel } from "../components/ui/TechLabel";
 import { TechnicalBorder } from "../components/ui/TechnicalBorder";
 import { Search, Filter, Download, ShoppingCart, ArrowUpRight } from "lucide-react";
-import { useState, Suspense } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useQuoteStore } from "../stores/quoteStore";
 import { ToastNotification } from "../components/ui/ToastNotification";
 import type { ToastType } from "../components/ui/ToastNotification";
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls, PerspectiveCamera, Environment } from "@react-three/drei";
-import { GLTFDirectLoader } from "../components/3d/GLTFDirectLoader";
+import { Catalog3DViewer, preloadCatalogModels } from "../components/ui/Catalog3DViewer";
 
 interface Product {
   title: string;
@@ -218,6 +216,12 @@ export const Catalog = () => {
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
   const [toastType, setToastType] = useState<ToastType>("success");
+
+  // Preload models for above-the-fold products on mount
+  useEffect(() => {
+    const initialModels = allProducts.slice(0, 6).map(p => p.modelFile);
+    preloadCatalogModels(initialModels);
+  }, []);
 
   const filteredProducts = allProducts.filter(product => {
     const matchesSearch = product.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -442,39 +446,7 @@ export const Catalog = () => {
                       />
                       
                       <div className="w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out">
-                        <Canvas shadows dpr={[1, 1.5]} performance={{ min: 0.5 }}>
-                          <PerspectiveCamera makeDefault position={[3, 2, 3]} fov={35} />
-                          
-                          <Suspense fallback={null}>
-                            <ambientLight intensity={0.6} color="#ffffff" />
-                            <directionalLight 
-                              position={[5, 5, 5]} 
-                              intensity={1.2} 
-                              castShadow
-                              shadow-mapSize={[512, 512]}
-                            />
-                            <directionalLight position={[-3, 3, -3]} intensity={0.6} color="#b8d4ff" />
-                            <directionalLight position={[0, 2, -4]} intensity={0.5} color="#fff4e6" />
-
-                            <GLTFDirectLoader modelPath={product.modelFile} scale={1.3} autoRotate={true} />
-
-                            <mesh receiveShadow rotation={[-Math.PI / 2, 0, 0]} position={[0, -1.2, 0]}>
-                              <planeGeometry args={[10, 10]} />
-                              <shadowMaterial opacity={0.15} />
-                            </mesh>
-
-                            <Environment preset="city" environmentIntensity={0.6} />
-
-                            <OrbitControls
-                              enableZoom={false}
-                              enablePan={false}
-                              autoRotate
-                              autoRotateSpeed={1.5}
-                              minPolarAngle={Math.PI / 4}
-                              maxPolarAngle={Math.PI / 2}
-                            />
-                          </Suspense>
-                        </Canvas>
+                        <Catalog3DViewer modelPath={product.modelFile} scale={1.3} />
                       </div>
                     </div>
 

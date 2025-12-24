@@ -11,19 +11,16 @@ interface Model3DViewerProps {
   interactive?: boolean;
   autoRotate?: boolean;
   quality?: "low" | "medium" | "high";
-  useGLTF?: boolean; // Enable GLTF models when files are available
 }
 
 const ModelComponent = memo(({ 
   modelType, 
-  autoRotate, 
-  useGLTF = false 
+  autoRotate
 }: { 
   modelType: "bolt" | "nut" | "fitting" | "pin"; 
   autoRotate: boolean;
-  useGLTF?: boolean;
 }) => {
-  return <ModelWrapper modelType={modelType} autoRotate={autoRotate} useGLTF={useGLTF} />;
+  return <ModelWrapper modelType={modelType} autoRotate={autoRotate} />;
 });
 
 export const Model3DViewer = memo(({ 
@@ -31,20 +28,19 @@ export const Model3DViewer = memo(({
   className = "", 
   interactive = true, 
   autoRotate = true,
-  quality = "high",
-  useGLTF = true // GLTF models are now available!
+  quality = "high"
 }: Model3DViewerProps) => {
-  const dpr: [number, number] = quality === "high" ? [1, 2] : quality === "medium" ? [1, 1.5] : [1, 1];
-  const shadowMapSize = quality === "high" ? 2048 : quality === "medium" ? 1024 : 512;
+  const dpr: [number, number] = quality === "high" ? [1, 1.5] : quality === "medium" ? [0.75, 1] : [0.5, 1];
+  const shadowMapSize = quality === "high" ? 1024 : quality === "medium" ? 512 : 256;
 
   return (
     <div className={className}>
       <Canvas 
-        shadows 
+        shadows={quality === "high"}
         dpr={dpr}
-        performance={{ min: 0.5 }}
+        performance={{ min: 0.2, max: 0.8 }}
         gl={{ 
-          antialias: true,
+          antialias: quality === "high",
           alpha: true,
           powerPreference: "high-performance"
         }}
@@ -88,7 +84,7 @@ export const Model3DViewer = memo(({
           />
 
           {/* Model */}
-          <ModelComponent modelType={modelType} autoRotate={autoRotate} useGLTF={useGLTF} />
+          <ModelComponent modelType={modelType} autoRotate={autoRotate} />
 
           {/* High quality contact shadows */}
           <ContactShadows

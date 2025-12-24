@@ -147,235 +147,219 @@ export const Home = () => {
         </div>
       </section>
 
-      {/* Technical Specifications - Redesigned */}
-      <section className="relative py-40 px-6 md:px-8 overflow-hidden">
-        {/* Gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-gray-900 to-black"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-blue-900/20 via-transparent to-transparent"></div>
+      {/* Technical Excellence */}
+      <section className="relative py-40 px-6 md:px-8 bg-black text-white overflow-hidden">
+        {/* Subtle grid pattern */}
+        <div 
+          className="absolute inset-0 opacity-[0.03]"
+          style={{ 
+            backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', 
+            backgroundSize: '100px 100px' 
+          }} 
+        />
         
-        <div className="max-w-[1600px] mx-auto relative z-10">
+        <div className="max-w-[1400px] mx-auto relative">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-24"
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
+            className="max-w-4xl mx-auto text-center mb-32"
           >
-            <TechLabel className="mb-8 text-gray-500">Technical Excellence</TechLabel>
-            <h2 className="text-5xl md:text-7xl font-bold tracking-tighter text-white mb-8 leading-[0.95]">
+            <div className="flex items-center justify-center gap-4 mb-10">
+              <div className="h-px w-16 bg-white/30" />
+              <TechLabel className="!text-white/50">Technical Excellence</TechLabel>
+              <div className="h-px w-16 bg-white/30" />
+            </div>
+            <h2 className="text-6xl md:text-8xl font-bold tracking-[-0.02em] mb-12 leading-[0.95]">
               Precision-Engineered.
               <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Rigorously Certified.</span>
+              <span className="text-white/40">Rigorously Certified.</span>
             </h2>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
-              Every component in our inventory meets AS9100 Rev. D and ISO 9001:2015 standards.
-              Full traceability, material certifications, and inspection reports for mission-critical aerospace applications.
+            <p className="text-2xl text-white/60 leading-relaxed max-w-3xl mx-auto mb-16">
+              Every component meets AS9100 Rev. D and ISO 9001:2015 standards with complete traceability.
             </p>
           </motion.div>
 
-          {/* Stats Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+          {/* Certifications Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/10">
             {[
-              { value: "1,000+", label: "Aerospace-Grade SKUs", desc: "NAS, MS, AN Standards" },
-              { value: "99.9%", label: "On-Time Delivery", desc: "Consistent Performance" },
-              { value: "45+ Years", label: "Industry Experience", desc: "Since 1979" }
-            ].map((stat, i) => (
+              { 
+                standard: "AS9100 Rev. D",
+                title: "Aerospace Quality Management System",
+                details: "Comprehensive quality management for aviation, space, and defense industries"
+              },
+              { 
+                standard: "ISO 9001:2015",
+                title: "International Quality Standard",
+                details: "Global standard for quality management systems ensuring consistent service"
+              }
+            ].map((cert, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 60 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="group relative bg-white/5 backdrop-blur-sm border border-white/10 p-10 hover:bg-white/10 transition-all duration-500"
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.8, delay: i * 0.2, ease: [0.19, 1, 0.22, 1] }}
+                className="group relative bg-black p-12 md:p-16 hover:bg-white hover:text-black transition-all duration-700"
               >
-                <div className="absolute top-0 left-0 w-1 h-0 bg-gradient-to-b from-blue-400 to-cyan-400 group-hover:h-full transition-all duration-500"></div>
-                <div className="text-5xl md:text-6xl font-mono font-bold text-white mb-3">{stat.value}</div>
-                <div className="text-sm font-semibold text-gray-300 mb-2 tracking-wide">{stat.label}</div>
-                <div className="text-xs text-gray-500 uppercase tracking-widest">{stat.desc}</div>
+                <div className="absolute top-0 left-0 w-full h-1 bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />
+                <div className="relative">
+                  <div className="text-sm font-bold uppercase tracking-[0.2em] mb-6 opacity-50 group-hover:opacity-100 transition-opacity">
+                    Certified
+                  </div>
+                  <h3 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 leading-tight">
+                    {cert.standard}
+                  </h3>
+                  <p className="text-lg font-semibold mb-4 opacity-80">
+                    {cert.title}
+                  </p>
+                  <p className="text-sm opacity-60 leading-relaxed">
+                    {cert.details}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </div>
 
-          {/* Standards Table */}
+          {/* CTA */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="bg-white/5 backdrop-blur-md border border-white/10 overflow-hidden"
+            transition={{ duration: 0.8, delay: 0.6, ease: [0.19, 1, 0.22, 1] }}
+            className="mt-20 text-center"
           >
-            <div className="border-b border-white/10 p-8 bg-white/5">
-              <h3 className="text-2xl font-semibold text-white tracking-tight">Active Part Standards</h3>
-              <p className="text-sm text-gray-400 mt-2">Current inventory coverage by specification</p>
-            </div>
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead>
-                  <tr className="border-b border-white/10 bg-white/5">
-                    <th className="text-left py-5 px-8 text-xs font-semibold text-gray-400 uppercase tracking-wider">Standard</th>
-                    <th className="text-left py-5 px-8 text-xs font-semibold text-gray-400 uppercase tracking-wider">Description</th>
-                    <th className="text-left py-5 px-8 text-xs font-semibold text-gray-400 uppercase tracking-wider">Category</th>
-                    <th className="text-right py-5 px-8 text-xs font-semibold text-gray-400 uppercase tracking-wider">Availability</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    { std: "NAS1351", desc: "Socket Head Cap Screw", cat: "Threaded Fastener" },
-                    { std: "MS24665", desc: "Cotter Pin", cat: "Locking Device" },
-                    { std: "AN960", desc: "Flat Washer", cat: "Spacer/Washer" },
-                    { std: "NAS6203", desc: "Hex Head Bolt", cat: "Threaded Fastener" },
-                    { std: "MS21042", desc: "Self-Locking Nut", cat: "Locking Device" },
-                    { std: "AN818", desc: "Hydraulic Fitting", cat: "Fluid Connection" }
-                  ].map((row, i) => (
-                    <motion.tr
-                      key={i}
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.4, delay: i * 0.05 }}
-                      className="border-b border-white/5 hover:bg-white/5 transition-colors"
-                    >
-                      <td className="py-5 px-8">
-                        <span className="font-mono text-white font-semibold">{row.std}</span>
-                      </td>
-                      <td className="py-5 px-8 text-gray-300">{row.desc}</td>
-                      <td className="py-5 px-8 text-gray-400 text-sm">{row.cat}</td>
-                      <td className="py-5 px-8 text-right">
-                        <span className="inline-flex items-center gap-2 px-3 py-1 bg-green-500/10 text-green-400 text-xs font-semibold rounded-full border border-green-500/20">
-                          <span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></span>
-                          In Stock
-                        </span>
-                      </td>
-                    </motion.tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <div className="p-6 bg-white/5 border-t border-white/10">
-              <button
-                onClick={() => navigate('/catalog')}
-                className="text-sm text-blue-400 hover:text-blue-300 font-semibold flex items-center gap-2 transition-colors"
+            <button
+              onClick={() => navigate('/certifications')}
+              className="group inline-flex items-center gap-3 border-2 border-white px-12 py-6 text-sm font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all duration-500"
+            >
+              View Certifications
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-500" />
+            </button>
+          </motion.div>
+                className="group flex items-center gap-3 text-sm font-bold uppercase tracking-[0.15em] hover:gap-5 transition-all"
               >
                 View Full Catalog
                 <ArrowRight className="w-4 h-4" />
               </button>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* Core Capabilities - Redesigned */}
-      <section className="py-40 px-6 md:px-8 bg-gradient-to-b from-gray-50 via-white to-gray-50">
-        <div className="max-w-[1600px] mx-auto">
+      {/* Supply Chain Excellence - Redesigned */}
+      <section className="relative py-40 px-6 md:px-8 bg-white overflow-hidden">
+        {/* Diagonal lines background */}
+        <div 
+          className="absolute inset-0 opacity-[0.015]"
+          style={{ 
+            backgroundImage: 'repeating-linear-gradient(45deg, #000, #000 1px, transparent 1px, transparent 60px)',
+          }} 
+        />
+        
+        <div className="max-w-[1600px] mx-auto relative">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-24"
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
+            className="text-center mb-32"
           >
-            <TechLabel className="mb-8">Our Process</TechLabel>
-            <h2 className="text-5xl md:text-7xl font-bold tracking-tighter mb-8 leading-tight">
-              Comprehensive Supply
+            <div className="flex items-center justify-center gap-4 mb-10">
+              <div className="h-px w-16 bg-black/20" />
+              <TechLabel>Our Process</TechLabel>
+              <div className="h-px w-16 bg-black/20" />
+            </div>
+            <h2 className="text-6xl md:text-8xl font-bold tracking-[-0.02em] mb-8 leading-[0.95]">
+              Supply Chain
               <br />
-              Chain Excellence
+              <span className="text-black/30">Excellence</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              From sourcing to final delivery, we manage every aspect of your aerospace fastener needs
-              with precision, speed, and unwavering quality standards.
+              Precision sourcing, rigorous quality control, and rapid logistics for mission-critical aerospace needs.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-px bg-black">
             {[
               {
                 num: "01",
                 title: "Intelligent Sourcing",
-                desc: "Direct access to certified manufacturers and authorized distributors. Our extensive network ensures authentic, traceable components for every specification.",
-                features: [
-                  { icon: "✓", text: "Approved Vendor Management" },
-                  { icon: "✓", text: "Real-Time Stock Visibility" },
-                  { icon: "✓", text: "24/7 AOG Emergency Support" }
-                ]
+                desc: "Direct access to certified manufacturers ensuring authentic, traceable components for every specification.",
+                features: ["Approved Vendor Management", "Real-Time Stock Visibility", "24/7 AOG Emergency Support"]
               },
               {
                 num: "02",
                 title: "Rigorous Quality Control",
-                desc: "AS9100 Rev. D certified inspection processes. Every part comes with complete documentation and material certifications for full traceability.",
-                features: [
-                  { icon: "✓", text: "Certificate of Conformance (CoC)" },
-                  { icon: "✓", text: "Material Test Reports (MTR)" },
-                  { icon: "✓", text: "First Article Inspection (FAIR)" }
-                ]
+                desc: "AS9100 Rev. D certified inspection with complete documentation and material certifications for full traceability.",
+                features: ["Certificate of Conformance", "Material Test Reports", "First Article Inspection"]
               },
               {
                 num: "03",
                 title: "Precision Logistics",
-                desc: "Strategically located facility with climate-controlled storage. Premium carrier partnerships enable rapid turnaround for time-sensitive aerospace programs.",
-                features: [
-                  { icon: "✓", text: "Same-Day Shipping Options" },
-                  { icon: "✓", text: "Temperature-Controlled Facility" },
-                  { icon: "✓", text: "Custom Kitting & Assembly" }
-                ]
+                desc: "Climate-controlled storage with premium carrier partnerships enabling rapid turnaround for time-sensitive programs.",
+                features: ["Same-Day Shipping", "Temperature Control", "Custom Kitting"]
               }
             ].map((capability, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0, y: 80 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: i * 0.15 }}
-                className="group relative bg-white border-2 border-gray-200 p-12 hover:border-black hover:shadow-2xl transition-all duration-500"
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, delay: i * 0.2, ease: [0.19, 1, 0.22, 1] }}
+                className="group relative bg-white p-16 hover:bg-black hover:text-white transition-all duration-700"
               >
-                {/* Accent bar */}
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-cyan-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
-                
-                {/* Number badge */}
-                <div className="mb-8 flex items-center justify-between">
-                  <div className="w-20 h-20 bg-black text-white flex items-center justify-center font-mono text-3xl font-bold group-hover:bg-gradient-to-br group-hover:from-blue-600 group-hover:to-cyan-600 transition-all duration-500">
-                    {capability.num}
+                {/* Number Badge */}
+                <div className="mb-12">
+                  <div className="inline-flex items-center justify-center w-20 h-20 border-2 border-black group-hover:border-white group-hover:bg-white group-hover:text-black transition-all duration-700">
+                    <span className="font-mono text-3xl font-bold">{capability.num}</span>
                   </div>
                 </div>
                 
-                <h3 className="text-3xl font-bold mb-5 tracking-tight text-gray-900 group-hover:text-black transition-colors">
+                <h3 className="text-3xl font-bold mb-6 tracking-tight leading-tight">
                   {capability.title}
                 </h3>
                 
-                <p className="text-gray-600 leading-relaxed mb-8 text-lg">
+                <p className="text-base leading-relaxed mb-10 opacity-70">
                   {capability.desc}
                 </p>
                 
-                {/* Features list */}
-                <ul className="space-y-4">
+                {/* Features */}
+                <div className="space-y-4 pt-8 border-t border-black/10 group-hover:border-white/20">
                   {capability.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-start gap-3 text-sm text-gray-700">
-                      <span className="flex-shrink-0 w-5 h-5 bg-green-500/10 text-green-600 rounded-full flex items-center justify-center text-xs font-bold">
-                        {feature.icon}
-                      </span>
-                      <span className="font-medium">{feature.text}</span>
-                    </li>
+                    <motion.div
+                      key={idx}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: i * 0.2 + idx * 0.1, ease: [0.19, 1, 0.22, 1] }}
+                      className="flex items-center gap-3"
+                    >
+                      <div className="w-1.5 h-1.5 bg-black group-hover:bg-white rounded-full" />
+                      <span className="text-sm font-medium tracking-wide">{feature}</span>
+                    </motion.div>
                   ))}
-                </ul>
+                </div>
 
                 {/* Hover indicator */}
-                <div className="absolute bottom-8 right-8 w-10 h-10 border-2 border-gray-300 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <ArrowRight className="w-5 h-5 text-gray-600" />
+                <div className="absolute bottom-16 right-16 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-x-4 group-hover:translate-x-0">
+                  <ArrowRight className="w-6 h-6" />
                 </div>
               </motion.div>
             ))}
           </div>
 
-          {/* Bottom CTA */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={{ duration: 0.8, delay: 0.6, ease: [0.19, 1, 0.22, 1] }}
             className="text-center mt-20"
           >
             <button
               onClick={() => navigate('/services')}
-              className="inline-flex items-center gap-3 bg-black text-white px-10 py-5 text-sm font-bold uppercase tracking-widest hover:bg-gray-800 transition-all duration-300 group"
+              className="group inline-flex items-center gap-4 bg-black text-white px-12 py-6 text-xs font-bold uppercase tracking-[0.2em] hover:bg-gray-900 transition-all"
             >
               Explore All Services
               <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
@@ -385,105 +369,85 @@ export const Home = () => {
       </section>
 
       {/* Industries Served - Redesigned */}
-      <section className="relative py-40 px-6 md:px-8 overflow-hidden">
-        {/* Dark background with pattern */}
-        <div className="absolute inset-0 bg-gray-950"></div>
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-gray-950 via-transparent to-gray-950"></div>
+      <section className="relative py-40 px-6 md:px-8 bg-black text-white overflow-hidden">
+        {/* Radial gradient overlay */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(255,255,255,0.05),transparent_50%)]" />
         
-        <div className="max-w-[1600px] mx-auto relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 items-center">
-            {/* Left content */}
+        <div className="max-w-[1600px] mx-auto relative">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-20 items-center mb-32">
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
+              initial={{ opacity: 0, x: -60 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.9, ease: [0.19, 1, 0.22, 1] }}
               className="lg:col-span-2"
             >
-              <TechLabel className="mb-8 text-gray-500">Market Reach</TechLabel>
-              <h2 className="text-5xl md:text-6xl font-bold tracking-tighter text-white mb-8 leading-[1.05]">
+              <div className="flex items-center gap-4 mb-10">
+                <div className="h-px w-12 bg-white/30" />
+                <TechLabel className="!text-white/50">Market Reach</TechLabel>
+              </div>
+              <h2 className="text-6xl md:text-7xl font-bold tracking-[-0.02em] mb-10 leading-[0.95]">
                 Supporting
                 <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Critical Missions</span>
+                <span className="text-white/30">Critical Missions</span>
               </h2>
-              <p className="text-xl text-gray-400 leading-relaxed mb-12">
-                From commercial airlines to defense programs, MRO facilities to space exploration—our precision fasteners enable aerospace excellence across every sector.
+              <p className="text-xl text-white/60 leading-relaxed mb-12">
+                From commercial airlines to defense programs—precision fasteners enabling aerospace excellence.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <button 
                   onClick={() => navigate('/about')}
-                  className="group bg-white text-black px-8 py-4 text-sm font-bold uppercase tracking-wider hover:bg-gray-100 transition-all duration-300 flex items-center justify-center gap-2"
+                  className="group bg-white text-black px-10 py-5 text-xs font-bold uppercase tracking-[0.2em] hover:bg-white/90 transition-all flex items-center justify-center gap-3"
                 >
                   Our Story
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </button>
                 <button 
                   onClick={() => navigate('/contact')}
-                  className="border-2 border-white/20 text-white px-8 py-4 text-sm font-bold uppercase tracking-wider hover:bg-white/10 transition-all duration-300"
+                  className="border-2 border-white text-white px-10 py-5 text-xs font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all"
                 >
                   Get in Touch
                 </button>
               </div>
             </motion.div>
 
-            {/* Right stats grid */}
-            <div className="lg:col-span-3 grid grid-cols-2 gap-6">
+            <div className="lg:col-span-3 grid grid-cols-2 gap-px bg-white/10">
               {[
-                { 
-                  title: "Commercial Aviation",
-                  desc: "Airlines & OEMs",
-                  icon: "✈️",
-                  highlight: "Major carriers trust us"
-                },
-                { 
-                  title: "Defense & Military",
-                  desc: "DoD Contractors",
-                  icon: "🛡️",
-                  highlight: "ITAR compliant"
-                },
-                { 
-                  title: "Space & Satellite",
-                  desc: "Launch Systems",
-                  icon: "🚀",
-                  highlight: "Mission-critical parts"
-                },
-                { 
-                  title: "MRO & Repair",
-                  desc: "Maintenance Ops",
-                  icon: "🔧",
-                  highlight: "AOG support 24/7"
-                }
+                { title: "Commercial Aviation", desc: "Airlines & OEMs", highlight: "Major carriers" },
+                { title: "Defense & Military", desc: "DoD Contractors", highlight: "ITAR compliant" },
+                { title: "Space & Satellite", desc: "Launch Systems", highlight: "Mission-critical" },
+                { title: "MRO & Repair", desc: "Maintenance Ops", highlight: "AOG 24/7" }
               ].map((industry, i) => (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: i * 0.1 }}
-                  className="group relative bg-white/5 backdrop-blur-sm border border-white/10 p-8 hover:bg-white/10 hover:border-white/30 transition-all duration-500"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.6, delay: i * 0.12, ease: [0.19, 1, 0.22, 1] }}
+                  className="group bg-black p-12 hover:bg-white hover:text-black transition-all duration-700"
                 >
-                  <div className="text-4xl mb-6">{industry.icon}</div>
-                  <h4 className="text-xl font-bold text-white mb-2 tracking-tight">{industry.title}</h4>
-                  <p className="text-sm text-gray-400 mb-4">{industry.desc}</p>
-                  <div className="pt-4 border-t border-white/10">
-                    <p className="text-xs text-gray-500 uppercase tracking-widest">{industry.highlight}</p>
+                  <div className="mb-8">
+                    <div className="w-12 h-12 border-2 border-white group-hover:border-black group-hover:bg-black group-hover:text-white transition-all duration-700 flex items-center justify-center">
+                      <span className="text-2xl font-mono font-bold">{String(i + 1).padStart(2, '0')}</span>
+                    </div>
                   </div>
-                  
-                  {/* Hover gradient effect */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/0 to-cyan-500/0 group-hover:from-blue-500/5 group-hover:to-cyan-500/5 transition-all duration-500 pointer-events-none"></div>
+                  <h4 className="text-2xl font-bold mb-3 tracking-tight">{industry.title}</h4>
+                  <p className="text-sm opacity-60 mb-6">{industry.desc}</p>
+                  <div className="pt-6 border-t border-white/20 group-hover:border-black/20">
+                    <p className="text-xs font-bold uppercase tracking-[0.15em] opacity-50">{industry.highlight}</p>
+                  </div>
                 </motion.div>
               ))}
             </div>
           </div>
 
-          {/* Bottom stats bar */}
+          {/* Stats Bar */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-px bg-white/10 border border-white/10"
+            transition={{ duration: 0.8, delay: 0.5, ease: [0.19, 1, 0.22, 1] }}
+            className="grid grid-cols-2 md:grid-cols-4 gap-px bg-white/10"
           >
             {[
               { value: "300+", label: "Active Customers" },
@@ -491,128 +455,123 @@ export const Home = () => {
               { value: "99.9%", label: "On-Time Delivery" },
               { value: "34,000+", label: "Sq Ft Facility" }
             ].map((stat, i) => (
-              <div key={i} className="bg-white/5 backdrop-blur-sm p-8 text-center hover:bg-white/10 transition-colors">
-                <div className="text-3xl md:text-4xl font-mono font-bold text-white mb-2">{stat.value}</div>
-                <div className="text-xs text-gray-400 uppercase tracking-widest">{stat.label}</div>
-              </div>
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.6 + i * 0.1, ease: [0.19, 1, 0.22, 1] }}
+                className="bg-black p-12 text-center hover:bg-white hover:text-black transition-all duration-500"
+              >
+                <div className="text-4xl md:text-5xl font-mono font-bold mb-3">{stat.value}</div>
+                <div className="text-xs opacity-50 uppercase tracking-[0.15em]">{stat.label}</div>
+              </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
 
       {/* Certifications - Redesigned */}
-      <section className="py-40 px-6 md:px-8 bg-white">
-        <div className="max-w-[1600px] mx-auto">
+      <section className="relative py-40 px-6 md:px-8 bg-white overflow-hidden">
+        {/* Subtle dot pattern */}
+        <div 
+          className="absolute inset-0 opacity-[0.02]"
+          style={{ 
+            backgroundImage: 'radial-gradient(circle, #000 1px, transparent 1px)', 
+            backgroundSize: '40px 40px' 
+          }} 
+        />
+        
+        <div className="max-w-[1600px] mx-auto relative">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-24"
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
+            className="text-center mb-32"
           >
-            <TechLabel className="mb-8">Quality Assurance</TechLabel>
-            <h2 className="text-5xl md:text-7xl font-bold tracking-tighter mb-8 leading-tight">
-              Certified for Excellence
+            <div className="flex items-center justify-center gap-4 mb-10">
+              <div className="h-px w-16 bg-black/20" />
+              <TechLabel>Quality Assurance</TechLabel>
+              <div className="h-px w-16 bg-black/20" />
+            </div>
+            <h2 className="text-6xl md:text-8xl font-bold tracking-[-0.02em] mb-8 leading-[0.95]">
+              Certified for
+              <br />
+              <span className="text-black/30">Excellence</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Our certifications reflect our commitment to quality, compliance, and continuous improvement
-              in aerospace manufacturing and distribution.
+              Unwavering commitment to quality and continuous improvement in aerospace distribution.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-black mb-24">
             {[
-              { 
-                name: "AS9100 Rev. D",
-                desc: "Aerospace Quality Management",
-                detail: "Certified since 2010",
-                icon: "🎯"
-              },
-              { 
-                name: "ISO 9001:2015",
-                desc: "International Quality Standard",
-                detail: "Annual audits passed",
-                icon: "🏆"
-              },
-              { 
-                name: "ITAR Compliant",
-                desc: "Export Control Regulations",
-                detail: "Defense-ready operations",
-                icon: "🛡️"
-              },
-              { 
-                name: "CAGE: 4U021",
-                desc: "Commercial & Government Entity",
-                detail: "GSA approved vendor",
-                icon: "📋"
-              }
+              { name: "AS9100 Rev. D", desc: "Aerospace Quality Management", detail: "Since 2010" },
+              { name: "ISO 9001:2015", desc: "International Quality Standard", detail: "Annual audits" },
+              { name: "ITAR Compliant", desc: "Export Control Regulations", detail: "Defense-ready" },
+              { name: "CAGE: 4U021", desc: "Government Entity Code", detail: "GSA approved" }
             ].map((cert, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 60 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="group relative bg-gradient-to-br from-gray-50 to-white border-2 border-gray-200 p-10 hover:border-black hover:shadow-2xl transition-all duration-500"
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.7, delay: i * 0.15, ease: [0.19, 1, 0.22, 1] }}
+                className="group bg-white p-14 hover:bg-black hover:text-white transition-all duration-700"
               >
-                {/* Icon */}
-                <div className="w-16 h-16 mb-6 bg-black text-white flex items-center justify-center text-3xl group-hover:bg-gradient-to-br group-hover:from-blue-600 group-hover:to-cyan-600 transition-all duration-500">
-                  {cert.icon}
+                <div className="w-16 h-16 mb-10 border-2 border-black group-hover:border-white transition-colors duration-700 flex items-center justify-center">
+                  <span className="text-2xl font-mono font-bold">{String(i + 1).padStart(2, '0')}</span>
                 </div>
-                
-                {/* Content */}
-                <h4 className="text-xl font-bold mb-3 tracking-tight text-gray-900">{cert.name}</h4>
-                <p className="text-sm text-gray-600 mb-4 leading-relaxed">{cert.desc}</p>
-                
-                {/* Detail badge */}
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-green-50 border border-green-200 rounded-full">
-                  <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-                  <span className="text-xs font-semibold text-green-700">{cert.detail}</span>
+                <h4 className="text-2xl font-bold mb-4 tracking-tight">{cert.name}</h4>
+                <p className="text-sm opacity-60 mb-8 leading-relaxed">{cert.desc}</p>
+                <div className="inline-flex items-center gap-3 px-4 py-2 border border-black/10 group-hover:border-white/20">
+                  <div className="w-2 h-2 bg-black group-hover:bg-white rounded-full" />
+                  <span className="text-xs font-bold uppercase tracking-[0.15em]">{cert.detail}</span>
                 </div>
-
-                {/* Hover corner accent */}
-                <div className="absolute top-0 right-0 w-0 h-0 border-t-[3px] border-r-[3px] border-black opacity-0 group-hover:w-8 group-hover:h-8 group-hover:opacity-100 transition-all duration-300"></div>
               </motion.div>
             ))}
           </div>
 
-          {/* Documentation section */}
+          {/* Documentation Section */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="bg-gradient-to-br from-gray-900 to-black text-white p-12 md:p-16"
+            transition={{ duration: 0.8, delay: 0.6, ease: [0.19, 1, 0.22, 1] }}
+            className="bg-black text-white p-16 md:p-20"
           >
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div>
-                <h3 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight">
+                <h3 className="text-4xl md:text-5xl font-bold mb-8 tracking-tight leading-tight">
                   Complete Documentation
                   <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">with Every Order</span>
+                  <span className="text-white/30">with Every Order</span>
                 </h3>
-                <p className="text-gray-400 text-lg leading-relaxed mb-8">
-                  Full traceability and certification packages ensure compliance with your most stringent aerospace quality requirements.
+                <p className="text-white/60 text-lg leading-relaxed mb-10">
+                  Full traceability and certification packages for mission-critical compliance.
                 </p>
                 <button
                   onClick={() => navigate('/certifications')}
-                  className="group bg-white text-black px-8 py-4 text-sm font-bold uppercase tracking-wider hover:bg-gray-100 transition-all duration-300 flex items-center gap-2"
+                  className="group bg-white text-black px-10 py-5 text-xs font-bold uppercase tracking-[0.2em] hover:bg-white/90 transition-all flex items-center gap-3"
                 >
                   View Certificates
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </button>
               </div>
-              <div className="grid grid-cols-2 gap-4">
-                {[
-                  "Certificate of Conformance",
-                  "Material Test Reports",
-                  "First Article Inspection",
-                  "Traceability Documentation"
-                ].map((doc, i) => (
-                  <div key={i} className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 hover:bg-white/10 transition-colors">
-                    <div className="text-2xl mb-3">📄</div>
-                    <p className="text-sm font-semibold text-gray-300">{doc}</p>
-                  </div>
+              <div className="grid grid-cols-2 gap-px bg-white/10">
+                {["Certificate of Conformance", "Material Test Reports", "First Article Inspection", "Traceability Documentation"].map((doc, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.7 + i * 0.1, ease: [0.19, 1, 0.22, 1] }}
+                    className="bg-black p-8 hover:bg-white hover:text-black transition-all duration-500 flex flex-col justify-between"
+                  >
+                    <div className="w-10 h-10 border-2 border-white hover:border-black mb-6" />
+                    <p className="text-sm font-bold leading-tight">{doc}</p>
+                  </motion.div>
                 ))}
               </div>
             </div>
@@ -620,52 +579,45 @@ export const Home = () => {
         </div>
       </section>
 
-      {/* Final CTA - Redesigned */}
-      <section className="relative py-40 px-6 md:px-8 overflow-hidden">
-        {/* Gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_var(--tw-gradient-stops))] from-blue-900/30 via-transparent to-transparent"></div>
-        
-        <div className="max-w-[1400px] mx-auto relative z-10">
+      {/* Final CTA */}
+      <section className="py-32 px-6 md:px-8 bg-black text-white">
+        <div className="max-w-[1400px] mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
             <TechLabel className="mb-10 text-gray-500">Let's Work Together</TechLabel>
-            <h2 className="text-6xl md:text-8xl font-bold tracking-tighter text-white mb-10 leading-[0.95]">
+            <h2 className="text-6xl md:text-8xl font-bold tracking-tighter mb-10 leading-[0.9]">
               Partner With
-              <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-400">Proven Experts</span>
+              <br />Proven Experts
             </h2>
             <p className="text-2xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
-              Join 300+ aerospace organizations that rely on us for certified fasteners,
-              rapid turnaround, and uncompromising quality standards.
+              Join 300+ aerospace organizations that rely on certified fasteners and rapid turnaround.
             </p>
           </motion.div>
 
-          {/* CTA Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="group bg-white/5 backdrop-blur-sm border-2 border-white/10 p-12 hover:bg-white/10 hover:border-white/30 transition-all duration-500"
+              className="group border-2 border-white/20 p-12 hover:bg-white hover:text-black transition-all duration-300"
             >
               <div className="text-4xl mb-6">📋</div>
-              <h3 className="text-3xl font-bold text-white mb-4 tracking-tight">Request a Quote</h3>
-              <p className="text-gray-400 mb-8 leading-relaxed">
-                Get instant pricing on our extensive inventory. Submit your requirements and receive a detailed quote within 24 hours.
+              <h3 className="text-3xl font-bold mb-4 tracking-tight">Request a Quote</h3>
+              <p className="opacity-70 mb-8 leading-relaxed">
+                Get instant pricing on our extensive inventory. Detailed quote within 24 hours.
               </p>
               <button
                 onClick={() => navigate('/quote')}
-                className="group/btn w-full bg-white text-black px-10 py-5 text-sm font-bold uppercase tracking-wider hover:bg-gray-100 transition-all duration-300 flex items-center justify-center gap-3"
+                className="group/btn w-full bg-white text-black border-2 border-white px-10 py-5 text-sm font-bold uppercase tracking-wider hover:bg-transparent hover:text-white transition-all flex items-center justify-center gap-3"
               >
                 Start Your RFQ
-                <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-2 transition-transform" />
+                <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
               </button>
             </motion.div>
 
@@ -674,48 +626,45 @@ export const Home = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="group bg-white/5 backdrop-blur-sm border-2 border-white/10 p-12 hover:bg-white/10 hover:border-white/30 transition-all duration-500"
+              className="group border-2 border-white/20 p-12 hover:bg-white hover:text-black transition-all duration-300"
             >
               <div className="text-4xl mb-6">💬</div>
-              <h3 className="text-3xl font-bold text-white mb-4 tracking-tight">Talk to Our Team</h3>
-              <p className="text-gray-400 mb-8 leading-relaxed">
-                Have technical questions? Need AOG support? Our aerospace specialists are ready to help you find the right solution.
+              <h3 className="text-3xl font-bold mb-4 tracking-tight">Talk to Our Team</h3>
+              <p className="opacity-70 mb-8 leading-relaxed">
+                Technical questions? AOG support? Our aerospace specialists are ready to help.
               </p>
               <button
                 onClick={() => navigate('/contact')}
-                className="group/btn w-full border-2 border-white text-white px-10 py-5 text-sm font-bold uppercase tracking-wider hover:bg-white hover:text-black transition-all duration-300 flex items-center justify-center gap-3"
+                className="group/btn w-full border-2 border-white px-10 py-5 text-sm font-bold uppercase tracking-wider hover:bg-white hover:text-black transition-all flex items-center justify-center gap-3"
               >
                 Contact Sales
-                <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-2 transition-transform" />
+                <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
               </button>
             </motion.div>
           </div>
 
-          {/* Contact info bar */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="border-t border-white/10 pt-12 flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left"
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="border-t border-white/20 pt-12 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left"
           >
             <div>
-              <div className="text-sm text-gray-500 uppercase tracking-widest mb-2">Call Us Direct</div>
-              <a href="tel:+19037230693" className="text-2xl font-mono font-bold text-white hover:text-blue-400 transition-colors">
+              <div className="text-xs text-gray-500 uppercase tracking-widest mb-2">Call Us Direct</div>
+              <a href="tel:+19037230693" className="text-xl font-mono font-bold hover:text-gray-300 transition-colors">
                 (903) 723-0693
               </a>
             </div>
             <div>
-              <div className="text-sm text-gray-500 uppercase tracking-widest mb-2">Email Sales</div>
-              <a href="mailto:sales@afastinc.com" className="text-2xl font-mono font-bold text-white hover:text-blue-400 transition-colors">
+              <div className="text-xs text-gray-500 uppercase tracking-widest mb-2">Email Sales</div>
+              <a href="mailto:sales@afastinc.com" className="text-xl font-mono font-bold hover:text-gray-300 transition-colors">
                 sales@afastinc.com
               </a>
             </div>
             <div>
-              <div className="text-sm text-gray-500 uppercase tracking-widest mb-2">Our Location</div>
-              <div className="text-lg text-white">
-                Palestine, Texas 75803
-              </div>
+              <div className="text-xs text-gray-500 uppercase tracking-widest mb-2">Our Location</div>
+              <div className="text-lg font-semibold">Palestine, Texas 75803</div>
             </div>
           </motion.div>
         </div>

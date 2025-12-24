@@ -26,12 +26,31 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* Performance optimizations for scrolling */
+* {
+  will-change: auto !important;
+}
+
 body {
   background-color: #ffffff;
   color: #000000;
   font-family: 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* GPU acceleration for smooth animations */
+canvas {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Optimize image rendering */
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
 }
 
 .lenis.lenis-smooth {

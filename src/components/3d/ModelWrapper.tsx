@@ -1,10 +1,9 @@
 /**
- * Model Wrapper with GLTF and Fallback Support
- * Attempts to load GLTF model, falls back to procedural model if unavailable
- * Implements hybrid approach from 3D_MODELS_RECOMMENDATION.md
+ * Model Wrapper - Direct GLTF Loading
+ * Loads actual GLB models from /public/models/
  */
 
-import { Suspense, useState, useEffect } from "react";
+import { Suspense } from "react";
 
 // GLTF Models
 import {
@@ -14,12 +13,6 @@ import {
   PrecisionPinGLTF,
 } from "./GLTFModelLoader";
 
-// Procedural Fallback Models
-import { HexBolt } from "./HexBolt";
-import { SelfLockingNut } from "./SelfLockingNut";
-import { HydraulicFitting } from "./HydraulicFitting";
-import { PrecisionPin } from "./PrecisionPin";
-
 interface ModelWrapperProps {
   modelType: "bolt" | "nut" | "fitting" | "pin";
   scale?: number;
@@ -28,39 +21,9 @@ interface ModelWrapperProps {
 }
 
 /**
- * Fallback component when GLTF loading fails
+ * Simple GLTF Model component
  */
-const FallbackModel = ({ modelType, scale = 1, autoRotate = true }: ModelWrapperProps) => {
-  switch (modelType) {
-    case "bolt":
-      return <HexBolt scale={scale * 1.3} autoRotate={autoRotate} />;
-    case "nut":
-      return <SelfLockingNut scale={scale * 1.6} autoRotate={autoRotate} />;
-    case "fitting":
-      return <HydraulicFitting scale={scale * 1.2} autoRotate={autoRotate} />;
-    case "pin":
-      return <PrecisionPin scale={scale * 1.1} autoRotate={autoRotate} />;
-    default:
-      return <HexBolt scale={scale * 1.3} autoRotate={autoRotate} />;
-  }
-};
-
-/**
- * GLTF Model component with error handling
- */
-const GLTFModelWithErrorBoundary = ({ modelType, scale = 1, autoRotate = true, onError }: ModelWrapperProps & { onError: () => void }) => {
-  useEffect(() => {
-    // Set up error listener for catching GLTF loading errors
-    const handleError = (event: ErrorEvent) => {
-      if (event.message?.includes('Failed to load') || event.message?.includes('404')) {
-        onError();
-      }
-    };
-    
-    window.addEventListener('error', handleError);
-    return () => window.removeEventListener('error', handleError);
-  }, [onError]);
-
+const GLTFModel = ({ modelType, scale = 1, autoRotate = true }: ModelWrapperProps) => {
   switch (modelType) {
     case "bolt":
       return <HexBoltGLTF scale={scale} autoRotate={autoRotate} />;
@@ -76,34 +39,20 @@ const GLTFModelWithErrorBoundary = ({ modelType, scale = 1, autoRotate = true, o
 };
 
 /**
- * Main model wrapper with automatic fallback
- * Set useGLTF={true} to enable GLTF models (requires model files)
- * Set useGLTF={false} to use procedural models
+ * Main model wrapper - GLTF only
  */
 export const ModelWrapper = ({
   modelType,
   scale = 1,
   autoRotate = true,
-  useGLTF = true, // GLTF models are now available!
 }: ModelWrapperProps) => {
-  const [hasError, setHasError] = useState(false);
-
-  // If GLTF is disabled or errored, use fallback
-  if (!useGLTF || hasError) {
-    return <FallbackModel modelType={modelType} scale={scale} autoRotate={autoRotate} />;
-  }
-
-  // Try to load GLTF model with error handling
+  // Load GLTF model directly with empty fallback
   return (
-    <Suspense fallback={<FallbackModel modelType={modelType} scale={scale} autoRotate={autoRotate} />}>
-      <GLTFModelWithErrorBoundary 
+    <Suspense fallback={null}>
+      <GLTFModel 
         modelType={modelType} 
         scale={scale} 
         autoRotate={autoRotate}
-        onError={() => {
-          console.warn(`Failed to load GLTF model for ${modelType}, using procedural fallback`);
-          setHasError(true);
-        }}
       />
     </Suspense>
   );

@@ -7,8 +7,6 @@ import { TechLabel } from "./TechLabel";
 
 export const Hero3DShowcase = () => {
   const [activeModel, setActiveModel] = useState<"bolt" | "nut" | "fitting" | "pin">("bolt");
-  // GLTF models are now available!
-  const useGLTF = true;
 
   const models = [
     { type: "bolt" as const, label: "Hex Bolt", part: "NAS6204" },
@@ -21,28 +19,18 @@ export const Hero3DShowcase = () => {
     <div className="relative w-full h-[600px] lg:h-[700px]">
       {/* 3D Canvas */}
       <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-white">
-        <Canvas shadows dpr={[1, 2]} performance={{ min: 0.5 }}>
+        <Canvas 
+          dpr={[0.75, 1.5]} 
+          performance={{ min: 0.2, max: 0.8 }}
+          gl={{ antialias: false, powerPreference: "high-performance" }}
+        >
           <PerspectiveCamera makeDefault position={[3.5, 2.5, 3.5]} fov={40} />
           
           <Suspense fallback={null}>
-            {/* Enhanced lighting for better visibility */}
-            <ambientLight intensity={0.6} color="#ffffff" />
-            <directionalLight 
-              position={[6, 10, 5]} 
-              intensity={1.6} 
-              castShadow 
-              shadow-mapSize={[2048, 2048]}
-              shadow-camera-near={0.1}
-              shadow-camera-far={25}
-              shadow-camera-left={-8}
-              shadow-camera-right={8}
-              shadow-camera-top={8}
-              shadow-camera-bottom={-8}
-              shadow-bias={-0.00005}
-              shadow-normalBias={0.02}
-            />
-            <directionalLight position={[-4, 4, -4]} intensity={0.8} color="#b8d4ff" />
-            <directionalLight position={[0, 2, -6]} intensity={0.6} color="#fff4e6" />
+            {/* Optimized lighting */}
+            <ambientLight intensity={0.7} />
+            <directionalLight position={[5, 8, 5]} intensity={1.2} />
+            <directionalLight position={[-3, 3, -3]} intensity={0.5} />
             <spotLight 
               position={[0, 12, 0]} 
               angle={0.3} 
@@ -53,7 +41,7 @@ export const Hero3DShowcase = () => {
               shadow-bias={-0.0001}
             />
 
-            <ModelWrapper modelType={activeModel} useGLTF={useGLTF} />
+            <ModelWrapper modelType={activeModel} />
 
             <mesh receiveShadow rotation={[-Math.PI / 2, 0, 0]} position={[0, -1.5, 0]}>
               <planeGeometry args={[20, 20]} />

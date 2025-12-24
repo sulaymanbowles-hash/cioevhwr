@@ -2,13 +2,14 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls, PerspectiveCamera, Environment, ContactShadows } from "@react-three/drei";
 import { Suspense } from "react";
 import { ModelWrapper } from "../3d/ModelWrapper";
+import { GLTFDirectLoader } from "../3d/GLTFDirectLoader";
 
 interface Product3DViewerProps {
   type: "bolt" | "nut" | "fitting" | "pin";
-  useGLTF?: boolean;
+  modelPath?: string;
 }
 
-export const Product3DViewer = ({ type, useGLTF = true }: Product3DViewerProps) => {
+export const Product3DViewer = ({ type, modelPath }: Product3DViewerProps) => {
   return (
     <div className="w-full h-full">
       <Canvas 
@@ -65,7 +66,11 @@ export const Product3DViewer = ({ type, useGLTF = true }: Product3DViewerProps) 
           <pointLight position={[0, 5, 0]} intensity={0.8} />
           
           {/* Model with GLTF support */}
-          <ModelWrapper modelType={type} useGLTF={useGLTF} autoRotate={true} />
+          {modelPath ? (
+            <GLTFDirectLoader modelPath={modelPath} scale={1.3} autoRotate={true} />
+          ) : (
+            <ModelWrapper modelType={type} autoRotate={true} />
+          )}
           
           {/* High quality contact shadows */}
           <ContactShadows
