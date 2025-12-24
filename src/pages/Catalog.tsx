@@ -2963,6 +2963,434 @@ const allProducts: Product[] = [
     threadType: "NPT",
     specification: "MS24654 - Aerospace Fitting",
     description: "Hydraulic adapter fitting"
+  },
+  // SCREWS - Socket Cap Screws
+  {
+    title: "Socket Cap Screw",
+    category: "Screws",
+    partNumber: "MS24673-1",
+    modelFile: "ms24673-1.glb",
+    slug: "ms24673-1",
+    material: "Alloy Steel",
+    threadType: "UNF",
+    specification: "MS24673 - Socket Head Cap",
+    description: "Socket head cap screw for structural assembly and engine mounts"
+  },
+  {
+    title: "Socket Cap Screw",
+    category: "Screws",
+    partNumber: "MS24673-2",
+    modelFile: "ms24673-2.glb",
+    slug: "ms24673-2",
+    material: "Alloy Steel",
+    threadType: "UNF",
+    specification: "MS24673 - Socket Head Cap",
+    description: "Socket head cap screw for structural assembly"
+  },
+  {
+    title: "Socket Cap Screw, Drilled",
+    category: "Screws",
+    partNumber: "MS24674-1",
+    modelFile: "ms24674-1.glb",
+    slug: "ms24674-1",
+    material: "Stainless Steel",
+    threadType: "UNF",
+    specification: "MS24674 - Socket Head Drilled",
+    description: "Drilled socket head cap screw for safety wire applications"
+  },
+  {
+    title: "Socket Cap Screw, Cad Plated",
+    category: "Screws",
+    partNumber: "MS24677-1",
+    modelFile: "ms24677-1.glb",
+    slug: "ms24677-1",
+    material: "Steel",
+    threadType: "UNF",
+    specification: "MS24677 - Cadmium Plated",
+    description: "Cadmium plated socket head screw for corrosion resistance"
+  },
+  {
+    title: "Socket Head Self Locking",
+    category: "Screws",
+    partNumber: "MS21295-3",
+    modelFile: "ms21295-3.glb",
+    slug: "ms21295-3",
+    material: "Alloy Steel",
+    threadType: "UNF",
+    specification: "MS21295 - Self Locking",
+    description: "Self-locking socket head cap screw prevents vibration loosening"
+  },
+  // SCREWS - Fillister Head
+  {
+    title: "Fillister Head Screw",
+    category: "Screws",
+    partNumber: "AN115-4",
+    modelFile: "an115-4.glb",
+    slug: "an115-4",
+    material: "Steel",
+    threadType: "UNC",
+    specification: "AN115 - Fillister Head",
+    description: "Fillister head screw for panel attachment"
+  },
+  {
+    title: "Fillister Head Screw",
+    category: "Screws",
+    partNumber: "AN115-6",
+    modelFile: "an115-6.glb",
+    slug: "an115-6",
+    material: "Steel",
+    threadType: "UNC",
+    specification: "AN115 - Fillister Head",
+    description: "Fillister head screw for structural assembly"
+  },
+  {
+    title: "Fillister Head Screw, Drilled",
+    category: "Screws",
+    partNumber: "AN116-4",
+    modelFile: "an116-4.glb",
+    slug: "an116-4",
+    material: "Steel",
+    threadType: "UNC",
+    specification: "AN116 - Fillister Drilled",
+    description: "Drilled fillister head screw for safety wire"
+  },
+  {
+    title: "Oval Fillister Head Screw",
+    category: "Screws",
+    partNumber: "AN117-4",
+    modelFile: "an117-4.glb",
+    slug: "an117-4",
+    material: "Steel",
+    threadType: "UNC",
+    specification: "AN117 - Oval Fillister",
+    description: "Oval profile fillister head screw"
+  },
+  // SCREWS - Machine Screws
+  {
+    title: "Machine Screw, Slotted Hex",
+    category: "Screws",
+    partNumber: "MS9122-1",
+    modelFile: "ms9122-1.glb",
+    slug: "ms9122-1",
+    material: "Steel",
+    threadType: "UNC",
+    specification: "MS9122 - Slotted Hex",
+    description: "Slotted hex head machine screw"
+  },
+  {
+    title: "Machine Screw, Slotted Hex",
+    category: "Screws",
+    partNumber: "MS9316-1",
+    modelFile: "ms9316-1.glb",
+    slug: "ms9316-1",
+    material: "Steel",
+    threadType: "UNF",
+    specification: "MS9316 - .190-32",
+    description: "Slotted hex head machine screw, 190-32 thread"
+  },
+  {
+    title: "Machine Screw, Slotted Hex",
+    category: "Screws",
+    partNumber: "MS9317-1",
+    modelFile: "ms9317-1.glb",
+    slug: "ms9317-1",
+    material: "Steel",
+    threadType: "UNF",
+    specification: "MS9317 - .250-28",
+    description: "Slotted hex head machine screw, 250-28 thread"
+  },
+  // SCREWS - 12 Point Head
+  {
+    title: "12 Point Head Screw",
+    category: "Screws",
+    partNumber: "MS9177-1",
+    modelFile: "ms9177-1.glb",
+    slug: "ms9177-1",
+    material: "Alloy Steel",
+    threadType: "UNC",
+    specification: "MS9177 - 12 Point",
+    description: "12-point head screw for high-torque applications"
+  },
+  {
+    title: "12 Point Head Screw, Drilled",
+    category: "Screws",
+    partNumber: "MS9192-1",
+    modelFile: "ms9192-1.glb",
+    slug: "ms9192-1",
+    material: "Alloy Steel",
+    threadType: "UNC",
+    specification: "MS9192 - 12 Point Drilled",
+    description: "Drilled 12-point head screw for safety wire"
+  },
+  // SCREWS - Shoulder Screws
+  {
+    title: "Shoulder Screw, Slotted",
+    category: "Screws",
+    partNumber: "MS51575-1",
+    modelFile: "ms51575-1.glb",
+    slug: "ms51575-1",
+    material: "Steel",
+    threadType: "UNC",
+    specification: "MS51575 - Shoulder, Slotted",
+    description: "Shoulder screw with slotted head"
+  },
+  {
+    title: "Shoulder Screw, Hex Socket",
+    category: "Screws",
+    partNumber: "MS51576-1",
+    modelFile: "ms51576-1.glb",
+    slug: "ms51576-1",
+    material: "Steel",
+    threadType: "UNC",
+    specification: "MS51576 - Shoulder, Hex Socket",
+    description: "Shoulder screw with hex socket head"
+  },
+  {
+    title: "Shoulder Screw, Socket Head",
+    category: "Screws",
+    partNumber: "MS51975-1",
+    modelFile: "ms51975-1.glb",
+    slug: "ms51975-1",
+    material: "Alloy Steel",
+    threadType: "UNC",
+    specification: "MS51975 - Shoulder, Socket",
+    description: "Shoulder screw with socket head"
+  },
+  // SCREWS - Pan Head (Metric)
+  {
+    title: "Pan Head Screw, Close Tolerance",
+    category: "Screws",
+    partNumber: "NA0035-3",
+    modelFile: "na0035-3.glb",
+    slug: "na0035-3",
+    material: "Steel",
+    threadType: "Metric",
+    specification: "NA0035 - Pan Head Metric",
+    description: "Close tolerance pan head screw, metric threads"
+  },
+  {
+    title: "Pan Head Screw, A286 CRES",
+    category: "Screws",
+    partNumber: "NA0068-4",
+    modelFile: "na0068-4.glb",
+    slug: "na0068-4",
+    material: "A286 CRES",
+    threadType: "Metric",
+    specification: "NA0068 - A286 CRES",
+    description: "A286 CRES pan head screw with offset cruciform"
+  },
+  {
+    title: "Pan Head Screw, Self Locking",
+    category: "Screws",
+    partNumber: "NAS1171-4",
+    modelFile: "nas1171-4.glb",
+    slug: "nas1171-4",
+    material: "Alloy Steel",
+    threadType: "UNF",
+    specification: "NAS1171 - Pan Head Self Locking",
+    description: "Self-locking pan head screw with offset cruciform"
+  },
+  {
+    title: "Pan Head Screw, Full Thread",
+    category: "Screws",
+    partNumber: "NAS1216-4",
+    modelFile: "nas1216-4.glb",
+    slug: "nas1216-4",
+    material: "Steel",
+    threadType: "UNC",
+    specification: "NAS1216 - Pan Head Full Thread",
+    description: "Pan head screw with full thread length"
+  },
+  // SCREWS - Flush Head (100 degree)
+  {
+    title: "100° Flush Head Screw",
+    category: "Screws",
+    partNumber: "NA0038-4",
+    modelFile: "na0038-4.glb",
+    slug: "na0038-4",
+    material: "Steel",
+    threadType: "Metric",
+    specification: "NA0038 - 100° Flush Head",
+    description: "Close tolerance 100-degree flush head screw, metric"
+  },
+  {
+    title: "A286 CRES 100° Flush Head",
+    category: "Screws",
+    partNumber: "NA0070-4",
+    modelFile: "na0070-4.glb",
+    slug: "na0070-4",
+    material: "A286 CRES",
+    threadType: "Metric",
+    specification: "NA0070 - A286 CRES 100°",
+    description: "A286 CRES 100-degree flush head with offset cruciform"
+  },
+  {
+    title: "100° Head Screw, Self Locking",
+    category: "Screws",
+    partNumber: "NAS1161-4",
+    modelFile: "nas1161-4.glb",
+    slug: "nas1161-4",
+    material: "Alloy Steel",
+    threadType: "UNC",
+    specification: "NAS1161 - 100° Self Locking",
+    description: "Self-locking 100-degree head screw"
+  },
+  {
+    title: "100° Flush Head, Full Thread",
+    category: "Screws",
+    partNumber: "NAS1219-4",
+    modelFile: "nas1219-4.glb",
+    slug: "nas1219-4",
+    material: "Steel",
+    threadType: "UNC",
+    specification: "NAS1219 - 100° Full Thread",
+    description: "100-degree flush head with full thread and dovetail slot"
+  },
+  {
+    title: "100° Flush Head, Close Tolerance",
+    category: "Screws",
+    partNumber: "NAS583-4",
+    modelFile: "nas583-4.glb",
+    slug: "nas583-4",
+    material: "Steel",
+    threadType: "UNC",
+    specification: "NAS583 - 100° Close Tolerance",
+    description: "Close tolerance 100-degree flush head screw"
+  },
+  {
+    title: "Flat Fillister Head Screw",
+    category: "Screws",
+    partNumber: "NAS1121-4",
+    modelFile: "nas1121-4.glb",
+    slug: "nas1121-4",
+    material: "Steel",
+    threadType: "UNC",
+    specification: "NAS1121 - Flat Fillister",
+    description: "Flat fillister head with short thread and offset cruciform"
+  },
+  // SCREWS - Hex Head
+  {
+    title: "Dual Hex Head Screw",
+    category: "Screws",
+    partNumber: "NA0067-4",
+    modelFile: "na0067-4.glb",
+    slug: "na0067-4",
+    material: "Steel",
+    threadType: "Metric",
+    specification: "NA0067 - Dual Hex",
+    description: "Dual hex head with offset cruciform, metric"
+  },
+  {
+    title: "Hex Head Screw, Offset Cruciform",
+    category: "Screws",
+    partNumber: "NA0113-4",
+    modelFile: "na0113-4.glb",
+    slug: "na0113-4",
+    material: "Steel",
+    threadType: "Metric",
+    specification: "NA0113 - Hex Head Metric",
+    description: "Hex head screw with offset cruciform, metric threads"
+  },
+  // SCREWS - Specialty
+  {
+    title: "Socket Head A286 CRES",
+    category: "Screws",
+    partNumber: "NA0069-4",
+    modelFile: "na0069-4.glb",
+    slug: "na0069-4",
+    material: "A286 CRES",
+    threadType: "Metric",
+    specification: "NA0069 - A286 Socket Head",
+    description: "A286 CRES socket head with full thread, metric"
+  },
+  {
+    title: "Externally Relieved Body Screw",
+    category: "Screws",
+    partNumber: "MS25087-1",
+    modelFile: "ms25087-1.glb",
+    slug: "ms25087-1",
+    material: "Alloy Steel",
+    threadType: "UNC",
+    specification: "MS25087 - Relieved Body",
+    description: "Externally relieved body screw for weight reduction"
+  },
+  {
+    title: "Captive Screw",
+    category: "Screws",
+    partNumber: "MS90402-1",
+    modelFile: "ms90402-1.glb",
+    slug: "ms90402-1",
+    material: "Stainless Steel",
+    threadType: "UNC",
+    specification: "MS90402 - Captive",
+    description: "Captive screw with retention feature"
+  },
+  {
+    title: "Shoulder Screw, Brazier Head",
+    category: "Screws",
+    partNumber: "NAS1298-4",
+    modelFile: "nas1298-4.glb",
+    slug: "nas1298-4",
+    material: "Steel",
+    threadType: "UNC",
+    specification: "NAS1298 - Brazier Head",
+    description: "Shoulder screw with brazier head and cruciform recess"
+  },
+  // STUDS
+  {
+    title: "Straight Stud",
+    category: "Screws",
+    partNumber: "AN126-4",
+    modelFile: "an126-4.glb",
+    slug: "an126-4",
+    material: "Steel",
+    threadType: "UNC",
+    specification: "AN126 - Straight Stud",
+    description: "Straight threaded stud, drilled or undrilled"
+  },
+  {
+    title: "Stepped Stud",
+    category: "Screws",
+    partNumber: "AN151-4",
+    modelFile: "an151-4.glb",
+    slug: "an151-4",
+    material: "Steel",
+    threadType: "UNC",
+    specification: "AN151 - Stepped Stud",
+    description: "Stepped stud with .250-20 x .190-32 threads"
+  },
+  {
+    title: "Shouldered Hexagon Wrenching Stud",
+    category: "Screws",
+    partNumber: "MS9303-1",
+    modelFile: "ms9303-1.glb",
+    slug: "ms9303-1",
+    material: "Alloy Steel",
+    threadType: "UNC",
+    specification: "MS9303 - Shouldered Hex",
+    description: "Shouldered hexagon wrenching stud, drilled or undrilled"
+  },
+  {
+    title: "Stepped Stud, Drilled",
+    category: "Screws",
+    partNumber: "MS9834-1",
+    modelFile: "ms9834-1.glb",
+    slug: "ms9834-1",
+    material: "Steel",
+    threadType: "UNC",
+    specification: "MS9834 - Stepped Drilled",
+    description: "Stepped stud, drilled, steel construction"
+  },
+  {
+    title: "Stud, Coarse or Fine Thread",
+    category: "Screws",
+    partNumber: "NAS183-2",
+    modelFile: "nas183-2.glb",
+    slug: "nas183-2",
+    material: "Alloy Steel",
+    threadType: "UNC",
+    specification: "NAS183 - Coarse/Fine",
+    description: "Stud with coarse or fine thread, drilled or undrilled"
   }
 ];
 

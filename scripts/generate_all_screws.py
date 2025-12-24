@@ -2,11 +2,11 @@
 """
 Generate unique 3D GLB models for all screw part numbers.
 Creates geometrically accurate screw models with different head types, lengths, and thread patterns.
+Uses only basic trimesh primitives - no scipy or blender dependencies.
 """
 
 import trimesh
 import numpy as np
-import os
 from pathlib import Path
 
 # All screw part numbers from specifications
@@ -243,11 +243,11 @@ def create_fillister_head_screw(length_scale=1.0):
     head_radius = 0.22 * length_scale
     head_height = 0.15 * length_scale
     
-    # Shaft with threads
+    # Shaft
     shaft = trimesh.creation.cylinder(radius=shaft_radius, height=shaft_length, sections=16)
     shaft.apply_translation([0, 0, shaft_length/2])
     
-    # Fillister head (cylinder)
+    # Fillister head (wider cylinder)
     head = trimesh.creation.cylinder(radius=head_radius, height=head_height, sections=16)
     head.apply_translation([0, 0, shaft_length + head_height/2])
     
@@ -258,18 +258,15 @@ def create_pan_head_screw(length_scale=1.0):
     shaft_radius = 0.13 * length_scale
     shaft_length = 0.95 * length_scale
     head_radius = 0.24 * length_scale
-    head_height = 0.12 * length_scale
+    head_height = 0.14 * length_scale
     
     # Shaft
     shaft = trimesh.creation.cylinder(radius=shaft_radius, height=shaft_length, sections=16)
     shaft.apply_translation([0, 0, shaft_length/2])
     
-    # Pan head (dome shape)
-    head = trimesh.creation.icosphere(radius=head_radius, subdivisions=2)
+    # Pan head (cylinder with slightly larger radius)
+    head = trimesh.creation.cylinder(radius=head_radius, height=head_height, sections=16)
     head.apply_translation([0, 0, shaft_length + head_height/2])
-    
-    # Flatten bottom of head
-    head.vertices[head.vertices[:, 2] < shaft_length, 2] = shaft_length
     
     return trimesh.util.concatenate([shaft, head])
 
@@ -301,7 +298,7 @@ def create_hex_head_screw(length_scale=1.0):
     shaft = trimesh.creation.cylinder(radius=shaft_radius, height=shaft_length, sections=16)
     shaft.apply_translation([0, 0, shaft_length/2])
     
-    # Hex head
+    # Hex head (6 sides)
     head = trimesh.creation.cylinder(radius=head_radius, height=head_height, sections=6)
     head.apply_translation([0, 0, shaft_length + head_height/2])
     
@@ -313,29 +310,29 @@ def create_shoulder_screw(length_scale=1.0):
     shoulder_length = 0.6 * length_scale
     thread_radius = 0.12 * length_scale
     thread_length = 0.4 * length_scale
-    head_radius = 0.25 * length_scale
+    head_radius = 0.24 * length_scale
     head_height = 0.18 * length_scale
-    
-    # Shoulder
-    shoulder = trimesh.creation.cylinder(radius=shoulder_radius, height=shoulder_length, sections=16)
-    shoulder.apply_translation([0, 0, shoulder_length/2])
-    
-    # Threaded portion
-    thread = trimesh.creation.cylinder(radius=thread_radius, height=thread_length, sections=16)
-    thread.apply_translation([0, 0, shoulder_length + thread_length/2])
     
     # Socket head
     head = trimesh.creation.cylinder(radius=head_radius, height=head_height, sections=16)
-    head.apply_translation([0, 0, -head_height/2])
+    head.apply_translation([0, 0, head_height/2])
+    
+    # Shoulder (smooth unthreaded portion)
+    shoulder = trimesh.creation.cylinder(radius=shoulder_radius, height=shoulder_length, sections=16)
+    shoulder.apply_translation([0, 0, head_height + shoulder_length/2])
+    
+    # Threaded portion
+    thread = trimesh.creation.cylinder(radius=thread_radius, height=thread_length, sections=16)
+    thread.apply_translation([0, 0, head_height + shoulder_length + thread_length/2])
     
     return trimesh.util.concatenate([head, shoulder, thread])
 
 def create_stud(length_scale=1.0):
-    """Create threaded stud"""
+    """Create threaded stud (no head, threaded both ends)"""
     radius = 0.13 * length_scale
     length = 1.2 * length_scale
     
-    # Simple threaded rod
+    # Threaded rod - simple cylinder
     stud = trimesh.creation.cylinder(radius=radius, height=length, sections=16)
     stud.apply_translation([0, 0, length/2])
     
@@ -352,11 +349,55 @@ def create_twelve_point_screw(length_scale=1.0):
     shaft = trimesh.creation.cylinder(radius=shaft_radius, height=shaft_length, sections=16)
     shaft.apply_translation([0, 0, shaft_length/2])
     
-    # 12-point head
+    # 12-point head (12 sides)
     head = trimesh.creation.cylinder(radius=head_radius, height=head_height, sections=12)
     head.apply_translation([0, 0, shaft_length + head_height/2])
     
     return trimesh.util.concatenate([shaft, head])
+
+def create_captive_screw(length_scale=1.0):
+    """Create captive screw with retention feature"""
+    shaft_radius = 0.13 * length_scale
+    shaft_length = 0.8 * length_scale
+    head_radius = 0.25 * length_scale
+    head_height = 0.15 * length_scale
+    retention_radius = 0.20 * length_scale
+    
+    # Shaft
+    shaft = trimesh.creation.cylinder(radius=shaft_radius, height=shaft_length, sections=16)
+    shaft.apply_translation([0, 0, shaft_length/2])
+    
+    # Retention ring (wider section)
+    retention = trimesh.creation.cylinder(radius=retention_radius, height=0.1 * length_scale, sections=16)
+    retention.apply_translation([0, 0, shaft_length * 0.3])
+    
+    # Head
+    head = trimesh.creation.cylinder(radius=head_radius, height=head_height, sections=16)
+    head.apply_translation([0, 0, -head_height/2])
+    
+    return trimesh.util.concatenate([head, retention, shaft])
+
+def create_relieved_body_screw(length_scale=1.0):
+    """Create externally relieved body screw"""
+    shaft_radius = 0.13 * length_scale
+    relieved_radius = 0.10 * length_scale
+    shaft_length = 0.9 * length_scale
+    head_radius = 0.22 * length_scale
+    head_height = 0.15 * length_scale
+    
+    # Upper shaft (normal)
+    upper_shaft = trimesh.creation.cylinder(radius=shaft_radius, height=shaft_length * 0.4, sections=16)
+    upper_shaft.apply_translation([0, 0, shaft_length * 0.2])
+    
+    # Relieved section (thinner)
+    relieved = trimesh.creation.cylinder(radius=relieved_radius, height=shaft_length * 0.6, sections=16)
+    relieved.apply_translation([0, 0, shaft_length * 0.7])
+    
+    # Socket head
+    head = trimesh.creation.cylinder(radius=head_radius, height=head_height, sections=16)
+    head.apply_translation([0, 0, -head_height/2])
+    
+    return trimesh.util.concatenate([head, upper_shaft, relieved])
 
 def get_material_color(part_number):
     """Determine material color based on part number"""
@@ -390,31 +431,48 @@ def generate_screw_model(part_number):
         length_scale = 1.0
     
     # Create geometry based on type
-    if screw_type == "socket_cap":
-        model = create_socket_cap_screw(length_scale)
-    elif screw_type == "fillister":
-        model = create_fillister_head_screw(length_scale)
-    elif screw_type == "pan_head":
-        model = create_pan_head_screw(length_scale)
-    elif screw_type == "flush_head":
-        model = create_flush_head_screw(length_scale)
-    elif screw_type == "hex_head":
-        model = create_hex_head_screw(length_scale)
-    elif screw_type == "shoulder":
-        model = create_shoulder_screw(length_scale)
-    elif screw_type == "twelve_point":
-        model = create_twelve_point_screw(length_scale)
-    elif screw_type == "stud":
-        model = create_stud(length_scale)
-    else:
-        model = create_socket_cap_screw(length_scale)
-    
-    # Apply material color
-    color = get_material_color(part_number)
-    if hasattr(model, 'visual'):
-        model.visual.face_colors = color
-    
-    return model
+    try:
+        if screw_type == "socket_cap":
+            model = create_socket_cap_screw(length_scale)
+        elif screw_type == "fillister":
+            model = create_fillister_head_screw(length_scale)
+        elif screw_type == "pan_head":
+            model = create_pan_head_screw(length_scale)
+        elif screw_type == "flush_head":
+            model = create_flush_head_screw(length_scale)
+        elif screw_type == "hex_head":
+            model = create_hex_head_screw(length_scale)
+        elif screw_type == "shoulder":
+            model = create_shoulder_screw(length_scale)
+        elif screw_type == "twelve_point":
+            model = create_twelve_point_screw(length_scale)
+        elif screw_type == "captive":
+            model = create_captive_screw(length_scale)
+        elif screw_type == "relieved":
+            model = create_relieved_body_screw(length_scale)
+        elif screw_type == "stud":
+            model = create_stud(length_scale)
+        else:
+            model = create_socket_cap_screw(length_scale)
+        
+        # Apply material color
+        color = get_material_color(part_number)
+        if hasattr(model, 'visual'):
+            model.visual.face_colors = color
+        
+        return model
+    except Exception as e:
+        # If model creation fails, create a simple default screw
+        print(f"  Warning: Using simplified model for {part_number}: {str(e)}")
+        shaft = trimesh.creation.cylinder(radius=0.15, height=1.0 * length_scale, sections=16)
+        shaft.apply_translation([0, 0, 0.5 * length_scale])
+        head = trimesh.creation.cylinder(radius=0.25, height=0.2, sections=16)
+        head.apply_translation([0, 0, 1.0 * length_scale + 0.1])
+        model = trimesh.util.concatenate([shaft, head])
+        color = get_material_color(part_number)
+        if hasattr(model, 'visual'):
+            model.visual.face_colors = color
+        return model
 
 def main():
     output_dir = Path(__file__).parent.parent / "public" / "models"

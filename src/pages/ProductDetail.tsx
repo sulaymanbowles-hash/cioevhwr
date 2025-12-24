@@ -10,7 +10,7 @@ interface ProductInfo {
   title: string;
   category: string;
   partNumber: string;
-  modelType: "bolt" | "nut" | "fitting" | "pin";
+  modelType: "bolt" | "nut" | "fitting" | "pin" | "screw";
   modelFile: string;
   description: string;
   specifications: { label: string; value: string }[];
@@ -19,6 +19,7 @@ interface ProductInfo {
   standards: string[];
   manufacturers?: string[];
   fittingType?: string;
+  screwType?: string;
 }
 
 const productsData: Record<string, ProductInfo> = {
@@ -238,6 +239,164 @@ const productsData: Record<string, ProductInfo> = {
     applications: ["Safety critical joints", "Rotating assemblies"],
     standards: ["AN310"]
   },
+  "ms24673-1": {
+    title: "Socket Cap Screw",
+    category: "Screws",
+    partNumber: "MS24673-1",
+    modelType: "screw",
+    modelFile: "ms24673-1.glb",
+    screwType: "Socket Head Cap Screw",
+    description: "Socket head cap screw for aerospace structural assembly and engine mounts. Manufactured to exact tolerances for critical fastening applications. Features internal hex drive for high torque applications.",
+    specifications: [
+      { label: "Thread Size", value: "10-32 UNF" },
+      { label: "Drive Type", value: "Hex Socket" },
+      { label: "Material", value: "Alloy Steel" },
+      { label: "Finish", value: "Black Oxide" }
+    ],
+    materials: ["Alloy Steel", "Heat Treated"],
+    manufacturers: [
+      "B & B Specialties",
+      "CBS Fasteners Inc.",
+      "Ideal Fasteners",
+      "Twist Tite Mfg.",
+      "Accurate Screw Machine",
+      "Apm Hexseal",
+      "Zago Manufacturing Company",
+      "Crescent Mfg."
+    ],
+    applications: ["Structural assembly", "Engine mounts", "Panel attachment", "Equipment installation"],
+    standards: ["MS24673"]
+  },
+  "an115-4": {
+    title: "Fillister Head Screw",
+    category: "Screws",
+    partNumber: "AN115-4",
+    modelType: "screw",
+    modelFile: "an115-4.glb",
+    screwType: "Fillister Head Screw",
+    description: "Fillister head screw for panel attachment and general aerospace applications. Rounded head profile with straight sides provides positive positioning and enhanced appearance.",
+    specifications: [
+      { label: "Thread Size", value: "1/4-28 UNF" },
+      { label: "Drive Type", value: "Slotted" },
+      { label: "Head Style", value: "Fillister" },
+      { label: "Material", value: "Carbon Steel" }
+    ],
+    materials: ["Carbon Steel", "Cadmium Plated"],
+    manufacturers: [
+      "CBS Fasteners Inc.",
+      "Ideal Fasteners",
+      "Twist Tite Mfg.",
+      "Accurate Screw Machine",
+      "Apm Hexseal",
+      "Zago Manufacturing Company"
+    ],
+    applications: ["Panel attachment", "Cover plates", "Interior fittings", "Access doors"],
+    standards: ["AN115"]
+  },
+  "ms51575-1": {
+    title: "Shoulder Screw, Slotted",
+    category: "Screws",
+    partNumber: "MS51575-1",
+    modelType: "screw",
+    modelFile: "ms51575-1.glb",
+    screwType: "Shoulder Screw",
+    description: "Shoulder screw with slotted head for precision bearing applications. Unthreaded shoulder section provides accurate shaft diameter for rotating components.",
+    specifications: [
+      { label: "Shoulder Diameter", value: "0.250 inches" },
+      { label: "Thread Size", value: "10-32 UNF" },
+      { label: "Drive Type", value: "Slotted" },
+      { label: "Material", value: "Alloy Steel" }
+    ],
+    materials: ["Alloy Steel", "Heat Treated", "Black Oxide Finish"],
+    manufacturers: [
+      "CBS Fasteners Inc.",
+      "Ideal Fasteners",
+      "Twist Tite Mfg.",
+      "Accurate Screw Machine",
+      "Mac Fasteners",
+      "SPS Fasteners"
+    ],
+    applications: ["Bearing mounts", "Linkage pivots", "Rotating assemblies", "Precision mechanisms"],
+    standards: ["MS51575"]
+  },
+  "nas1216-4": {
+    title: "Pan Head Screw, Full Thread",
+    category: "Screws",
+    partNumber: "NAS1216-4",
+    modelType: "screw",
+    modelFile: "nas1216-4.glb",
+    screwType: "Pan Head Screw",
+    description: "Pan head screw with full thread length and offset cruciform recess. Designed for general purpose fastening with improved torque transfer and reduced cam-out.",
+    specifications: [
+      { label: "Thread Size", value: "1/4-28 UNF" },
+      { label: "Drive Type", value: "Offset Cruciform" },
+      { label: "Thread Length", value: "Full Length" },
+      { label: "Material", value: "Carbon Steel" }
+    ],
+    materials: ["Carbon Steel", "Cadmium Plated"],
+    manufacturers: [
+      "CBS Fasteners Inc.",
+      "Ideal Fasteners",
+      "Accurate Screw Machine",
+      "Apm Hexseal",
+      "Mac Fasteners",
+      "SPS Fasteners"
+    ],
+    applications: ["Panel fastening", "Equipment mounting", "General assembly", "Interior components"],
+    standards: ["NAS1216"]
+  },
+  "nas583-4": {
+    title: "100° Flush Head Screw, Close Tolerance",
+    category: "Screws",
+    partNumber: "NAS583-4",
+    modelFile: "nas583-4.glb",
+    modelType: "screw",
+    screwType: "Flush Head Screw",
+    description: "Close tolerance 100-degree countersunk head screw for aerodynamically smooth installations. Precision machined for flush mounting in critical surface applications.",
+    specifications: [
+      { label: "Thread Size", value: "1/4-28 UNF" },
+      { label: "Head Angle", value: "100 degrees" },
+      { label: "Drive Type", value: "Phillips" },
+      { label: "Tolerance", value: "Close" }
+    ],
+    materials: ["Alloy Steel", "Heat Treated", "Cadmium Plated"],
+    manufacturers: [
+      "CBS Fasteners Inc.",
+      "Ideal Fasteners",
+      "Twist Tite Mfg.",
+      "Accurate Screw Machine",
+      "Apm Hexseal",
+      "Mac Fasteners"
+    ],
+    applications: ["Aerodynamic surfaces", "Skin panels", "Flush mounting", "External fairings"],
+    standards: ["NAS583"]
+  },
+  "an126-4": {
+    title: "Straight Stud",
+    category: "Screws",
+    partNumber: "AN126-4",
+    modelType: "screw",
+    modelFile: "an126-4.glb",
+    screwType: "Stud",
+    description: "Straight threaded stud for permanent or semi-permanent installations. Available drilled or undrilled for safety wire applications.",
+    specifications: [
+      { label: "Thread Size", value: "1/4-28 UNF" },
+      { label: "Thread Length", value: "Both Ends" },
+      { label: "Configuration", value: "Straight" },
+      { label: "Material", value: "Carbon Steel" }
+    ],
+    materials: ["Carbon Steel", "Heat Treated", "Cadmium Plated"],
+    manufacturers: [
+      "Ideal Fasteners",
+      "Twist Tite Mfg.",
+      "Accurate Screw Machine",
+      "Apm Hexseal",
+      "Mac Fasteners",
+      "SPS Fasteners"
+    ],
+    applications: ["Through-hole mounting", "Double-sided fastening", "Spacer mounting", "Equipment installation"],
+    standards: ["AN126"]
+  },
   "elbow-fitting-90": {
     title: "Elbow Fitting 90°",
     category: "Fluid Systems",
@@ -418,6 +577,19 @@ export const ProductDetail = () => {
                 </h2>
                 <div className="p-4 bg-blue-50 border-2 border-blue-200 rounded-lg">
                   <span className="text-lg font-semibold text-blue-900">{product.fittingType}</span>
+                </div>
+              </div>
+            )}
+
+            {/* Screw Type (for screws only) */}
+            {product.screwType && (
+              <div className="mb-12">
+                <h2 className="text-2xl font-semibold mb-6 flex items-center gap-2">
+                  <Tag className="w-5 h-5" />
+                  Screw Type
+                </h2>
+                <div className="p-4 bg-green-50 border-2 border-green-200 rounded-lg">
+                  <span className="text-lg font-semibold text-green-900">{product.screwType}</span>
                 </div>
               </div>
             )}
