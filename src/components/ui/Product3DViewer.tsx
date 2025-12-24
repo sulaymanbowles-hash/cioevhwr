@@ -1,137 +1,85 @@
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
+import { OrbitControls, PerspectiveCamera, Environment, ContactShadows } from "@react-three/drei";
 import { Suspense } from "react";
+import { ModelWrapper } from "../3d/ModelWrapper";
 
 interface Product3DViewerProps {
   type: "bolt" | "nut" | "fitting" | "pin";
+  useGLTF?: boolean;
 }
 
-function BoltModel() {
-  return (
-    <group>
-      {/* Bolt Head */}
-      <mesh position={[0, 0.8, 0]}>
-        <cylinderGeometry args={[0.5, 0.5, 0.3, 6]} />
-        <meshStandardMaterial color="#4a5568" metalness={0.9} roughness={0.2} />
-      </mesh>
-      {/* Bolt Shaft */}
-      <mesh position={[0, 0, 0]}>
-        <cylinderGeometry args={[0.25, 0.25, 1.5, 32]} />
-        <meshStandardMaterial color="#4a5568" metalness={0.9} roughness={0.2} />
-      </mesh>
-      {/* Thread ridges */}
-      {[...Array(12)].map((_, i) => (
-        <mesh key={i} position={[0, -0.6 + i * 0.1, 0]}>
-          <torusGeometry args={[0.25, 0.03, 8, 32]} />
-          <meshStandardMaterial color="#2d3748" metalness={0.8} roughness={0.3} />
-        </mesh>
-      ))}
-    </group>
-  );
-}
-
-function NutModel() {
-  return (
-    <group>
-      {/* Hexagonal Nut Body */}
-      <mesh rotation={[Math.PI / 2, 0, 0]}>
-        <cylinderGeometry args={[0.6, 0.6, 0.4, 6]} />
-        <meshStandardMaterial color="#71717a" metalness={0.9} roughness={0.2} />
-      </mesh>
-      {/* Inner Hole */}
-      <mesh rotation={[Math.PI / 2, 0, 0]}>
-        <cylinderGeometry args={[0.28, 0.28, 0.45, 32]} />
-        <meshStandardMaterial color="#18181b" metalness={0.5} roughness={0.8} />
-      </mesh>
-      {/* Thread details */}
-      {[...Array(8)].map((_, i) => (
-        <mesh key={i} rotation={[Math.PI / 2, 0, 0]} position={[0, 0, -0.15 + i * 0.04]}>
-          <torusGeometry args={[0.28, 0.015, 8, 32]} />
-          <meshStandardMaterial color="#52525b" metalness={0.8} roughness={0.3} />
-        </mesh>
-      ))}
-    </group>
-  );
-}
-
-function FittingModel() {
-  return (
-    <group>
-      {/* Main Body */}
-      <mesh>
-        <cylinderGeometry args={[0.4, 0.4, 1, 32]} />
-        <meshStandardMaterial color="#52525b" metalness={0.9} roughness={0.2} />
-      </mesh>
-      {/* Top Connector */}
-      <mesh position={[0, 0.7, 0]}>
-        <cylinderGeometry args={[0.25, 0.35, 0.4, 32]} />
-        <meshStandardMaterial color="#3f3f46" metalness={0.9} roughness={0.2} />
-      </mesh>
-      {/* Bottom Connector */}
-      <mesh position={[0, -0.7, 0]}>
-        <cylinderGeometry args={[0.35, 0.25, 0.4, 32]} />
-        <meshStandardMaterial color="#3f3f46" metalness={0.9} roughness={0.2} />
-      </mesh>
-      {/* Hex grip sections */}
-      <mesh position={[0, 0.3, 0]}>
-        <cylinderGeometry args={[0.45, 0.45, 0.2, 6]} />
-        <meshStandardMaterial color="#71717a" metalness={0.8} roughness={0.3} />
-      </mesh>
-      <mesh position={[0, -0.3, 0]}>
-        <cylinderGeometry args={[0.45, 0.45, 0.2, 6]} />
-        <meshStandardMaterial color="#71717a" metalness={0.8} roughness={0.3} />
-      </mesh>
-    </group>
-  );
-}
-
-function PinModel() {
-  return (
-    <group>
-      {/* Pin Shaft */}
-      <mesh rotation={[0, 0, Math.PI / 2]}>
-        <cylinderGeometry args={[0.15, 0.15, 2, 32]} />
-        <meshStandardMaterial color="#52525b" metalness={0.95} roughness={0.1} />
-      </mesh>
-      {/* Pin Head */}
-      <mesh position={[1.1, 0, 0]}>
-        <sphereGeometry args={[0.2, 32, 32]} />
-        <meshStandardMaterial color="#71717a" metalness={0.9} roughness={0.2} />
-      </mesh>
-      {/* Pin Tip Chamfer */}
-      <mesh position={[-1.05, 0, 0]} rotation={[0, 0, Math.PI / 2]}>
-        <coneGeometry args={[0.15, 0.15, 32]} />
-        <meshStandardMaterial color="#3f3f46" metalness={0.95} roughness={0.1} />
-      </mesh>
-    </group>
-  );
-}
-
-export const Product3DViewer = ({ type }: Product3DViewerProps) => {
+export const Product3DViewer = ({ type, useGLTF = true }: Product3DViewerProps) => {
   return (
     <div className="w-full h-full">
-      <Canvas>
-        <PerspectiveCamera makeDefault position={[3, 2, 3]} />
+      <Canvas 
+        shadows
+        dpr={[1, 2]}
+        gl={{ 
+          antialias: true,
+          alpha: true,
+          powerPreference: "high-performance"
+        }}
+      >
+        <PerspectiveCamera makeDefault position={[3, 2, 3]} fov={40} />
         <OrbitControls
-          enableZoom={false}
+          enableZoom={true}
           autoRotate
           autoRotateSpeed={2}
           enablePan={false}
+          minDistance={2}
+          maxDistance={8}
           minPolarAngle={Math.PI / 4}
           maxPolarAngle={Math.PI / 1.5}
+          zoomSpeed={0.6}
+          enableDamping
+          dampingFactor={0.05}
         />
         
-        {/* Lighting */}
-        <ambientLight intensity={0.4} />
-        <directionalLight position={[5, 5, 5]} intensity={0.8} castShadow />
-        <directionalLight position={[-5, 3, -5]} intensity={0.4} />
-        <pointLight position={[0, 5, 0]} intensity={0.5} />
-        
         <Suspense fallback={null}>
-          {type === "bolt" && <BoltModel />}
-          {type === "nut" && <NutModel />}
-          {type === "fitting" && <FittingModel />}
-          {type === "pin" && <PinModel />}
+          {/* Enhanced lighting for realistic metal rendering */}
+          <ambientLight intensity={0.6} color="#ffffff" />
+          
+          {/* Key light - main illumination */}
+          <directionalLight 
+            position={[5, 5, 5]} 
+            intensity={1.4} 
+            castShadow
+            shadow-mapSize={[2048, 2048]}
+            shadow-camera-near={0.1}
+            shadow-camera-far={20}
+            shadow-camera-left={-8}
+            shadow-camera-right={8}
+            shadow-camera-top={8}
+            shadow-camera-bottom={-8}
+            shadow-bias={-0.00005}
+            shadow-normalBias={0.02}
+          />
+          
+          {/* Fill light - soften shadows */}
+          <directionalLight position={[-5, 3, -5]} intensity={0.7} color="#b8d4ff" />
+          
+          {/* Rim light - edge highlight for metals */}
+          <directionalLight position={[0, 2, -6]} intensity={0.6} color="#fff4e6" />
+          
+          {/* Accent light */}
+          <pointLight position={[0, 5, 0]} intensity={0.8} />
+          
+          {/* Model with GLTF support */}
+          <ModelWrapper modelType={type} useGLTF={useGLTF} autoRotate={true} />
+          
+          {/* High quality contact shadows */}
+          <ContactShadows
+            position={[0, -1.5, 0]}
+            opacity={0.4}
+            scale={8}
+            blur={2.5}
+            far={4}
+            resolution={1024}
+            color="#000000"
+          />
+          
+          {/* HDR environment for realistic reflections */}
+          <Environment preset="city" environmentIntensity={1.0} />
         </Suspense>
       </Canvas>
     </div>

@@ -6,8 +6,8 @@ export const About = () => {
   return (
     <div className="min-h-screen pt-24 pb-20">
       {/* Hero Section */}
-      <section className="py-20 px-6 md:px-8 bg-gradient-to-b from-gray-50 to-white">
-        <div className="max-w-[1600px] mx-auto">
+      <section className="py-24 px-6 md:px-8 bg-gradient-to-br from-gray-50 via-white to-gray-50">
+        <div className="max-w-[1400px] mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -15,11 +15,11 @@ export const About = () => {
             className="text-center mb-16"
           >
             <TechLabel className="mb-6">About Aerospace Fasteners</TechLabel>
-            <h1 className="text-5xl md:text-6xl font-bold tracking-tight mb-6 text-gray-900">
-              Building the Future of Aerospace Distribution
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-8 text-gray-900 leading-tight">
+              Building the Future of<br/>Aerospace Distribution
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              For over two decades, we've been the trusted partner for aerospace manufacturers and maintenance organizations worldwide, delivering precision hardware with unmatched reliability.
+            <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Since 1979, we've been the trusted family-owned partner for aerospace manufacturers worldwide, delivering precision hardware with unmatched reliability from Palestine, Texas.
             </p>
           </motion.div>
         </div>
@@ -30,10 +30,10 @@ export const About = () => {
         <div className="max-w-[1600px] mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
-              { number: "25+", label: "Years in Business", sublabel: "Since 1998" },
-              { number: "150k+", label: "Active SKUs", sublabel: "In Stock" },
-              { number: "3,000+", label: "Active Customers", sublabel: "Worldwide" },
-              { number: "99.8%", label: "On-Time Delivery", sublabel: "2024 Average" }
+              { number: "45+", label: "Years in Business", sublabel: "Since 1979" },
+              { number: "34", label: "Employees", sublabel: "Small Business" },
+              { number: "300+", label: "Active Customers", sublabel: "Worldwide" },
+              { number: "34,000+", label: "Square Feet", sublabel: "Facility Space" }
             ].map((stat, i) => (
               <motion.div
                 key={i}
@@ -67,10 +67,10 @@ export const About = () => {
                 Powering Aerospace Innovation Through Reliable Distribution
               </h2>
               <p className="text-lg text-gray-600 leading-relaxed mb-6">
-                We exist to solve one of aerospace's most critical challenges: ensuring the right hardware reaches the right place at the right time, every time.
+                We exist to solve one of aerospace's most critical challenges: ensuring the right hardware reaches the right place at the right time, every time. Our philosophy is simple: on time every time, defect free.
               </p>
               <p className="text-lg text-gray-600 leading-relaxed">
-                Through our AS9100D-certified processes, strategic partnerships with leading manufacturers, and investment in cutting-edge inventory management systems, we've become the backbone of aerospace supply chains across the globe.
+                Through our AS9100 Rev. D / ISO 9001:2015 certified processes, strategic partnerships with leading manufacturers, and barcode-managed inventory system with lot traceability, we maintain up to three years of parts inventory to support both commercial and military aerospace programs.
               </p>
             </motion.div>
 
@@ -83,7 +83,7 @@ export const About = () => {
             >
               {[
                 { icon: Target, title: "Precision", desc: "Every component meets exact specifications" },
-                { icon: Shield, title: "Quality", desc: "AS9100D & ISO 9001:2015 certified" },
+                { icon: Shield, title: "Quality", desc: "AS9100 Rev. D & ISO 9001:2015 certified" },
                 { icon: TrendingUp, title: "Reliability", desc: "99.8% on-time delivery rate" },
                 { icon: Globe, title: "Global Reach", desc: "Serving customers on 6 continents" }
               ].map((value, i) => (

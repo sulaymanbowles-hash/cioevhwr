@@ -27,19 +27,21 @@ export const Services = () => {
         "Consignment Programs",
         "Min/Max Stock Management",
         "Real-time Inventory Tracking"
-      ]
+      ],
+      color: "blue"
     },
     {
       icon: Shield,
       title: "Quality Assurance & Traceability",
       description: "Full material traceability and documentation for every component we supply.",
       features: [
-        "AS9100D Quality System",
+        "AS9100 Rev. D Quality System",
         "Certificate of Conformance (C of C)",
         "Material Test Reports (MTR)",
         "First Article Inspection (FAIR)",
         "Full Chain of Custody Documentation"
-      ]
+      ],
+      color: "green"
     },
     {
       icon: Search,
@@ -51,7 +53,8 @@ export const Services = () => {
         "Alternative Part Recommendations",
         "Global Supplier Network",
         "Engineering Support"
-      ]
+      ],
+      color: "purple"
     },
     {
       icon: Truck,
@@ -63,7 +66,8 @@ export const Services = () => {
         "Climate-Controlled Storage",
         "Blind Shipment Options",
         "Expedited AOG Service"
-      ]
+      ],
+      color: "orange"
     },
     {
       icon: Clock,
@@ -75,7 +79,8 @@ export const Services = () => {
         "Global Parts Network",
         "Expedited Processing",
         "Direct-to-Site Delivery"
-      ]
+      ],
+      color: "red"
     },
     {
       icon: BarChart,
@@ -87,7 +92,8 @@ export const Services = () => {
         "Lead Time Tracking",
         "Supplier Performance Metrics",
         "Inventory Turnover Analysis"
-      ]
+      ],
+      color: "indigo"
     }
   ];
 

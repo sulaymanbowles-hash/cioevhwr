@@ -1,74 +1,167 @@
-import { useRef } from "react";
+import { useRef, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
-import { Mesh } from "three";
+import { Mesh, MeshStandardMaterial, Color, Shape, ExtrudeGeometry } from "three";
+import { STANDARD_SPECS, MATERIAL_PRESETS, generateSocketGeometry } from "@/lib/parametricModels";
 
 interface HexBoltProps {
   scale?: number;
+  autoRotate?: boolean;
 }
 
-export const HexBolt = ({ scale = 1 }: HexBoltProps) => {
-  const boltRef = useRef<Mesh>(null);
+export const HexBolt = ({ scale = 1, autoRotate = true }: HexBoltProps) => {
+  const groupRef = useRef<Mesh>(null);
   
   useFrame((state) => {
-    if (boltRef.current) {
-      boltRef.current.rotation.y = state.clock.elapsedTime * 0.3;
-      boltRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.2) * 0.1;
+    if (autoRotate && groupRef.current) {
+      groupRef.current.rotation.y = state.clock.elapsedTime * 0.3;
+      groupRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.2) * 0.08;
     }
   });
 
-  // NAS6204 specifications - Hex head cap screw
-  const headHeight = 0.3;
-  const headDiameter = 0.6;
-  const shaftDiameter = 0.25;
-  const shaftLength = 1.2;
-  const threadPitch = 0.05;
+  // Get parametric specifications from part number
+  const spec = useMemo(() => STANDARD_SPECS.NAS6204(12), []);
+  const material = MATERIAL_PRESETS[spec.material];
+
+  // High-fidelity titanium materials
+  const titaniumMaterial = useMemo(() => new MeshStandardMaterial({
+    color: new Color(...material.color),
+    metalness: material.metalness,
+    roughness: material.roughness,
+    envMapIntensity: material.envMapIntensity,
+  }), [material]);
+
+  const titaniumDarkMaterial = useMemo(() => new MeshStandardMaterial({
+    color: new Color(material.color[0] - 0.1, material.color[1] - 0.1, material.color[2] - 0.1),
+    metalness: material.metalness - 0.02,
+    roughness: material.roughness + 0.07,
+    envMapIntensity: material.envMapIntensity - 0.2,
+  }), [material]);
+
+  const threadMaterial = useMemo(() => new MeshStandardMaterial({
+    color: new Color(material.color[0] - 0.08, material.color[1] - 0.08, material.color[2] - 0.08),
+    metalness: material.metalness - 0.04,
+    roughness: material.roughness + 0.14,
+    envMapIntensity: material.envMapIntensity - 0.3,
+  }), [material]);
+
+  // Generate hex head geometry parametrically
+  const hexGeometry = useMemo(() => {
+    const shape = new Shape();
+    const radius = spec.headDiameter / (2 * Math.cos(Math.PI / 6));
+    
+    for (let i = 0; i < 6; i++) {
+      const angle = (i * Math.PI) / 3;
+      const x = Math.cos(angle) * radius;
+      const y = Math.sin(angle) * radius;
+      if (i === 0) shape.moveTo(x, y);
+      else shape.lineTo(x, y);
+    }
+    shape.closePath();
+    
+    return new ExtrudeGeometry(shape, {
+      depth: spec.headHeight,
+      bevelEnabled: true,
+      bevelThickness: 0.015,
+      bevelSize: 0.015,
+      bevelSegments: 2
+    });
+  }, [spec]);
+
+  // Socket drive geometry
+  const socketGeometry = useMemo(() => 
+    generateSocketGeometry(spec.socketSize!, spec.headHeight * 0.64, 6),
+  [spec]);
 
   return (
-    <group scale={scale}>
-      {/* Hex Head */}
-      <mesh ref={boltRef} position={[0, shaftLength / 2 + headHeight / 2, 0]} castShadow>
-        <cylinderGeometry args={[headDiameter / 2, headDiameter / 2, headHeight, 6]} />
+    <group scale={scale} ref={groupRef}>
+      {/* Parametric Hex Head */}
+      <mesh 
+        position={[0, spec.shaftLength / 2 + spec.headHeight / 2, 0]} 
+        rotation={[Math.PI / 2, 0, 0]}
+        castShadow 
+        receiveShadow
+      >
+        <primitive object={hexGeometry} attach="geometry" />
+        <primitive object={titaniumMaterial} attach="material" />
+      </mesh>
+
+      {/* Head chamfer ring */}
+      <mesh position={[0, spec.shaftLength / 2 + spec.headHeight, 0]} castShadow>
+        <cylinderGeometry args={[spec.headDiameter / 2 - 0.01, spec.headDiameter / 2, 0.02, 6]} />
+        <primitive object={titaniumDarkMaterial} attach="material" />
+      </mesh>
+
+      {/* Socket drive recess */}
+      <mesh position={[0, spec.shaftLength / 2 + spec.headHeight / 2 + spec.headHeight * 0.18, 0]}>
+        <primitive object={socketGeometry} attach="geometry" />
         <meshStandardMaterial 
-          color="#8892a8" 
-          metalness={0.9} 
-          roughness={0.2}
+          color="#3a404a"
+          metalness={0.85}
+          roughness={0.45}
         />
       </mesh>
 
-      {/* Shaft */}
-      <mesh position={[0, 0, 0]} castShadow>
-        <cylinderGeometry args={[shaftDiameter / 2, shaftDiameter / 2, shaftLength, 32]} />
-        <meshStandardMaterial 
-          color="#9ba5b8" 
-          metalness={0.85} 
-          roughness={0.25}
-        />
+      {/* Socket drive detail lines */}
+      {Array.from({ length: 6 }).map((_, i) => {
+        const angle = (i * Math.PI) / 3;
+        return (
+          <mesh 
+            key={`socket-${i}`}
+            position={[
+              Math.cos(angle) * (spec.socketSize! / 2 - 0.01),
+              spec.shaftLength / 2 + spec.headHeight / 2 + spec.headHeight * 0.18,
+              Math.sin(angle) * (spec.socketSize! / 2 - 0.01)
+            ]}
+          >
+            <boxGeometry args={[0.004, spec.headHeight * 0.64 - 0.01, 0.06]} />
+            <meshStandardMaterial color="#2a2e35" metalness={0.8} roughness={0.5} />
+          </mesh>
+        );
+      })}
+
+      {/* Main shaft with subtle taper */}
+      <mesh position={[0, 0, 0]} castShadow receiveShadow>
+        <cylinderGeometry args={[spec.shaftDiameter / 2, spec.shaftDiameter / 2 - 0.002, spec.shaftLength, 64]} />
+        <primitive object={titaniumMaterial} attach="material" />
       </mesh>
 
-      {/* Thread visualization (simplified) */}
-      {Array.from({ length: 15 }).map((_, i) => (
-        <mesh 
-          key={i}
-          position={[0, (i * threadPitch) - shaftLength / 3, 0]}
-          castShadow
-        >
-          <torusGeometry args={[shaftDiameter / 2, 0.01, 8, 24]} />
-          <meshStandardMaterial 
-            color="#7a8496" 
-            metalness={0.8} 
-            roughness={0.3}
-          />
-        </mesh>
-      ))}
+      {/* Precision threads - Parametric 28 TPI UNF-3A */}
+      {Array.from({ length: Math.floor(spec.thread.length / spec.thread.pitch) }).map((_, i) => {
+        const yPos = (i * spec.thread.pitch) - spec.shaftLength / 2.8;
+        return (
+          <mesh 
+            key={`thread-${i}`}
+            position={[0, yPos, 0]}
+            castShadow
+          >
+            <torusGeometry args={[spec.shaftDiameter / 2 + 0.008, 0.012, 8, 32]} />
+            <primitive object={threadMaterial} attach="material" />
+          </mesh>
+        );
+      })}
 
-      {/* Tip chamfer */}
-      <mesh position={[0, -shaftLength / 2 - 0.05, 0]} castShadow>
-        <coneGeometry args={[shaftDiameter / 2, 0.1, 32]} />
-        <meshStandardMaterial 
-          color="#9ba5b8" 
-          metalness={0.85} 
-          roughness={0.25}
-        />
+      {/* Thread run-out detail */}
+      <mesh position={[0, -spec.shaftLength / 2 + 0.15, 0]} castShadow>
+        <cylinderGeometry args={[spec.shaftDiameter / 2 - 0.01, spec.shaftDiameter / 2 - 0.01, 0.08, 32]} />
+        <primitive object={titaniumDarkMaterial} attach="material" />
+      </mesh>
+
+      {/* Chamfered tip - 45 degree angle */}
+      <mesh position={[0, -spec.shaftLength / 2 - 0.06, 0]} castShadow receiveShadow>
+        <coneGeometry args={[spec.shaftDiameter / 2, 0.12, 32]} />
+        <primitive object={titaniumMaterial} attach="material" />
+      </mesh>
+
+      {/* Tip detail ring */}
+      <mesh position={[0, -spec.shaftLength / 2 + 0.02, 0]}>
+        <torusGeometry args={[spec.shaftDiameter / 2 - 0.005, 0.008, 8, 32]} />
+        <primitive object={titaniumDarkMaterial} attach="material" />
+      </mesh>
+
+      {/* Head underside fillet */}
+      <mesh position={[0, spec.shaftLength / 2 + 0.01, 0]} castShadow>
+        <torusGeometry args={[spec.shaftDiameter / 2 + 0.02, 0.02, 12, 32]} />
+        <primitive object={titaniumMaterial} attach="material" />
       </mesh>
     </group>
   );

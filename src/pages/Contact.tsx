@@ -52,11 +52,15 @@ export const Contact = () => {
               <h2 className="text-3xl font-bold mb-8">Send Us a Message</h2>
               
               {submitted ? (
-                <div className="p-8 bg-green-50 border-2 border-green-200 rounded-lg text-center">
-                  <div className="text-5xl mb-4">✓</div>
-                  <h3 className="text-2xl font-bold text-green-800 mb-2">Message Sent!</h3>
-                  <p className="text-green-700">We'll get back to you within 24 hours.</p>
-                </div>
+                <motion.div
+                  initial={{ scale: 0.9, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  className="p-10 bg-gradient-to-br from-green-50 to-green-100 border-2 border-green-300 rounded-lg text-center shadow-xl"
+                >
+                  <div className="text-6xl mb-4">✓</div>
+                  <h3 className="text-2xl font-bold text-green-900 mb-2">Message Sent Successfully!</h3>
+                  <p className="text-green-700 text-lg">Our team will respond within 24 hours.</p>
+                </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
@@ -128,12 +132,14 @@ export const Contact = () => {
                     />
                   </div>
 
-                  <button
+                  <motion.button
                     type="submit"
-                    className="w-full bg-black text-white px-8 py-4 text-xs font-bold uppercase tracking-widest hover:bg-gray-800 transition-all rounded shadow-lg hover:shadow-xl"
+                    whileHover={{ scale: 1.02, y: -2 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="w-full bg-black text-white py-4 px-8 rounded-lg font-bold uppercase tracking-widest text-sm hover:bg-gray-900 transition-colors shadow-lg hover:shadow-xl"
                   >
                     Send Message
-                  </button>
+                  </motion.button>
                 </form>
               )}
             </motion.div>

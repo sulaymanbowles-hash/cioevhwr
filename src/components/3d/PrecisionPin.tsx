@@ -1,84 +1,203 @@
-import { useRef } from "react";
+import { useRef, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
-import { Mesh } from "three";
+import { Mesh, MeshStandardMaterial, Color } from "three";
+import { STANDARD_SPECS, MATERIAL_PRESETS } from "@/lib/parametricModels";
 
 interface PrecisionPinProps {
   scale?: number;
+  autoRotate?: boolean;
 }
 
-export const PrecisionPin = ({ scale = 1 }: PrecisionPinProps) => {
+export const PrecisionPin = ({ scale = 1, autoRotate = true }: PrecisionPinProps) => {
   const pinRef = useRef<Mesh>(null);
+  const groupRef = useRef<Mesh>(null);
   
   useFrame((state) => {
-    if (pinRef.current) {
-      pinRef.current.rotation.z = state.clock.elapsedTime * 0.4;
-      pinRef.current.position.y = Math.sin(state.clock.elapsedTime * 0.5) * 0.05;
+    if (autoRotate && groupRef.current) {
+      groupRef.current.rotation.z = state.clock.elapsedTime * 0.38;
+      groupRef.current.position.y = Math.sin(state.clock.elapsedTime * 0.5) * 0.04;
     }
   });
 
-  // MS16555-2 specifications - Clevis pin
-  const shaftLength = 1.5;
-  const shaftDiameter = 0.2;
-  const headDiameter = 0.35;
-  const headHeight = 0.15;
+  // Get parametric specifications
+  const spec = useMemo(() => STANDARD_SPECS.MS16555(2), []);
+  const material = MATERIAL_PRESETS[spec.material];
+
+  // High-fidelity stainless steel materials (CRES 303)
+  const stainlessMaterial = useMemo(() => new MeshStandardMaterial({
+    color: new Color(...material.color),
+    metalness: material.metalness,
+    roughness: material.roughness,
+    envMapIntensity: material.envMapIntensity,
+  }), []);
+
+  const stainlessGroundMaterial = useMemo(() => new MeshStandardMaterial({
+    color: new Color(material.color[0] + 0.04, material.color[1] + 0.04, material.color[2] + 0.04),
+    metalness: material.metalness + 0.02,
+    roughness: material.roughness - 0.04,
+    envMapIntensity: material.envMapIntensity + 0.2,
+  }), []);
+
+  const stainlessDarkMaterial = useMemo(() => new MeshStandardMaterial({
+    color: new Color(material.color[0] - 0.1, material.color[1] - 0.1, material.color[2] - 0.1),
+    metalness: material.metalness - 0.02,
+    roughness: material.roughness + 0.06,
+  }), []);
+
+  const grooveDepth = 0.008;
 
   return (
-    <group scale={scale}>
-      {/* Main pin shaft */}
-      <mesh ref={pinRef} rotation={[0, 0, Math.PI / 2]} castShadow>
-        <cylinderGeometry args={[shaftDiameter / 2, shaftDiameter / 2, shaftLength, 32]} />
-        <meshStandardMaterial 
-          color="#c0c8d4" 
-          metalness={0.95} 
-          roughness={0.15}
-        />
+    <group scale={scale} ref={groupRef}>
+      {/* Main pin shaft - precision ground (parametric) */}
+      <mesh ref={pinRef} rotation={[0, 0, Math.PI / 2]} castShadow receiveShadow>
+        <cylinderGeometry args={[spec.diameter / 2, spec.diameter / 2, spec.length, 80]} />
+        <primitive object={stainlessMaterial} attach="material" />
       </mesh>
 
-      {/* Head (larger end) */}
-      <mesh position={[-shaftLength / 2 - headHeight / 2, 0, 0]} rotation={[0, 0, Math.PI / 2]} castShadow>
-        <cylinderGeometry args={[headDiameter / 2, headDiameter / 2, headHeight, 32]} />
-        <meshStandardMaterial 
-          color="#b0b8c4" 
-          metalness={0.9} 
-          roughness={0.2}
-        />
+      {/* Head (larger end) - precision machined */}
+      <mesh 
+        position={[-spec.length / 2 - (spec.headHeight || 0) / 2, 0, 0]} 
+        rotation={[0, 0, Math.PI / 2]} 
+        castShadow 
+        receiveShadow
+      >
+        <cylinderGeometry args={[(spec.headDiameter || 0) / 2, (spec.headDiameter || 0) / 2, spec.headHeight || 0, 64]} />
+        <primitive object={stainlessGroundMaterial} attach="material" />
       </mesh>
 
-      {/* Chamfered tip */}
-      <mesh position={[shaftLength / 2 + 0.05, 0, 0]} rotation={[0, 0, -Math.PI / 2]} castShadow>
-        <coneGeometry args={[shaftDiameter / 2, 0.1, 32]} />
-        <meshStandardMaterial 
-          color="#c0c8d4" 
-          metalness={0.95} 
-          roughness={0.15}
-        />
+      {/* Head chamfer edge */}
+      <mesh 
+        position={[-spec.length / 2 - (spec.headHeight || 0) - 0.015, 0, 0]} 
+        rotation={[0, 0, Math.PI / 2]} 
+        castShadow
+      >
+        <cylinderGeometry args={[(spec.headDiameter || 0) / 2 - 0.01, (spec.headDiameter || 0) / 2, 0.03, 64]} />
+        <primitive object={stainlessGroundMaterial} attach="material" />
       </mesh>
 
-      {/* Cross-hole for cotter pin */}
-      <mesh position={[shaftLength / 2 - 0.15, 0, 0]} rotation={[Math.PI / 2, 0, 0]}>
-        <cylinderGeometry args={[0.04, 0.04, shaftDiameter + 0.05, 16]} />
-        <meshStandardMaterial 
-          color="#4a5568" 
-          metalness={0.3} 
-          roughness={0.7}
-        />
+      {/* Head fillet radius */}
+      <mesh position={[-spec.length / 2 - 0.01, 0, 0]} rotation={[0, 0, Math.PI / 2]}>
+        <torusGeometry args={[spec.diameter / 2 + 0.015, 0.02, 16, 64]} />
+        <primitive object={stainlessMaterial} attach="material" />
       </mesh>
 
-      {/* Precision ground surface rings */}
-      {Array.from({ length: 3 }).map((_, i) => (
-        <mesh 
-          key={i}
-          position={[((i - 1) * 0.4), 0, 0]}
-          rotation={[0, 0, Math.PI / 2]}
-        >
-          <torusGeometry args={[shaftDiameter / 2 + 0.005, 0.008, 8, 32]} />
-          <meshStandardMaterial 
-            color="#a8b4c0" 
-            metalness={0.98} 
-            roughness={0.1}
-          />
-        </mesh>
-      ))}
+      {/* Precision ground surface rings (centerless ground finish) */}
+      {Array.from({ length: 8 }).map((_, i) => {
+        const xPos = ((i - 3.5) * (spec.length / 9));
+        return (
+          <mesh 
+            key={`ground-ring-${i}`}
+            position={[xPos, 0, 0]}
+            rotation={[0, 0, Math.PI / 2]}
+          >
+            <torusGeometry args={[spec.diameter / 2 + 0.004, 0.006, 12, 80]} />
+            <primitive object={stainlessGroundMaterial} attach="material" />
+          </mesh>
+        );
+      })}
+
+      {/* Retention groove near tip (parametric) */}
+      {spec.hasGroove && (
+        <>
+          <mesh 
+            position={[spec.length / 2 - (spec.groovePosition || 0.25), 0, 0]} 
+            rotation={[0, 0, Math.PI / 2]}
+          >
+            <cylinderGeometry args={[spec.diameter / 2 - grooveDepth, spec.diameter / 2 - grooveDepth, 0.062, 64]} />
+            <primitive object={stainlessDarkMaterial} attach="material" />
+          </mesh>
+
+          {/* Groove side fillets */}
+          {[-0.031, 0.031].map((offset, i) => (
+            <mesh 
+              key={`groove-fillet-${i}`}
+              position={[spec.length / 2 - (spec.groovePosition || 0.25) + offset, 0, 0]}
+              rotation={[0, 0, Math.PI / 2]}
+            >
+              <torusGeometry args={[spec.diameter / 2 - grooveDepth / 2, grooveDepth / 2, 12, 48]} />
+              <primitive object={stainlessDarkMaterial} attach="material" />
+            </mesh>
+          ))}
+
+          {/* Groove bottom detail */}
+          <mesh 
+            position={[spec.length / 2 - (spec.groovePosition || 0.25), 0, 0]} 
+            rotation={[0, 0, Math.PI / 2]}
+          >
+            <torusGeometry args={[spec.diameter / 2 - grooveDepth + 0.002, 0.004, 8, 48]} />
+            <meshStandardMaterial 
+              color={new Color(...material.color).multiplyScalar(0.85)}
+              metalness={material.metalness - 0.05}
+              roughness={material.roughness + 0.15}
+            />
+          </mesh>
+        </>
+      )}
+
+      {/* Cotter pin hole (if applicable) */}
+      {spec.type === 'clevis' && (
+        <>
+          <mesh 
+            position={[spec.length / 2 - 0.15, 0, 0]} 
+            rotation={[Math.PI / 2, 0, 0]}
+          >
+            <cylinderGeometry args={[0.024, 0.024, spec.diameter + 0.02, 24]} />
+            <meshStandardMaterial 
+              color="#1a1e24"
+              metalness={0.4}
+              roughness={0.7}
+            />
+          </mesh>
+
+          {/* Hole chamfers */}
+          {[spec.diameter / 2 + 0.01, -(spec.diameter / 2 + 0.01)].map((zPos, i) => (
+            <mesh 
+              key={`chamfer-${i}`}
+              position={[spec.length / 2 - 0.15, 0, zPos]}
+              rotation={[Math.PI / 2, 0, 0]}
+            >
+              <cylinderGeometry args={[0.024, 0.028, 0.015, 24]} />
+              <primitive object={stainlessDarkMaterial} attach="material" />
+            </mesh>
+          ))}
+        </>
+      )}
+
+      {/* Tip chamfer - 30° included angle */}
+      <mesh 
+        position={[spec.length / 2 + 0.025, 0, 0]} 
+        rotation={[0, 0, Math.PI / 2]} 
+        castShadow
+      >
+        <coneGeometry args={[spec.diameter / 2, 0.05, 64]} />
+        <primitive object={stainlessMaterial} attach="material" />
+      </mesh>
+
+      {/* Tip detail ring */}
+      <mesh position={[spec.length / 2 - 0.01, 0, 0]} rotation={[0, 0, Math.PI / 2]}>
+        <torusGeometry args={[spec.diameter / 2 - 0.003, 0.006, 8, 48]} />
+        <primitive object={stainlessGroundMaterial} attach="material" />
+      </mesh>
+
+      {/* Micro-finish indicators (highly polished sections) */}
+      {Array.from({ length: 4 }).map((_, i) => {
+        const xPos = ((i - 1.5) * (spec.length / 5));
+        return (
+          <mesh 
+            key={`polish-${i}`}
+            position={[xPos, 0, 0]}
+            rotation={[0, 0, Math.PI / 2]}
+          >
+            <cylinderGeometry args={[spec.diameter / 2 + 0.002, spec.diameter / 2 + 0.002, 0.025, 64]} />
+            <meshStandardMaterial 
+              color={new Color(...material.color).multiplyScalar(1.12)}
+              metalness={material.metalness + 0.03}
+              roughness={material.roughness - 0.08}
+              envMapIntensity={material.envMapIntensity + 0.4}
+            />
+          </mesh>
+        );
+      })}
     </group>
   );
 };
