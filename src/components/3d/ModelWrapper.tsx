@@ -14,7 +14,7 @@ import {
 } from "./GLTFModelLoader";
 
 interface ModelWrapperProps {
-  modelType: "bolt" | "nut" | "fitting" | "pin";
+  modelType: "bolt" | "nut" | "fitting" | "pin" | "screw";
   scale?: number;
   autoRotate?: boolean;
   useGLTF?: boolean;

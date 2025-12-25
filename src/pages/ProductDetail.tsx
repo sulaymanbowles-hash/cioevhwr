@@ -20,6 +20,7 @@ interface ProductInfo {
   manufacturers?: string[];
   fittingType?: string;
   screwType?: string;
+  boltType?: string;
 }
 
 const productsData: Record<string, ProductInfo> = {
@@ -397,6 +398,265 @@ const productsData: Record<string, ProductInfo> = {
     applications: ["Through-hole mounting", "Double-sided fastening", "Spacer mounting", "Equipment installation"],
     standards: ["AN126"]
   },
+  "an173-4": {
+    title: "Hex Head Bolt",
+    category: "Bolts",
+    partNumber: "AN173-4",
+    modelType: "bolt",
+    modelFile: "an173-4.glb",
+    boltType: "Hex Head",
+    description: "Standard AN-series hex head bolt with cadmium plating for corrosion resistance. Suitable for general structural applications in aircraft assembly.",
+    specifications: [
+      { label: "Thread Size", value: "3/16-24 UNC" },
+      { label: "Thread Length", value: "Full Length" },
+      { label: "Head Type", value: "Hexagon" },
+      { label: "Length", value: "1/2 inch" },
+      { label: "Material", value: "Carbon Steel" },
+      { label: "Finish", value: "Cadmium Plated" }
+    ],
+    materials: ["Carbon Steel", "Cadmium Plated", "Heat Treated"],
+    manufacturers: [
+      "Howmet Aerospace",
+      "Acufast Aircraft Products",
+      "GS Aerospace",
+      "Reid Products",
+      "Houston Precision",
+      "3V Fastening Company Inc.",
+      "California Screw Products",
+      "MacLean Sky"
+    ],
+    applications: ["Structural assembly", "Panel attachment", "Equipment mounting", "General aircraft assembly"],
+    standards: ["AN173", "MIL-B-8831"]
+  },
+  "nas1003-4": {
+    title: "Hex Head Bolt",
+    category: "Bolts",
+    partNumber: "NAS1003-4",
+    modelType: "bolt",
+    modelFile: "nas1003-4.glb",
+    boltType: "Hex Head",
+    description: "NAS-series hex head bolt available drilled or undrilled for safety wire applications. High-strength alloy steel construction for critical aircraft structures.",
+    specifications: [
+      { label: "Thread Size", value: "1/4-28 UNF" },
+      { label: "Thread Length", value: "Standard" },
+      { label: "Head Type", value: "Hexagon" },
+      { label: "Length", value: "1/2 inch" },
+      { label: "Material", value: "Alloy Steel" },
+      { label: "Strength", value: "High Strength" },
+      { label: "Drilling", value: "Optional" }
+    ],
+    materials: ["Alloy Steel", "Heat Treated", "Cadmium Plated"],
+    manufacturers: [
+      "Howmet Aerospace",
+      "Acufast Aircraft Products",
+      "GS Aerospace",
+      "Reid Products",
+      "Houston Precision",
+      "3V Fastening Company Inc.",
+      "Fastener Innovation Technology"
+    ],
+    applications: ["High-stress structural joints", "Engine mounting", "Landing gear assembly", "Safety-critical applications"],
+    standards: ["NAS1003", "MIL-DTL-1222"]
+  },
+  "ms14181-4": {
+    title: "12-Point Tension Bolt",
+    category: "Bolts",
+    partNumber: "MS14181-4",
+    modelType: "bolt",
+    modelFile: "ms14181-4.glb",
+    boltType: "12-Point Head",
+    description: "High-strength 12-point tension bolt rated at 220 ksi for extreme load applications. Designed for high-stress structural joints requiring maximum torque capacity.",
+    specifications: [
+      { label: "Thread Size", value: "1/4-28 UNF" },
+      { label: "Thread Length", value: "Partial" },
+      { label: "Head Type", value: "12-Point" },
+      { label: "Length", value: "1/2 inch" },
+      { label: "Material", value: "Alloy Steel" },
+      { label: "Tensile Strength", value: "220 ksi" },
+      { label: "Finish", value: "Cadmium Plated" }
+    ],
+    materials: ["Alloy Steel (4037/4137)", "Heat Treated", "Cadmium Plated"],
+    manufacturers: [
+      "Howmet Aerospace",
+      "Acufast Aircraft Products",
+      "GS Aerospace",
+      "Reid Products",
+      "Houston Precision",
+      "3V Fastening Company Inc."
+    ],
+    applications: ["Engine mounts", "Landing gear", "Wing attach points", "High-stress structural joints"],
+    standards: ["MS14181", "MIL-B-8831"]
+  },
+  "nas1271-4": {
+    title: "12-Point Head Bolt",
+    category: "Bolts",
+    partNumber: "NAS1271-4",
+    modelType: "bolt",
+    modelFile: "nas1271-4.glb",
+    boltType: "12-Point Head",
+    description: "NAS-series 12-point head bolt available drilled or undrilled. Provides superior torque transfer with 12-point head design, suitable for high-vibration environments.",
+    specifications: [
+      { label: "Thread Size", value: "1/4-28 UNF" },
+      { label: "Thread Length", value: "Standard" },
+      { label: "Head Type", value: "12-Point" },
+      { label: "Length", value: "1/2 inch" },
+      { label: "Material", value: "Alloy Steel" },
+      { label: "Tensile Strength", value: "180 ksi" },
+      { label: "Drilling", value: "Optional" }
+    ],
+    materials: ["Alloy Steel", "Heat Treated", "Cadmium Plated"],
+    manufacturers: [
+      "Howmet Aerospace",
+      "Acufast Aircraft Products",
+      "GS Aerospace",
+      "Reid Products",
+      "Houston Precision",
+      "California Screw Products",
+      "Fastener Innovation Technology"
+    ],
+    applications: ["High-torque applications", "Vibration-resistant assembly", "Engine components", "Control surface attachment"],
+    standards: ["NAS1271", "MIL-B-8831"]
+  },
+  "nas1083-4": {
+    title: "100° Flush Head Bolt Close Tolerance",
+    category: "Bolts",
+    partNumber: "NAS1083-4",
+    modelType: "bolt",
+    modelFile: "nas1083-4.glb",
+    boltType: "Flush Head",
+    description: "100° countersunk flush head bolt with close tolerance shank for precision fit. Ideal for aerodynamic surfaces requiring flush installation.",
+    specifications: [
+      { label: "Thread Size", value: "1/4-28 UNF" },
+      { label: "Thread Length", value: "Partial" },
+      { label: "Head Type", value: "100° Flush" },
+      { label: "Head Angle", value: "100 degrees" },
+      { label: "Length", value: "1/2 inch" },
+      { label: "Material", value: "Alloy Steel" },
+      { label: "Tolerance", value: "Close Tolerance Shank" }
+    ],
+    materials: ["Alloy Steel", "Heat Treated", "Cadmium Plated"],
+    manufacturers: [
+      "Howmet Aerospace",
+      "Acufast Aircraft Products",
+      "GS Aerospace",
+      "Reid Products",
+      "Houston Precision",
+      "MacLean Sky"
+    ],
+    applications: ["Wing skins", "Fuselage panels", "Aerodynamic surfaces", "Flush-mount requirements"],
+    standards: ["NAS1083", "MIL-DTL-1222"]
+  },
+  "nas1728-4": {
+    title: "Pan Head Bolt Taper-Lok",
+    category: "Bolts",
+    partNumber: "NAS1728-4",
+    modelType: "bolt",
+    modelFile: "nas1728-4.glb",
+    boltType: "Pan Head",
+    description: "Pan head bolt with tapered shank (Taper-Lok) for interference fit. Provides enhanced grip and vibration resistance in panel mounting applications.",
+    specifications: [
+      { label: "Thread Size", value: "1/4-28 UNF" },
+      { label: "Thread Length", value: "Partial" },
+      { label: "Head Type", value: "Pan Head" },
+      { label: "Shank", value: "Tapered (Taper-Lok)" },
+      { label: "Length", value: "1/2 inch" },
+      { label: "Material", value: "Alloy Steel" }
+    ],
+    materials: ["Alloy Steel", "Heat Treated", "Cadmium Plated"],
+    manufacturers: [
+      "Howmet Aerospace",
+      "Acufast Aircraft Products",
+      "GS Aerospace",
+      "Reid Products",
+      "3V Fastening Company Inc.",
+      "Fastener Innovation Technology"
+    ],
+    applications: ["Panel fastening", "Cover plates", "Interior panels", "Equipment mounting"],
+    standards: ["NAS1728"]
+  },
+  "an21-10": {
+    title: "Clevis Bolt",
+    category: "Bolts",
+    partNumber: "AN21-10",
+    modelType: "bolt",
+    modelFile: "an21-10.glb",
+    boltType: "Clevis",
+    description: "Clevis bolt with round head and drilled shank for cotter pin retention. Designed for pivoting applications in flight control linkages.",
+    specifications: [
+      { label: "Thread Size", value: "1/4-28 UNC" },
+      { label: "Thread Length", value: "Partial" },
+      { label: "Head Type", value: "Round Head" },
+      { label: "Length", value: "1.25 inches" },
+      { label: "Material", value: "Carbon Steel" },
+      { label: "Drilling", value: "Cotter Pin Hole" },
+      { label: "Finish", value: "Cadmium Plated" }
+    ],
+    materials: ["Carbon Steel", "Heat Treated", "Cadmium Plated"],
+    manufacturers: [
+      "Howmet Aerospace",
+      "Acufast Aircraft Products",
+      "Reid Products",
+      "Houston Precision",
+      "3V Fastening Company Inc.",
+      "California Screw Products"
+    ],
+    applications: ["Control linkages", "Pivoting assemblies", "Flight control systems", "Rod end connections"],
+    standards: ["AN21", "MIL-B-7838"]
+  },
+  "an42-4": {
+    title: "Eye Bolt",
+    category: "Bolts",
+    partNumber: "AN42-4",
+    modelType: "bolt",
+    modelFile: "an42-4.glb",
+    boltType: "Eye",
+    description: "Eye bolt with forged loop head for lifting, rigging, and tie-down applications. Provides secure attachment point for cables, chains, and straps.",
+    specifications: [
+      { label: "Thread Size", value: "1/4-28 UNC" },
+      { label: "Thread Length", value: "Partial" },
+      { label: "Head Type", value: "Eye/Loop" },
+      { label: "Eye Inner Diameter", value: "0.50 inches" },
+      { label: "Material", value: "Carbon Steel" },
+      { label: "Finish", value: "Cadmium Plated" }
+    ],
+    materials: ["Carbon Steel", "Forged", "Cadmium Plated"],
+    manufacturers: [
+      "Howmet Aerospace",
+      "Acufast Aircraft Products",
+      "Reid Products",
+      "Houston Precision",
+      "California Screw Products"
+    ],
+    applications: ["Aircraft tie-down", "Lifting points", "Cable attachment", "Rigging applications"],
+    standards: ["AN42", "MIL-B-7838"]
+  },
+  "nas6303-4": {
+    title: "Hex Head Bolt A286",
+    category: "Bolts",
+    partNumber: "NAS6303-4",
+    modelType: "bolt",
+    modelFile: "nas6303-4.glb",
+    boltType: "Hex Head",
+    description: "A286 CRES hex head bolt for high-temperature applications. Maintains strength at elevated temperatures, ideal for engine and exhaust system mounting.",
+    specifications: [
+      { label: "Thread Size", value: "1/4-28 UNF" },
+      { label: "Thread Length", value: "Standard" },
+      { label: "Head Type", value: "Hexagon" },
+      { label: "Length", value: "1/2 inch" },
+      { label: "Material", value: "A286 CRES" },
+      { label: "Temperature Range", value: "Up to 1200°F" }
+    ],
+    materials: ["A286 CRES (Stainless Steel)", "Heat Treated", "Corrosion Resistant"],
+    manufacturers: [
+      "Howmet Aerospace",
+      "Acufast Aircraft Products",
+      "GS Aerospace",
+      "Reid Products",
+      "Houston Precision"
+    ],
+    applications: ["Engine mounting", "Exhaust systems", "High-temperature structures", "Turbine components"],
+    standards: ["NAS6303", "MIL-DTL-1222"]
+  },
   "elbow-fitting-90": {
     title: "Elbow Fitting 90°",
     category: "Fluid Systems",
@@ -590,6 +850,19 @@ export const ProductDetail = () => {
                 </h2>
                 <div className="p-4 bg-green-50 border-2 border-green-200 rounded-lg">
                   <span className="text-lg font-semibold text-green-900">{product.screwType}</span>
+                </div>
+              </div>
+            )}
+
+            {/* Bolt Type (for bolts only) */}
+            {product.boltType && (
+              <div className="mb-12">
+                <h2 className="text-2xl font-semibold mb-6 flex items-center gap-2">
+                  <Tag className="w-5 h-5" />
+                  Bolt Type
+                </h2>
+                <div className="p-4 bg-orange-50 border-2 border-orange-200 rounded-lg">
+                  <span className="text-lg font-semibold text-orange-900">{product.boltType}</span>
                 </div>
               </div>
             )}

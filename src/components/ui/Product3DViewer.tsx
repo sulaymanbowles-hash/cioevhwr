@@ -5,7 +5,7 @@ import { ModelWrapper } from "../3d/ModelWrapper";
 import { GLTFDirectLoader } from "../3d/GLTFDirectLoader";
 
 interface Product3DViewerProps {
-  type: "bolt" | "nut" | "fitting" | "pin";
+  type: "bolt" | "nut" | "fitting" | "pin" | "screw";
   modelPath?: string;
 }
 

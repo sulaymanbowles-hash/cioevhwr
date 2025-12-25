@@ -3391,6 +3391,547 @@ const allProducts: Product[] = [
     threadType: "UNC",
     specification: "NAS183 - Coarse/Fine",
     description: "Stud with coarse or fine thread, drilled or undrilled"
+  },
+
+  // Hex Head Bolts
+  {
+    title: "AN173-3 Hex Bolt",
+    category: "Bolts",
+    partNumber: "AN173-3",
+    modelFile: "an173-3.glb",
+    slug: "an173-3",
+    material: "Carbon Steel",
+    threadType: "UNC",
+    specification: "AN173 - 3/16\" x 3/8\"",
+    description: "Standard hex head bolt, cadmium plated"
+  },
+  {
+    title: "AN173-5 Hex Bolt",
+    category: "Bolts",
+    partNumber: "AN173-5",
+    modelFile: "an173-5.glb",
+    slug: "an173-5",
+    material: "Carbon Steel",
+    threadType: "UNC",
+    specification: "AN173 - 3/16\" x 5/8\"",
+    description: "Standard hex head bolt, cadmium plated"
+  },
+  {
+    title: "AN174-4 Hex Bolt",
+    category: "Bolts",
+    partNumber: "AN174-4",
+    modelFile: "an174-4.glb",
+    slug: "an174-4",
+    material: "Carbon Steel",
+    threadType: "UNC",
+    specification: "AN174 - 1/4\" x 1/2\"",
+    description: "Standard hex head bolt, cadmium plated"
+  },
+  {
+    title: "AN175-6 Hex Bolt",
+    category: "Bolts",
+    partNumber: "AN175-6",
+    modelFile: "an175-6.glb",
+    slug: "an175-6",
+    material: "Carbon Steel",
+    threadType: "UNC",
+    specification: "AN175 - 5/16\" x 3/4\"",
+    description: "Standard hex head bolt, cadmium plated"
+  },
+  {
+    title: "NAS1003-4 Hex Bolt",
+    category: "Bolts",
+    partNumber: "NAS1003-4",
+    modelFile: "nas1003-4.glb",
+    slug: "nas1003-4",
+    material: "Alloy Steel",
+    threadType: "UNF",
+    specification: "NAS1003 - 1/4-28 UNF",
+    description: "Hex head bolt, drilled or undrilled, high strength"
+  },
+  {
+    title: "NAS6303-4 A286 Hex Bolt",
+    category: "Bolts",
+    partNumber: "NAS6303-4",
+    modelFile: "nas6303-4.glb",
+    slug: "nas6303-4",
+    material: "A286 CRES",
+    threadType: "UNF",
+    specification: "NAS6303 - 1/4-28 UNF",
+    description: "Hex head bolt, A286 steel, high temperature"
+  },
+  {
+    title: "NAS6403-4 Titanium Hex Bolt",
+    category: "Bolts",
+    partNumber: "NAS6403-4",
+    modelFile: "nas6403-4.glb",
+    slug: "nas6403-4",
+    material: "Titanium",
+    threadType: "UNF",
+    specification: "NAS6403 - 1/4-28 UNF",
+    description: "Hex head bolt, titanium, lightweight"
+  },
+  {
+    title: "MS20033-4 Hex Bolt",
+    category: "Bolts",
+    partNumber: "MS20033-4",
+    modelFile: "ms20033-4.glb",
+    slug: "ms20033-4",
+    material: "Alloy Steel",
+    threadType: "UNF",
+    specification: "MS20033 - 1/4-28 UNF",
+    description: "Hex head bolt, drilled head"
+  },
+  {
+    title: "MS9631-4 Hex Bolt",
+    category: "Bolts",
+    partNumber: "MS9631-4",
+    modelFile: "ms9631-4.glb",
+    slug: "ms9631-4",
+    material: "Alloy Steel",
+    threadType: "UNF",
+    specification: "MS9631 - 1/4-28 UNF",
+    description: "Hex head bolt, high strength"
+  },
+
+  // 12-Point Head Bolts
+  {
+    title: "MS14181-4 Tension Bolt",
+    category: "Bolts",
+    partNumber: "MS14181-4",
+    modelFile: "ms14181-4.glb",
+    slug: "ms14181-4",
+    material: "Alloy Steel",
+    threadType: "UNF",
+    specification: "MS14181 - 1/4-28 UNF",
+    description: "12-point tension bolt, 220 ksi, high stress applications"
+  },
+  {
+    title: "MS21098-4 Self-Locking 12-Point",
+    category: "Bolts",
+    partNumber: "MS21098-4",
+    modelFile: "ms21098-4.glb",
+    slug: "ms21098-4",
+    material: "Alloy Steel",
+    threadType: "UNF",
+    specification: "MS21098 - 1/4-28 UNF",
+    description: "12-point self-locking bolt, steel"
+  },
+  {
+    title: "MS21099-4 Self-Locking 12-Point CRES",
+    category: "Bolts",
+    partNumber: "MS21099-4",
+    modelFile: "ms21099-4.glb",
+    slug: "ms21099-4",
+    material: "Stainless Steel",
+    threadType: "UNF",
+    specification: "MS21099 - 1/4-28 UNF",
+    description: "12-point self-locking bolt, corrosion resistant"
+  },
+  {
+    title: "MS21250-4 12-Point Bolt",
+    category: "Bolts",
+    partNumber: "MS21250-4",
+    modelFile: "ms21250-4.glb",
+    slug: "ms21250-4",
+    material: "Alloy Steel",
+    threadType: "UNF",
+    specification: "MS21250 - 1/4-28 UNF",
+    description: "12-point head bolt, high torque"
+  },
+  {
+    title: "MS9146-4 12-Point Bolt",
+    category: "Bolts",
+    partNumber: "MS9146-4",
+    modelFile: "ms9146-4.glb",
+    slug: "ms9146-4",
+    material: "Alloy Steel",
+    threadType: "UNF",
+    specification: "MS9146 - 1/4-28 UNF",
+    description: "12-point head bolt, steel"
+  },
+  {
+    title: "MS9694-4 12-Point CRES Bolt",
+    category: "Bolts",
+    partNumber: "MS9694-4",
+    modelFile: "ms9694-4.glb",
+    slug: "ms9694-4",
+    material: "Stainless Steel",
+    threadType: "UNF",
+    specification: "MS9694 - 1/4-28 UNF",
+    description: "12-point head bolt, corrosion resistant"
+  },
+  {
+    title: "MS9883-4 12-Point CRES Bolt",
+    category: "Bolts",
+    partNumber: "MS9883-4",
+    modelFile: "ms9883-4.glb",
+    slug: "ms9883-4",
+    material: "Stainless Steel",
+    threadType: "UNF",
+    specification: "MS9883 - 1/4-28 UNF",
+    description: "12-point bolt, CRES"
+  },
+  {
+    title: "NAS1271-4 12-Point Bolt",
+    category: "Bolts",
+    partNumber: "NAS1271-4",
+    modelFile: "nas1271-4.glb",
+    slug: "nas1271-4",
+    material: "Alloy Steel",
+    threadType: "UNF",
+    specification: "NAS1271 - 1/4-28 UNF",
+    description: "12-point bolt, drilled or undrilled"
+  },
+  {
+    title: "NAS624-4 12-Point High Strength",
+    category: "Bolts",
+    partNumber: "NAS624-4",
+    modelFile: "nas624-4.glb",
+    slug: "nas624-4",
+    material: "Alloy Steel",
+    threadType: "UNF",
+    specification: "NAS624 - 1/4-28 UNF",
+    description: "12-point bolt, 180 ksi, drilled or undrilled"
+  },
+
+  // Flush Head Bolts (100° Countersunk)
+  {
+    title: "NAS1083-4 Flush Bolt Close Tolerance",
+    category: "Bolts",
+    partNumber: "NAS1083-4",
+    modelFile: "nas1083-4.glb",
+    slug: "nas1083-4",
+    material: "Alloy Steel",
+    threadType: "UNF",
+    specification: "NAS1083 - 1/4-28 UNF",
+    description: "100° flush head bolt, close tolerance"
+  },
+  {
+    title: "NAS1220-4 Flush Bolt Dovetail Slot",
+    category: "Bolts",
+    partNumber: "NAS1220-4",
+    modelFile: "nas1220-4.glb",
+    slug: "nas1220-4",
+    material: "Alloy Steel",
+    threadType: "UNF",
+    specification: "NAS1220 - 1/4-28 UNF",
+    description: "100° flush head bolt, short thread, dovetail slot"
+  },
+  {
+    title: "NAS1503-4 Flush Bolt Short Thread",
+    category: "Bolts",
+    partNumber: "NAS1503-4",
+    modelFile: "nas1503-4.glb",
+    slug: "nas1503-4",
+    material: "Alloy Steel",
+    threadType: "UNF",
+    specification: "NAS1503 - 1/4-28 UNF",
+    description: "100° flush head bolt, short thread"
+  },
+  {
+    title: "NAS1580-4 Flush Bolt Standard",
+    category: "Bolts",
+    partNumber: "NAS1580-4",
+    modelFile: "nas1580-4.glb",
+    slug: "nas1580-4",
+    material: "Alloy Steel",
+    threadType: "UNF",
+    specification: "NAS1580 - 1/4-28 UNF",
+    description: "100° flush head bolt"
+  },
+  {
+    title: "NAS1581-4 Flush Reduced Head",
+    category: "Bolts",
+    partNumber: "NAS1581-4",
+    modelFile: "nas1581-4.glb",
+    slug: "nas1581-4",
+    material: "Alloy Steel",
+    threadType: "UNF",
+    specification: "NAS1581 - 1/4-28 UNF",
+    description: "100° flush reduced head bolt"
+  },
+  {
+    title: "NAS1582-4 Flush Tension Head",
+    category: "Bolts",
+    partNumber: "NAS1582-4",
+    modelFile: "nas1582-4.glb",
+    slug: "nas1582-4",
+    material: "Alloy Steel",
+    threadType: "UNF",
+    specification: "NAS1582 - 1/4-28 UNF",
+    description: "100° flush tension head bolt"
+  },
+  {
+    title: "NAS1724-4 Taper-Lok Flush Shear Bolt",
+    category: "Bolts",
+    partNumber: "NAS1724-4",
+    modelFile: "nas1724-4.glb",
+    slug: "nas1724-4",
+    material: "Alloy Steel",
+    threadType: "UNF",
+    specification: "NAS1724 - 1/4-28 UNF",
+    description: "100° flush shear bolt, tapered shank, Taper-Lok"
+  },
+  {
+    title: "NAS7203-4 Flush Cruciform",
+    category: "Bolts",
+    partNumber: "NAS7203-4",
+    modelFile: "nas7203-4.glb",
+    slug: "nas7203-4",
+    material: "Alloy Steel",
+    threadType: "UNF",
+    specification: "NAS7203 - 1/4-28 UNF",
+    description: "100° flush head bolt, cruciform recess"
+  },
+  {
+    title: "NAS7400-4 Flush Cruciform",
+    category: "Bolts",
+    partNumber: "NAS7400-4",
+    modelFile: "nas7400-4.glb",
+    slug: "nas7400-4",
+    material: "Alloy Steel",
+    threadType: "UNF",
+    specification: "NAS7400 - 1/4-28 UNF",
+    description: "100° flush head bolt, cruciform recess"
+  },
+
+  // Pan Head Bolts
+  {
+    title: "NAS1728-4 Pan Head Taper-Lok",
+    category: "Bolts",
+    partNumber: "NAS1728-4",
+    modelFile: "nas1728-4.glb",
+    slug: "nas1728-4",
+    material: "Alloy Steel",
+    threadType: "UNF",
+    specification: "NAS1728 - 1/4-28 UNF",
+    description: "Pan head bolt, tapered shank, Taper-Lok"
+  },
+  {
+    title: "NAS1729-4 Pan Head Taper-Lok Oversize",
+    category: "Bolts",
+    partNumber: "NAS1729-4",
+    modelFile: "nas1729-4.glb",
+    slug: "nas1729-4",
+    material: "Alloy Steel",
+    threadType: "UNF",
+    specification: "NAS1729 - 1/4-28 UNF",
+    description: "Pan head bolt, oversize, tapered shank, Taper-Lok"
+  },
+  {
+    title: "NAS7700-4 Pan Head Cruciform Short Thread",
+    category: "Bolts",
+    partNumber: "NAS7700-4",
+    modelFile: "nas7700-4.glb",
+    slug: "nas7700-4",
+    material: "Alloy Steel",
+    threadType: "UNF",
+    specification: "NAS7700 - 1/4-28 UNF",
+    description: "Pan head bolt, cruciform recess, short thread"
+  },
+  {
+    title: "NAS7800-4 Pan Head Cruciform Short Thread",
+    category: "Bolts",
+    partNumber: "NAS7800-4",
+    modelFile: "nas7800-4.glb",
+    slug: "nas7800-4",
+    material: "Alloy Steel",
+    threadType: "UNF",
+    specification: "NAS7800 - 1/4-28 UNF",
+    description: "Pan head bolt, cruciform recess, short thread"
+  },
+
+  // Eye Bolts
+  {
+    title: "AN42-4 Eye Bolt",
+    category: "Bolts",
+    partNumber: "AN42-4",
+    modelFile: "an42-4.glb",
+    slug: "an42-4",
+    material: "Carbon Steel",
+    threadType: "UNC",
+    specification: "AN42 - 1/4\" thread",
+    description: "Eye bolt for lifting and rigging"
+  },
+  {
+    title: "AN43-5 Eye Bolt",
+    category: "Bolts",
+    partNumber: "AN43-5",
+    modelFile: "an43-5.glb",
+    slug: "an43-5",
+    material: "Carbon Steel",
+    threadType: "UNC",
+    specification: "AN43 - 5/16\" thread",
+    description: "Eye bolt for lifting and rigging"
+  },
+
+  // Clevis Bolts
+  {
+    title: "AN21-10 Clevis Bolt",
+    category: "Bolts",
+    partNumber: "AN21-10",
+    modelFile: "an21-10.glb",
+    slug: "an21-10",
+    material: "Carbon Steel",
+    threadType: "UNC",
+    specification: "AN21 - 1/4\" x 1.25\"",
+    description: "Clevis bolt with cotter pin hole"
+  },
+  {
+    title: "AN22-12 Clevis Bolt",
+    category: "Bolts",
+    partNumber: "AN22-12",
+    modelFile: "an22-12.glb",
+    slug: "an22-12",
+    material: "Carbon Steel",
+    threadType: "UNC",
+    specification: "AN22 - 5/16\" x 1.50\"",
+    description: "Clevis bolt with cotter pin hole"
+  },
+  {
+    title: "AN23-14 Clevis Bolt",
+    category: "Bolts",
+    partNumber: "AN23-14",
+    modelFile: "an23-14.glb",
+    slug: "an23-14",
+    material: "Carbon Steel",
+    threadType: "UNC",
+    specification: "AN23 - 3/8\" x 1.75\"",
+    description: "Clevis bolt with cotter pin hole"
+  },
+
+  // Close Tolerance Bolts
+  {
+    title: "NAS464-4 Shear Bolt Close Tolerance",
+    category: "Bolts",
+    partNumber: "NAS464-4",
+    modelFile: "nas464-4.glb",
+    slug: "nas464-4",
+    material: "Alloy Steel",
+    threadType: "UNF",
+    specification: "NAS464 - 1/4-28 UNF",
+    description: "Shear bolt, close tolerance, drilled or undrilled"
+  },
+  {
+    title: "NAS673-4 Hex Bolt Close Tolerance",
+    category: "Bolts",
+    partNumber: "NAS673-4",
+    modelFile: "nas673-4.glb",
+    slug: "nas673-4",
+    material: "Alloy Steel",
+    threadType: "UNF",
+    specification: "NAS673 - 1/4-28 UNF",
+    description: "Hex head bolt, close tolerance, drilled or undrilled"
+  },
+  {
+    title: "NAS333-4 Flush Close Tolerance",
+    category: "Bolts",
+    partNumber: "NAS333-4",
+    modelFile: "nas333-4.glb",
+    slug: "nas333-4",
+    material: "Alloy Steel",
+    threadType: "UNF",
+    specification: "NAS333 - 1/4-28 UNF",
+    description: "100° flush head bolt, close tolerance"
+  },
+
+  // Internal Wrenching Bolts
+  {
+    title: "MS20004-4 External Wrenching Bolt",
+    category: "Bolts",
+    partNumber: "MS20004-4",
+    modelFile: "ms20004-4.glb",
+    slug: "ms20004-4",
+    material: "Alloy Steel",
+    threadType: "UNF",
+    specification: "MS20004 - 1/4-28 UNF",
+    description: "External wrenching bolt"
+  },
+  {
+    title: "NAS144-4 Internal Wrenching Bolt",
+    category: "Bolts",
+    partNumber: "NAS144-4",
+    modelFile: "nas144-4.glb",
+    slug: "nas144-4",
+    material: "Alloy Steel",
+    threadType: "UNF",
+    specification: "NAS144 - 1/4-28 UNF",
+    description: "Internal wrenching bolt, drilled or undrilled head or shank"
+  },
+
+  // High Temperature Bolts
+  {
+    title: "MS9033-4 High Temperature 12-Point",
+    category: "Bolts",
+    partNumber: "MS9033-4",
+    modelFile: "ms9033-4.glb",
+    slug: "ms9033-4",
+    material: "A286 CRES",
+    threadType: "UNF",
+    specification: "MS9033 - 1/4-28 UNF",
+    description: "12-point head bolt, high temperature"
+  },
+  {
+    title: "MS9224-4 Heat Resistant 12-Point",
+    category: "Bolts",
+    partNumber: "MS9224-4",
+    modelFile: "ms9224-4.glb",
+    slug: "ms9224-4",
+    material: "A286 CRES",
+    threadType: "UNF",
+    specification: "MS9224 - 1/4-28 UNF",
+    description: "12-point head bolt, heat resistant"
+  },
+
+  // Black Oxide Finish Bolts
+  {
+    title: "MS9281-4 Hex Bolt Black Oxide",
+    category: "Bolts",
+    partNumber: "MS9281-4",
+    modelFile: "ms9281-4.glb",
+    slug: "ms9281-4",
+    material: "Alloy Steel",
+    threadType: "UNF",
+    specification: "MS9281 - 1/4-28 UNF",
+    description: "Hex head bolt, black oxide finish"
+  },
+  {
+    title: "MS9169-4 12-Point Bolt Black Oxide",
+    category: "Bolts",
+    partNumber: "MS9169-4",
+    modelFile: "ms9169-4.glb",
+    slug: "ms9169-4",
+    material: "Alloy Steel",
+    threadType: "UNF",
+    specification: "MS9169 - 1/4-28 UNF",
+    description: "12-point head bolt, drilled, black oxide finish"
+  },
+
+  // Shoulder Hex Head Bolts
+  {
+    title: "NAS1297-4 Shoulder Hex Bolt",
+    category: "Bolts",
+    partNumber: "NAS1297-4",
+    modelFile: "nas1297-4.glb",
+    slug: "nas1297-4",
+    material: "Alloy Steel",
+    threadType: "UNF",
+    specification: "NAS1297 - 1/4-28 UNF",
+    description: "Shoulder bolt with hex head"
+  },
+
+  // Fluid Passage Bolts
+  {
+    title: "MS24387-4 Fluid Passage Bolt",
+    category: "Bolts",
+    partNumber: "MS24387-4",
+    modelFile: "ms24387-4.glb",
+    slug: "ms24387-4",
+    material: "Stainless Steel",
+    threadType: "UNF",
+    specification: "MS24387 - 1/4-28 UNF",
+    description: "Fluid passage bolt, precision type"
   }
 ];
 
