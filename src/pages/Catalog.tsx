@@ -4283,6 +4283,281 @@ const allProducts: Product[] = [
     threadType: "N/A",
     specification: "MA4018 - Alloy Steel",
     description: "Heavy duty clevis pin"
+  },
+
+  // ========== NUTS SECTION ==========
+  
+  // Castle Nuts
+  {
+    title: "AN310-4 Castle Nut",
+    category: "Nuts",
+    partNumber: "AN310-4",
+    modelFile: "an310-4.glb",
+    slug: "an310-4",
+    material: "Steel",
+    threadType: "UNF",
+    specification: "AN310 - 1/4-28 UNF",
+    description: "Castle nut with slotted crown for cotter pin"
+  },
+  {
+    title: "AN310-6 Castle Nut",
+    category: "Nuts",
+    partNumber: "AN310-6",
+    modelFile: "an310-6.glb",
+    slug: "an310-6",
+    material: "Steel",
+    threadType: "UNF",
+    specification: "AN310 - 3/8-24 UNF",
+    description: "Castle nut with slotted crown for cotter pin"
+  },
+  {
+    title: "MS20365-4 Castle Nut",
+    category: "Nuts",
+    partNumber: "MS20365-4",
+    modelFile: "ms20365-4.glb",
+    slug: "ms20365-4",
+    material: "Steel",
+    threadType: "UNF",
+    specification: "MS20365 - 1/4-28 UNF",
+    description: "Cadmium plated castle nut"
+  },
+  {
+    title: "NAS1291-4 Castle Nut",
+    category: "Nuts",
+    partNumber: "NAS1291-4",
+    modelFile: "nas1291-4.glb",
+    slug: "nas1291-4",
+    material: "Steel",
+    threadType: "UNF",
+    specification: "NAS1291 - 1/4-28 UNF",
+    description: "NAS standard castle nut"
+  },
+
+  // Self-Locking Nuts
+  {
+    title: "MS21042-4 Self-Locking Nut",
+    category: "Nuts",
+    partNumber: "MS21042-4",
+    modelFile: "ms21042-4.glb",
+    slug: "ms21042-4",
+    material: "Aluminum",
+    threadType: "UNF",
+    specification: "MS21042 - 1/4-28 UNF",
+    description: "Aluminum self-locking nut with nylon insert"
+  },
+  {
+    title: "MS21043-4 Self-Locking Nut CRES",
+    category: "Nuts",
+    partNumber: "MS21043-4",
+    modelFile: "ms21043-4.glb",
+    slug: "ms21043-4",
+    material: "Stainless Steel",
+    threadType: "UNF",
+    specification: "MS21043 - 1/4-28 UNF",
+    description: "CRES self-locking nut with nylon insert"
+  },
+  {
+    title: "MS21044-4 Self-Locking Nut Steel",
+    category: "Nuts",
+    partNumber: "MS21044-4",
+    modelFile: "ms21044-4.glb",
+    slug: "ms21044-4",
+    material: "Steel",
+    threadType: "UNC",
+    specification: "MS21044 - 1/4-20 UNC",
+    description: "Steel self-locking nut with nylon insert"
+  },
+  {
+    title: "AN365-4 Self-Locking Nut",
+    category: "Nuts",
+    partNumber: "AN365-4",
+    modelFile: "an365-4.glb",
+    slug: "an365-4",
+    material: "Steel",
+    threadType: "UNF",
+    specification: "AN365 - 1/4-28 UNF",
+    description: "AN standard self-locking nut"
+  },
+  {
+    title: "NAS1021-4 Self-Locking Nut",
+    category: "Nuts",
+    partNumber: "NAS1021-4",
+    modelFile: "nas1021-4.glb",
+    slug: "nas1021-4",
+    material: "Steel",
+    threadType: "UNF",
+    specification: "NAS1021 - 1/4-28 UNF",
+    description: "NAS standard self-locking hex nut"
+  },
+  {
+    title: "BACN10-4 Self-Locking Nut",
+    category: "Nuts",
+    partNumber: "BACN10-4",
+    modelFile: "bacn10-4.glb",
+    slug: "bacn10-4",
+    material: "Steel",
+    threadType: "UNF",
+    specification: "BACN10 - 1/4-28 UNF",
+    description: "Boeing approved self-locking nut"
+  },
+
+  // Wing Nuts
+  {
+    title: "AN315-4 Wing Nut",
+    category: "Nuts",
+    partNumber: "AN315-4",
+    modelFile: "an315-4.glb",
+    slug: "an315-4",
+    material: "Steel",
+    threadType: "UNF",
+    specification: "AN315 - 1/4-28 UNF",
+    description: "Wing nut for hand-tightening applications"
+  },
+  {
+    title: "AN315-6 Wing Nut",
+    category: "Nuts",
+    partNumber: "AN315-6",
+    modelFile: "an315-6.glb",
+    slug: "an315-6",
+    material: "Steel",
+    threadType: "UNF",
+    specification: "AN315 - 3/8-24 UNF",
+    description: "Wing nut for hand-tightening applications"
+  },
+
+  // Flange Nuts
+  {
+    title: "MS21047-4 Flange Nut",
+    category: "Nuts",
+    partNumber: "MS21047-4",
+    modelFile: "ms21047-4.glb",
+    slug: "ms21047-4",
+    material: "Steel",
+    threadType: "UNF",
+    specification: "MS21047 - 1/4-28 UNF",
+    description: "Self-locking flange nut with integral washer"
+  },
+  {
+    title: "NAS1473-4 Flange Nut",
+    category: "Nuts",
+    partNumber: "NAS1473-4",
+    modelFile: "nas1473-4.glb",
+    slug: "nas1473-4",
+    material: "Steel",
+    threadType: "UNF",
+    specification: "NAS1473 - 1/4-28 UNF",
+    description: "NAS standard flange lock nut"
+  },
+
+  // Hex Nuts
+  {
+    title: "AN363-428 Hex Nut",
+    category: "Nuts",
+    partNumber: "AN363-428",
+    modelFile: "an363-428.glb",
+    slug: "an363-428",
+    material: "Steel",
+    threadType: "UNF",
+    specification: "AN363 - 1/4-28 UNF",
+    description: "Standard hex nut"
+  },
+  {
+    title: "MS20364-4 Hex Nut",
+    category: "Nuts",
+    partNumber: "MS20364-4",
+    modelFile: "ms20364-4.glb",
+    slug: "ms20364-4",
+    material: "Steel",
+    threadType: "UNF",
+    specification: "MS20364 - 1/4-28 UNF",
+    description: "Thin hex nut with slots"
+  },
+  {
+    title: "NAS679-4 Hex Nut",
+    category: "Nuts",
+    partNumber: "NAS679-4",
+    modelFile: "nas679-4.glb",
+    slug: "nas679-4",
+    material: "Steel",
+    threadType: "UNF",
+    specification: "NAS679 - 1/4-28 UNF",
+    description: "NAS standard hex nut"
+  },
+
+  // Square Nuts
+  {
+    title: "AN361-4 Square Nut",
+    category: "Nuts",
+    partNumber: "AN361-4",
+    modelFile: "an361-4.glb",
+    slug: "an361-4",
+    material: "Steel",
+    threadType: "UNF",
+    specification: "AN361 - 1/4-28 UNF",
+    description: "Square nut for anti-rotation applications"
+  },
+
+  // Jam Nuts
+  {
+    title: "AN316-4 Check Nut",
+    category: "Nuts",
+    partNumber: "AN316-4",
+    modelFile: "an316-4.glb",
+    slug: "an316-4",
+    material: "Steel",
+    threadType: "UNF",
+    specification: "AN316 - 1/4-28 UNF",
+    description: "Thin jam nut for lock wiring"
+  },
+  {
+    title: "NAS1778-4 Jam Nut",
+    category: "Nuts",
+    partNumber: "NAS1778-4",
+    modelFile: "nas1778-4.glb",
+    slug: "nas1778-4",
+    material: "Steel",
+    threadType: "UNF",
+    specification: "NAS1778 - 1/4-28 UNF",
+    description: "NAS standard thin jam nut"
+  },
+
+  // Slotted Nuts
+  {
+    title: "AN320-4 Slotted Nut",
+    category: "Nuts",
+    partNumber: "AN320-4",
+    modelFile: "an320-4.glb",
+    slug: "an320-4",
+    material: "Steel",
+    threadType: "UNF",
+    specification: "AN320 - 1/4-28 UNF",
+    description: "Slotted shear nut for rod ends"
+  },
+
+  // Acorn/Cap Nuts
+  {
+    title: "MS51972-4 Acorn Nut",
+    category: "Nuts",
+    partNumber: "MS51972-4",
+    modelFile: "ms51972-4.glb",
+    slug: "ms51972-4",
+    material: "Steel",
+    threadType: "UNF",
+    specification: "MS51972 - 1/4-28 UNF",
+    description: "Acorn cap nut for smooth finish"
+  },
+
+  // Coupling Nuts
+  {
+    title: "MS51866-4 Coupling Nut",
+    category: "Nuts",
+    partNumber: "MS51866-4",
+    modelFile: "ms51866-4.glb",
+    slug: "ms51866-4",
+    material: "Steel",
+    threadType: "UNF",
+    specification: "MS51866 - 1/4-28 UNF",
+    description: "Long coupling nut for joining threaded rods"
   }
 ];
 

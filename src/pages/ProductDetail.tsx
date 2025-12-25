@@ -919,6 +919,268 @@ const productsData: Record<string, ProductInfo> = {
     applications: ["Control surfaces", "General linkages", "Light duty pivots", "Maintenance rigging"],
     standards: ["AN122", "MIL-B-7838"]
   },
+
+  // ========== NUTS SECTION ==========
+
+  "an310-4": {
+    title: "Castle Nut",
+    category: "Nuts",
+    partNumber: "AN310-4",
+    modelFile: "an310-4.glb",
+    description: "Standard castle nut with slotted crown for cotter pin retention. Essential for securing bolts in critical safety applications where positive locking is required.",
+    specifications: [
+      { label: "Thread Size", value: "1/4-28 UNF" },
+      { label: "Across Flats", value: "0.438 inches" },
+      { label: "Height", value: "0.281 inches" },
+      { label: "Material", value: "Carbon Steel" },
+      { label: "Finish", value: "Cadmium Plated" },
+      { label: "Castle Slots", value: "6" }
+    ],
+    materials: ["Carbon Steel", "Cadmium Plated", "Heat Treated"],
+    manufacturers: [
+      "Howmet Aerospace",
+      "MacLean-ESNA",
+      "Bristol Industries",
+      "Automatic Screw Machine Products",
+      "SPS Technologies"
+    ],
+    applications: ["Flight control linkages", "Landing gear", "Propeller attachments", "Structural connections"],
+    standards: ["AN310", "MIL-DTL-18240"]
+  },
+  "ms20365-4": {
+    title: "Castle Nut Cadmium Plated",
+    category: "Nuts",
+    partNumber: "MS20365-4",
+    modelFile: "ms20365-4.glb",
+    description: "Military standard castle nut with superior corrosion protection. Slotted crown design allows cotter pin insertion for positive locking.",
+    specifications: [
+      { label: "Thread Size", value: "1/4-28 UNF" },
+      { label: "Across Flats", value: "0.438 inches" },
+      { label: "Height", value: "0.281 inches" },
+      { label: "Material", value: "Alloy Steel" },
+      { label: "Finish", value: "Cadmium Plated" },
+      { label: "Torque Value", value: "40-60 in-lbs" }
+    ],
+    materials: ["Alloy Steel 8740", "Cadmium Plated", "Heat Treated"],
+    manufacturers: [
+      "Howmet Aerospace",
+      "MacLean-ESNA",
+      "SPS Technologies",
+      "Bristol Industries"
+    ],
+    applications: ["Safety critical fastening", "Control systems", "High-vibration areas", "Landing gear assemblies"],
+    standards: ["MS20365", "MIL-DTL-18240"]
+  },
+  "ms21042-4": {
+    title: "Self-Locking Nut Aluminum",
+    category: "Nuts",
+    partNumber: "MS21042-4",
+    modelFile: "ms21042-4.glb",
+    description: "Lightweight aluminum self-locking nut with non-metallic insert. Nylon collar provides vibration resistance without requiring safety wiring.",
+    specifications: [
+      { label: "Thread Size", value: "1/4-28 UNF" },
+      { label: "Across Flats", value: "0.438 inches" },
+      { label: "Height", value: "0.219 inches" },
+      { label: "Material", value: "2024-T4 Aluminum" },
+      { label: "Insert Material", value: "Nylon" },
+      { label: "Temperature Range", value: "-67°F to +250°F" },
+      { label: "Reusability", value: "15 cycles" }
+    ],
+    materials: ["2024-T4 Aluminum Alloy", "Nylon Insert", "Anodized"],
+    manufacturers: [
+      "Howmet Aerospace",
+      "MacLean-ESNA",
+      "SPS Technologies",
+      "Bristol Industries",
+      "Automatic Screw Machine Products"
+    ],
+    applications: ["Airframe structures", "Non-critical fastening", "Weight-sensitive applications", "Interior assemblies"],
+    standards: ["MS21042", "NAS1291", "MIL-DTL-21042"]
+  },
+  "ms21043-4": {
+    title: "Self-Locking Nut CRES",
+    category: "Nuts",
+    partNumber: "MS21043-4",
+    modelFile: "ms21043-4.glb",
+    description: "Corrosion-resistant stainless steel self-locking nut with nylon insert. Ideal for high-moisture environments and marine applications.",
+    specifications: [
+      { label: "Thread Size", value: "1/4-28 UNF" },
+      { label: "Across Flats", value: "0.438 inches" },
+      { label: "Height", value: "0.219 inches" },
+      { label: "Material", value: "CRES 303" },
+      { label: "Insert Material", value: "Nylon" },
+      { label: "Temperature Range", value: "-67°F to +250°F" },
+      { label: "Corrosion Resistance", value: "Excellent" }
+    ],
+    materials: ["CRES 303 Stainless Steel", "Nylon Insert", "Passivated"],
+    manufacturers: [
+      "Howmet Aerospace",
+      "MacLean-ESNA",
+      "SPS Technologies",
+      "Bristol Industries"
+    ],
+    applications: ["Marine aircraft", "Corrosive environments", "Exhaust systems", "High-humidity areas"],
+    standards: ["MS21043", "MIL-DTL-21042"]
+  },
+  "ms21044-4": {
+    title: "Self-Locking Nut Steel",
+    category: "Nuts",
+    partNumber: "MS21044-4",
+    modelFile: "ms21044-4.glb",
+    description: "Heavy-duty steel self-locking nut with nylon insert for high-strength applications. UNC threads provide better vibration resistance.",
+    specifications: [
+      { label: "Thread Size", value: "1/4-20 UNC" },
+      { label: "Across Flats", value: "0.438 inches" },
+      { label: "Height", value: "0.235 inches" },
+      { label: "Material", value: "Carbon Steel" },
+      { label: "Insert Material", value: "Nylon" },
+      { label: "Tensile Strength", value: "120,000 psi min" }
+    ],
+    materials: ["Carbon Steel", "Nylon Insert", "Cadmium Plated"],
+    manufacturers: [
+      "Howmet Aerospace",
+      "MacLean-ESNA",
+      "SPS Technologies",
+      "Bristol Industries"
+    ],
+    applications: ["Structural fastening", "High-load applications", "Engine mounts", "Heavy equipment"],
+    standards: ["MS21044", "MIL-DTL-21042"]
+  },
+  "an365-4": {
+    title: "Self-Locking Nut AN Series",
+    category: "Nuts",
+    partNumber: "AN365-4",
+    modelFile: "an365-4.glb",
+    description: "AN standard elastic stop nut with fiber collar insert. Proven design for general aviation applications requiring vibration resistance.",
+    specifications: [
+      { label: "Thread Size", value: "1/4-28 UNF" },
+      { label: "Across Flats", value: "0.438 inches" },
+      { label: "Height", value: "0.203 inches" },
+      { label: "Material", value: "Steel" },
+      { label: "Insert Type", value: "Fiber Collar" },
+      { label: "Reusability", value: "Limited" }
+    ],
+    materials: ["Carbon Steel", "Fiber Insert", "Cadmium or Zinc Plated"],
+    manufacturers: [
+      "Howmet Aerospace",
+      "MacLean-ESNA",
+      "Bristol Industries",
+      "SPS Technologies"
+    ],
+    applications: ["General aviation", "Light aircraft", "Experimental aircraft", "Maintenance operations"],
+    standards: ["AN365", "MIL-DTL-18240"]
+  },
+  "nas1021-4": {
+    title: "Self-Locking Hex Nut NAS",
+    category: "Nuts",
+    partNumber: "NAS1021-4",
+    modelFile: "nas1021-4.glb",
+    description: "NAS standard self-locking hex nut with metallic locking feature. Superior temperature range compared to nylon insert nuts.",
+    specifications: [
+      { label: "Thread Size", value: "1/4-28 UNF" },
+      { label: "Across Flats", value: "0.438 inches" },
+      { label: "Height", value: "0.219 inches" },
+      { label: "Material", value: "Alloy Steel" },
+      { label: "Locking Type", value: "All-Metal" },
+      { label: "Temperature Range", value: "-100°F to +550°F" }
+    ],
+    materials: ["Alloy Steel", "All-Metal Locking", "Cadmium Plated"],
+    manufacturers: [
+      "Howmet Aerospace",
+      "SPS Technologies",
+      "MacLean-ESNA"
+    ],
+    applications: ["High-temperature areas", "Engine compartments", "Exhaust systems", "Critical fastening"],
+    standards: ["NAS1021", "MIL-DTL-1222"]
+  },
+  "an315-4": {
+    title: "Wing Nut",
+    category: "Nuts",
+    partNumber: "AN315-4",
+    modelFile: "an315-4.glb",
+    description: "Standard wing nut for hand-tightening applications. Wings provide leverage for tool-free installation and removal.",
+    specifications: [
+      { label: "Thread Size", value: "1/4-28 UNF" },
+      { label: "Wing Span", value: "0.875 inches" },
+      { label: "Body Height", value: "0.156 inches" },
+      { label: "Material", value: "Steel" },
+      { label: "Finish", value: "Cadmium Plated" }
+    ],
+    materials: ["Carbon Steel", "Cadmium Plated"],
+    manufacturers: [
+      "Automatic Screw Machine Products",
+      "Bristol Industries",
+      "Howmet Aerospace"
+    ],
+    applications: ["Access panels", "Quick-removal covers", "Cowling fasteners", "Battery connections"],
+    standards: ["AN315", "MIL-DTL-18240"]
+  },
+  "ms21047-4": {
+    title: "Flange Lock Nut",
+    category: "Nuts",
+    partNumber: "MS21047-4",
+    modelFile: "ms21047-4.glb",
+    description: "Self-locking flange nut with integral washer. Flange distributes load while nylon insert provides locking action.",
+    specifications: [
+      { label: "Thread Size", value: "1/4-28 UNF" },
+      { label: "Flange Diameter", value: "0.625 inches" },
+      { label: "Overall Height", value: "0.250 inches" },
+      { label: "Material", value: "Steel" },
+      { label: "Insert Material", value: "Nylon" }
+    ],
+    materials: ["Alloy Steel", "Nylon Insert", "Cadmium Plated"],
+    manufacturers: [
+      "Howmet Aerospace",
+      "MacLean-ESNA",
+      "SPS Technologies"
+    ],
+    applications: ["Sheet metal attachments", "Composite structures", "Load distribution", "Avionics mounting"],
+    standards: ["MS21047", "NAS1473"]
+  },
+  "nas1473-4": {
+    title: "Flange Nut NAS",
+    category: "Nuts",
+    partNumber: "NAS1473-4",
+    modelFile: "nas1473-4.glb",
+    description: "NAS standard floating self-locking flange nut. Flange rotates freely to accommodate misalignment while maintaining secure locking.",
+    specifications: [
+      { label: "Thread Size", value: "1/4-28 UNF" },
+      { label: "Flange Diameter", value: "0.625 inches" },
+      { label: "Material", value: "Steel" },
+      { label: "Floating Design", value: "Yes" },
+      { label: "Locking Type", value: "All-Metal" }
+    ],
+    materials: ["Alloy Steel", "All-Metal Locking", "Cadmium Plated"],
+    manufacturers: [
+      "Howmet Aerospace",
+      "SPS Technologies",
+      "MacLean-ESNA"
+    ],
+    applications: ["Floating nutplates", "Misalignment compensation", "Panel attachments", "Access doors"],
+    standards: ["NAS1473", "MIL-DTL-25027"]
+  },
+  "an320-4": {
+    title: "Slotted Shear Nut",
+    category: "Nuts",
+    partNumber: "AN320-4",
+    modelFile: "an320-4.glb",
+    description: "Thin slotted shear nut for rod end assemblies. Slots allow cotter pin safety without the bulk of a castle nut.",
+    specifications: [
+      { label: "Thread Size", value: "1/4-28 UNF" },
+      { label: "Across Flats", value: "0.438 inches" },
+      { label: "Height", value: "0.125 inches" },
+      { label: "Material", value: "Steel" },
+      { label: "Finish", value: "Cadmium Plated" }
+    ],
+    materials: ["Carbon Steel", "Cadmium Plated"],
+    manufacturers: [
+      "Howmet Aerospace",
+      "Bristol Industries",
+      "Automatic Screw Machine Products"
+    ],
+    applications: ["Rod end bearings", "Control linkages", "Turnbuckles", "Shear load applications"],
+    standards: ["AN320", "MIL-DTL-18240"]
+  },
   "elbow-fitting-90": {
     title: "Elbow Fitting 90°",
     category: "Fluid Systems",
