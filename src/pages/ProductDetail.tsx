@@ -657,6 +657,268 @@ const productsData: Record<string, ProductInfo> = {
     applications: ["Engine mounting", "Exhaust systems", "High-temperature structures", "Turbine components"],
     standards: ["NAS6303", "MIL-DTL-1222"]
   },
+  
+  // ========== PINS SECTION ==========
+  
+  "ms24665-4": {
+    title: "Cotter Pin",
+    category: "Pins",
+    partNumber: "MS24665-4",
+    modelType: "pin",
+    modelFile: "ms24665-4.glb",
+    description: "Standard cotter pin with cadmium plating for securing castle nuts and clevis pins. Split design allows insertion through drilled shafts and self-locks when legs are bent.",
+    specifications: [
+      { label: "Wire Diameter", value: "0.072 inches" },
+      { label: "Extended Length", value: "1.0 inch" },
+      { label: "Material", value: "Carbon Steel" },
+      { label: "Finish", value: "Cadmium Plated" },
+      { label: "Type", value: "Split Pin" }
+    ],
+    materials: ["Carbon Steel", "Cadmium Plated", "Corrosion Resistant Coating"],
+    manufacturers: [
+      "Spirol International",
+      "Howmet Aerospace",
+      "Acufast Aircraft Products",
+      "Western Wire",
+      "Houston Precision"
+    ],
+    applications: ["Castle nut retention", "Clevis pin locking", "Safety wiring", "Fastener retention"],
+    standards: ["MS24665", "MIL-DTL-24665"]
+  },
+  "ms9245-3": {
+    title: "Cotter Pin CRES",
+    category: "Pins",
+    partNumber: "MS9245-3",
+    modelFile: "ms9245-3.glb",
+    description: "Corrosion resistant steel (CRES) cotter pin for high-corrosion environments. Stainless construction provides superior durability in marine and chemical exposure.",
+    specifications: [
+      { label: "Wire Diameter", value: "0.062 inches" },
+      { label: "Extended Length", value: "0.75 inch" },
+      { label: "Material", value: "CRES 302/304" },
+      { label: "Finish", value: "Passivated" },
+      { label: "Type", value: "Split Pin" }
+    ],
+    materials: ["Stainless Steel CRES", "Passivated", "Non-Magnetic"],
+    manufacturers: [
+      "Spirol International",
+      "Howmet Aerospace",
+      "Western Wire",
+      "Acufast Aircraft Products"
+    ],
+    applications: ["Marine aircraft", "Corrosive environments", "High-moisture areas", "Salt spray exposure"],
+    standards: ["MS9245", "AS9245", "MIL-DTL-24665"]
+  },
+  "ms16555-100": {
+    title: "Dowel Pin Hardened",
+    category: "Pins",
+    partNumber: "MS16555-100",
+    modelFile: "ms16555-100.glb",
+    description: "Precision hardened and ground dowel pin for exact alignment of mating parts. Cylindrical pin with tight diameter tolerance ensures accurate component positioning.",
+    specifications: [
+      { label: "Diameter", value: "0.1875 inches (3/16\")" },
+      { label: "Length", value: "0.500 inches" },
+      { label: "Tolerance", value: "+0.0001/-0.0000" },
+      { label: "Material", value: "Alloy Steel" },
+      { label: "Hardness", value: "HRC 58-62" },
+      { label: "Finish", value: "Ground" }
+    ],
+    materials: ["Alloy Steel", "Hardened", "Precision Ground"],
+    manufacturers: [
+      "Spirol International",
+      "Howmet Aerospace",
+      "Western Wire",
+      "Houston Precision",
+      "California Screw Products"
+    ],
+    applications: ["Precision alignment", "Assembly jigs", "Tooling", "Structural joints"],
+    standards: ["MS16555", "MIL-DTL-16555"]
+  },
+  "ms16562-4": {
+    title: "Dowel Pin Standard",
+    category: "Pins",
+    partNumber: "MS16562-4",
+    modelFile: "ms16562-4.glb",
+    description: "Standard tolerance dowel pin for general alignment applications. Economical solution for non-critical positioning requirements.",
+    specifications: [
+      { label: "Diameter", value: "0.125 inches (1/8\")" },
+      { label: "Length", value: "0.625 inches" },
+      { label: "Tolerance", value: "Standard" },
+      { label: "Material", value: "Steel" },
+      { label: "Finish", value: "Plain" }
+    ],
+    materials: ["Carbon Steel", "Heat Treated"],
+    manufacturers: [
+      "Spirol International",
+      "Western Wire",
+      "Acufast Aircraft Products"
+    ],
+    applications: ["General alignment", "Assembly", "Component positioning"],
+    standards: ["MS16562", "MIL-DTL-16562"]
+  },
+  "d25": {
+    title: "Precision Dowel D Series",
+    category: "Pins",
+    partNumber: "D25",
+    modelFile: "d25.glb",
+    description: "High precision ground dowel pin with ultra-tight tolerances for critical alignment. Premium quality for tooling and precision assembly applications.",
+    specifications: [
+      { label: "Diameter", value: "0.250 inches (1/4\")" },
+      { label: "Length", value: "0.750 inches" },
+      { label: "Tolerance", value: "±0.00005" },
+      { label: "Material", value: "Tool Steel" },
+      { label: "Hardness", value: "HRC 60-64" },
+      { label: "Finish", value: "Precision Ground" },
+      { label: "Surface Roughness", value: "8 μin Ra" }
+    ],
+    materials: ["Tool Steel", "Hardened & Ground", "Black Oxide"],
+    manufacturers: [
+      "Spirol International",
+      "Western Wire",
+      "Houston Precision"
+    ],
+    applications: ["Precision tooling", "Jig & fixture alignment", "Machine alignment", "Critical assemblies"],
+    standards: ["D Series Precision"]
+  },
+  "ms17430-100": {
+    title: "Spring Pin Coiled",
+    category: "Pins",
+    partNumber: "MS17430-100",
+    modelFile: "ms17430-100.glb",
+    description: "Coiled spring pin that compresses upon insertion for secure fit in drilled holes. Self-retaining design eliminates need for additional fasteners.",
+    specifications: [
+      { label: "Diameter", value: "0.1875 inches" },
+      { label: "Length", value: "1.00 inches" },
+      { label: "Material", value: "Spring Steel" },
+      { label: "Type", value: "Coiled" },
+      { label: "Shear Strength", value: "4,500 lbs" }
+    ],
+    materials: ["Spring Steel", "Heat Treated", "Oil Quenched"],
+    manufacturers: [
+      "Spirol International",
+      "Howmet Aerospace",
+      "Western Wire",
+      "Acufast Aircraft Products"
+    ],
+    applications: ["Quick assembly", "Removable fastening", "Pivot pins", "Shaft retention"],
+    standards: ["MS17430", "MIL-DTL-24576"]
+  },
+  "ms9047-4": {
+    title: "Spring Pin Slotted",
+    category: "Pins",
+    partNumber: "MS9047-4",
+    modelFile: "ms9047-4.glb",
+    description: "Slotted tubular spring pin with chamfered ends. Compresses radially to fit hole, providing vibration resistance and secure retention.",
+    specifications: [
+      { label: "Diameter", value: "0.125 inches" },
+      { label: "Length", value: "0.625 inches" },
+      { label: "Material", value: "Carbon Steel" },
+      { label: "Type", value: "Slotted" },
+      { label: "Finish", value: "Black Oxide" }
+    ],
+    materials: ["Carbon Steel", "Heat Treated", "Black Oxide Finish"],
+    manufacturers: [
+      "Spirol International",
+      "Western Wire",
+      "Howmet Aerospace"
+    ],
+    applications: ["Mechanical assemblies", "Link connections", "Hinges", "Lever pivots"],
+    standards: ["MS9047", "MIL-DTL-24576"]
+  },
+  "nas561-5": {
+    title: "Spring Pin CRES",
+    category: "Pins",
+    partNumber: "NAS561-5",
+    modelFile: "nas561-5.glb",
+    description: "Corrosion resistant stainless steel spring pin for harsh environment applications. Maintains spring properties in high-moisture and chemical exposure.",
+    specifications: [
+      { label: "Diameter", value: "0.156 inches" },
+      { label: "Length", value: "0.750 inches" },
+      { label: "Material", value: "CRES 302" },
+      { label: "Type", value: "Slotted" },
+      { label: "Finish", value: "Passivated" }
+    ],
+    materials: ["Stainless Steel CRES", "Passivated", "Non-Magnetic"],
+    manufacturers: [
+      "Spirol International",
+      "Howmet Aerospace",
+      "Western Wire"
+    ],
+    applications: ["Marine aircraft", "Corrosive environments", "Food processing equipment", "Chemical exposure"],
+    standards: ["NAS561", "MIL-DTL-24576"]
+  },
+  "ms20253-4": {
+    title: "Clevis Pin",
+    category: "Pins",
+    partNumber: "MS20253-4",
+    modelFile: "ms20253-4.glb",
+    description: "Standard clevis pin with head and cotter pin hole for securing pivoting connections. Cadmium plated for corrosion protection in control linkages.",
+    specifications: [
+      { label: "Diameter", value: "0.250 inches" },
+      { label: "Grip Length", value: "0.625 inches" },
+      { label: "Head Diameter", value: "0.375 inches" },
+      { label: "Material", value: "Carbon Steel" },
+      { label: "Finish", value: "Cadmium Plated" },
+      { label: "Cotter Hole", value: "0.047 inches" },
+      { label: "Shear Strength", value: "6,800 lbs" }
+    ],
+    materials: ["Carbon Steel", "Heat Treated", "Cadmium Plated"],
+    manufacturers: [
+      "Howmet Aerospace",
+      "Acufast Aircraft Products",
+      "Reid Products",
+      "Houston Precision",
+      "California Screw Products"
+    ],
+    applications: ["Flight control linkages", "Landing gear connections", "Door hinges", "Actuator attachments"],
+    standards: ["MS20253", "MIL-DTL-24665"]
+  },
+  "nas607-4": {
+    title: "Clevis Pin NAS",
+    category: "Pins",
+    partNumber: "NAS607-4",
+    modelFile: "nas607-4.glb",
+    description: "NAS standard clevis pin with enlarged head for higher bearing loads. Precision machined for critical aerospace applications.",
+    specifications: [
+      { label: "Diameter", value: "0.250 inches" },
+      { label: "Grip Length", value: "0.750 inches" },
+      { label: "Head Diameter", value: "0.438 inches" },
+      { label: "Material", value: "Alloy Steel" },
+      { label: "Finish", value: "Cadmium Plated" },
+      { label: "Tensile Strength", value: "125 ksi min" }
+    ],
+    materials: ["Alloy Steel 8740", "Heat Treated", "Cadmium Plated"],
+    manufacturers: [
+      "Howmet Aerospace",
+      "Acufast Aircraft Products",
+      "GS Aerospace",
+      "Reid Products"
+    ],
+    applications: ["Heavy duty linkages", "Landing gear", "Primary structures", "High-load pivots"],
+    standards: ["NAS607", "MIL-DTL-1222"]
+  },
+  "an122690": {
+    title: "Clevis Pin AN Series",
+    category: "Pins",
+    partNumber: "AN122690",
+    modelFile: "an122690.glb",
+    description: "AN standard clevis pin with drilled shank for cotter pin retention. Proven design for general aviation and commercial aircraft applications.",
+    specifications: [
+      { label: "Diameter", value: "0.1875 inches" },
+      { label: "Grip Length", value: "0.688 inches" },
+      { label: "Head Type", value: "Flat Head" },
+      { label: "Material", value: "Carbon Steel" },
+      { label: "Finish", value: "Cadmium Plated" }
+    ],
+    materials: ["Carbon Steel", "Cadmium Plated"],
+    manufacturers: [
+      "Howmet Aerospace",
+      "Acufast Aircraft Products",
+      "Reid Products",
+      "California Screw Products"
+    ],
+    applications: ["Control surfaces", "General linkages", "Light duty pivots", "Maintenance rigging"],
+    standards: ["AN122", "MIL-B-7838"]
+  },
   "elbow-fitting-90": {
     title: "Elbow Fitting 90°",
     category: "Fluid Systems",

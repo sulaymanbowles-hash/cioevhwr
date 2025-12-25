@@ -3932,6 +3932,357 @@ const allProducts: Product[] = [
     threadType: "UNF",
     specification: "MS24387 - 1/4-28 UNF",
     description: "Fluid passage bolt, precision type"
+  },
+
+  // ========== PINS SECTION ==========
+  
+  // Cotter Pins
+  {
+    title: "MS24665-1 Cotter Pin",
+    category: "Pins",
+    partNumber: "MS24665-1",
+    modelFile: "ms24665-1.glb",
+    slug: "ms24665-1",
+    material: "Steel",
+    threadType: "N/A",
+    specification: "MS24665 - Cadmium Plated",
+    description: "Standard cotter pin with cadmium plating"
+  },
+  {
+    title: "MS24665-4 Cotter Pin",
+    category: "Pins",
+    partNumber: "MS24665-4",
+    modelFile: "ms24665-4.glb",
+    slug: "ms24665-4",
+    material: "Steel",
+    threadType: "N/A",
+    specification: "MS24665 - Cadmium Plated",
+    description: "Standard cotter pin with cadmium plating"
+  },
+  {
+    title: "MS9245-3 Cotter Pin CRES",
+    category: "Pins",
+    partNumber: "MS9245-3",
+    modelFile: "ms9245-3.glb",
+    slug: "ms9245-3",
+    material: "Stainless Steel",
+    threadType: "N/A",
+    specification: "MS9245 - CRES",
+    description: "Corrosion resistant steel cotter pin"
+  },
+  {
+    title: "AS9245-4 Cotter Pin",
+    category: "Pins",
+    partNumber: "AS9245-4",
+    modelFile: "as9245-4.glb",
+    slug: "as9245-4",
+    material: "Stainless Steel",
+    threadType: "N/A",
+    specification: "AS9245 - CRES",
+    description: "Aerospace standard cotter pin"
+  },
+
+  // Dowel Pins
+  {
+    title: "MS16555-100 Dowel Pin",
+    category: "Pins",
+    partNumber: "MS16555-100",
+    modelFile: "ms16555-100.glb",
+    slug: "ms16555-100",
+    material: "Steel",
+    threadType: "N/A",
+    specification: "MS16555 - Hardened Steel",
+    description: "Precision hardened dowel pin"
+  },
+  {
+    title: "MS16555-200 Dowel Pin",
+    category: "Pins",
+    partNumber: "MS16555-200",
+    modelFile: "ms16555-200.glb",
+    slug: "ms16555-200",
+    material: "Steel",
+    threadType: "N/A",
+    specification: "MS16555 - Hardened Steel",
+    description: "Precision hardened dowel pin"
+  },
+  {
+    title: "MS16556-50 Dowel Pin",
+    category: "Pins",
+    partNumber: "MS16556-50",
+    modelFile: "ms16556-50.glb",
+    slug: "ms16556-50",
+    material: "Steel",
+    threadType: "N/A",
+    specification: "MS16556 - Hardened Steel",
+    description: "Precision hardened dowel pin"
+  },
+  {
+    title: "MS16562-4 Dowel Pin",
+    category: "Pins",
+    partNumber: "MS16562-4",
+    modelFile: "ms16562-4.glb",
+    slug: "ms16562-4",
+    material: "Steel",
+    threadType: "N/A",
+    specification: "MS16562 - Hardened Steel",
+    description: "Precision alignment dowel pin"
+  },
+  {
+    title: "AA554881-3 Dowel Pin",
+    category: "Pins",
+    partNumber: "AA554881-3",
+    modelFile: "aa554881-3.glb",
+    slug: "aa554881-3",
+    material: "Steel",
+    threadType: "N/A",
+    specification: "AA554881 - Hardened",
+    description: "Military standard dowel pin"
+  },
+  {
+    title: "D10 Precision Dowel",
+    category: "Pins",
+    partNumber: "D10",
+    modelFile: "d10.glb",
+    slug: "d10",
+    material: "Steel",
+    threadType: "N/A",
+    specification: "D Series - Precision Ground",
+    description: "High precision ground dowel pin"
+  },
+  {
+    title: "D25 Precision Dowel",
+    category: "Pins",
+    partNumber: "D25",
+    modelFile: "d25.glb",
+    slug: "d25",
+    material: "Steel",
+    threadType: "N/A",
+    specification: "D Series - Precision Ground",
+    description: "High precision ground dowel pin"
+  },
+  {
+    title: "D63478-1 Precision Dowel",
+    category: "Pins",
+    partNumber: "D63478-1",
+    modelFile: "d63478-1.glb",
+    slug: "d63478-1",
+    material: "Steel",
+    threadType: "N/A",
+    specification: "D63478 - Precision",
+    description: "High tolerance precision dowel"
+  },
+
+  // Spring Pins
+  {
+    title: "MS17430-50 Spring Pin",
+    category: "Pins",
+    partNumber: "MS17430-50",
+    modelFile: "ms17430-50.glb",
+    slug: "ms17430-50",
+    material: "Steel",
+    threadType: "N/A",
+    specification: "MS17430 - Carbon Steel",
+    description: "Coiled spring pin for quick assembly"
+  },
+  {
+    title: "MS17430-100 Spring Pin",
+    category: "Pins",
+    partNumber: "MS17430-100",
+    modelFile: "ms17430-100.glb",
+    slug: "ms17430-100",
+    material: "Steel",
+    threadType: "N/A",
+    specification: "MS17430 - Carbon Steel",
+    description: "Coiled spring pin for quick assembly"
+  },
+  {
+    title: "MS9047-4 Spring Pin",
+    category: "Pins",
+    partNumber: "MS9047-4",
+    modelFile: "ms9047-4.glb",
+    slug: "ms9047-4",
+    material: "Steel",
+    threadType: "N/A",
+    specification: "MS9047 - Spring Steel",
+    description: "Slotted spring pin"
+  },
+  {
+    title: "MS9048-5 Spring Pin",
+    category: "Pins",
+    partNumber: "MS9048-5",
+    modelFile: "ms9048-5.glb",
+    slug: "ms9048-5",
+    material: "Steel",
+    threadType: "N/A",
+    specification: "MS9048 - Spring Steel",
+    description: "Slotted spring pin"
+  },
+  {
+    title: "MS51923-4 Spring Pin",
+    category: "Pins",
+    partNumber: "MS51923-4",
+    modelFile: "ms51923-4.glb",
+    slug: "ms51923-4",
+    material: "Steel",
+    threadType: "N/A",
+    specification: "MS51923 - Carbon Steel",
+    description: "Heavy duty spring pin"
+  },
+  {
+    title: "NAS561-5 Spring Pin",
+    category: "Pins",
+    partNumber: "NAS561-5",
+    modelFile: "nas561-5.glb",
+    slug: "nas561-5",
+    material: "Stainless Steel",
+    threadType: "N/A",
+    specification: "NAS561 - CRES",
+    description: "Aerospace spring pin"
+  },
+
+  // Clevis/Hitch Pins
+  {
+    title: "MS20253-2 Clevis Pin",
+    category: "Pins",
+    partNumber: "MS20253-2",
+    modelFile: "ms20253-2.glb",
+    slug: "ms20253-2",
+    material: "Steel",
+    threadType: "N/A",
+    specification: "MS20253 - Cadmium Plated",
+    description: "Standard clevis pin with cotter hole"
+  },
+  {
+    title: "MS20253-4 Clevis Pin",
+    category: "Pins",
+    partNumber: "MS20253-4",
+    modelFile: "ms20253-4.glb",
+    slug: "ms20253-4",
+    material: "Steel",
+    threadType: "N/A",
+    specification: "MS20253 - Cadmium Plated",
+    description: "Standard clevis pin with cotter hole"
+  },
+  {
+    title: "MS24692-3 Hitch Pin",
+    category: "Pins",
+    partNumber: "MS24692-3",
+    modelFile: "ms24692-3.glb",
+    slug: "ms24692-3",
+    material: "Steel",
+    threadType: "N/A",
+    specification: "MS24692 - Alloy Steel",
+    description: "Heavy duty hitch pin"
+  },
+  {
+    title: "MS27074-4 Clevis Pin",
+    category: "Pins",
+    partNumber: "MS27074-4",
+    modelFile: "ms27074-4.glb",
+    slug: "ms27074-4",
+    material: "Steel",
+    threadType: "N/A",
+    specification: "MS27074 - Steel",
+    description: "Precision clevis pin"
+  },
+  {
+    title: "MS51400-3 Clevis Pin",
+    category: "Pins",
+    partNumber: "MS51400-3",
+    modelFile: "ms51400-3.glb",
+    slug: "ms51400-3",
+    material: "Stainless Steel",
+    threadType: "N/A",
+    specification: "MS51400 - CRES",
+    description: "Corrosion resistant clevis pin"
+  },
+  {
+    title: "MS9105-4 Clevis Pin",
+    category: "Pins",
+    partNumber: "MS9105-4",
+    modelFile: "ms9105-4.glb",
+    slug: "ms9105-4",
+    material: "Steel",
+    threadType: "N/A",
+    specification: "MS9105 - Alloy Steel",
+    description: "High strength clevis pin"
+  },
+  {
+    title: "NAS607-4 Clevis Pin",
+    category: "Pins",
+    partNumber: "NAS607-4",
+    modelFile: "nas607-4.glb",
+    slug: "nas607-4",
+    material: "Steel",
+    threadType: "N/A",
+    specification: "NAS607 - Alloy Steel",
+    description: "NAS standard clevis pin"
+  },
+  {
+    title: "NAS427W-5 Clevis Pin",
+    category: "Pins",
+    partNumber: "NAS427W-5",
+    modelFile: "nas427w-5.glb",
+    slug: "nas427w-5",
+    material: "Steel",
+    threadType: "N/A",
+    specification: "NAS427W - Alloy Steel",
+    description: "Wide head clevis pin"
+  },
+  {
+    title: "AN122690 Clevis Pin",
+    category: "Pins",
+    partNumber: "AN122690",
+    modelFile: "an122690.glb",
+    slug: "an122690",
+    material: "Steel",
+    threadType: "N/A",
+    specification: "AN122 Series",
+    description: "AN standard clevis pin"
+  },
+  {
+    title: "AN150240 Clevis Pin",
+    category: "Pins",
+    partNumber: "AN150240",
+    modelFile: "an150240.glb",
+    slug: "an150240",
+    material: "Steel",
+    threadType: "N/A",
+    specification: "AN150 Series",
+    description: "AN standard clevis pin"
+  },
+  {
+    title: "M21143-1 Clevis Pin",
+    category: "Pins",
+    partNumber: "M21143-1",
+    modelFile: "m21143-1.glb",
+    slug: "m21143-1",
+    material: "Steel",
+    threadType: "N/A",
+    specification: "M21143 - Alloy Steel",
+    description: "Military spec clevis pin"
+  },
+  {
+    title: "MDP3-3 Clevis Pin",
+    category: "Pins",
+    partNumber: "MDP3-3",
+    modelFile: "mdp3-3.glb",
+    slug: "mdp3-3",
+    material: "Steel",
+    threadType: "N/A",
+    specification: "MDP Series",
+    description: "Modular design clevis pin"
+  },
+  {
+    title: "MA4018-3 Clevis Pin",
+    category: "Pins",
+    partNumber: "MA4018-3",
+    modelFile: "ma4018-3.glb",
+    slug: "ma4018-3",
+    material: "Steel",
+    threadType: "N/A",
+    specification: "MA4018 - Alloy Steel",
+    description: "Heavy duty clevis pin"
   }
 ];
 
