@@ -1,8 +1,9 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { TechLabel } from "../components/ui/TechLabel";
 import { Marquee } from "../components/ui/Marquee";
 import { ProductCard } from "../components/ui/ProductCard";
 import { Hero3DShowcase } from "../components/ui/Hero3DShowcase";
+import { GridBackground } from "../components/ui/GridBackground";
 import { useNavigate } from "react-router-dom";
 import { ArrowRight, Shield, Zap, Package } from "lucide-react";
 
@@ -20,6 +21,19 @@ const products = [
 
 export const Home = () => {
   const navigate = useNavigate();
+  const shouldReduceMotion = useReducedMotion();
+  
+  // Animation helper
+  const getAnimation = (delay = 0) => {
+    if (shouldReduceMotion) {
+      return { initial: {}, animate: {}, transition: { duration: 0 } };
+    }
+    return {
+      initial: { opacity: 0, y: 20 },
+      animate: { opacity: 1, y: 0 },
+      transition: { duration: 0.6, ease: [0.19, 1, 0.22, 1] as const, delay }
+    };
+  };
 
   return (
     <>
@@ -29,22 +43,12 @@ export const Home = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-white via-gray-50/30 to-white -z-10" />
         
         {/* Grid overlay */}
-        <div 
-          className="absolute inset-0 opacity-[0.02] -z-10"
-          style={{ 
-            backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)', 
-            backgroundSize: '60px 60px' 
-          }} 
-        />
+        <GridBackground pattern="lines" opacity={0.02} />
 
         <div className="max-w-[1600px] mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left: Text Content */}
           <div className="order-2 lg:order-1">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
-            >
+            <motion.div {...getAnimation()}>
               <div className="flex items-center gap-3 mb-8">
                 <div className="h-px w-12 bg-black/20" />
                 <TechLabel className="!text-black/60">Precision Distribution Infrastructure</TechLabel>
@@ -52,9 +56,7 @@ export const Home = () => {
             </motion.div>
             
             <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1, ease: [0.19, 1, 0.22, 1] }}
+              {...getAnimation(0.1)}
               className="text-6xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-[-0.03em] mb-8 text-gray-900"
             >
               High Integrity{" "}
@@ -64,13 +66,11 @@ export const Home = () => {
             </motion.h1>
             
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: [0.19, 1, 0.22, 1] }}
+              {...getAnimation(0.2)}
               className="space-y-8"
             >
               <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-lg">
-                Trusted distributor of aircraft fastening hardware for commercial and military aerospace since 1979. AS9100 Rev. D / ISO 9001:2015 certified with full material traceability serving more than 300 customers worldwide.
+                AS9100 Rev. D certified distributor of precision aerospace fasteners since 1979. Serving 300+ commercial and military customers worldwide with complete material traceability.
               </p>
 
               {/* Key Features */}
@@ -94,32 +94,26 @@ export const Home = () => {
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4">
-                <motion.button 
+                <button 
                   onClick={() => navigate('/catalog')}
-                  whileHover={{ scale: 1.02, y: -2 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="group bg-black text-white px-10 py-5 text-xs font-bold uppercase tracking-[0.2em] hover:bg-gray-900 transition-colors rounded-sm shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+                  className="group bg-black text-white px-10 py-5 text-xs font-bold uppercase tracking-[0.2em] hover:bg-gray-900 transition-all rounded-sm shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
                 >
                   View Catalog
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </motion.button>
-                <motion.button 
+                </button>
+                <button 
                   onClick={() => navigate('/contact')}
-                  whileHover={{ scale: 1.02, y: -2 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="border-2 border-black px-10 py-5 text-xs font-bold uppercase tracking-[0.2em] hover:bg-black hover:text-white transition-colors rounded-sm shadow-sm hover:shadow-lg"
+                  className="border-2 border-black px-10 py-5 text-xs font-bold uppercase tracking-[0.2em] hover:bg-black hover:text-white transition-all rounded-sm shadow-sm hover:shadow-lg"
                 >
                   Request Quote
-                </motion.button>
+                </button>
               </div>
             </motion.div>
           </div>
 
           {/* Right: 3D Model Viewer */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.3, ease: [0.19, 1, 0.22, 1] }}
+            {...getAnimation(0.3)}
             className="order-1 lg:order-2"
           >
             <Hero3DShowcase />
@@ -133,8 +127,8 @@ export const Home = () => {
         <div className="max-w-[1600px] mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 gap-6">
             <div>
-              <h2 className="text-4xl md:text-5xl font-semibold tracking-[-0.01em] text-gray-900 mb-3">Featured Components</h2>
-              <p className="text-gray-600 text-lg max-w-2xl">Explore our precision-engineered aerospace fasteners with real-time 3D visualization</p>
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 mb-3">Featured Components</h2>
+              <p className="text-gray-600 text-base max-w-2xl leading-relaxed">Precision-engineered aerospace fasteners with interactive 3D visualization</p>
             </div>
             <TechLabel>Catalog Preview</TechLabel>
           </div>
@@ -150,34 +144,26 @@ export const Home = () => {
       {/* Technical Excellence */}
       <section className="relative py-40 px-6 md:px-8 bg-black text-white overflow-hidden">
         {/* Subtle grid pattern */}
-        <div 
-          className="absolute inset-0 opacity-[0.03]"
-          style={{ 
-            backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', 
-            backgroundSize: '100px 100px' 
-          }} 
-        />
+        <GridBackground pattern="lines" opacity={0.03} className="-z-10" />
         
         <div className="max-w-[1400px] mx-auto relative">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-150px" }}
-            transition={{ duration: 1.0, ease: [0.19, 1, 0.22, 1] }}
-            className="max-w-4xl mx-auto text-center mb-32"
+            {...getAnimation()}
+            viewport={{ once: true, margin: "-100px" }}
+            className="max-w-4xl mx-auto text-center mb-24"
           >
             <div className="flex items-center justify-center gap-4 mb-10">
               <div className="h-px w-16 bg-white/30" />
               <TechLabel className="!text-white/50">Technical Excellence</TechLabel>
               <div className="h-px w-16 bg-white/30" />
             </div>
-            <h2 className="text-6xl md:text-8xl font-bold tracking-[-0.02em] mb-12 leading-[0.95]">
-              Precision-Engineered.
+            <h2 className="text-5xl md:text-7xl font-bold tracking-[-0.02em] mb-10 leading-[0.95]">
+              Precision Engineering
               <br />
-              <span className="text-white/40">Rigorously Certified.</span>
+              <span className="text-white/40">Meets Certification</span>
             </h2>
-            <p className="text-2xl text-white/60 leading-relaxed max-w-3xl mx-auto mb-16">
-              Every component meets AS9100 Rev. D and ISO 9001:2015 standards with complete traceability.
+            <p className="text-lg text-white/60 leading-relaxed max-w-3xl mx-auto">
+              Every component meets AS9100 Rev. D and ISO 9001:2015 standards with complete material traceability and documentation.
             </p>
           </motion.div>
 
@@ -197,24 +183,22 @@ export const Home = () => {
             ].map((cert, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 1.0, delay: i * 0.1, ease: [0.19, 1, 0.22, 1] }}
-                className="group relative bg-black p-12 md:p-16 hover:bg-white hover:text-black transition-all duration-700"
+                {...getAnimation(i * 0.1)}
+                viewport={{ once: true, margin: "-80px" }}
+                className="group relative bg-black p-12 md:p-16 hover:bg-white hover:text-black transition-all duration-500"
               >
-                <div className="absolute top-0 left-0 w-full h-1 bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />
+                <div className="absolute top-0 left-0 w-full h-1 bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
                 <div className="relative">
                   <div className="text-sm font-bold uppercase tracking-[0.2em] mb-6 opacity-50 group-hover:opacity-100 transition-opacity">
                     Certified
                   </div>
-                  <h3 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 leading-tight">
+                  <h3 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 leading-tight">
                     {cert.standard}
                   </h3>
-                  <p className="text-lg font-semibold mb-4 opacity-80">
+                  <p className="text-base font-semibold mb-3 opacity-90">
                     {cert.title}
                   </p>
-                  <p className="text-sm opacity-60 leading-relaxed">
+                  <p className="text-sm opacity-70 leading-relaxed">
                     {cert.details}
                   </p>
                 </div>
@@ -224,49 +208,46 @@ export const Home = () => {
 
           {/* CTA */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            {...getAnimation(0.3)}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.6, ease: [0.19, 1, 0.22, 1] }}
-            className="mt-20 text-center"
+            className="mt-16 text-center"
           >
             <button
               onClick={() => navigate('/certifications')}
-              className="group inline-flex items-center gap-3 border-2 border-white px-12 py-6 text-sm font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all duration-500"
+              className="group inline-flex items-center gap-3 border-2 border-white px-12 py-6 text-sm font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all duration-300"
             >
               View Certifications
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-500" />
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
             </button>
           </motion.div>
         </div>
       </section>
 
-      {/* Core Capabilities */}      {/* Supply Chain Excellence - Redesigned */}
+      {/* Supply Chain Excellence - Redesigned */}
       <section className="relative py-40 px-6 md:px-8 bg-white overflow-hidden">
         {/* Diagonal lines background */}
-        <div 
-          className="absolute inset-0 opacity-[0.015]"
-          style={{ 
-            backgroundImage: 'repeating-linear-gradient(45deg, #000, #000 1px, transparent 1px, transparent 60px)',
-          }} 
-        />
+        <GridBackground pattern="diagonal" opacity={0.015} />
         
         <div className="max-w-[1600px] mx-auto relative">
-          <div className="text-center mb-32">
+          <motion.div 
+            {...getAnimation()}
+            viewport={{ once: true, margin: "-100px" }}
+            className="text-center mb-24"
+          >
             <div className="flex items-center justify-center gap-4 mb-10">
               <div className="h-px w-16 bg-black/20" />
               <TechLabel>Our Process</TechLabel>
               <div className="h-px w-16 bg-black/20" />
             </div>
-            <h2 className="text-6xl md:text-8xl font-bold tracking-[-0.02em] mb-8 leading-[0.95]">
+            <h2 className="text-5xl md:text-7xl font-bold tracking-[-0.02em] mb-6 leading-[0.95]">
               Supply Chain
               <br />
               <span className="text-black/30">Excellence</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Precision sourcing, rigorous quality control, and rapid logistics for mission-critical aerospace needs.
+            <p className="text-base text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Precision sourcing, rigorous quality control, and rapid logistics for mission-critical aerospace operations.
             </p>
-          </div>
+          </motion.div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-px bg-black">
             {[
@@ -291,41 +272,35 @@ export const Home = () => {
             ].map((capability, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, scale: 0.98 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: "-150px" }}
-                transition={{ duration: 1.2, delay: i * 0.15, ease: [0.19, 1, 0.22, 1] }}
-                className="group relative bg-white p-16 hover:bg-black hover:text-white transition-all duration-700"
+                {...getAnimation(i * 0.1)}
+                viewport={{ once: true, margin: "-100px" }}
+                className="group relative bg-white p-12 md:p-16 hover:bg-black hover:text-white transition-all duration-500"
               >
                 {/* Number Badge */}
                 <div className="mb-12">
-                  <div className="inline-flex items-center justify-center w-20 h-20 border-2 border-black group-hover:border-white group-hover:bg-white group-hover:text-black transition-all duration-700">
+                  <div className="inline-flex items-center justify-center w-20 h-20 border-2 border-black group-hover:border-white group-hover:bg-white group-hover:text-black transition-all duration-500">
                     <span className="font-mono text-3xl font-bold">{capability.num}</span>
                   </div>
                 </div>
                 
-                <h3 className="text-3xl font-bold mb-6 tracking-tight leading-tight">
+                <h3 className="text-2xl md:text-3xl font-bold mb-5 tracking-tight leading-tight">
                   {capability.title}
                 </h3>
                 
-                <p className="text-base leading-relaxed mb-10 opacity-70">
+                <p className="text-sm leading-relaxed mb-10 opacity-70">
                   {capability.desc}
                 </p>
                 
                 {/* Features */}
                 <div className="space-y-4 pt-8 border-t border-black/10 group-hover:border-white/20">
                   {capability.features.map((feature, idx) => (
-                    <motion.div
+                    <div
                       key={idx}
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: i * 0.2 + idx * 0.1, ease: [0.19, 1, 0.22, 1] }}
                       className="flex items-center gap-3"
                     >
-                      <div className="w-1.5 h-1.5 bg-black group-hover:bg-white rounded-full" />
+                      <div className="w-1.5 h-1.5 bg-black group-hover:bg-white rounded-full transition-colors" />
                       <span className="text-sm font-medium tracking-wide">{feature}</span>
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
 
@@ -338,11 +313,9 @@ export const Home = () => {
           </div>
 
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            {...getAnimation(0.3)}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.6, ease: [0.19, 1, 0.22, 1] }}
-            className="text-center mt-20"
+            className="text-center mt-16"
           >
             <button
               onClick={() => navigate('/services')}
@@ -361,19 +334,23 @@ export const Home = () => {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(255,255,255,0.05),transparent_50%)]" />
         
         <div className="max-w-[1600px] mx-auto relative">
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-20 items-center mb-32">
-            <div className="lg:col-span-2">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 lg:gap-20 items-center mb-24">
+            <motion.div 
+              {...getAnimation()}
+              viewport={{ once: true, margin: "-100px" }}
+              className="lg:col-span-2"
+            >
               <div className="flex items-center gap-4 mb-10">
                 <div className="h-px w-12 bg-white/30" />
                 <TechLabel className="!text-white/50">Market Reach</TechLabel>
               </div>
-              <h2 className="text-6xl md:text-7xl font-bold tracking-[-0.02em] mb-10 leading-[0.95]">
-                Supporting
+              <h2 className="text-5xl md:text-6xl font-bold tracking-[-0.02em] mb-8 leading-[0.95]">
+                Critical Missions
                 <br />
-                <span className="text-white/30">Critical Missions</span>
+                <span className="text-white/30">Global Impact</span>
               </h2>
-              <p className="text-xl text-white/60 leading-relaxed mb-12">
-                From commercial airlines to defense programs—precision fasteners enabling aerospace excellence.
+              <p className="text-base text-white/60 leading-relaxed mb-12">
+                From commercial aviation to defense programs—trusted by the aerospace industry for precision fasteners that meet the highest standards.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <button 
@@ -390,7 +367,7 @@ export const Home = () => {
                   Get in Touch
                 </button>
               </div>
-            </div>
+            </motion.div>
 
             <div className="lg:col-span-3 grid grid-cols-2 gap-px bg-white/10">
               {[
@@ -401,20 +378,18 @@ export const Home = () => {
               ].map((industry, i) => (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.8, delay: i * 0.08, ease: [0.19, 1, 0.22, 1] }}
-                  className="group bg-black p-12 hover:bg-white hover:text-black transition-all duration-700"
+                  {...getAnimation(i * 0.08)}
+                  viewport={{ once: true, margin: "-80px" }}
+                  className="group bg-black p-10 md:p-12 hover:bg-white hover:text-black transition-all duration-500"
                 >
                   <div className="mb-8">
-                    <div className="w-12 h-12 border-2 border-white group-hover:border-black group-hover:bg-black group-hover:text-white transition-all duration-700 flex items-center justify-center">
+                    <div className="w-12 h-12 border-2 border-white group-hover:border-black group-hover:bg-black group-hover:text-white transition-all duration-500 flex items-center justify-center">
                       <span className="text-2xl font-mono font-bold">{String(i + 1).padStart(2, '0')}</span>
                     </div>
                   </div>
                   <h4 className="text-2xl font-bold mb-3 tracking-tight">{industry.title}</h4>
                   <p className="text-sm opacity-60 mb-6">{industry.desc}</p>
-                  <div className="pt-6 border-t border-white/20 group-hover:border-black/20">
+                  <div className="pt-6 border-t border-white/20 group-hover:border-black/20 transition-colors">
                     <p className="text-xs font-bold uppercase tracking-[0.15em] opacity-50">{industry.highlight}</p>
                   </div>
                 </motion.div>
@@ -445,32 +420,30 @@ export const Home = () => {
       {/* Certifications - Redesigned */}
       <section className="relative py-40 px-6 md:px-8 bg-white overflow-hidden">
         {/* Subtle dot pattern */}
-        <div 
-          className="absolute inset-0 opacity-[0.02]"
-          style={{ 
-            backgroundImage: 'radial-gradient(circle, #000 1px, transparent 1px)', 
-            backgroundSize: '40px 40px' 
-          }} 
-        />
+        <GridBackground pattern="radial" opacity={0.02} />
         
         <div className="max-w-[1600px] mx-auto relative">
-          <div className="text-center mb-32">
+          <motion.div 
+            {...getAnimation()}
+            viewport={{ once: true, margin: "-100px" }}
+            className="text-center mb-24"
+          >
             <div className="flex items-center justify-center gap-4 mb-10">
               <div className="h-px w-16 bg-black/20" />
               <TechLabel>Quality Assurance</TechLabel>
               <div className="h-px w-16 bg-black/20" />
             </div>
-            <h2 className="text-6xl md:text-8xl font-bold tracking-[-0.02em] mb-8 leading-[0.95]">
+            <h2 className="text-5xl md:text-7xl font-bold tracking-[-0.02em] mb-6 leading-[0.95]">
               Certified for
               <br />
               <span className="text-black/30">Excellence</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Unwavering commitment to quality and continuous improvement in aerospace distribution.
+            <p className="text-base text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Continuous commitment to quality and regulatory compliance in aerospace distribution.
             </p>
-          </div>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-black mb-24">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-black mb-20">
             {[
               { name: "AS9100 Rev. D", desc: "Aerospace Quality Management", detail: "Since 2010" },
               { name: "ISO 9001:2015", desc: "International Quality Standard", detail: "Annual audits" },
@@ -479,19 +452,17 @@ export const Home = () => {
             ].map((cert, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.9, delay: i * 0.1, ease: [0.19, 1, 0.22, 1] }}
-                className="group bg-white p-14 hover:bg-black hover:text-white transition-all duration-700"
+                {...getAnimation(i * 0.08)}
+                viewport={{ once: true, margin: "-80px" }}
+                className="group bg-white p-12 md:p-14 hover:bg-black hover:text-white transition-all duration-500"
               >
-                <div className="w-16 h-16 mb-10 border-2 border-black group-hover:border-white transition-colors duration-700 flex items-center justify-center">
+                <div className="w-16 h-16 mb-10 border-2 border-black group-hover:border-white transition-colors duration-500 flex items-center justify-center">
                   <span className="text-2xl font-mono font-bold">{String(i + 1).padStart(2, '0')}</span>
                 </div>
                 <h4 className="text-2xl font-bold mb-4 tracking-tight">{cert.name}</h4>
                 <p className="text-sm opacity-60 mb-8 leading-relaxed">{cert.desc}</p>
-                <div className="inline-flex items-center gap-3 px-4 py-2 border border-black/10 group-hover:border-white/20">
-                  <div className="w-2 h-2 bg-black group-hover:bg-white rounded-full" />
+                <div className="inline-flex items-center gap-3 px-4 py-2 border border-black/10 group-hover:border-white/20 transition-colors">
+                  <div className="w-2 h-2 bg-black group-hover:bg-white rounded-full transition-colors" />
                   <span className="text-xs font-bold uppercase tracking-[0.15em]">{cert.detail}</span>
                 </div>
               </motion.div>
@@ -500,20 +471,18 @@ export const Home = () => {
 
           {/* Documentation Section */}
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            {...getAnimation(0.3)}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.6, ease: [0.19, 1, 0.22, 1] }}
-            className="bg-black text-white p-16 md:p-20"
+            className="bg-black text-white p-12 md:p-16 lg:p-20"
           >
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
               <div>
-                <h3 className="text-4xl md:text-5xl font-bold mb-8 tracking-tight leading-tight">
+                <h3 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight leading-tight">
                   Complete Documentation
                   <br />
                   <span className="text-white/30">with Every Order</span>
                 </h3>
-                <p className="text-white/60 text-lg leading-relaxed mb-10">
+                <p className="text-white/60 text-base leading-relaxed mb-8">
                   Full traceability and certification packages for mission-critical compliance.
                 </p>
                 <button
@@ -526,17 +495,13 @@ export const Home = () => {
               </div>
               <div className="grid grid-cols-2 gap-px bg-white/10">
                 {["Certificate of Conformance", "Material Test Reports", "First Article Inspection", "Traceability Documentation"].map((doc, i) => (
-                  <motion.div
+                  <div
                     key={i}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.7 + i * 0.1, ease: [0.19, 1, 0.22, 1] }}
                     className="bg-black p-8 hover:bg-white hover:text-black transition-all duration-500 flex flex-col justify-between"
                   >
-                    <div className="w-10 h-10 border-2 border-white hover:border-black mb-6" />
+                    <div className="w-10 h-10 border-2 border-white hover:border-black mb-6 transition-colors" />
                     <p className="text-sm font-bold leading-tight">{doc}</p>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
             </div>
@@ -547,94 +512,78 @@ export const Home = () => {
       {/* Final CTA */}
       <section className="relative py-40 px-6 md:px-8 bg-black text-white overflow-hidden">
         {/* Subtle grid overlay */}
-        <div 
-          className="absolute inset-0 opacity-[0.03]"
-          style={{ 
-            backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', 
-            backgroundSize: '100px 100px' 
-          }} 
-        />
+        <GridBackground pattern="lines" opacity={0.03} className="-z-10" />
         
         <div className="max-w-[1400px] mx-auto relative">
-          <div className="text-center mb-24">
+          <motion.div 
+            {...getAnimation()}
+            viewport={{ once: true, margin: "-100px" }}
+            className="text-center mb-20"
+          >
             <div className="flex items-center justify-center gap-4 mb-10">
               <div className="h-px w-16 bg-white/30" />
               <TechLabel className="!text-white/50">Let's Work Together</TechLabel>
               <div className="h-px w-16 bg-white/30" />
             </div>
-            <h2 className="text-6xl md:text-8xl font-bold tracking-[-0.02em] mb-12 leading-[0.95]">
+            <h2 className="text-5xl md:text-7xl font-bold tracking-[-0.02em] mb-10 leading-[0.95]">
               Partner With
               <br />
               <span className="text-white/40">Proven Experts</span>
             </h2>
-            <p className="text-2xl text-white/60 max-w-3xl mx-auto leading-relaxed">
-              Join 300+ aerospace organizations that rely on certified fasteners and rapid turnaround.
+            <p className="text-lg text-white/60 max-w-3xl mx-auto leading-relaxed">
+              Join 300+ aerospace organizations that trust us for certified fasteners and rapid turnaround times.
             </p>
-          </div>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/10 mb-24">
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1.0, ease: [0.19, 1, 0.22, 1] }}
-              className="group relative bg-black p-16 hover:bg-white hover:text-black transition-all duration-700"
-            >
-              <div className="absolute top-0 left-0 w-full h-1 bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />
-              
-              <div className="mb-12">
-                <div className="inline-flex items-center justify-center w-16 h-16 border-2 border-white group-hover:border-black transition-colors duration-700 mb-8">
-                  <span className="text-2xl font-mono font-bold">01</span>
-                </div>
-                <h3 className="text-4xl font-bold mb-6 tracking-tight">Request a Quote</h3>
-                <p className="text-lg opacity-70 leading-relaxed mb-8">
-                  Get instant pricing on our extensive inventory. Submit your requirements and receive a detailed quote within 24 hours.
-                </p>
-              </div>
-              
-              <button
-                onClick={() => navigate('/quote')}
-                className="group/btn inline-flex items-center gap-4 border-2 border-white group-hover:border-black px-10 py-5 text-xs font-bold uppercase tracking-[0.2em] group-hover:bg-black group-hover:text-white transition-all duration-700"
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/10 mb-20">
+            {[
+              {
+                num: "01",
+                title: "Request a Quote",
+                desc: "Get competitive pricing on our extensive inventory. Submit your requirements and receive a detailed quote within 24 hours.",
+                action: "Start Your RFQ",
+                path: "/quote"
+              },
+              {
+                num: "02",
+                title: "Contact Our Team",
+                desc: "Technical questions or AOG support? Our aerospace specialists are ready to help you find the right solution.",
+                action: "Contact Sales",
+                path: "/contact"
+              }
+            ].map((cta, i) => (
+              <motion.div
+                key={i}
+                {...getAnimation(i * 0.1)}
+                viewport={{ once: true, margin: "-80px" }}
+                className="group relative bg-black p-12 md:p-16 hover:bg-white hover:text-black transition-all duration-500"
               >
-                Start Your RFQ
-                <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-2 transition-transform duration-500" />
-              </button>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1.0, delay: 0.15, ease: [0.19, 1, 0.22, 1] }}
-              className="group relative bg-black p-16 hover:bg-white hover:text-black transition-all duration-700"
-            >
-              <div className="absolute top-0 left-0 w-full h-1 bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />
-              
-              <div className="mb-12">
-                <div className="inline-flex items-center justify-center w-16 h-16 border-2 border-white group-hover:border-black transition-colors duration-700 mb-8">
-                  <span className="text-2xl font-mono font-bold">02</span>
+                <div className="absolute top-0 left-0 w-full h-1 bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                
+                <div className="mb-10">
+                  <div className="inline-flex items-center justify-center w-16 h-16 border-2 border-white group-hover:border-black transition-colors duration-500 mb-8">
+                    <span className="text-2xl font-mono font-bold">{cta.num}</span>
+                  </div>
+                  <h3 className="text-3xl font-bold mb-5 tracking-tight">{cta.title}</h3>
+                  <p className="text-sm opacity-70 leading-relaxed">
+                    {cta.desc}
+                  </p>
                 </div>
-                <h3 className="text-4xl font-bold mb-6 tracking-tight">Talk to Our Team</h3>
-                <p className="text-lg opacity-70 leading-relaxed mb-8">
-                  Technical questions? AOG support? Our aerospace specialists are ready to help you find the right solution.
-                </p>
-              </div>
-              
-              <button
-                onClick={() => navigate('/contact')}
-                className="group/btn inline-flex items-center gap-4 border-2 border-white group-hover:border-black px-10 py-5 text-xs font-bold uppercase tracking-[0.2em] group-hover:bg-black group-hover:text-white transition-all duration-700"
-              >
-                Contact Sales
-                <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-2 transition-transform duration-500" />
-              </button>
-            </motion.div>
+                
+                <button
+                  onClick={() => navigate(cta.path)}
+                  className="group/btn inline-flex items-center gap-4 border-2 border-white group-hover:border-black px-10 py-5 text-xs font-bold uppercase tracking-[0.2em] group-hover:bg-black group-hover:text-white transition-all duration-500"
+                >
+                  {cta.action}
+                  <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-2 transition-transform duration-300" />
+                </button>
+              </motion.div>
+            ))}
           </div>
 
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            {...getAnimation(0.3)}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.4, ease: [0.19, 1, 0.22, 1] }}
             className="border-t border-white/10 pt-16"
           >
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12">

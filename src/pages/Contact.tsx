@@ -34,11 +34,11 @@ export const Contact = () => {
             className="text-center mb-16"
           >
             <TechLabel className="mb-6">Get In Touch</TechLabel>
-            <h1 className="text-5xl md:text-6xl font-bold tracking-tight mb-6 text-gray-900">
+            <h1 className="text-5xl md:text-6xl font-bold tracking-tight mb-6 text-gray-900 leading-[1.1]">
               Contact Our Team
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Ready to discuss your aerospace hardware needs? Our expert team is here to help with quotes, technical questions, and custom sourcing.
+            <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Ready to discuss your aerospace hardware needs? Our expert team is here to assist with quotes, technical questions, and custom sourcing.
             </p>
           </motion.div>
 
@@ -49,7 +49,7 @@ export const Contact = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <h2 className="text-3xl font-bold mb-8">Send Us a Message</h2>
+              <h2 className="text-2xl md:text-3xl font-bold mb-8 text-gray-900">Send Us a Message</h2>
               
               {submitted ? (
                 <motion.div

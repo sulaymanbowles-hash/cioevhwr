@@ -8,9 +8,9 @@ export const Footer = () => {
       <div className="max-w-[1600px] mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-16 mb-24">
           <div className="md:col-span-4">
-            <h2 className="text-2xl font-semibold mb-8 uppercase tracking-tighter">Aerospace Fasteners Incorporated</h2>
-            <p className="text-gray-500 max-w-sm text-sm leading-relaxed mb-8">
-              Since 1979, we've been a trusted small-business distributor of aircraft fastening hardware for commercial and military aerospace customers worldwide, serving more than 300 customers from Palestine, Texas.
+            <h2 className="text-xl font-bold mb-8 uppercase tracking-tight">Aerospace Fasteners Inc.</h2>
+            <p className="text-gray-400 max-w-sm text-sm leading-relaxed mb-8">
+              Since 1979, trusted aerospace fastener distributor serving 300+ commercial and military customers worldwide from Palestine, Texas.
             </p>
             <div className="flex space-x-4">
               <div className="w-12 h-12 border border-gray-800 flex items-center justify-center grayscale opacity-50">
@@ -41,8 +41,8 @@ export const Footer = () => {
             </ul>
           </div>
           <div className="md:col-span-4 border-l border-gray-900 pl-12">
-            <TechLabel className="mb-8 block text-gray-600">Stay Updated</TechLabel>
-            <p className="text-sm text-gray-400 mb-6">
+            <TechLabel className="mb-8 block text-gray-600">Stay Connected</TechLabel>
+            <p className="text-sm text-gray-400 mb-6 leading-relaxed">
               Subscribe for product updates, industry news, and technical resources.
             </p>
             <form className="flex gap-2 mb-8">
@@ -65,9 +65,10 @@ export const Footer = () => {
             </p>
           </div>
         </div>
-        <div className="flex flex-col md:flex-row justify-between items-center pt-12 border-t border-gray-900 gap-8">
-          <div className="flex space-x-12 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-gray-700">
-            <span>© 2025 Aerospace Fasteners Incorporated.</span>
+        <div className="flex flex-col md:flex-row justify-between items-center pt-12 border-t border-gray-900 gap-6">
+          <div className="flex flex-col md:flex-row md:space-x-8 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-gray-700 text-center md:text-left">
+            <span>© 2025 Aerospace Fasteners Inc.</span>
+            <span className="hidden md:inline">•</span>
             <span>All Rights Reserved</span>
           </div>
           <div className="flex space-x-8 text-[10px] uppercase tracking-widest text-gray-500">

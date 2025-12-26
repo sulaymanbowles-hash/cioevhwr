@@ -15,11 +15,12 @@ export const About = () => {
             className="text-center mb-16"
           >
             <TechLabel className="mb-6">About Aerospace Fasteners</TechLabel>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-8 text-gray-900 leading-tight">
-              Building the Future of<br/>Aerospace Distribution
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-8 text-gray-900 leading-[1.1]">
+              Building the Future of
+              <br />Aerospace Distribution
             </h1>
-            <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Since 1979, we've been the trusted family-owned distributor of aircraft fastening hardware for commercial and military aerospace customers, delivering precision hardware with unmatched reliability from our 34,000+ square foot facility in Palestine, Texas.
+            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Since 1979, we've been the trusted distributor of precision aerospace fasteners for commercial and military customers worldwide. Family-owned and operated from our 34,000 sq. ft. facility in Palestine, Texas.
             </p>
           </motion.div>
         </div>
@@ -63,14 +64,14 @@ export const About = () => {
               transition={{ duration: 0.8 }}
             >
               <TechLabel className="mb-6">Our Mission</TechLabel>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
-                Powering Aerospace Innovation Through Reliable Distribution
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 leading-[1.15]">
+                Powering Aerospace Innovation
               </h2>
-              <p className="text-lg text-gray-600 leading-relaxed mb-6">
-                We exist to solve one of aerospace's most critical challenges: ensuring the right hardware reaches the right place at the right time, every time. Our philosophy is simple: on time every time, defect free.
+              <p className="text-base text-gray-600 leading-relaxed mb-6">
+                We solve one of aerospace's most critical challenges: ensuring the right hardware reaches the right place at the right time, every time. Our philosophy is simple—on time, every time, defect free.
               </p>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Through our AS9100 Rev. D / ISO 9001:2015 certified processes, strategic partnerships with leading manufacturers, and barcode-managed inventory system with lot traceability, we maintain up to three years of parts inventory to support both commercial and military aerospace programs.
+              <p className="text-base text-gray-600 leading-relaxed">
+                Through our AS9100 Rev. D and ISO 9001:2015 certified processes, strategic manufacturer partnerships, and barcode-managed inventory system with lot traceability, we maintain up to three years of parts inventory supporting both commercial and military aerospace programs.
               </p>
             </motion.div>
 
@@ -123,27 +124,27 @@ export const About = () => {
               {
                 year: "1979",
                 title: "Founded in Palestine, Texas",
-                desc: "Established as a family-owned aerospace fastener distributor, beginning a legacy of serving commercial and military aerospace customers."
+                desc: "Established as a family-owned aerospace fastener distributor, beginning a legacy of excellence serving commercial and military customers."
               },
               {
                 year: "2010",
                 title: "AS9100 Certification Achieved",
-                desc: "Earned our AS9100 certification, demonstrating commitment to aerospace quality management standards."
+                desc: "Earned AS9100 certification, demonstrating our commitment to aerospace quality management standards and continuous improvement."
               },
               {
                 year: "2015",
                 title: "Expanded Distribution Network",
-                desc: "Grew warehouse facilities and established partnerships with major OEMs and approved distributors."
+                desc: "Grew warehouse facilities and established strategic partnerships with major OEMs and approved manufacturers."
               },
               {
                 year: "2020",
                 title: "International Growth",
-                desc: "Expanded to serve international customers with comprehensive AOG support capabilities."
+                desc: "Expanded to serve international customers with comprehensive 24/7 AOG support capabilities and global shipping."
               },
               {
                 year: "2024",
                 title: "Continued Excellence",
-                desc: "Serving 300+ customers worldwide with AS9100 Rev. D and ISO 9001:2015 certifications."
+                desc: "Serving 300+ customers worldwide with AS9100 Rev. D and ISO 9001:2015 certifications, maintaining the highest quality standards."
               }
             ].map((milestone, i) => (
               <motion.div

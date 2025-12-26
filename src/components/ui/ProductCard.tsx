@@ -3,7 +3,6 @@ import { TechnicalBorder } from "./TechnicalBorder";
 import { ArrowUpRight } from "lucide-react";
 import { Product3DViewer } from "./Product3DViewer";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect, useRef } from "react";
 
 interface ProductCardProps {
   title: string;
@@ -16,25 +15,6 @@ interface ProductCardProps {
 
 export const ProductCard = ({ title, category, partNumber, image, modelType, slug }: ProductCardProps) => {
   const navigate = useNavigate();
-  const [shouldLoadModel, setShouldLoadModel] = useState(false);
-  const cardRef = useRef<HTMLDivElement>(null);
-  
-  useEffect(() => {
-    if (!modelType || !cardRef.current) return;
-    
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          setShouldLoadModel(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: "200px", threshold: 0.01 }
-    );
-    
-    observer.observe(cardRef.current);
-    return () => observer.disconnect();
-  }, [modelType]);
   
   const handleClick = () => {
     if (slug) {
@@ -45,7 +25,7 @@ export const ProductCard = ({ title, category, partNumber, image, modelType, slu
   return (
     <TechnicalBorder 
       onClick={handleClick}
-      className="group p-10 border-r border-b border-gray-200 hover:bg-white hover:shadow-2xl hover:z-10 hover:-translate-y-1 transition-all duration-500 cursor-pointer relative overflow-hidden"
+      className="group p-6 md:p-10 border-r border-b border-gray-200 hover:bg-white hover:shadow-2xl hover:z-10 hover:-translate-y-1 transition-all duration-500 cursor-pointer relative overflow-hidden"
     >
       <div className="absolute inset-0 bg-gradient-to-br from-gray-50/0 via-gray-50/0 to-gray-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       
@@ -59,7 +39,6 @@ export const ProductCard = ({ title, category, partNumber, image, modelType, slu
       </div>
       
       <div 
-        ref={cardRef}
         className="aspect-square bg-gradient-to-br from-gray-50 to-gray-100/50 mb-10 flex items-center justify-center overflow-hidden relative rounded-sm border border-gray-200 group-hover:border-gray-300 transition-all duration-500 group-hover:shadow-inner"
       >
         {/* Technical Grid Background */}
@@ -69,13 +48,7 @@ export const ProductCard = ({ title, category, partNumber, image, modelType, slu
         
         {modelType ? (
           <div className="w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out">
-            {shouldLoadModel ? (
-              <Product3DViewer type={modelType} />
-            ) : (
-              <div className="w-full h-full flex items-center justify-center text-gray-400 text-sm font-mono">
-                Loading...
-              </div>
-            )}
+            <Product3DViewer type={modelType} />
           </div>
         ) : image ? (
           <img src={image} alt={title} className="w-full h-full object-cover mix-blend-multiply group-hover:scale-110 transition-transform duration-700" />

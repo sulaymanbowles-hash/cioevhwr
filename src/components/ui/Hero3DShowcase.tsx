@@ -2,11 +2,12 @@ import { Suspense, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, PerspectiveCamera, Environment } from "@react-three/drei";
 import { ModelWrapper } from "../3d/ModelWrapper";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { TechLabel } from "./TechLabel";
 
 export const Hero3DShowcase = () => {
   const [activeModel, setActiveModel] = useState<"bolt" | "nut" | "fitting" | "pin">("bolt");
+  const shouldReduceMotion = useReducedMotion();
 
   const models = [
     { type: "bolt" as const, label: "Hex Bolt", part: "NAS6204" },
@@ -56,7 +57,7 @@ export const Hero3DShowcase = () => {
               minDistance={3}
               maxDistance={8}
               maxPolarAngle={Math.PI / 2.2}
-              autoRotate={true}
+              autoRotate={!shouldReduceMotion}
               autoRotateSpeed={0.8}
               zoomSpeed={0.6}
             />
@@ -67,17 +68,15 @@ export const Hero3DShowcase = () => {
       {/* Model selector */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
+          initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.6 }}
+          transition={{ delay: shouldReduceMotion ? 0 : 0.5, duration: shouldReduceMotion ? 0 : 0.6 }}
           className="bg-white/95 backdrop-blur-sm border border-black/10 rounded-sm shadow-2xl p-2 flex flex-wrap justify-center gap-2"
         >
           {models.map((model) => (
-            <motion.button
+            <button
               key={model.type}
               onClick={() => setActiveModel(model.type)}
-              whileHover={{ scale: 1.02, y: -1 }}
-              whileTap={{ scale: 0.98 }}
               className={`px-6 py-3 rounded-sm transition-all duration-300 ${
                 activeModel === model.type
                   ? "bg-black text-white shadow-md"
@@ -90,7 +89,7 @@ export const Hero3DShowcase = () => {
               <TechLabel className={`!text-[9px] ${activeModel === model.type ? "!text-gray-400" : "!text-gray-500"}`}>
                 {model.part}
               </TechLabel>
-            </motion.button>
+            </button>
           ))}
         </motion.div>
       </div>

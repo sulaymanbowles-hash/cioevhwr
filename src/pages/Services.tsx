@@ -132,13 +132,13 @@ export const Services = () => {
               <TechLabel className="!text-white/50">Comprehensive Services</TechLabel>
               <div className="h-px w-16 bg-white/30" />
             </div>
-            <h1 className="text-6xl md:text-8xl font-bold tracking-[-0.02em] mb-12 leading-[0.95]">
+            <h1 className="text-6xl md:text-7xl font-bold tracking-[-0.02em] mb-10 leading-[0.95]">
               End-to-End
               <br />
               <span className="text-white/40">Aerospace Solutions</span>
             </h1>
-            <p className="text-2xl text-white/60 leading-relaxed max-w-3xl mx-auto">
-              More than just a distributor—we're your strategic partner in aerospace supply chain excellence.
+            <p className="text-lg md:text-xl text-white/60 leading-relaxed max-w-3xl mx-auto">
+              More than distribution—we're your strategic partner in aerospace supply chain excellence.
             </p>
           </div>
         </div>
@@ -188,12 +188,12 @@ export const Services = () => {
               <TechLabel className="!text-white/50">Our Process</TechLabel>
               <div className="h-px w-16 bg-white/30" />
             </div>
-            <h2 className="text-6xl md:text-7xl font-bold tracking-[-0.02em] mb-8 leading-[0.95]">
+            <h2 className="text-5xl md:text-6xl font-bold tracking-[-0.02em] mb-6 leading-[0.95]">
               How We
               <br />
               <span className="text-white/30">Partner With You</span>
             </h2>
-            <p className="text-xl text-white/60 max-w-3xl mx-auto">
+            <p className="text-base md:text-lg text-white/60 max-w-3xl mx-auto leading-relaxed">
               A proven approach to delivering customized aerospace supply chain solutions.
             </p>
           </div>

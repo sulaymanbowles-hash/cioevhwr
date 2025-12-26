@@ -4,6 +4,7 @@ import { Menu, X, ShoppingCart } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { TechLabel } from "../ui/TechLabel";
 import { useQuoteStore } from "../../stores/quoteStore";
+import { QuickSearch } from "../ui/QuickSearch";
 
 export const Header = () => {
   const navigate = useNavigate();
@@ -84,15 +85,15 @@ export const Header = () => {
                     <div className="p-10">
                       <ul className="space-y-6 text-sm">
                         <li>
-                          <button onClick={() => { navigate('/services'); setActiveMenu(null); }} className="group block text-left">
-                            <span className="block font-medium uppercase text-xs mb-1 group-hover:text-black transition-colors">Quality Control System</span>
-                            <span className="text-gray-400 text-xs">AS9120B / ISO 9001:2015 Traceability</span>
+                          <button onClick={() => { navigate('/services'); setActiveMenu(null); }} className="group block text-left w-full">
+                            <span className="block font-semibold text-xs mb-1 group-hover:text-black transition-colors">Quality Control</span>
+                            <span className="text-gray-500 text-xs leading-tight">AS9100 Rev. D / ISO 9001:2015</span>
                           </button>
                         </li>
                         <li>
-                          <button onClick={() => { navigate('/services'); setActiveMenu(null); }} className="group block text-left">
-                            <span className="block font-medium uppercase text-xs mb-1 group-hover:text-black transition-colors">Inventory Management</span>
-                            <span className="text-gray-400 text-xs">VMI, Kitting, and Consignment Programs</span>
+                          <button onClick={() => { navigate('/services'); setActiveMenu(null); }} className="group block text-left w-full">
+                            <span className="block font-semibold text-xs mb-1 group-hover:text-black transition-colors">Inventory Management</span>
+                            <span className="text-gray-500 text-xs leading-tight">VMI, Kitting & Consignment</span>
                           </button>
                         </li>
                       </ul>
@@ -111,7 +112,10 @@ export const Header = () => {
           </div>
         </div>
 
-        <div className="flex items-center space-x-8">
+        <div className="flex items-center space-x-4">
+          {/* Quick Search */}
+          <QuickSearch />
+          
           <div className="hidden xl:flex flex-col items-end">
             <TechLabel className="!text-[9px]">CAGE Code</TechLabel>
             <span className="font-mono text-[11px] font-medium">4U021</span>

@@ -1,10 +1,13 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, Package, Shield, Truck, FileText, ShoppingCart, Factory, Tag, Phone, Mail } from "lucide-react";
+import { Package, Shield, Truck, FileText, ShoppingCart, Factory, Tag, Phone, Mail } from "lucide-react";
 import { Product3DViewer } from "../components/ui/Product3DViewer";
 import { TechLabel } from "../components/ui/TechLabel";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuoteStore } from "../stores/quoteStore";
+import { useRecentlyViewedStore } from "../stores/recentlyViewedStore";
+import { Breadcrumbs } from "../components/ui/Breadcrumbs";
+import { RecentlyViewed } from "../components/ui/RecentlyViewed";
 
 interface ProductInfo {
   title: string;
@@ -690,6 +693,7 @@ const productsData: Record<string, ProductInfo> = {
     category: "Pins",
     partNumber: "MS9245-3",
     modelFile: "ms9245-3.glb",
+    modelType: "pin",
     description: "Corrosion resistant steel (CRES) cotter pin for high-corrosion environments. Stainless construction provides superior durability in marine and chemical exposure.",
     specifications: [
       { label: "Wire Diameter", value: "0.062 inches" },
@@ -713,6 +717,7 @@ const productsData: Record<string, ProductInfo> = {
     category: "Pins",
     partNumber: "MS16555-100",
     modelFile: "ms16555-100.glb",
+    modelType: "pin",
     description: "Precision hardened and ground dowel pin for exact alignment of mating parts. Cylindrical pin with tight diameter tolerance ensures accurate component positioning.",
     specifications: [
       { label: "Diameter", value: "0.1875 inches (3/16\")" },
@@ -738,6 +743,7 @@ const productsData: Record<string, ProductInfo> = {
     category: "Pins",
     partNumber: "MS16562-4",
     modelFile: "ms16562-4.glb",
+    modelType: "pin",
     description: "Standard tolerance dowel pin for general alignment applications. Economical solution for non-critical positioning requirements.",
     specifications: [
       { label: "Diameter", value: "0.125 inches (1/8\")" },
@@ -760,6 +766,7 @@ const productsData: Record<string, ProductInfo> = {
     category: "Pins",
     partNumber: "D25",
     modelFile: "d25.glb",
+    modelType: "pin",
     description: "High precision ground dowel pin with ultra-tight tolerances for critical alignment. Premium quality for tooling and precision assembly applications.",
     specifications: [
       { label: "Diameter", value: "0.250 inches (1/4\")" },
@@ -784,6 +791,7 @@ const productsData: Record<string, ProductInfo> = {
     category: "Pins",
     partNumber: "MS17430-100",
     modelFile: "ms17430-100.glb",
+    modelType: "pin",
     description: "Coiled spring pin that compresses upon insertion for secure fit in drilled holes. Self-retaining design eliminates need for additional fasteners.",
     specifications: [
       { label: "Diameter", value: "0.1875 inches" },
@@ -807,6 +815,7 @@ const productsData: Record<string, ProductInfo> = {
     category: "Pins",
     partNumber: "MS9047-4",
     modelFile: "ms9047-4.glb",
+    modelType: "pin",
     description: "Slotted tubular spring pin with chamfered ends. Compresses radially to fit hole, providing vibration resistance and secure retention.",
     specifications: [
       { label: "Diameter", value: "0.125 inches" },
@@ -829,6 +838,7 @@ const productsData: Record<string, ProductInfo> = {
     category: "Pins",
     partNumber: "NAS561-5",
     modelFile: "nas561-5.glb",
+    modelType: "pin",
     description: "Corrosion resistant stainless steel spring pin for harsh environment applications. Maintains spring properties in high-moisture and chemical exposure.",
     specifications: [
       { label: "Diameter", value: "0.156 inches" },
@@ -851,6 +861,7 @@ const productsData: Record<string, ProductInfo> = {
     category: "Pins",
     partNumber: "MS20253-4",
     modelFile: "ms20253-4.glb",
+    modelType: "pin",
     description: "Standard clevis pin with head and cotter pin hole for securing pivoting connections. Cadmium plated for corrosion protection in control linkages.",
     specifications: [
       { label: "Diameter", value: "0.250 inches" },
@@ -877,6 +888,7 @@ const productsData: Record<string, ProductInfo> = {
     category: "Pins",
     partNumber: "NAS607-4",
     modelFile: "nas607-4.glb",
+    modelType: "pin",
     description: "NAS standard clevis pin with enlarged head for higher bearing loads. Precision machined for critical aerospace applications.",
     specifications: [
       { label: "Diameter", value: "0.250 inches" },
@@ -901,6 +913,7 @@ const productsData: Record<string, ProductInfo> = {
     category: "Pins",
     partNumber: "AN122690",
     modelFile: "an122690.glb",
+    modelType: "pin",
     description: "AN standard clevis pin with drilled shank for cotter pin retention. Proven design for general aviation and commercial aircraft applications.",
     specifications: [
       { label: "Diameter", value: "0.1875 inches" },
@@ -927,6 +940,7 @@ const productsData: Record<string, ProductInfo> = {
     category: "Nuts",
     partNumber: "AN310-4",
     modelFile: "an310-4.glb",
+    modelType: "nut",
     description: "Standard castle nut with slotted crown for cotter pin retention. Essential for securing bolts in critical safety applications where positive locking is required.",
     specifications: [
       { label: "Thread Size", value: "1/4-28 UNF" },
@@ -952,6 +966,7 @@ const productsData: Record<string, ProductInfo> = {
     category: "Nuts",
     partNumber: "MS20365-4",
     modelFile: "ms20365-4.glb",
+    modelType: "nut",
     description: "Military standard castle nut with superior corrosion protection. Slotted crown design allows cotter pin insertion for positive locking.",
     specifications: [
       { label: "Thread Size", value: "1/4-28 UNF" },
@@ -976,6 +991,7 @@ const productsData: Record<string, ProductInfo> = {
     category: "Nuts",
     partNumber: "MS21042-4",
     modelFile: "ms21042-4.glb",
+    modelType: "nut",
     description: "Lightweight aluminum self-locking nut with non-metallic insert. Nylon collar provides vibration resistance without requiring safety wiring.",
     specifications: [
       { label: "Thread Size", value: "1/4-28 UNF" },
@@ -1002,6 +1018,7 @@ const productsData: Record<string, ProductInfo> = {
     category: "Nuts",
     partNumber: "MS21043-4",
     modelFile: "ms21043-4.glb",
+    modelType: "nut",
     description: "Corrosion-resistant stainless steel self-locking nut with nylon insert. Ideal for high-moisture environments and marine applications.",
     specifications: [
       { label: "Thread Size", value: "1/4-28 UNF" },
@@ -1027,6 +1044,7 @@ const productsData: Record<string, ProductInfo> = {
     category: "Nuts",
     partNumber: "MS21044-4",
     modelFile: "ms21044-4.glb",
+    modelType: "nut",
     description: "Heavy-duty steel self-locking nut with nylon insert for high-strength applications. UNC threads provide better vibration resistance.",
     specifications: [
       { label: "Thread Size", value: "1/4-20 UNC" },
@@ -1051,6 +1069,7 @@ const productsData: Record<string, ProductInfo> = {
     category: "Nuts",
     partNumber: "AN365-4",
     modelFile: "an365-4.glb",
+    modelType: "nut",
     description: "AN standard elastic stop nut with fiber collar insert. Proven design for general aviation applications requiring vibration resistance.",
     specifications: [
       { label: "Thread Size", value: "1/4-28 UNF" },
@@ -1075,6 +1094,7 @@ const productsData: Record<string, ProductInfo> = {
     category: "Nuts",
     partNumber: "NAS1021-4",
     modelFile: "nas1021-4.glb",
+    modelType: "nut",
     description: "NAS standard self-locking hex nut with metallic locking feature. Superior temperature range compared to nylon insert nuts.",
     specifications: [
       { label: "Thread Size", value: "1/4-28 UNF" },
@@ -1098,6 +1118,7 @@ const productsData: Record<string, ProductInfo> = {
     category: "Nuts",
     partNumber: "AN315-4",
     modelFile: "an315-4.glb",
+    modelType: "nut",
     description: "Standard wing nut for hand-tightening applications. Wings provide leverage for tool-free installation and removal.",
     specifications: [
       { label: "Thread Size", value: "1/4-28 UNF" },
@@ -1120,6 +1141,7 @@ const productsData: Record<string, ProductInfo> = {
     category: "Nuts",
     partNumber: "MS21047-4",
     modelFile: "ms21047-4.glb",
+    modelType: "nut",
     description: "Self-locking flange nut with integral washer. Flange distributes load while nylon insert provides locking action.",
     specifications: [
       { label: "Thread Size", value: "1/4-28 UNF" },
@@ -1142,6 +1164,7 @@ const productsData: Record<string, ProductInfo> = {
     category: "Nuts",
     partNumber: "NAS1473-4",
     modelFile: "nas1473-4.glb",
+    modelType: "nut",
     description: "NAS standard floating self-locking flange nut. Flange rotates freely to accommodate misalignment while maintaining secure locking.",
     specifications: [
       { label: "Thread Size", value: "1/4-28 UNF" },
@@ -1164,6 +1187,7 @@ const productsData: Record<string, ProductInfo> = {
     category: "Nuts",
     partNumber: "AN320-4",
     modelFile: "an320-4.glb",
+    modelType: "nut",
     description: "Thin slotted shear nut for rod end assemblies. Slots allow cotter pin safety without the bulk of a castle nut.",
     specifications: [
       { label: "Thread Size", value: "1/4-28 UNF" },
@@ -1277,10 +1301,24 @@ export const ProductDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const { addItem } = useQuoteStore();
+  const { addProduct } = useRecentlyViewedStore();
   const [quantity, setQuantity] = useState(1);
   const [addedToCart, setAddedToCart] = useState(false);
 
   const product = slug ? productsData[slug] : null;
+
+  // Track recently viewed
+  useEffect(() => {
+    if (product && slug) {
+      addProduct({
+        partNumber: product.partNumber,
+        title: product.title,
+        slug: slug,
+        category: product.category,
+        modelFile: product.modelFile,
+      });
+    }
+  }, [product, slug, addProduct]);
 
   if (!product) {
     return (
@@ -1300,15 +1338,15 @@ export const ProductDetail = () => {
 
   return (
     <div className="min-h-screen pt-24 pb-20">
-      {/* Back Button */}
-      <div className="max-w-[1600px] mx-auto px-6 md:px-8 mb-8">
-        <button
-          onClick={() => navigate("/")}
-          className="flex items-center gap-2 text-sm text-gray-600 hover:text-black transition-colors"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          Back to Home
-        </button>
+      {/* Breadcrumbs */}
+      <div className="max-w-[1600px] mx-auto px-6 md:px-8 mt-8">
+        <Breadcrumbs
+          items={[
+            { label: "Catalog", path: "/catalog" },
+            { label: product.category, path: "/catalog" },
+            { label: product.partNumber },
+          ]}
+        />
       </div>
 
       <div className="max-w-[1600px] mx-auto px-6 md:px-8">
@@ -1574,6 +1612,9 @@ export const ProductDetail = () => {
           </motion.div>
         </div>
       </div>
+
+      {/* Recently Viewed Products */}
+      <RecentlyViewed />
     </div>
   );
 };

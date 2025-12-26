@@ -1,13 +1,16 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { TechLabel } from "../components/ui/TechLabel";
 import { TechnicalBorder } from "../components/ui/TechnicalBorder";
-import { Search, Filter, Download, ShoppingCart, ArrowUpRight } from "lucide-react";
+import { Search, Filter, Download, ShoppingCart, ArrowUpRight, GitCompare } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useQuoteStore } from "../stores/quoteStore";
+import { useComparisonStore } from "../stores/comparisonStore";
 import { ToastNotification } from "../components/ui/ToastNotification";
 import type { ToastType } from "../components/ui/ToastNotification";
 import { Catalog3DViewer, preloadCatalogModels } from "../components/ui/Catalog3DViewer";
+import { ComparisonBar } from "../components/ui/ComparisonBar";
+import { Breadcrumbs } from "../components/ui/Breadcrumbs";
 
 interface Product {
   title: string;
@@ -4567,6 +4570,7 @@ const allProducts: Product[] = [
 export const Catalog = () => {
   const navigate = useNavigate();
   const { addItem } = useQuoteStore();
+  const { addProduct: addToComparison, isComparing, products: compareProducts } = useComparisonStore();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All Categories");
   const [selectedMaterial, setSelectedMaterial] = useState("All Materials");
@@ -4604,6 +4608,28 @@ export const Catalog = () => {
     setTimeout(() => setAddedToCart(null), 2000);
   };
 
+  const handleAddToComparison = (product: Product) => {
+    if (compareProducts.length >= 4) {
+      setToastMessage("Maximum 4 products can be compared");
+      setToastType("warning");
+      setShowToast(true);
+      return;
+    }
+    addToComparison({
+      partNumber: product.partNumber,
+      title: product.title,
+      slug: product.slug,
+      category: product.category,
+      material: product.material,
+      threadType: product.threadType,
+      specification: product.specification,
+      modelFile: product.modelFile,
+    });
+    setToastMessage(`${product.title} added to comparison`);
+    setToastType("success");
+    setShowToast(true);
+  };
+
   const handleDownloadSpec = (partNumber: string) => {
     // Trigger spec sheet download
     setToastMessage(`Downloading spec sheet for ${partNumber}`);
@@ -4614,7 +4640,11 @@ export const Catalog = () => {
   const activeFiltersCount = [selectedCategory !== "All Categories", selectedMaterial !== "All Materials", selectedThreadType !== "All Thread Types"].filter(Boolean).length;
 
   return (
-    <div className="min-h-screen pt-24 pb-20 bg-gradient-to-br from-gray-50 to-white">
+    <div className="min-h-screen pt-24 pb-32 bg-gradient-to-br from-gray-50 to-white">
+      {/* Breadcrumbs */}
+      <div className="max-w-[1800px] mx-auto px-6 md:px-8 mt-8">
+        <Breadcrumbs items={[{ label: "Catalog" }]} />
+      </div>
       {/* Hero Section */}
       <section className="py-16 px-6 md:px-8 border-b border-gray-200">
         <div className="max-w-[1800px] mx-auto">
@@ -4880,6 +4910,23 @@ export const Catalog = () => {
                         <motion.button
                           onClick={(e) => {
                             e.stopPropagation();
+                            handleAddToComparison(product);
+                          }}
+                          disabled={isComparing(product.partNumber)}
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          className={`h-11 px-4 border-2 rounded-sm transition-colors flex items-center justify-center ${
+                            isComparing(product.partNumber) 
+                              ? 'bg-blue-50 border-blue-500' 
+                              : 'border-gray-200 hover:border-black'
+                          }`}
+                          title="Add to Comparison"
+                        >
+                          <GitCompare className={`w-4 h-4 ${isComparing(product.partNumber) ? 'text-blue-600' : 'text-gray-600'}`} />
+                        </motion.button>
+                        <motion.button
+                          onClick={(e) => {
+                            e.stopPropagation();
                             handleDownloadSpec(product.partNumber);
                           }}
                           whileHover={{ scale: 1.05 }}
@@ -4906,6 +4953,9 @@ export const Catalog = () => {
         isVisible={showToast}
         onClose={() => setShowToast(false)}
       />
+
+      {/* Comparison Bar */}
+      <ComparisonBar />
     </div>
   );
 };

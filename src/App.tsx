@@ -6,6 +6,7 @@ import { Footer } from "./components/layout/Footer";
 import { Home } from "./pages/Home";
 import { ProductDetail } from "./pages/ProductDetail";
 import { Catalog } from "./pages/Catalog";
+import { Compare } from "./pages/Compare";
 import { Contact } from "./pages/Contact";
 import { About } from "./pages/About";
 import { Services } from "./pages/Services";
@@ -62,6 +63,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/product/:slug" element={<ProductDetail />} />
             <Route path="/catalog" element={<Catalog />} />
+            <Route path="/compare" element={<Compare />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
