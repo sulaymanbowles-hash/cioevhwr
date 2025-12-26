@@ -8,6 +8,7 @@ import { useQuoteStore } from "../stores/quoteStore";
 import { useRecentlyViewedStore } from "../stores/recentlyViewedStore";
 import { Breadcrumbs } from "../components/ui/Breadcrumbs";
 import { RecentlyViewed } from "../components/ui/RecentlyViewed";
+import { allProducts } from "../lib/products";
 
 interface ProductInfo {
   title: string;
@@ -1305,7 +1306,36 @@ export const ProductDetail = () => {
   const [quantity, setQuantity] = useState(1);
   const [addedToCart, setAddedToCart] = useState(false);
 
-  const product = slug ? productsData[slug] : null;
+  let product = slug ? productsData[slug] : null;
+
+  if (!product && slug) {
+    const found = allProducts.find(p => p.slug === slug);
+    if (found) {
+      let type: "bolt" | "nut" | "fitting" | "pin" | "screw" = "bolt";
+      const cat = found.category.toLowerCase();
+      if (cat.includes("nut")) type = "nut";
+      else if (cat.includes("fitting")) type = "fitting";
+      else if (cat.includes("pin")) type = "pin";
+      else if (cat.includes("screw")) type = "screw";
+
+      product = {
+        title: found.title,
+        category: found.category,
+        partNumber: found.partNumber,
+        modelType: type,
+        modelFile: found.modelFile,
+        description: found.description,
+        specifications: [
+          { label: "Specification", value: found.specification },
+          { label: "Material", value: found.material },
+          { label: "Thread Type", value: found.threadType || "N/A" }
+        ],
+        materials: [found.material],
+        applications: ["Aerospace", "Industrial"],
+        standards: [found.specification.split(" - ")[0]]
+      };
+    }
+  }
 
   // Track recently viewed
   useEffect(() => {
@@ -1547,9 +1577,11 @@ export const ProductDetail = () => {
                   <div className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
                     <button
                       onClick={() => {
-                        for (let i = 0; i < quantity; i++) {
-                          addItem({ partNumber: product.partNumber, title: product.title });
-                        }
+                        addItem({ 
+                          partNumber: product.partNumber, 
+                          title: product.title,
+                          quantity: quantity 
+                        });
                         setAddedToCart(true);
                         setTimeout(() => setAddedToCart(false), 2000);
                       }}

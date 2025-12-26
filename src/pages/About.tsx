@@ -1,13 +1,18 @@
 import { motion } from "framer-motion";
 import { TechLabel } from "../components/ui/TechLabel";
-import { Target, Users, Award, Globe, TrendingUp, Shield } from "lucide-react";
+import { QualityIcon, CertifiedIcon, LogisticsIcon, SourcingIcon, DefenseIcon, AviationIcon } from "../components/ui/TechnicalIcons";
+import { TechnicalBorder } from "../components/ui/TechnicalBorder";
+import { HistoryTimeline } from "../components/about/HistoryTimeline";
+import { GridBackground } from "../components/ui/GridBackground";
+import { Users } from "lucide-react";
 
 export const About = () => {
   return (
     <div className="min-h-screen pt-24 pb-20">
       {/* Hero Section */}
-      <section className="py-24 px-6 md:px-8 bg-gradient-to-br from-gray-50 via-white to-gray-50">
-        <div className="max-w-[1400px] mx-auto">
+      <section className="py-24 px-6 md:px-8 bg-gradient-to-br from-gray-50 via-white to-gray-50 relative overflow-hidden">
+        <GridBackground pattern="lines" opacity={0.03} />
+        <div className="max-w-[1400px] mx-auto relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -27,7 +32,7 @@ export const About = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 px-6 md:px-8 border-y border-gray-200">
+      <section className="py-20 px-6 md:px-8 border-y border-gray-200 bg-white">
         <div className="max-w-[1600px] mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
@@ -42,11 +47,12 @@ export const About = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="text-center p-6 bg-gradient-to-br from-gray-50 to-white border border-gray-200 rounded-lg"
               >
-                <div className="text-4xl md:text-5xl font-bold mb-2 text-gray-900">{stat.number}</div>
-                <div className="text-sm font-semibold uppercase tracking-wider mb-1">{stat.label}</div>
-                <div className="text-xs text-gray-500">{stat.sublabel}</div>
+                <TechnicalBorder className="text-center p-8 bg-gray-50/50 hover:bg-white transition-colors h-full flex flex-col justify-center">
+                  <div className="text-4xl md:text-5xl font-bold mb-2 text-gray-900">{stat.number}</div>
+                  <div className="text-xs font-bold uppercase tracking-widest mb-1 text-gray-600">{stat.label}</div>
+                  <div className="text-[10px] text-gray-400 uppercase tracking-wider">{stat.sublabel}</div>
+                </TechnicalBorder>
               </motion.div>
             ))}
           </div>
@@ -54,7 +60,7 @@ export const About = () => {
       </section>
 
       {/* Mission & Values */}
-      <section className="py-24 px-6 md:px-8">
+      <section className="py-24 px-6 md:px-8 bg-white">
         <div className="max-w-[1600px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div
@@ -83,95 +89,30 @@ export const About = () => {
               className="grid grid-cols-1 gap-6"
             >
               {[
-                { icon: Target, title: "Precision", desc: "Every component meets exact specifications" },
-                { icon: Shield, title: "Quality", desc: "AS9100 Rev. D & ISO 9001:2015 certified" },
-                { icon: TrendingUp, title: "Reliability", desc: "Consistent on-time delivery" },
-                { icon: Globe, title: "Global Reach", desc: "Serving customers worldwide" }
+                { icon: QualityIcon, title: "Precision", desc: "Every component meets exact specifications" },
+                { icon: CertifiedIcon, title: "Quality", desc: "AS9100 Rev. D & ISO 9001:2015 certified" },
+                { icon: LogisticsIcon, title: "Reliability", desc: "Consistent on-time delivery" },
+                { icon: SourcingIcon, title: "Global Reach", desc: "Serving customers worldwide" }
               ].map((value, i) => (
-                <div key={i} className="flex items-start gap-4 p-6 bg-gray-50 rounded-lg border border-gray-200">
-                  <div className="p-3 bg-black text-white rounded-lg">
-                    <value.icon className="w-6 h-6" />
+                <TechnicalBorder key={i} className="flex items-start gap-6 p-8 bg-white hover:shadow-lg transition-all group">
+                  <div className="w-12 h-12 text-gray-900 group-hover:text-black transition-colors flex-shrink-0">
+                    <value.icon className="w-full h-full" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-lg mb-1">{value.title}</h3>
-                    <p className="text-gray-600 text-sm">{value.desc}</p>
+                    <h3 className="font-bold text-lg mb-2">{value.title}</h3>
+                    <p className="text-gray-600 text-sm leading-relaxed">{value.desc}</p>
                   </div>
-                </div>
+                </TechnicalBorder>
               ))}
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* History Timeline */}
-      <section className="py-24 px-6 md:px-8 bg-gradient-to-b from-white to-gray-50">
-        <div className="max-w-[1200px] mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <TechLabel className="mb-6">Our Journey</TechLabel>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
-              A Legacy of Excellence
-            </h2>
-          </motion.div>
-
-          <div className="space-y-12">
-            {[
-              {
-                year: "1979",
-                title: "Founded in Palestine, Texas",
-                desc: "Established as a family-owned aerospace fastener distributor, beginning a legacy of excellence serving commercial and military customers."
-              },
-              {
-                year: "2010",
-                title: "AS9100 Certification Achieved",
-                desc: "Earned AS9100 certification, demonstrating our commitment to aerospace quality management standards and continuous improvement."
-              },
-              {
-                year: "2015",
-                title: "Expanded Distribution Network",
-                desc: "Grew warehouse facilities and established strategic partnerships with major OEMs and approved manufacturers."
-              },
-              {
-                year: "2020",
-                title: "International Growth",
-                desc: "Expanded to serve international customers with comprehensive 24/7 AOG support capabilities and global shipping."
-              },
-              {
-                year: "2024",
-                title: "Continued Excellence",
-                desc: "Serving 300+ customers worldwide with AS9100 Rev. D and ISO 9001:2015 certifications, maintaining the highest quality standards."
-              }
-            ].map((milestone, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="flex gap-8 items-start"
-              >
-                <div className="flex-shrink-0">
-                  <div className="w-24 h-24 bg-black text-white rounded-lg flex items-center justify-center">
-                    <span className="font-mono text-lg font-bold">{milestone.year}</span>
-                  </div>
-                </div>
-                <div className="flex-1 pt-2">
-                  <h3 className="text-2xl font-bold mb-3 text-gray-900">{milestone.title}</h3>
-                  <p className="text-gray-600 leading-relaxed">{milestone.desc}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <HistoryTimeline />
 
       {/* Team Section */}
-      <section className="py-24 px-6 md:px-8">
+      <section className="py-24 px-6 md:px-8 bg-gray-50">
         <div className="max-w-[1600px] mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -201,14 +142,17 @@ export const About = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="bg-gradient-to-br from-gray-900 to-black text-white p-8 rounded-lg"
               >
-                <div className="w-20 h-20 bg-gray-700 rounded-full mb-6 flex items-center justify-center">
-                  <Users className="w-10 h-10 text-gray-400" />
-                </div>
-                <h3 className="text-xl font-bold mb-2">{member.name}</h3>
-                <p className="text-gray-400 text-sm mb-3">{member.role}</p>
-                <TechLabel className="text-gray-500">{member.experience}</TechLabel>
+                <TechnicalBorder className="bg-white p-8 h-full hover:shadow-lg transition-all">
+                  <div className="w-20 h-20 bg-gray-100 rounded-full mb-6 flex items-center justify-center mx-auto">
+                    <Users className="w-8 h-8 text-gray-400" />
+                  </div>
+                  <div className="text-center">
+                    <h3 className="text-xl font-bold mb-2">{member.name}</h3>
+                    <p className="text-gray-500 text-sm mb-3 font-mono">{member.role}</p>
+                    <TechLabel className="text-gray-400">{member.experience}</TechLabel>
+                  </div>
+                </TechnicalBorder>
               </motion.div>
             ))}
           </div>
@@ -216,8 +160,9 @@ export const About = () => {
       </section>
 
       {/* Certifications */}
-      <section className="py-24 px-6 md:px-8 bg-gray-900 text-white">
-        <div className="max-w-[1600px] mx-auto">
+      <section className="py-24 px-6 md:px-8 bg-black text-white relative overflow-hidden">
+        <GridBackground pattern="dots" opacity={0.1} className="bg-white" />
+        <div className="max-w-[1600px] mx-auto relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -225,7 +170,7 @@ export const About = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <TechLabel className="mb-6 text-gray-500">Certifications & Compliance</TechLabel>
+            <TechLabel className="mb-6 !text-gray-500">Certifications & Compliance</TechLabel>
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
               Committed to the Highest Standards
             </h2>
@@ -233,10 +178,10 @@ export const About = () => {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
-              { name: "AS9100 Rev. D", desc: "Quality Management" },
-              { name: "ISO 9001:2015", desc: "International Standard" },
-              { name: "ITAR Compliant", desc: "Export Compliance" },
-              { name: "CAGE: 4U021", desc: "Government Entity Code" }
+              { name: "AS9100 Rev. D", desc: "Quality Management", icon: CertifiedIcon },
+              { name: "ISO 9001:2015", desc: "International Standard", icon: QualityIcon },
+              { name: "ITAR Compliant", desc: "Export Compliance", icon: DefenseIcon },
+              { name: "CAGE: 4U021", desc: "Government Entity Code", icon: AviationIcon }
             ].map((cert, i) => (
               <motion.div
                 key={i}
@@ -244,11 +189,14 @@ export const About = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="text-center p-8 border border-gray-700 rounded-lg hover:border-gray-500 transition-colors"
               >
-                <Award className="w-12 h-12 mx-auto mb-4 text-gray-400" />
-                <h4 className="text-lg font-bold mb-2">{cert.name}</h4>
-                <p className="text-sm text-gray-400">{cert.desc}</p>
+                <TechnicalBorder className="text-center p-8 border-gray-800 bg-gray-900/50 hover:bg-gray-900 transition-colors h-full group">
+                  <div className="w-16 h-16 mx-auto mb-6 text-gray-500 group-hover:text-white transition-colors">
+                    <cert.icon className="w-full h-full" />
+                  </div>
+                  <h4 className="text-lg font-bold mb-2">{cert.name}</h4>
+                  <p className="text-sm text-gray-400">{cert.desc}</p>
+                </TechnicalBorder>
               </motion.div>
             ))}
           </div>

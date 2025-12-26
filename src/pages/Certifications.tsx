@@ -1,8 +1,17 @@
 import { motion } from "framer-motion";
 import { TechLabel } from "../components/ui/TechLabel";
 import { Shield, Award, FileCheck, CheckCircle, Download } from "lucide-react";
+import { useState } from "react";
+import { ToastNotification } from "../components/ui/ToastNotification";
 
 export const Certifications = () => {
+  const [showToast, setShowToast] = useState(false);
+
+  const handleDownload = () => {
+    setShowToast(true);
+    setTimeout(() => setShowToast(false), 3000);
+  };
+
   const certifications = [
     {
       title: "AS9100 Rev. D Certification",
@@ -125,7 +134,10 @@ export const Certifications = () => {
                     </div>
                   ))}
                 </div>
-                <button className="mt-6 w-full border-2 border-black px-6 py-3 text-xs font-bold uppercase tracking-widest hover:bg-black hover:text-white transition-all rounded flex items-center justify-center gap-2">
+                <button 
+                  onClick={handleDownload}
+                  className="mt-6 w-full border-2 border-black px-6 py-3 text-xs font-bold uppercase tracking-widest hover:bg-black hover:text-white transition-all rounded flex items-center justify-center gap-2"
+                >
                   <Download className="w-4 h-4" />
                   Download Certificate
                 </button>
@@ -213,6 +225,13 @@ export const Certifications = () => {
           </div>
         </div>
       </section>
+
+      <ToastNotification
+        message="Certificate download started..."
+        type="success"
+        isVisible={showToast}
+        onClose={() => setShowToast(false)}
+      />
     </div>
   );
 };

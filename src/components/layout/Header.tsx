@@ -173,7 +173,15 @@ export const Header = () => {
               <div>
                 <TechLabel className="mb-4 block">Navigation</TechLabel>
                 <ul className="space-y-6 text-2xl font-light tracking-tight">
-                  <li><button onClick={() => { navigate('/catalog'); setMobileMenuOpen(false); }} className="block text-left w-full">Products</button></li>
+                  <li>
+                    <button onClick={() => { navigate('/catalog'); setMobileMenuOpen(false); }} className="block text-left w-full">Products</button>
+                    <ul className="mt-4 ml-4 space-y-3 text-sm text-gray-500 font-medium uppercase tracking-wide border-l border-gray-200 pl-4">
+                      <li><button onClick={() => { navigate('/catalog'); setMobileMenuOpen(false); }} className="block text-left w-full">Fittings</button></li>
+                      <li><button onClick={() => { navigate('/catalog'); setMobileMenuOpen(false); }} className="block text-left w-full">Bolts</button></li>
+                      <li><button onClick={() => { navigate('/catalog'); setMobileMenuOpen(false); }} className="block text-left w-full">Screws</button></li>
+                      <li><button onClick={() => { navigate('/catalog'); setMobileMenuOpen(false); }} className="block text-left w-full">Nuts</button></li>
+                    </ul>
+                  </li>
                   <li><button onClick={() => { navigate('/services'); setMobileMenuOpen(false); }} className="block text-left w-full">Services</button></li>
                   <li><button onClick={() => { navigate('/about'); setMobileMenuOpen(false); }} className="block text-left w-full">Company</button></li>
                 </ul>

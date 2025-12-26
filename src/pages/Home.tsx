@@ -5,7 +5,10 @@ import { ProductCard } from "../components/ui/ProductCard";
 import { Hero3DShowcase } from "../components/ui/Hero3DShowcase";
 import { GridBackground } from "../components/ui/GridBackground";
 import { useNavigate } from "react-router-dom";
-import { ArrowRight, Shield, Zap, Package } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { CertifiedIcon, DeliveryIcon, CustomersIcon } from "../components/ui/TechnicalIcons";
+import { ProcessTimeline } from "../components/home/ProcessTimeline";
+import { IndustriesGrid } from "../components/home/IndustriesGrid";
 
 import boltImage from "../assets/products/bolt.svg";
 import nutImage from "../assets/products/nut.svg";
@@ -38,57 +41,63 @@ export const Home = () => {
   return (
     <>
       {/* Enhanced Hero Section */}
-      <section className="min-h-screen flex items-center px-6 md:px-8 pt-32 pb-20 relative overflow-hidden">
+      <section className="min-h-screen flex items-center px-6 md:px-8 pt-32 pb-20 relative overflow-hidden bg-gray-50">
         {/* Background gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-white via-gray-50/30 to-white -z-10" />
+        <div className="absolute inset-0 bg-gradient-to-br from-white via-gray-100/50 to-white -z-10" />
         
         {/* Grid overlay */}
-        <GridBackground pattern="lines" opacity={0.02} />
+        <GridBackground pattern="lines" opacity={0.03} />
 
-        <div className="max-w-[1600px] mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="max-w-[1600px] mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left: Text Content */}
-          <div className="order-2 lg:order-1">
+          <div className="order-2 lg:order-1 relative z-10">
             <motion.div {...getAnimation()}>
               <div className="flex items-center gap-3 mb-8">
-                <div className="h-px w-12 bg-black/20" />
-                <TechLabel className="!text-black/60">Precision Distribution Infrastructure</TechLabel>
+                <div className="h-px w-12 bg-safety-orange" />
+                <TechLabel className="!text-gray-600 font-medium">Precision Distribution Infrastructure</TechLabel>
               </div>
             </motion.div>
             
             <motion.h1
               {...getAnimation(0.1)}
-              className="text-6xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-[-0.03em] mb-8 text-gray-900"
+              className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-tight mb-8 text-gray-900"
             >
               High Integrity{" "}
-              <span className="block mt-2 bg-gradient-to-r from-gray-900 via-gray-700 to-gray-900 bg-clip-text text-transparent">
+              <span className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-gray-900 via-gray-700 to-gray-900">
                 Aerospace Hardware
               </span>
             </motion.h1>
             
             <motion.div
               {...getAnimation(0.2)}
-              className="space-y-8"
+              className="space-y-10"
             >
-              <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-lg">
+              <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-xl">
                 AS9100 Rev. D certified distributor of precision aerospace fasteners since 1979. Serving 300+ commercial and military customers worldwide with complete material traceability.
               </p>
 
               {/* Key Features */}
-              <div className="grid grid-cols-3 gap-4 max-w-lg">
-                <div className="flex flex-col items-start gap-2 p-4 border border-black/10 rounded-sm bg-white shadow-sm hover:shadow-md transition-shadow">
-                  <Shield className="w-5 h-5 text-black" />
-                  <div className="text-xs font-mono font-semibold">AS9100D</div>
-                  <div className="text-[10px] text-gray-500 uppercase tracking-wider">Certified</div>
+              <div className="grid grid-cols-3 gap-6 max-w-lg">
+                <div className="flex flex-col items-start gap-3 p-5 border border-gray-200 rounded-lg bg-white shadow-sm hover:shadow-md transition-all duration-300 group">
+                  <CertifiedIcon className="w-8 h-8 text-gray-900 group-hover:text-safety-orange transition-colors" />
+                  <div>
+                    <div className="text-sm font-mono font-bold text-gray-900">AS9100D</div>
+                    <div className="text-[10px] text-gray-500 uppercase tracking-wider font-medium">Certified</div>
+                  </div>
                 </div>
-                <div className="flex flex-col items-start gap-2 p-4 border border-black/10 rounded-sm bg-white shadow-sm hover:shadow-md transition-shadow">
-                  <Zap className="w-5 h-5 text-black" />
-                  <div className="text-xs font-mono font-semibold">24-48h</div>
-                  <div className="text-[10px] text-gray-500 uppercase tracking-wider">Delivery</div>
+                <div className="flex flex-col items-start gap-3 p-5 border border-gray-200 rounded-lg bg-white shadow-sm hover:shadow-md transition-all duration-300 group">
+                  <DeliveryIcon className="w-8 h-8 text-gray-900 group-hover:text-safety-orange transition-colors" />
+                  <div>
+                    <div className="text-sm font-mono font-bold text-gray-900">24-48h</div>
+                    <div className="text-[10px] text-gray-500 uppercase tracking-wider font-medium">Delivery</div>
+                  </div>
                 </div>
-                <div className="flex flex-col items-start gap-2 p-4 border border-black/10 rounded-sm bg-white shadow-sm hover:shadow-md transition-shadow">
-                  <Package className="w-5 h-5 text-black" />
-                  <div className="text-xs font-mono font-semibold">300+</div>
-                  <div className="text-[10px] text-gray-500 uppercase tracking-wider">Customers</div>
+                <div className="flex flex-col items-start gap-3 p-5 border border-gray-200 rounded-lg bg-white shadow-sm hover:shadow-md transition-all duration-300 group">
+                  <CustomersIcon className="w-8 h-8 text-gray-900 group-hover:text-safety-orange transition-colors" />
+                  <div>
+                    <div className="text-sm font-mono font-bold text-gray-900">300+</div>
+                    <div className="text-[10px] text-gray-500 uppercase tracking-wider font-medium">Customers</div>
+                  </div>
                 </div>
               </div>
 
@@ -96,7 +105,7 @@ export const Home = () => {
               <div className="flex flex-col sm:flex-row gap-4">
                 <button 
                   onClick={() => navigate('/catalog')}
-                  className="group bg-black text-white px-10 py-5 text-xs font-bold uppercase tracking-[0.2em] hover:bg-gray-900 transition-all rounded-sm shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+                  className="group bg-gray-900 text-white px-8 py-4 text-sm font-bold uppercase tracking-widest hover:bg-black transition-all rounded-md shadow-lg hover:shadow-xl flex items-center justify-center gap-3"
                 >
                   View Catalog
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -223,199 +232,8 @@ export const Home = () => {
         </div>
       </section>
 
-      {/* Supply Chain Excellence - Redesigned */}
-      <section className="relative py-40 px-6 md:px-8 bg-white overflow-hidden">
-        {/* Diagonal lines background */}
-        <GridBackground pattern="diagonal" opacity={0.015} />
-        
-        <div className="max-w-[1600px] mx-auto relative">
-          <motion.div 
-            {...getAnimation()}
-            viewport={{ once: true, margin: "-100px" }}
-            className="text-center mb-24"
-          >
-            <div className="flex items-center justify-center gap-4 mb-10">
-              <div className="h-px w-16 bg-black/20" />
-              <TechLabel>Our Process</TechLabel>
-              <div className="h-px w-16 bg-black/20" />
-            </div>
-            <h2 className="text-5xl md:text-7xl font-bold tracking-[-0.02em] mb-6 leading-[0.95]">
-              Supply Chain
-              <br />
-              <span className="text-black/30">Excellence</span>
-            </h2>
-            <p className="text-base text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Precision sourcing, rigorous quality control, and rapid logistics for mission-critical aerospace operations.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-px bg-black">
-            {[
-              {
-                num: "01",
-                title: "Intelligent Sourcing",
-                desc: "Direct access to certified manufacturers ensuring authentic, traceable components for every specification.",
-                features: ["Approved Vendor Management", "Real-Time Stock Visibility", "24/7 AOG Emergency Support"]
-              },
-              {
-                num: "02",
-                title: "Rigorous Quality Control",
-                desc: "AS9100 Rev. D certified inspection with complete documentation and material certifications for full traceability.",
-                features: ["Certificate of Conformance", "Material Test Reports", "First Article Inspection"]
-              },
-              {
-                num: "03",
-                title: "Precision Logistics",
-                desc: "Climate-controlled storage with premium carrier partnerships enabling rapid turnaround for time-sensitive programs.",
-                features: ["Same-Day Shipping", "Temperature Control", "Custom Kitting"]
-              }
-            ].map((capability, i) => (
-              <motion.div
-                key={i}
-                {...getAnimation(i * 0.1)}
-                viewport={{ once: true, margin: "-100px" }}
-                className="group relative bg-white p-12 md:p-16 hover:bg-black hover:text-white transition-all duration-500"
-              >
-                {/* Number Badge */}
-                <div className="mb-12">
-                  <div className="inline-flex items-center justify-center w-20 h-20 border-2 border-black group-hover:border-white group-hover:bg-white group-hover:text-black transition-all duration-500">
-                    <span className="font-mono text-3xl font-bold">{capability.num}</span>
-                  </div>
-                </div>
-                
-                <h3 className="text-2xl md:text-3xl font-bold mb-5 tracking-tight leading-tight">
-                  {capability.title}
-                </h3>
-                
-                <p className="text-sm leading-relaxed mb-10 opacity-70">
-                  {capability.desc}
-                </p>
-                
-                {/* Features */}
-                <div className="space-y-4 pt-8 border-t border-black/10 group-hover:border-white/20">
-                  {capability.features.map((feature, idx) => (
-                    <div
-                      key={idx}
-                      className="flex items-center gap-3"
-                    >
-                      <div className="w-1.5 h-1.5 bg-black group-hover:bg-white rounded-full transition-colors" />
-                      <span className="text-sm font-medium tracking-wide">{feature}</span>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Hover indicator */}
-                <div className="absolute bottom-16 right-16 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-x-4 group-hover:translate-x-0">
-                  <ArrowRight className="w-6 h-6" />
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          <motion.div
-            {...getAnimation(0.3)}
-            viewport={{ once: true }}
-            className="text-center mt-16"
-          >
-            <button
-              onClick={() => navigate('/services')}
-              className="group inline-flex items-center gap-4 bg-black text-white px-12 py-6 text-xs font-bold uppercase tracking-[0.2em] hover:bg-gray-900 transition-all"
-            >
-              Explore All Services
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
-            </button>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Industries Served - Redesigned */}
-      <section className="relative py-40 px-6 md:px-8 bg-black text-white overflow-hidden">
-        {/* Radial gradient overlay */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(255,255,255,0.05),transparent_50%)]" />
-        
-        <div className="max-w-[1600px] mx-auto relative">
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 lg:gap-20 items-center mb-24">
-            <motion.div 
-              {...getAnimation()}
-              viewport={{ once: true, margin: "-100px" }}
-              className="lg:col-span-2"
-            >
-              <div className="flex items-center gap-4 mb-10">
-                <div className="h-px w-12 bg-white/30" />
-                <TechLabel className="!text-white/50">Market Reach</TechLabel>
-              </div>
-              <h2 className="text-5xl md:text-6xl font-bold tracking-[-0.02em] mb-8 leading-[0.95]">
-                Critical Missions
-                <br />
-                <span className="text-white/30">Global Impact</span>
-              </h2>
-              <p className="text-base text-white/60 leading-relaxed mb-12">
-                From commercial aviation to defense programs—trusted by the aerospace industry for precision fasteners that meet the highest standards.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <button 
-                  onClick={() => navigate('/about')}
-                  className="group bg-white text-black px-10 py-5 text-xs font-bold uppercase tracking-[0.2em] hover:bg-white/90 transition-all flex items-center justify-center gap-3"
-                >
-                  Our Story
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </button>
-                <button 
-                  onClick={() => navigate('/contact')}
-                  className="border-2 border-white text-white px-10 py-5 text-xs font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all"
-                >
-                  Get in Touch
-                </button>
-              </div>
-            </motion.div>
-
-            <div className="lg:col-span-3 grid grid-cols-2 gap-px bg-white/10">
-              {[
-                { title: "Commercial Aviation", desc: "Airlines & OEMs", highlight: "Major carriers" },
-                { title: "Defense & Military", desc: "DoD Contractors", highlight: "ITAR compliant" },
-                { title: "Space & Satellite", desc: "Launch Systems", highlight: "Mission-critical" },
-                { title: "MRO & Repair", desc: "Maintenance Ops", highlight: "AOG 24/7" }
-              ].map((industry, i) => (
-                <motion.div
-                  key={i}
-                  {...getAnimation(i * 0.08)}
-                  viewport={{ once: true, margin: "-80px" }}
-                  className="group bg-black p-10 md:p-12 hover:bg-white hover:text-black transition-all duration-500"
-                >
-                  <div className="mb-8">
-                    <div className="w-12 h-12 border-2 border-white group-hover:border-black group-hover:bg-black group-hover:text-white transition-all duration-500 flex items-center justify-center">
-                      <span className="text-2xl font-mono font-bold">{String(i + 1).padStart(2, '0')}</span>
-                    </div>
-                  </div>
-                  <h4 className="text-2xl font-bold mb-3 tracking-tight">{industry.title}</h4>
-                  <p className="text-sm opacity-60 mb-6">{industry.desc}</p>
-                  <div className="pt-6 border-t border-white/20 group-hover:border-black/20 transition-colors">
-                    <p className="text-xs font-bold uppercase tracking-[0.15em] opacity-50">{industry.highlight}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-          {/* Stats Bar */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-white/10">
-            {[
-              { value: "300+", label: "Active Customers" },
-              { value: "45+", label: "Years Experience" },
-              { value: "99.9%", label: "On-Time Delivery" },
-              { value: "34,000+", label: "Sq Ft Facility" }
-            ].map((stat, i) => (
-              <div
-                key={i}
-                className="bg-black p-12 text-center hover:bg-white hover:text-black transition-all duration-500"
-              >
-                <div className="text-4xl md:text-5xl font-mono font-bold mb-3">{stat.value}</div>
-                <div className="text-xs opacity-50 uppercase tracking-[0.15em]">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ProcessTimeline />
+      <IndustriesGrid />
 
       {/* Certifications - Redesigned */}
       <section className="relative py-40 px-6 md:px-8 bg-white overflow-hidden">

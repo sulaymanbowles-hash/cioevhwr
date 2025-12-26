@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, X, ArrowRight, TrendingUp } from "lucide-react";
+import { Search, X, ArrowRight, TrendingUp, Command, ArrowUp, ArrowDown, CornerDownLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { allProducts } from "../../lib/products";
 
 interface SearchResult {
   partNumber: string;
@@ -65,22 +66,26 @@ export const QuickSearch = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isOpen]);
 
-  // Mock search - in production, this would query your product database
+  // Real search using allProducts
   useEffect(() => {
     if (searchTerm.length > 1) {
-      // Simulate API call
-      const mockResults: SearchResult[] = [
-        { partNumber: "MS21042-4", title: "Self-Locking Nut Aluminum", category: "Nuts", slug: "ms21042-4" },
-        { partNumber: "AN310-4", title: "Castle Nut", category: "Nuts", slug: "an310-4" },
-        { partNumber: "NAS1003-4", title: "Hex Bolt", category: "Bolts", slug: "nas1003-4" },
-        { partNumber: "MS24665-4", title: "Cotter Pin", category: "Pins", slug: "ms24665-4" },
-        { partNumber: "MS16555-100", title: "Dowel Pin Hardened", category: "Pins", slug: "ms16555-100" },
-      ].filter(item => 
-        item.partNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.title.toLowerCase().includes(searchTerm.toLowerCase())
-      );
+      const searchLower = searchTerm.toLowerCase();
+      const filteredResults: SearchResult[] = allProducts
+        .filter(item => 
+          item.partNumber.toLowerCase().includes(searchLower) ||
+          item.title.toLowerCase().includes(searchLower) ||
+          item.description.toLowerCase().includes(searchLower) ||
+          item.category.toLowerCase().includes(searchLower)
+        )
+        .slice(0, 10) // Limit to 10 results
+        .map(item => ({
+          partNumber: item.partNumber,
+          title: item.title,
+          category: item.category,
+          slug: item.slug
+        }));
       
-      setResults(mockResults);
+      setResults(filteredResults);
       setSelectedIndex(0);
     } else {
       setResults([]);
@@ -120,7 +125,7 @@ export const QuickSearch = () => {
         <Search className="w-4 h-4 text-gray-400 group-hover:text-gray-600 transition-colors" />
         <span className="text-sm text-gray-500">Quick search...</span>
         <kbd className="hidden lg:inline-flex items-center gap-1 px-2 py-1 text-xs font-mono text-gray-500 bg-gray-100 border border-gray-200 rounded">
-          <span className="text-xs">⌘</span>K
+          <Command className="w-3 h-3" />K
         </kbd>
       </button>
 
@@ -254,20 +259,20 @@ export const QuickSearch = () => {
                 <div className="flex items-center justify-between p-3 border-t border-gray-200 bg-gray-50">
                   <div className="flex items-center gap-4 text-xs text-gray-500">
                     <div className="flex items-center gap-1">
-                      <kbd className="px-1.5 py-0.5 bg-white border border-gray-200 rounded text-xs">↑</kbd>
-                      <kbd className="px-1.5 py-0.5 bg-white border border-gray-200 rounded text-xs">↓</kbd>
+                      <kbd className="px-1.5 py-0.5 bg-white border border-gray-200 rounded text-xs flex items-center justify-center"><ArrowUp className="w-3 h-3" /></kbd>
+                      <kbd className="px-1.5 py-0.5 bg-white border border-gray-200 rounded text-xs flex items-center justify-center"><ArrowDown className="w-3 h-3" /></kbd>
                       <span>to navigate</span>
                     </div>
                     <div className="flex items-center gap-1">
-                      <kbd className="px-1.5 py-0.5 bg-white border border-gray-200 rounded text-xs">↵</kbd>
+                      <kbd className="px-1.5 py-0.5 bg-white border border-gray-200 rounded text-xs flex items-center justify-center"><CornerDownLeft className="w-3 h-3" /></kbd>
                       <span>to select</span>
                     </div>
                   </div>
                   <button
                     onClick={() => navigate('/catalog')}
-                    className="text-xs font-semibold text-gray-900 hover:text-black transition-colors"
+                    className="text-xs font-semibold text-gray-900 hover:text-black transition-colors flex items-center gap-1"
                   >
-                    View All Products →
+                    View All Products <ArrowRight className="w-3 h-3" />
                   </button>
                 </div>
               </div>

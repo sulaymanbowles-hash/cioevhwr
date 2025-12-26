@@ -14,10 +14,10 @@ export const Footer = () => {
             </p>
             <div className="flex space-x-4">
               <div className="w-12 h-12 border border-gray-800 flex items-center justify-center grayscale opacity-50">
-                <TechLabel className="!text-[8px]">ISO</TechLabel>
+                <TechLabel className="!text-[10px]">ISO</TechLabel>
               </div>
               <div className="w-12 h-12 border border-gray-800 flex items-center justify-center grayscale opacity-50">
-                <TechLabel className="!text-[8px]">AS</TechLabel>
+                <TechLabel className="!text-[10px]">AS</TechLabel>
               </div>
             </div>
           </div>
@@ -66,9 +66,9 @@ export const Footer = () => {
           </div>
         </div>
         <div className="flex flex-col md:flex-row justify-between items-center pt-12 border-t border-gray-900 gap-6">
-          <div className="flex flex-col md:flex-row md:space-x-8 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-gray-700 text-center md:text-left">
-            <span>© 2025 Aerospace Fasteners Inc.</span>
-            <span className="hidden md:inline">•</span>
+          <div className="flex flex-col md:flex-row md:space-x-8 text-[0.65rem] font-bold uppercase tracking-[0.25em] text-gray-700 text-center md:text-left items-center">
+            <span>&copy; 2025 Aerospace Fasteners Inc.</span>
+            <span className="hidden md:inline-block w-1 h-1 bg-gray-800 rounded-full"></span>
             <span>All Rights Reserved</span>
           </div>
           <div className="flex space-x-8 text-[10px] uppercase tracking-widest text-gray-500">

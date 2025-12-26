@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { TechLabel } from "../components/ui/TechLabel";
-import { Shield, FileText, Globe, AlertTriangle, CheckCircle, Lock } from "lucide-react";
+import { Shield, FileText, Globe, AlertTriangle, CheckCircle, Lock, X } from "lucide-react";
 
 export const ITARCompliance = () => {
   return (
@@ -94,11 +94,11 @@ export const ITARCompliance = () => {
                     Registration & Licensing
                   </h3>
                   <ul className="space-y-3 text-gray-700 ml-9">
-                    <li>• Active registration with U.S. Department of State DDTC</li>
-                    <li>• Maintained since 2008 with annual renewals</li>
-                    <li>• Technical Assistance Agreements (TAA) management</li>
-                    <li>• Manufacturing License Agreements (MLA) tracking</li>
-                    <li>• Export license application support</li>
+                    <li className="flex items-start"><span className="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mr-3 mt-2 flex-shrink-0"></span>Active registration with U.S. Department of State DDTC</li>
+                    <li className="flex items-start"><span className="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mr-3 mt-2 flex-shrink-0"></span>Maintained since 2008 with annual renewals</li>
+                    <li className="flex items-start"><span className="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mr-3 mt-2 flex-shrink-0"></span>Technical Assistance Agreements (TAA) management</li>
+                    <li className="flex items-start"><span className="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mr-3 mt-2 flex-shrink-0"></span>Manufacturing License Agreements (MLA) tracking</li>
+                    <li className="flex items-start"><span className="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mr-3 mt-2 flex-shrink-0"></span>Export license application support</li>
                   </ul>
                 </div>
 
@@ -108,11 +108,11 @@ export const ITARCompliance = () => {
                     Personnel Screening
                   </h3>
                   <ul className="space-y-3 text-gray-700 ml-9">
-                    <li>• U.S. Person verification for all employees with ITAR access</li>
-                    <li>• Background checks and security clearances where required</li>
-                    <li>• Annual ITAR training for relevant personnel</li>
-                    <li>• Foreign Person access restrictions and documentation</li>
-                    <li>• Non-disclosure agreements for all staff</li>
+                    <li className="flex items-start"><span className="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mr-3 mt-2 flex-shrink-0"></span>U.S. Person verification for all employees with ITAR access</li>
+                    <li className="flex items-start"><span className="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mr-3 mt-2 flex-shrink-0"></span>Background checks and security clearances where required</li>
+                    <li className="flex items-start"><span className="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mr-3 mt-2 flex-shrink-0"></span>Annual ITAR training for relevant personnel</li>
+                    <li className="flex items-start"><span className="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mr-3 mt-2 flex-shrink-0"></span>Foreign Person access restrictions and documentation</li>
+                    <li className="flex items-start"><span className="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mr-3 mt-2 flex-shrink-0"></span>Non-disclosure agreements for all staff</li>
                   </ul>
                 </div>
 
@@ -122,11 +122,11 @@ export const ITARCompliance = () => {
                     Physical Security Measures
                   </h3>
                   <ul className="space-y-3 text-gray-700 ml-9">
-                    <li>• Segregated storage areas for ITAR-controlled items</li>
-                    <li>• 24/7 surveillance and alarm systems</li>
-                    <li>• Biometric access control for restricted areas</li>
-                    <li>• Visitor escort requirements and documentation</li>
-                    <li>• Regular security audits and assessments</li>
+                    <li className="flex items-start"><span className="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mr-3 mt-2 flex-shrink-0"></span>Segregated storage areas for ITAR-controlled items</li>
+                    <li className="flex items-start"><span className="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mr-3 mt-2 flex-shrink-0"></span>24/7 surveillance and alarm systems</li>
+                    <li className="flex items-start"><span className="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mr-3 mt-2 flex-shrink-0"></span>Biometric access control for restricted areas</li>
+                    <li className="flex items-start"><span className="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mr-3 mt-2 flex-shrink-0"></span>Visitor escort requirements and documentation</li>
+                    <li className="flex items-start"><span className="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mr-3 mt-2 flex-shrink-0"></span>Regular security audits and assessments</li>
                   </ul>
                 </div>
 
@@ -136,11 +136,11 @@ export const ITARCompliance = () => {
                     Information Security
                   </h3>
                   <ul className="space-y-3 text-gray-700 ml-9">
-                    <li>• Encrypted systems for technical data storage and transmission</li>
-                    <li>• Network isolation for ITAR-sensitive information</li>
-                    <li>• Secure email and file transfer protocols</li>
-                    <li>• Data loss prevention (DLP) systems</li>
-                    <li>• Regular cybersecurity assessments</li>
+                    <li className="flex items-start"><span className="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mr-3 mt-2 flex-shrink-0"></span>Encrypted systems for technical data storage and transmission</li>
+                    <li className="flex items-start"><span className="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mr-3 mt-2 flex-shrink-0"></span>Network isolation for ITAR-sensitive information</li>
+                    <li className="flex items-start"><span className="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mr-3 mt-2 flex-shrink-0"></span>Secure email and file transfer protocols</li>
+                    <li className="flex items-start"><span className="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mr-3 mt-2 flex-shrink-0"></span>Data loss prevention (DLP) systems</li>
+                    <li className="flex items-start"><span className="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mr-3 mt-2 flex-shrink-0"></span>Regular cybersecurity assessments</li>
                   </ul>
                 </div>
 
@@ -150,11 +150,11 @@ export const ITARCompliance = () => {
                     Export Control Procedures
                   </h3>
                   <ul className="space-y-3 text-gray-700 ml-9">
-                    <li>• Automated screening of all orders for ITAR classification</li>
-                    <li>• End-user verification and certification requirements</li>
-                    <li>• Export license determination and application support</li>
-                    <li>• Denied parties list (DPL) screening</li>
-                    <li>• Destination control statements on all shipments</li>
+                    <li className="flex items-start"><span className="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mr-3 mt-2 flex-shrink-0"></span>Automated screening of all orders for ITAR classification</li>
+                    <li className="flex items-start"><span className="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mr-3 mt-2 flex-shrink-0"></span>End-user verification and certification requirements</li>
+                    <li className="flex items-start"><span className="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mr-3 mt-2 flex-shrink-0"></span>Export license determination and application support</li>
+                    <li className="flex items-start"><span className="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mr-3 mt-2 flex-shrink-0"></span>Denied parties list (DPL) screening</li>
+                    <li className="flex items-start"><span className="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mr-3 mt-2 flex-shrink-0"></span>Destination control statements on all shipments</li>
                   </ul>
                 </div>
 
@@ -164,11 +164,11 @@ export const ITARCompliance = () => {
                     Record Keeping & Auditing
                   </h3>
                   <ul className="space-y-3 text-gray-700 ml-9">
-                    <li>• 5-year retention of all ITAR-related documentation</li>
-                    <li>• Complete chain of custody tracking</li>
-                    <li>• Electronic audit trail for all transactions</li>
-                    <li>• Annual internal ITAR compliance audits</li>
-                    <li>• Ready for government inspection at any time</li>
+                    <li className="flex items-start"><span className="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mr-3 mt-2 flex-shrink-0"></span>5-year retention of all ITAR-related documentation</li>
+                    <li className="flex items-start"><span className="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mr-3 mt-2 flex-shrink-0"></span>Complete chain of custody tracking</li>
+                    <li className="flex items-start"><span className="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mr-3 mt-2 flex-shrink-0"></span>Electronic audit trail for all transactions</li>
+                    <li className="flex items-start"><span className="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mr-3 mt-2 flex-shrink-0"></span>Annual internal ITAR compliance audits</li>
+                    <li className="flex items-start"><span className="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mr-3 mt-2 flex-shrink-0"></span>Ready for government inspection at any time</li>
                   </ul>
                 </div>
               </div>
@@ -185,23 +185,23 @@ export const ITARCompliance = () => {
               </p>
               <ul className="space-y-3 text-red-800">
                 <li className="flex items-start">
-                  <span className="font-bold mr-2">×</span>
+                  <X className="w-4 h-4 text-red-600 mr-2 mt-1 flex-shrink-0" />
                   <span>Export or re-export of ITAR-controlled items without proper licenses</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="font-bold mr-2">×</span>
+                  <X className="w-4 h-4 text-red-600 mr-2 mt-1 flex-shrink-0" />
                   <span>Disclosure of technical data to foreign persons</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="font-bold mr-2">×</span>
+                  <X className="w-4 h-4 text-red-600 mr-2 mt-1 flex-shrink-0" />
                   <span>Shipment to embargoed countries or denied parties</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="font-bold mr-2">×</span>
+                  <X className="w-4 h-4 text-red-600 mr-2 mt-1 flex-shrink-0" />
                   <span>Brokering activities without proper registration</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="font-bold mr-2">×</span>
+                  <X className="w-4 h-4 text-red-600 mr-2 mt-1 flex-shrink-0" />
                   <span>Unauthorized reproduction or retransmission of technical documentation</span>
                 </li>
               </ul>
