@@ -1,23 +1,24 @@
 import { TechLabel } from "../components/ui/TechLabel";
-import { 
-  Package, 
-  Shield, 
-  Truck, 
-  Clock, 
-  Search,
-  Zap,
-  BarChart,
-  Users,
-  ArrowRight
-} from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { TechnicalBorder } from "../components/ui/TechnicalBorder";
+import { 
+  LogisticsIcon, 
+  QualityIcon, 
+  SourcingIcon, 
+  AviationIcon, 
+  DeliveryIcon,
+  MROIcon,
+  CustomersIcon
+} from "../components/ui/TechnicalIcons";
+import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 
 export const Services = () => {
   const navigate = useNavigate();
 
   const services = [
     {
-      icon: Package,
+      icon: LogisticsIcon,
       title: "Inventory Management Solutions",
       description: "Comprehensive VMI, kitting, and consignment programs tailored to your operational needs.",
       features: [
@@ -29,7 +30,7 @@ export const Services = () => {
       ]
     },
     {
-      icon: Shield,
+      icon: QualityIcon,
       title: "Quality Assurance & Traceability",
       description: "Full material traceability and documentation for every component we supply.",
       features: [
@@ -41,7 +42,7 @@ export const Services = () => {
       ]
     },
     {
-      icon: Search,
+      icon: SourcingIcon,
       title: "Custom Sourcing Services",
       description: "Can't find what you need? Our sourcing team has access to 150,000+ SKUs worldwide.",
       features: [
@@ -53,7 +54,7 @@ export const Services = () => {
       ]
     },
     {
-      icon: Truck,
+      icon: DeliveryIcon,
       title: "Logistics & Distribution",
       description: "Flexible shipping options with same-day service available for time-critical orders.",
       features: [
@@ -65,7 +66,7 @@ export const Services = () => {
       ]
     },
     {
-      icon: Clock,
+      icon: AviationIcon,
       title: "24/7 AOG Support",
       description: "Aircraft On Ground situations demand immediate response. We're here around the clock.",
       features: [
@@ -77,7 +78,7 @@ export const Services = () => {
       ]
     },
     {
-      icon: BarChart,
+      icon: MROIcon,
       title: "Supply Chain Analytics",
       description: "Data-driven insights to optimize your procurement and reduce costs.",
       features: [
@@ -117,56 +118,71 @@ export const Services = () => {
     <div className="min-h-screen pt-24 pb-20 bg-white">
       {/* Hero Section - Redesigned */}
       <section className="relative py-40 px-6 md:px-8 bg-black text-white overflow-hidden">
-        <div 
-          className="absolute inset-0 opacity-[0.03]"
-          style={{ 
-            backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', 
-            backgroundSize: '100px 100px' 
-          }} 
-        />
+        {/* Subtle gradient background instead of grid */}
+        <div className="absolute inset-0 bg-gradient-to-b from-gray-900 to-black opacity-50" />
         
-        <div className="max-w-[1600px] mx-auto relative">
+        <div className="max-w-[1600px] mx-auto relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="flex items-center justify-center gap-4 mb-10">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="flex items-center justify-center gap-4 mb-10"
+            >
               <div className="h-px w-16 bg-white/30" />
               <TechLabel className="!text-white/50">Comprehensive Services</TechLabel>
               <div className="h-px w-16 bg-white/30" />
-            </div>
-            <h1 className="text-6xl md:text-7xl font-bold tracking-[-0.02em] mb-10 leading-[0.95]">
+            </motion.div>
+            <motion.h1 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-6xl md:text-7xl font-bold tracking-[-0.02em] mb-10 leading-[0.95]"
+            >
               End-to-End
               <br />
               <span className="text-white/40">Aerospace Solutions</span>
-            </h1>
-            <p className="text-lg md:text-xl text-white/60 leading-relaxed max-w-3xl mx-auto">
+            </motion.h1>
+            <motion.p 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-lg md:text-xl text-white/60 leading-relaxed max-w-3xl mx-auto"
+            >
               More than distribution—we're your strategic partner in aerospace supply chain excellence.
-            </p>
+            </motion.p>
           </div>
         </div>
       </section>
 
       {/* Services Grid - Redesigned */}
-      <section className="relative py-40 px-6 md:px-8">
+      <section className="relative py-24 px-6 md:px-8 bg-gray-50">
         <div className="max-w-[1600px] mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-black">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, i) => (
-              <div
+              <motion.div
                 key={i}
-                className="group bg-white p-12 hover:bg-black hover:text-white transition-all duration-700"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
               >
-                <div className="w-16 h-16 border-2 border-black group-hover:border-white transition-colors duration-700 flex items-center justify-center mb-8">
-                  <service.icon className="w-8 h-8" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4 tracking-tight leading-tight">{service.title}</h3>
-                <p className="opacity-70 mb-8 leading-relaxed">{service.description}</p>
-                <div className="space-y-3 pt-6 border-t border-black/10 group-hover:border-white/20">
-                  {service.features.map((feature, j) => (
-                    <div key={j} className="flex items-start gap-3 text-sm">
-                      <div className="w-1.5 h-1.5 bg-black group-hover:bg-white rounded-full mt-1.5 flex-shrink-0" />
-                      <span>{feature}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
+                <TechnicalBorder className="bg-white p-10 h-full hover:shadow-xl transition-all group">
+                  <div className="w-16 h-16 text-gray-900 group-hover:text-black transition-colors mb-8">
+                    <service.icon className="w-full h-full" />
+                  </div>
+                  <h3 className="text-2xl font-bold mb-4 tracking-tight leading-tight">{service.title}</h3>
+                  <p className="text-gray-600 mb-8 leading-relaxed">{service.description}</p>
+                  <div className="space-y-3 pt-6 border-t border-gray-100">
+                    {service.features.map((feature, j) => (
+                      <div key={j} className="flex items-start gap-3 text-sm text-gray-500">
+                        <div className="w-1.5 h-1.5 bg-black rounded-full mt-1.5 flex-shrink-0" />
+                        <span>{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+                </TechnicalBorder>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -174,14 +190,10 @@ export const Services = () => {
 
       {/* Process Section - Redesigned */}
       <section className="relative py-40 px-6 md:px-8 bg-black text-white overflow-hidden">
-        <div 
-          className="absolute inset-0 opacity-[0.015]"
-          style={{ 
-            backgroundImage: 'repeating-linear-gradient(45deg, #fff, #fff 1px, transparent 1px, transparent 60px)',
-          }} 
-        />
+        {/* Subtle gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-black opacity-50" />
         
-        <div className="max-w-[1400px] mx-auto relative">
+        <div className="max-w-[1400px] mx-auto relative z-10">
           <div className="text-center mb-32">
             <div className="flex items-center justify-center gap-4 mb-10">
               <div className="h-px w-16 bg-white/30" />
@@ -217,14 +229,6 @@ export const Services = () => {
 
       {/* Value Props - Redesigned */}
       <section className="relative py-40 px-6 md:px-8 bg-white">
-        <div 
-          className="absolute inset-0 opacity-[0.02]"
-          style={{ 
-            backgroundImage: 'radial-gradient(circle, #000 1px, transparent 1px)', 
-            backgroundSize: '40px 40px' 
-          }} 
-        />
-        
         <div className="max-w-[1600px] mx-auto relative">
           <div className="text-center mb-32">
             <div className="flex items-center justify-center gap-4 mb-10">
@@ -239,40 +243,45 @@ export const Services = () => {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-black">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                icon: Zap,
+                icon: DeliveryIcon,
                 title: "Speed",
                 stat: "Same-Day",
                 desc: "Shipping available on most in-stock items for emergency needs"
               },
               {
-                icon: Shield,
+                icon: QualityIcon,
                 title: "Quality",
                 stat: "99.8%",
                 desc: "Quality acceptance rate across all shipments in 2024"
               },
               {
-                icon: Users,
+                icon: CustomersIcon,
                 title: "Expertise",
                 stat: "150+",
                 desc: "Years of combined aerospace experience on our team"
               }
             ].map((prop, i) => (
-              <div
+              <motion.div
                 key={i}
-                className="group bg-white p-16 hover:bg-black hover:text-white transition-all duration-700 text-center"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
               >
-                <div className="w-20 h-20 border-2 border-black group-hover:border-white transition-colors duration-700 flex items-center justify-center mx-auto mb-10">
-                  <prop.icon className="w-10 h-10" />
-                </div>
-                <h3 className="text-lg font-semibold uppercase tracking-wider mb-4 opacity-70">
-                  {prop.title}
-                </h3>
-                <div className="text-5xl font-bold mb-6">{prop.stat}</div>
-                <p className="opacity-60 leading-relaxed">{prop.desc}</p>
-              </div>
+                <TechnicalBorder className="bg-white p-12 text-center hover:shadow-lg transition-all h-full group">
+                  <div className="w-20 h-20 text-gray-900 group-hover:text-black transition-colors mx-auto mb-8">
+                    <prop.icon className="w-full h-full" />
+                  </div>
+                  <h3 className="text-lg font-bold uppercase tracking-wider mb-4 text-gray-500">
+                    {prop.title}
+                  </h3>
+                  <div className="text-5xl font-bold mb-6 text-gray-900">{prop.stat}</div>
+                  <p className="text-gray-600 leading-relaxed">{prop.desc}</p>
+                </TechnicalBorder>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -318,14 +327,7 @@ export const Services = () => {
 
       {/* CTA Section - Redesigned */}
       <section className="relative py-40 px-6 md:px-8 bg-white overflow-hidden">
-        <div 
-          className="absolute inset-0 opacity-[0.015]"
-          style={{ 
-            backgroundImage: 'repeating-linear-gradient(45deg, #000, #000 1px, transparent 1px, transparent 60px)',
-          }} 
-        />
-        
-        <div className="max-w-[1200px] mx-auto text-center relative">
+        <div className="max-w-[1200px] mx-auto text-center relative z-10">
           <div className="flex items-center justify-center gap-4 mb-10">
             <div className="h-px w-16 bg-black/20" />
             <TechLabel>Get Started</TechLabel>

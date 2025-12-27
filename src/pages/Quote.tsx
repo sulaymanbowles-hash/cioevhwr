@@ -1,8 +1,9 @@
+import { QuoteSearch } from "../components/quote/QuoteSearch";
 import { motion, AnimatePresence } from "framer-motion";
 import { TechLabel } from "../components/ui/TechLabel";
 import { useQuoteStore } from "../stores/quoteStore";
 import { useNavigate } from "react-router-dom";
-import { Trash2, Plus, Minus, Send, ArrowLeft, X } from "lucide-react";
+import { Trash2, Plus, Minus, ArrowLeft, X, ChevronRight } from "lucide-react";
 import { useState } from "react";
 import { LogisticsIcon, CertifiedIcon } from "../components/ui/TechnicalIcons";
 import { TechnicalBorder } from "../components/ui/TechnicalBorder";
@@ -50,7 +51,7 @@ export const Quote = () => {
   }
 
   return (
-    <div className="min-h-screen pt-24 pb-20 bg-gradient-to-br from-gray-50 via-white to-gray-50">
+    <div className="min-h-screen pt-24 pb-20 bg-gradient-to-br from-gray-50 via-white to-gray-50 relative overflow-x-hidden">
       <div className="max-w-[1400px] mx-auto px-6 md:px-8">
         {/* Header */}
         <div className="mb-12">
@@ -69,11 +70,19 @@ export const Quote = () => {
             <h1 className="text-5xl md:text-6xl font-bold tracking-tight mb-4">
               Your RFQ Cart
             </h1>
-            <p className="text-lg text-gray-600">
-              {items.length} {items.length === 1 ? 'item' : 'items'} ready for quote
-            </p>
+            <div className="flex items-center gap-6 text-lg text-gray-600">
+              <p>
+                <span className="font-bold text-black">{items.length}</span> {items.length === 1 ? 'line item' : 'line items'}
+              </p>
+              <div className="w-1 h-1 bg-gray-300 rounded-full" />
+              <p>
+                <span className="font-bold text-black">{items.reduce((acc, item) => acc + item.quantity, 0)}</span> total units
+              </p>
+            </div>
           </motion.div>
         </div>
+
+        <QuoteSearch />
 
         {items.length === 0 ? (
           <motion.div
@@ -136,9 +145,18 @@ export const Quote = () => {
                               >
                                 <Minus className="w-3 h-3" />
                               </button>
-                              <span className="w-16 text-center font-mono font-bold text-sm">
-                                {item.quantity}
-                              </span>
+                              <input
+                                type="number"
+                                min="1"
+                                value={item.quantity}
+                                onChange={(e) => {
+                                  const val = parseInt(e.target.value);
+                                  if (!isNaN(val) && val > 0) {
+                                    updateQuantity(item.partNumber, val);
+                                  }
+                                }}
+                                className="w-20 text-center font-mono font-bold text-sm py-2 focus:outline-none focus:bg-gray-50"
+                              />
                               <button
                                 onClick={() => updateQuantity(item.partNumber, item.quantity + 1)}
                                 className="p-3 hover:bg-gray-50 transition-colors border-l border-gray-200"
@@ -175,91 +193,150 @@ export const Quote = () => {
               )}
             </div>
 
-            {/* Quote Form */}
+            {/* Quote Summary / Action */}
             <div className="lg:col-span-1">
-              <div className="bg-black text-white rounded-lg p-8 sticky top-24">
-                <h3 className="text-2xl font-bold mb-6">Submit Quote Request</h3>
-                <p className="text-gray-400 text-sm mb-8 leading-relaxed">
-                  Fill out your details and we'll get back to you with pricing and availability within 24 hours.
-                </p>
+              <div className="bg-gray-50 border border-gray-200 rounded-lg p-8 sticky top-24">
+                <h3 className="text-xl font-bold mb-6">Quote Summary</h3>
+                
+                <div className="space-y-4 mb-8">
+                  <div className="flex justify-between text-sm">
+                    <span className="text-gray-600">Line Items</span>
+                    <span className="font-mono font-bold">{items.length}</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-gray-600">Total Units</span>
+                    <span className="font-mono font-bold">{items.reduce((acc, item) => acc + item.quantity, 0)}</span>
+                  </div>
+                  <div className="pt-4 border-t border-gray-200">
+                    <div className="flex justify-between items-center">
+                      <span className="font-bold">Estimated Total</span>
+                      <span className="text-xs text-gray-500 uppercase tracking-wider">Calculated at Quote</span>
+                    </div>
+                  </div>
+                </div>
 
-                {!showForm ? (
+                <button
+                  onClick={() => setShowForm(true)}
+                  className="w-full bg-black text-white px-6 py-4 text-xs font-bold uppercase tracking-widest hover:bg-gray-800 transition-all rounded flex items-center justify-center gap-2 group"
+                >
+                  Proceed to Checkout
+                  <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Slide-over Form */}
+      <AnimatePresence>
+        {showForm && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setShowForm(false)}
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
+            />
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              className="fixed top-0 right-0 h-full w-full max-w-md bg-white shadow-2xl z-50 overflow-y-auto"
+            >
+              <div className="p-8">
+                <div className="flex justify-between items-center mb-8">
+                  <h2 className="text-2xl font-bold">Finalize Request</h2>
                   <button
-                    onClick={() => setShowForm(true)}
-                    className="w-full bg-white text-black px-6 py-4 text-xs font-bold uppercase tracking-widest hover:bg-gray-100 transition-all rounded"
+                    onClick={() => setShowForm(false)}
+                    className="p-2 hover:bg-gray-100 rounded-full transition-colors"
                   >
-                    Continue to Request
+                    <X className="w-6 h-6" />
                   </button>
-                ) : (
-                  <form onSubmit={handleSubmitQuote} className="space-y-4">
+                </div>
+
+                <form onSubmit={handleSubmitQuote} className="space-y-6">
+                  <div className="space-y-4">
                     <div>
                       <label className="block text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-2">Company Name *</label>
                       <input
                         type="text"
                         required
-                        className="w-full px-4 py-3 bg-gray-900 border border-gray-800 text-white rounded text-sm focus:border-white focus:outline-none transition-colors"
+                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded text-sm focus:border-black focus:outline-none transition-colors"
+                        placeholder="Acme Aerospace Inc."
                       />
                     </div>
-                    <div>
-                      <label className="block text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-2">Your Name *</label>
-                      <input
-                        type="text"
-                        required
-                        className="w-full px-4 py-3 bg-gray-900 border border-gray-800 text-white rounded text-sm focus:border-white focus:outline-none transition-colors"
-                      />
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-2">First Name *</label>
+                        <input
+                          type="text"
+                          required
+                          className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded text-sm focus:border-black focus:outline-none transition-colors"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-2">Last Name *</label>
+                        <input
+                          type="text"
+                          required
+                          className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded text-sm focus:border-black focus:outline-none transition-colors"
+                        />
+                      </div>
                     </div>
                     <div>
-                      <label className="block text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-2">Email *</label>
+                      <label className="block text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-2">Email Address *</label>
                       <input
                         type="email"
                         required
-                        className="w-full px-4 py-3 bg-gray-900 border border-gray-800 text-white rounded text-sm focus:border-white focus:outline-none transition-colors"
+                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded text-sm focus:border-black focus:outline-none transition-colors"
+                        placeholder="name@company.com"
                       />
                     </div>
                     <div>
-                      <label className="block text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-2">Phone</label>
+                      <label className="block text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-2">Phone Number</label>
                       <input
                         type="tel"
-                        className="w-full px-4 py-3 bg-gray-900 border border-gray-800 text-white rounded text-sm focus:border-white focus:outline-none transition-colors"
+                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded text-sm focus:border-black focus:outline-none transition-colors"
+                        placeholder="+1 (555) 000-0000"
                       />
                     </div>
                     <div>
                       <label className="block text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-2">Required By Date</label>
                       <input
                         type="date"
-                        className="w-full px-4 py-3 bg-gray-900 border border-gray-800 text-white rounded text-sm focus:border-white focus:outline-none transition-colors"
+                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded text-sm focus:border-black focus:outline-none transition-colors"
                       />
                     </div>
                     <div>
                       <label className="block text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-2">Additional Notes</label>
                       <textarea
-                        rows={3}
-                        className="w-full px-4 py-3 bg-gray-900 border border-gray-800 text-white rounded text-sm resize-none focus:border-white focus:outline-none transition-colors"
+                        rows={4}
+                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded text-sm resize-none focus:border-black focus:outline-none transition-colors"
                         placeholder="Special requirements, delivery instructions, etc."
                       />
                     </div>
-                    <div className="flex gap-3 pt-4">
-                      <button
-                        type="submit"
-                        className="flex-1 bg-white text-black px-6 py-3 text-xs font-bold uppercase tracking-widest hover:bg-gray-200 transition-all rounded flex items-center justify-center gap-2"
-                      >
-                        Submit RFQ
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setShowForm(false)}
-                        className="px-6 py-3 border border-gray-700 text-xs font-bold uppercase tracking-widest hover:bg-gray-900 hover:text-white transition-all rounded text-gray-400"
-                      >
-                        Cancel
-                      </button>
-                    </div>
-                  </form>
-                )}
+                  </div>
+
+                  <div className="pt-6 border-t border-gray-100">
+                    <button
+                      type="submit"
+                      className="w-full bg-black text-white px-6 py-4 text-xs font-bold uppercase tracking-widest hover:bg-gray-800 transition-all rounded shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                    >
+                      Submit Request
+                    </button>
+                    <p className="text-center text-xs text-gray-400 mt-4">
+                      By submitting this form, you agree to our Terms of Service and Privacy Policy.
+                    </p>
+                  </div>
+                </form>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </>
         )}
-      </div>
+      </AnimatePresence>
     </div>
   );
 };

@@ -46,15 +46,16 @@ export const Header = () => {
                   >
                     <div className="p-8">
                       <ul className="space-y-3 text-sm font-medium uppercase tracking-wide">
-                        <li><button onClick={() => { navigate('/catalog'); setActiveMenu(null); }} className="block hover:translate-x-1 transition-transform text-left w-full">Fittings</button></li>
-                        <li><button onClick={() => { navigate('/catalog'); setActiveMenu(null); }} className="block hover:translate-x-1 transition-transform text-left w-full">Screws</button></li>
-                        <li><button onClick={() => { navigate('/catalog'); setActiveMenu(null); }} className="block hover:translate-x-1 transition-transform text-left w-full">Bolts</button></li>
-                        <li><button onClick={() => { navigate('/catalog'); setActiveMenu(null); }} className="block hover:translate-x-1 transition-transform text-left w-full">Pins</button></li>
-                        <li><button onClick={() => { navigate('/catalog'); setActiveMenu(null); }} className="block hover:translate-x-1 transition-transform text-left w-full">Nuts</button></li>
-                        <li><button onClick={() => { navigate('/catalog'); setActiveMenu(null); }} className="block hover:translate-x-1 transition-transform text-left w-full">O-Rings & Retaining Rings</button></li>
-                        <li><button onClick={() => { navigate('/catalog'); setActiveMenu(null); }} className="block hover:translate-x-1 transition-transform text-left w-full">Rivets</button></li>
-                        <li><button onClick={() => { navigate('/catalog'); setActiveMenu(null); }} className="block hover:translate-x-1 transition-transform text-left w-full">Washers</button></li>
-                        <li><button onClick={() => { navigate('/catalog'); setActiveMenu(null); }} className="block hover:translate-x-1 transition-transform text-left w-full">Specialty Products</button></li>
+                        <li><button onClick={() => { navigate('/catalog?category=Fittings'); setActiveMenu(null); }} className="block hover:translate-x-1 transition-transform text-left w-full">Fittings</button></li>
+                        <li><button onClick={() => { navigate('/catalog?category=Screws'); setActiveMenu(null); }} className="block hover:translate-x-1 transition-transform text-left w-full">Screws</button></li>
+                        <li><button onClick={() => { navigate('/catalog?category=Bolts'); setActiveMenu(null); }} className="block hover:translate-x-1 transition-transform text-left w-full">Bolts</button></li>
+                        <li><button onClick={() => { navigate('/catalog?category=Pins'); setActiveMenu(null); }} className="block hover:translate-x-1 transition-transform text-left w-full">Pins</button></li>
+                        <li><button onClick={() => { navigate('/catalog?category=Nuts'); setActiveMenu(null); }} className="block hover:translate-x-1 transition-transform text-left w-full">Nuts</button></li>
+                        <li><button onClick={() => { navigate('/catalog?category=O-Rings %26 Retaining Rings'); setActiveMenu(null); }} className="block hover:translate-x-1 transition-transform text-left w-full">O-Rings & Retaining Rings</button></li>
+                        <li><button onClick={() => { navigate('/catalog?category=Rivets'); setActiveMenu(null); }} className="block hover:translate-x-1 transition-transform text-left w-full">Rivets</button></li>
+                        <li><button onClick={() => { navigate('/catalog?category=Washers'); setActiveMenu(null); }} className="block hover:translate-x-1 transition-transform text-left w-full">Washers</button></li>
+                        <li><button onClick={() => { navigate('/catalog?category=Specialty Products'); setActiveMenu(null); }} className="block hover:translate-x-1 transition-transform text-left w-full">Specialty Products</button></li>
+                        <li><button onClick={() => { navigate('/line-card'); setActiveMenu(null); }} className="block hover:translate-x-1 transition-transform text-left w-full pt-3 mt-3 border-t border-gray-100 font-bold">Line Card</button></li>
                       </ul>
                     </div>
                   </motion.div>
@@ -102,7 +103,14 @@ export const Header = () => {
                 )}
               </AnimatePresence>
             </div>
-            
+
+            <button 
+              onClick={() => navigate('/portal')}
+              className="nav-link cursor-pointer py-8 text-xs font-semibold uppercase tracking-widest"
+            >
+              Portal
+            </button>
+
             <button 
               onClick={() => navigate('/about')}
               className="nav-link cursor-pointer py-8 text-xs font-semibold uppercase tracking-widest"
@@ -180,9 +188,11 @@ export const Header = () => {
                       <li><button onClick={() => { navigate('/catalog'); setMobileMenuOpen(false); }} className="block text-left w-full">Bolts</button></li>
                       <li><button onClick={() => { navigate('/catalog'); setMobileMenuOpen(false); }} className="block text-left w-full">Screws</button></li>
                       <li><button onClick={() => { navigate('/catalog'); setMobileMenuOpen(false); }} className="block text-left w-full">Nuts</button></li>
+                      <li><button onClick={() => { navigate('/line-card'); setMobileMenuOpen(false); }} className="block text-left w-full text-black font-bold">Line Card</button></li>
                     </ul>
                   </li>
                   <li><button onClick={() => { navigate('/services'); setMobileMenuOpen(false); }} className="block text-left w-full">Services</button></li>
+                  <li><button onClick={() => { navigate('/portal'); setMobileMenuOpen(false); }} className="block text-left w-full">Portal</button></li>
                   <li><button onClick={() => { navigate('/about'); setMobileMenuOpen(false); }} className="block text-left w-full">Company</button></li>
                 </ul>
               </div>

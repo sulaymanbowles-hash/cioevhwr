@@ -208,14 +208,14 @@ export function generateKnurlingPattern(
  * Calculate standard dimensions from part numbers
  */
 export const STANDARD_SPECS = {
-  // NAS6204 Socket Head Cap Screw
+  // NAS6204 Hex Head Bolt
   NAS6204: (dashNumber: number): BoltSpec => ({
-    headType: 'socket',
-    headDiameter: 0.438,
-    headHeight: 0.188,
+    headType: 'hex',
+    headDiameter: 0.438, // 7/16" nominal
+    headHeight: 0.156,
     shaftDiameter: 0.25,
     shaftLength: 0.25 + dashNumber * 0.125,
-    socketSize: 0.185, // 3/16" hex
+    // No socket for NAS6204
     thread: {
       majorDiameter: 0.25,
       minorDiameter: 0.217,
@@ -226,44 +226,41 @@ export const STANDARD_SPECS = {
     material: 'titanium'
   }),
   
-  // MS21042 Self-Locking Nut
+  // MS21042 Self-Locking Nut (All Metal)
   MS21042: (_dashNumber: number): NutSpec => ({
     type: 'lock',
-    widthAcrossFlats: 0.438,
-    height: 0.281,
+    widthAcrossFlats: 0.344, // Reduced hex for -4
+    height: 0.219,
     innerDiameter: 0.25,
-    lockingCollarHeight: 0.094,
+    lockingCollarHeight: 0.06,
     thread: {
       majorDiameter: 0.25,
       minorDiameter: 0.217,
       pitch: 0.0357,
       threadsPerInch: 28,
-      length: 0.281
+      length: 0.219
     },
-    material: 'stainless'
+    material: 'stainless' // Usually A286 or similar
   }),
   
-  // AN818 Hydraulic Fitting
-  AN818: (dashNumber: number): FittingSpec => ({
+  // AN815 Union (Hydraulic Fitting)
+  AN815: (dashNumber: number): FittingSpec => ({
     type: 'flared',
-    bodyDiameter: 0.32,
-    bodyLength: 1.1,
-    hexSize: 0.625,
-    hexLength: 0.25,
+    bodyDiameter: 0.4,
+    bodyLength: 1.3,
+    hexSize: 0.5625, // 9/16" for -4
+    hexLength: 0.22,
     flareAngle: 37,
     portSize: 0.25 + dashNumber * 0.0625,
-    material: 'brass'
+    material: 'brass' // or steel/aluminum
   }),
   
-  // MS16555 Clevis Pin
+  // MS16555 Dowel Pin (Headless)
   MS16555: (dashNumber: number): PinSpec => ({
-    type: 'clevis',
-    diameter: 0.1875 + dashNumber * 0.0156,
-    length: 1.62,
-    headDiameter: 0.375,
-    headHeight: 0.125,
-    hasGroove: true,
-    groovePosition: 0.25,
+    type: 'dowel',
+    diameter: 0.125 + dashNumber * 0.01, // Arbitrary scaling for demo
+    length: 1.0,
+    hasGroove: false,
     material: 'stainless'
   })
 };

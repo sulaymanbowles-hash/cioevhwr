@@ -1,3 +1,6 @@
+export type ConditionCode = "FN" | "NS" | "OH" | "SV" | "AR";
+export type CertType = "mfg_cert" | "8130-3" | "dfars" | "rohs";
+
 export interface Product {
   title: string;
   category: string;
@@ -8,11 +11,14 @@ export interface Product {
   threadType?: string;
   specification: string;
   description: string;
+  condition: ConditionCode;
+  certs: CertType[];
 }
 
 export const categories = ["All Categories", "Fittings", "Screws", "Bolts", "Pins", "Nuts", "O-Rings & Retaining Rings", "Rivets", "Washers", "Specialty Products"];
 export const materials = ["All Materials", "Titanium", "Aluminum", "Stainless Steel", "Brass"];
 export const threadTypes = ["All Thread Types", "UNF", "UNC", "Metric", "NPT", "N/A"];
+export const conditions = ["All Conditions", "FN", "NS", "OH", "SV", "AR"];
 
 export const allProducts: Product[] = [
   // Non-fitting products (bolts, nuts, screws, pins)
@@ -25,7 +31,9 @@ export const allProducts: Product[] = [
     material: "Titanium",
     threadType: "UNF",
     specification: "NAS6204 - Grade 5 Ti-6Al-4V",
-    description: "High-strength aerospace fastener with exceptional corrosion resistance"
+    description: "High-strength aerospace fastener with exceptional corrosion resistance",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3", "dfars"]
   },
   { 
     title: "Self-Locking Nut", 
@@ -36,7 +44,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "UNF",
     specification: "MS21042 - 2024-T4 Aluminum",
-    description: "Self-locking design prevents loosening under vibration"
+    description: "Self-locking design prevents loosening under vibration",
+    condition: "FN",
+    certs: ["mfg_cert", "dfars"]
   },
   { 
     title: "Precision Pin", 
@@ -47,7 +57,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "N/A",
     specification: "MS16555 - 304 Stainless",
-    description: "Hardened precision alignment pin with tight tolerances"
+    description: "Hardened precision alignment pin with tight tolerances",
+    condition: "NS",
+    certs: ["mfg_cert"]
   },
   { 
     title: "Hex Head Cap Screw", 
@@ -58,7 +70,9 @@ export const allProducts: Product[] = [
     material: "Titanium",
     threadType: "UNC",
     specification: "NAS1351 - Grade 5 Titanium",
-    description: "Heavy-duty hex head design for structural applications"
+    description: "Heavy-duty hex head design for structural applications",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   { 
     title: "Nylon Insert Lock Nut", 
@@ -69,7 +83,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "UNC",
     specification: "MS21044 - 303 Stainless",
-    description: "Nylon insert provides superior locking performance"
+    description: "Nylon insert provides superior locking performance",
+    condition: "FN",
+    certs: ["mfg_cert", "rohs"]
   },
   { 
     title: "Clevis Pin", 
@@ -80,7 +96,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "N/A",
     specification: "AN392 - 17-4PH Stainless",
-    description: "Clevis design with cotter pin hole for secure retention"
+    description: "Clevis design with cotter pin hole for secure retention",
+    condition: "SV",
+    certs: ["mfg_cert"]
   },
   {
     title: "Aerospace Hex Bolt",
@@ -91,7 +109,9 @@ export const allProducts: Product[] = [
     material: "Titanium",
     threadType: "UNF",
     specification: "NAS6204 - Ti-6Al-4V Grade 5",
-    description: "Extended length bolt for deep structural connections"
+    description: "Extended length bolt for deep structural connections",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3", "dfars"]
   },
   {
     title: "Castle Nut",
@@ -102,7 +122,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "UNF",
     specification: "AN310 - CRES 303",
-    description: "Castle design for cotter pin safety wire retention"
+    description: "Castle design for cotter pin safety wire retention",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Dowel Pin",
@@ -113,7 +135,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "N/A",
     specification: "MS16555 - Hardened",
-    description: "Precision ground dowel for exact alignment"
+    description: "Precision ground dowel for exact alignment",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Socket Head Cap Screw",
@@ -124,7 +148,9 @@ export const allProducts: Product[] = [
     material: "Titanium",
     threadType: "UNC",
     specification: "NAS1352 - Grade 5",
-    description: "Low-profile socket head for recessed applications"
+    description: "Low-profile socket head for recessed applications",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "All-Metal Lock Nut",
@@ -135,7 +161,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "UNF",
     specification: "MS21042 - Self-Locking",
-    description: "All-metal construction for high-temperature applications"
+    description: "All-metal construction for high-temperature applications",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Taper Pin",
@@ -146,7 +174,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "N/A",
     specification: "AN385 - CRES",
-    description: "Tapered design for self-tightening alignment"
+    description: "Tapered design for self-tightening alignment",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Straight Union AN774",
@@ -157,7 +187,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN774 - Aerospace Fitting",
-    description: "Union coupling for connecting tubes"
+    description: "Union coupling for connecting tubes",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Straight Union AN775",
@@ -168,7 +200,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN775 - Aerospace Fitting",
-    description: "Union coupling for connecting tubes"
+    description: "Union coupling for connecting tubes",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AN776",
@@ -179,7 +213,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN776 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AN777",
@@ -190,7 +226,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN777 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AN778",
@@ -201,7 +239,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN778 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AN779",
@@ -212,7 +252,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN779 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AN780",
@@ -223,7 +265,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN780 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AN783",
@@ -234,7 +278,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN783 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AN784",
@@ -245,7 +291,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN784 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AN785",
@@ -256,7 +304,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN785 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AN786",
@@ -267,7 +317,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN786 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AN790",
@@ -278,7 +330,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN790 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AN791",
@@ -289,7 +343,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN791 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AN792",
@@ -300,7 +356,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN792 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AN795",
@@ -311,7 +369,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN795 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AN800",
@@ -322,7 +382,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN800 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AN801",
@@ -333,7 +395,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN801 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AN802",
@@ -344,7 +408,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN802 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AN803",
@@ -355,7 +421,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN803 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AN804",
@@ -366,7 +434,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN804 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Cap/Plug AN806",
@@ -377,7 +447,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN806 - Aerospace Fitting",
-    description: "End cap or plug fitting"
+    description: "End cap or plug fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Cap/Plug AN807",
@@ -388,7 +460,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN807 - Aerospace Fitting",
-    description: "End cap or plug fitting"
+    description: "End cap or plug fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Straight Union AN814",
@@ -399,7 +473,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN814 - Aerospace Fitting",
-    description: "Union coupling for connecting tubes"
+    description: "Union coupling for connecting tubes",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Straight Union AN815",
@@ -410,7 +486,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN815 - Aerospace Fitting",
-    description: "Union coupling for connecting tubes"
+    description: "Union coupling for connecting tubes",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Straight Union AN816",
@@ -421,7 +499,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN816 - Aerospace Fitting",
-    description: "Union coupling for connecting tubes"
+    description: "Union coupling for connecting tubes",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AN818",
@@ -432,7 +512,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN818 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Reducer AN821",
@@ -443,7 +525,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN821 - Aerospace Fitting",
-    description: "Size adapter for different tube diameters"
+    description: "Size adapter for different tube diameters",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AN824",
@@ -454,7 +538,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN824 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AN825",
@@ -465,7 +551,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN825 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "90° Elbow AN826",
@@ -476,7 +564,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN826 - Aerospace Fitting",
-    description: "90-degree elbow for routing lines"
+    description: "90-degree elbow for routing lines",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AN827",
@@ -487,7 +577,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN827 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AN832",
@@ -498,7 +590,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN832 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Bulkhead AN833",
@@ -509,7 +603,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN833 - Aerospace Fitting",
-    description: "Panel mount fitting"
+    description: "Panel mount fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Bulkhead AN834",
@@ -520,7 +616,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN834 - Aerospace Fitting",
-    description: "Panel mount fitting"
+    description: "Panel mount fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AN837",
@@ -531,7 +629,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN837 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AN838",
@@ -542,7 +642,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN838 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AN839",
@@ -553,7 +655,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN839 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AN840",
@@ -564,7 +668,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN840 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AN841",
@@ -575,7 +681,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN841 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AN842",
@@ -586,7 +694,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN842 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AN844",
@@ -597,7 +707,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN844 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AN846",
@@ -608,7 +720,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN846 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AN848",
@@ -619,7 +733,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN848 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AN849",
@@ -630,7 +746,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN849 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AN871",
@@ -641,7 +759,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN871 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AN893",
@@ -652,7 +772,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN893 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AN894",
@@ -663,7 +785,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN894 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AN910",
@@ -674,7 +798,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN910 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AN911",
@@ -685,7 +811,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN911 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AN912",
@@ -696,7 +824,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN912 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AN914",
@@ -707,7 +837,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN914 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AN915",
@@ -718,7 +850,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN915 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AN916",
@@ -729,7 +863,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN916 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AN917",
@@ -740,7 +876,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN917 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AN918",
@@ -751,7 +889,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN918 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AN919",
@@ -762,7 +902,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN919 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AN924",
@@ -773,7 +915,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN924 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AN929",
@@ -784,7 +928,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN929 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AN933",
@@ -795,7 +941,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN933 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AN937",
@@ -806,7 +954,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN937 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AN938",
@@ -817,7 +967,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN938 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AN939",
@@ -828,7 +980,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN939 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AN941",
@@ -839,7 +993,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN941 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AN6289",
@@ -850,7 +1006,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN6289 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter MS20819",
@@ -861,7 +1019,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS20819 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "90° Elbow MS20822",
@@ -872,7 +1032,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS20822 - Aerospace Fitting",
-    description: "90-degree elbow for routing lines"
+    description: "90-degree elbow for routing lines",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "90° Elbow MS20823",
@@ -883,7 +1045,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS20823 - Aerospace Fitting",
-    description: "90-degree elbow for routing lines"
+    description: "90-degree elbow for routing lines",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter MS20825",
@@ -894,7 +1058,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS20825 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "90° Elbow MS20826",
@@ -905,7 +1071,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS20826 - Aerospace Fitting",
-    description: "90-degree elbow for routing lines"
+    description: "90-degree elbow for routing lines",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "45° Elbow MS20913",
@@ -916,7 +1084,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS20913 - Aerospace Fitting",
-    description: "45-degree angle fitting"
+    description: "45-degree angle fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter MS21900",
@@ -927,7 +1097,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS21900 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Tee Fitting MS21902",
@@ -938,7 +1110,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS21902 - Aerospace Fitting",
-    description: "T-junction for branching lines"
+    description: "T-junction for branching lines",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "90° Elbow MS21904",
@@ -949,7 +1123,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS21904 - Aerospace Fitting",
-    description: "90-degree elbow for routing lines"
+    description: "90-degree elbow for routing lines",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "45° Elbow MS21905",
@@ -960,7 +1136,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS21905 - Aerospace Fitting",
-    description: "45-degree angle fitting"
+    description: "45-degree angle fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Tee Fitting MS21906",
@@ -971,7 +1149,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS21906 - Aerospace Fitting",
-    description: "T-junction for branching lines"
+    description: "T-junction for branching lines",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Reducer MS21907",
@@ -982,7 +1162,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS21907 - Aerospace Fitting",
-    description: "Size adapter for different tube diameters"
+    description: "Size adapter for different tube diameters",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "90° Elbow MS21908",
@@ -993,7 +1175,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS21908 - Aerospace Fitting",
-    description: "90-degree elbow for routing lines"
+    description: "90-degree elbow for routing lines",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Cap/Plug MS21909",
@@ -1004,7 +1188,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS21909 - Aerospace Fitting",
-    description: "End cap or plug fitting"
+    description: "End cap or plug fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Cross Fitting MS21910",
@@ -1015,7 +1201,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS21910 - Aerospace Fitting",
-    description: "4-way cross junction"
+    description: "4-way cross junction",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Bulkhead MS21911",
@@ -1026,7 +1214,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS21911 - Aerospace Fitting",
-    description: "Panel mount fitting"
+    description: "Panel mount fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter MS21912",
@@ -1037,7 +1227,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS21912 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter MS21913",
@@ -1048,7 +1240,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS21913 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter MS21914",
@@ -1059,7 +1253,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS21914 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter MS21915",
@@ -1070,7 +1266,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS21915 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter MS21916",
@@ -1081,7 +1279,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS21916 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter MS21921",
@@ -1092,7 +1292,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS21921 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter MS21922",
@@ -1103,7 +1305,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS21922 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter MS21924",
@@ -1114,7 +1318,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS21924 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter MS21925",
@@ -1125,7 +1331,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS21925 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter MS21926",
@@ -1136,7 +1344,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS21926 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter MS27073",
@@ -1147,7 +1357,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS27073 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter MS27074",
@@ -1158,7 +1370,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS27074 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Reducer AS5160",
@@ -1169,7 +1383,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS5160 - Aerospace Fitting",
-    description: "Size adapter for different tube diameters"
+    description: "Size adapter for different tube diameters",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Reducer AS5161",
@@ -1180,7 +1396,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS5161 - Aerospace Fitting",
-    description: "Size adapter for different tube diameters"
+    description: "Size adapter for different tube diameters",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS5162",
@@ -1191,7 +1409,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS5162 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS5163",
@@ -1202,7 +1422,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS5163 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS5164",
@@ -1213,7 +1435,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS5164 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS5165",
@@ -1224,7 +1448,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS5165 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS1031",
@@ -1235,7 +1461,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS1031 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS1032",
@@ -1246,7 +1474,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS1032 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter MS28740",
@@ -1257,7 +1487,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS28740 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS1033",
@@ -1268,7 +1500,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS1033 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS5168",
@@ -1279,7 +1513,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS5168 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS5180",
@@ -1290,7 +1526,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS5180 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS5169",
@@ -1301,7 +1539,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS5169 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS5174",
@@ -1312,7 +1552,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS5174 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS5194",
@@ -1323,7 +1565,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS5194 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS5175",
@@ -1334,7 +1578,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS5175 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS1034",
@@ -1345,7 +1591,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS1034 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS1035",
@@ -1356,7 +1604,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS1035 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS5197",
@@ -1367,7 +1617,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS5197 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS5198",
@@ -1378,7 +1630,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS5198 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS1036",
@@ -1389,7 +1643,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS1036 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS5406",
@@ -1400,7 +1656,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS5406 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS1038",
@@ -1411,7 +1669,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS1038 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS1039",
@@ -1422,7 +1682,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS1039 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS1040",
@@ -1433,7 +1695,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS1040 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS5181",
@@ -1444,7 +1708,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS5181 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS5182",
@@ -1455,7 +1721,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS5182 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS5183",
@@ -1466,7 +1734,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS5183 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS5184",
@@ -1477,7 +1747,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS5184 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS5185",
@@ -1488,7 +1760,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS5185 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS5186",
@@ -1499,7 +1773,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS5186 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS5187",
@@ -1510,7 +1786,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS5187 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS5188",
@@ -1521,7 +1799,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS5188 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS5189",
@@ -1532,7 +1812,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS5189 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS5227",
@@ -1543,7 +1825,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS5227 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS5172",
@@ -1554,7 +1838,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS5172 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS5173",
@@ -1565,7 +1851,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS5173 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS4859",
@@ -1576,7 +1864,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS4859 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS4860",
@@ -1587,7 +1877,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS4860 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS4861",
@@ -1598,7 +1890,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS4861 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS4854",
@@ -1609,7 +1903,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS4854 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS4855",
@@ -1620,7 +1916,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS4855 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS4856",
@@ -1631,7 +1929,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS4856 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS4857",
@@ -1642,7 +1942,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS4857 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS4858",
@@ -1653,7 +1955,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS4858 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS5178",
@@ -1664,7 +1968,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS5178 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS5177",
@@ -1675,7 +1981,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS5177 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS4862",
@@ -1686,7 +1994,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS4862 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS5193",
@@ -1697,7 +2007,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS5193 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS5192",
@@ -1708,7 +2020,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS5192 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS5190",
@@ -1719,7 +2033,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS5190 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS5191",
@@ -1730,7 +2046,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS5191 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS5179",
@@ -1741,7 +2059,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS5179 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS5176",
@@ -1752,7 +2072,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS5176 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS5195",
@@ -1763,7 +2085,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS5195 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS5196",
@@ -1774,7 +2098,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS5196 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS4863",
@@ -1785,7 +2111,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS4863 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS21900",
@@ -1796,7 +2124,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS21900 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Tee Fitting AS21902",
@@ -1807,7 +2137,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS21902 - Aerospace Fitting",
-    description: "T-junction for branching lines"
+    description: "T-junction for branching lines",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "90° Elbow AS21904",
@@ -1818,7 +2150,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS21904 - Aerospace Fitting",
-    description: "90-degree elbow for routing lines"
+    description: "90-degree elbow for routing lines",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "45° Elbow AS21905",
@@ -1829,7 +2163,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS21905 - Aerospace Fitting",
-    description: "45-degree angle fitting"
+    description: "45-degree angle fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Tee Fitting AS21906",
@@ -1840,7 +2176,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS21906 - Aerospace Fitting",
-    description: "T-junction for branching lines"
+    description: "T-junction for branching lines",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS21907",
@@ -1851,7 +2189,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS21907 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS21908",
@@ -1862,7 +2202,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS21908 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Cap/Plug AS21909",
@@ -1873,7 +2215,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS21909 - Aerospace Fitting",
-    description: "End cap or plug fitting"
+    description: "End cap or plug fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Cross Fitting AS21910",
@@ -1884,7 +2228,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS21910 - Aerospace Fitting",
-    description: "4-way cross junction"
+    description: "4-way cross junction",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Bulkhead AS21911",
@@ -1895,7 +2241,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS21911 - Aerospace Fitting",
-    description: "Panel mount fitting"
+    description: "Panel mount fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS21912",
@@ -1906,7 +2254,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS21912 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS21913",
@@ -1917,7 +2267,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS21913 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS21914",
@@ -1928,7 +2280,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS21914 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS21915",
@@ -1939,7 +2293,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS21915 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS21916",
@@ -1950,7 +2306,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS21916 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS21921",
@@ -1961,7 +2319,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS21921 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS21922",
@@ -1972,7 +2332,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS21922 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS21924",
@@ -1983,7 +2345,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS21924 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS21925",
@@ -1994,7 +2358,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS21925 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS21926",
@@ -2005,7 +2371,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS21926 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Cap/Plug AS4370",
@@ -2016,7 +2384,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS4370 - Aerospace Fitting",
-    description: "End cap or plug fitting"
+    description: "End cap or plug fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS1791",
@@ -2027,7 +2397,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS1791 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Straight Union MS24388",
@@ -2038,7 +2410,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS24388 - Aerospace Fitting",
-    description: "Union coupling for connecting tubes"
+    description: "Union coupling for connecting tubes",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter MS24389",
@@ -2049,7 +2423,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS24389 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter MS24587",
@@ -2060,7 +2436,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS24587 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter MS24390",
@@ -2071,7 +2449,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS24390 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter MS24404",
@@ -2082,7 +2462,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS24404 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter MS24391",
@@ -2093,7 +2475,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS24391 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter MS24392",
@@ -2104,7 +2488,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS24392 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter MS24401",
@@ -2115,7 +2501,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS24401 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter MS24402",
@@ -2126,7 +2514,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS24402 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter MS24403",
@@ -2137,7 +2527,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS24403 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter MS24393",
@@ -2148,7 +2540,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS24393 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter MS24394",
@@ -2159,7 +2553,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS24394 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter MS24395",
@@ -2170,7 +2566,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS24395 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter MS24396",
@@ -2181,7 +2579,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS24396 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter MS24397",
@@ -2192,7 +2592,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS24397 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter MS24398",
@@ -2203,7 +2605,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS24398 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter MS24399",
@@ -2214,7 +2618,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS24399 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter MS24400",
@@ -2225,7 +2631,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS24400 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS5238",
@@ -2236,7 +2644,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS5238 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS5230",
@@ -2247,7 +2657,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS5230 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS5231",
@@ -2258,7 +2670,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS5231 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS5232",
@@ -2269,7 +2683,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS5232 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS4864",
@@ -2280,7 +2696,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS4864 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Reducer AN817",
@@ -2291,7 +2709,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN817 - Aerospace Fitting",
-    description: "Size adapter for different tube diameters"
+    description: "Size adapter for different tube diameters",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Tee Fitting AN932",
@@ -2302,7 +2722,9 @@ export const allProducts: Product[] = [
     material: "Brass",
     threadType: "NPT",
     specification: "AN932 - Aerospace Fitting",
-    description: "T-junction for branching lines"
+    description: "T-junction for branching lines",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Straight Union MS24387",
@@ -2313,7 +2735,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS24387 - Aerospace Fitting",
-    description: "Union coupling for connecting tubes"
+    description: "Union coupling for connecting tubes",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS21923",
@@ -2324,7 +2748,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS21923 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS21937",
@@ -2335,7 +2761,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS21937 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS21938",
@@ -2346,7 +2774,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS21938 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS21939",
@@ -2357,7 +2787,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS21939 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS21940",
@@ -2368,7 +2800,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS21940 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS21941",
@@ -2379,7 +2813,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS21941 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS21942",
@@ -2390,7 +2826,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS21942 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS21943",
@@ -2401,7 +2839,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS21943 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS21944",
@@ -2412,7 +2852,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS21944 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS21945",
@@ -2423,7 +2865,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS21945 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS24405",
@@ -2434,7 +2878,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS24405 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS24651",
@@ -2445,7 +2891,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS24651 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS24652",
@@ -2456,7 +2904,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS24652 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS24654",
@@ -2467,7 +2917,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS24654 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS1001",
@@ -2478,7 +2930,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS1001 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS1002",
@@ -2489,7 +2943,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS1002 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS1003",
@@ -2500,7 +2956,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS1003 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS1004",
@@ -2511,7 +2969,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS1004 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS1005",
@@ -2522,7 +2982,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS1005 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS1006",
@@ -2533,7 +2995,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS1006 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS1007",
@@ -2544,7 +3008,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS1007 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS1008",
@@ -2555,7 +3021,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS1008 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS1009",
@@ -2566,7 +3034,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS1009 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS1010",
@@ -2577,7 +3047,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS1010 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS1790",
@@ -2588,7 +3060,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS1790 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS1792",
@@ -2599,7 +3073,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS1792 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS1860",
@@ -2610,7 +3086,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS1860 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS4130",
@@ -2621,7 +3099,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS4130 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS4131",
@@ -2632,7 +3112,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS4131 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS4132",
@@ -2643,7 +3125,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS4132 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS4133",
@@ -2654,7 +3138,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS4133 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS4134",
@@ -2665,7 +3151,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS4134 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS4135",
@@ -2676,7 +3164,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS4135 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS4136",
@@ -2687,7 +3177,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS4136 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS4137",
@@ -2698,7 +3190,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS4137 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS4138",
@@ -2709,7 +3203,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS4138 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS4139",
@@ -2720,7 +3216,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS4139 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS4140",
@@ -2731,7 +3229,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS4140 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS4141",
@@ -2742,7 +3242,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS4141 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS5233",
@@ -2753,7 +3255,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS5233 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS5239",
@@ -2764,7 +3268,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS5239 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS5240",
@@ -2775,7 +3281,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS5240 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS5241",
@@ -2786,7 +3294,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS5241 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter AS5242",
@@ -2797,7 +3307,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "NPT",
     specification: "AS5242 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter MS21923",
@@ -2808,7 +3320,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS21923 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter MS21937",
@@ -2819,7 +3333,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS21937 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter MS21938",
@@ -2830,7 +3346,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS21938 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter MS21939",
@@ -2841,7 +3359,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS21939 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter MS21940",
@@ -2852,7 +3372,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS21940 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter MS21941",
@@ -2863,7 +3385,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS21941 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter MS21942",
@@ -2874,7 +3398,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS21942 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter MS21943",
@@ -2885,7 +3411,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS21943 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter MS21944",
@@ -2896,7 +3424,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS21944 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter MS21945",
@@ -2907,7 +3437,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS21945 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter MS24405",
@@ -2918,7 +3450,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS24405 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter MS24651",
@@ -2929,7 +3463,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS24651 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter MS24652",
@@ -2940,7 +3476,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS24652 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Adapter MS24654",
@@ -2951,7 +3489,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "NPT",
     specification: "MS24654 - Aerospace Fitting",
-    description: "Hydraulic adapter fitting"
+    description: "Hydraulic adapter fitting",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   // SCREWS - Socket Cap Screws
   {
@@ -2963,7 +3503,9 @@ export const allProducts: Product[] = [
     material: "Alloy Steel",
     threadType: "UNF",
     specification: "MS24673 - Socket Head Cap",
-    description: "Socket head cap screw for structural assembly and engine mounts"
+    description: "Socket head cap screw for structural assembly and engine mounts",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Socket Cap Screw",
@@ -2974,7 +3516,9 @@ export const allProducts: Product[] = [
     material: "Alloy Steel",
     threadType: "UNF",
     specification: "MS24673 - Socket Head Cap",
-    description: "Socket head cap screw for structural assembly"
+    description: "Socket head cap screw for structural assembly",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Socket Cap Screw, Drilled",
@@ -2985,7 +3529,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "UNF",
     specification: "MS24674 - Socket Head Drilled",
-    description: "Drilled socket head cap screw for safety wire applications"
+    description: "Drilled socket head cap screw for safety wire applications",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Socket Cap Screw, Cad Plated",
@@ -2996,7 +3542,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "UNF",
     specification: "MS24677 - Cadmium Plated",
-    description: "Cadmium plated socket head screw for corrosion resistance"
+    description: "Cadmium plated socket head screw for corrosion resistance",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Socket Head Self Locking",
@@ -3007,7 +3555,9 @@ export const allProducts: Product[] = [
     material: "Alloy Steel",
     threadType: "UNF",
     specification: "MS21295 - Self Locking",
-    description: "Self-locking socket head cap screw prevents vibration loosening"
+    description: "Self-locking socket head cap screw prevents vibration loosening",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   // SCREWS - Fillister Head
   {
@@ -3019,7 +3569,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "UNC",
     specification: "AN115 - Fillister Head",
-    description: "Fillister head screw for panel attachment"
+    description: "Fillister head screw for panel attachment",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Fillister Head Screw",
@@ -3030,7 +3582,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "UNC",
     specification: "AN115 - Fillister Head",
-    description: "Fillister head screw for structural assembly"
+    description: "Fillister head screw for structural assembly",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Fillister Head Screw, Drilled",
@@ -3041,7 +3595,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "UNC",
     specification: "AN116 - Fillister Drilled",
-    description: "Drilled fillister head screw for safety wire"
+    description: "Drilled fillister head screw for safety wire",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Oval Fillister Head Screw",
@@ -3052,7 +3608,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "UNC",
     specification: "AN117 - Oval Fillister",
-    description: "Oval profile fillister head screw"
+    description: "Oval profile fillister head screw",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   // SCREWS - Machine Screws
   {
@@ -3064,7 +3622,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "UNC",
     specification: "MS9122 - Slotted Hex",
-    description: "Slotted hex head machine screw"
+    description: "Slotted hex head machine screw",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Machine Screw, Slotted Hex",
@@ -3075,7 +3635,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "UNF",
     specification: "MS9316 - .190-32",
-    description: "Slotted hex head machine screw, 190-32 thread"
+    description: "Slotted hex head machine screw, 190-32 thread",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Machine Screw, Slotted Hex",
@@ -3086,7 +3648,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "UNF",
     specification: "MS9317 - .250-28",
-    description: "Slotted hex head machine screw, 250-28 thread"
+    description: "Slotted hex head machine screw, 250-28 thread",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   // SCREWS - 12 Point Head
   {
@@ -3098,7 +3662,9 @@ export const allProducts: Product[] = [
     material: "Alloy Steel",
     threadType: "UNC",
     specification: "MS9177 - 12 Point",
-    description: "12-point head screw for high-torque applications"
+    description: "12-point head screw for high-torque applications",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "12 Point Head Screw, Drilled",
@@ -3109,7 +3675,9 @@ export const allProducts: Product[] = [
     material: "Alloy Steel",
     threadType: "UNC",
     specification: "MS9192 - 12 Point Drilled",
-    description: "Drilled 12-point head screw for safety wire"
+    description: "Drilled 12-point head screw for safety wire",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   // SCREWS - Shoulder Screws
   {
@@ -3121,7 +3689,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "UNC",
     specification: "MS51575 - Shoulder, Slotted",
-    description: "Shoulder screw with slotted head"
+    description: "Shoulder screw with slotted head",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Shoulder Screw, Hex Socket",
@@ -3132,7 +3702,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "UNC",
     specification: "MS51576 - Shoulder, Hex Socket",
-    description: "Shoulder screw with hex socket head"
+    description: "Shoulder screw with hex socket head",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Shoulder Screw, Socket Head",
@@ -3143,7 +3715,9 @@ export const allProducts: Product[] = [
     material: "Alloy Steel",
     threadType: "UNC",
     specification: "MS51975 - Shoulder, Socket",
-    description: "Shoulder screw with socket head"
+    description: "Shoulder screw with socket head",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   // SCREWS - Pan Head (Metric)
   {
@@ -3155,7 +3729,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "Metric",
     specification: "NA0035 - Pan Head Metric",
-    description: "Close tolerance pan head screw, metric threads"
+    description: "Close tolerance pan head screw, metric threads",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Pan Head Screw, A286 CRES",
@@ -3166,7 +3742,9 @@ export const allProducts: Product[] = [
     material: "A286 CRES",
     threadType: "Metric",
     specification: "NA0068 - A286 CRES",
-    description: "A286 CRES pan head screw with offset cruciform"
+    description: "A286 CRES pan head screw with offset cruciform",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Pan Head Screw, Self Locking",
@@ -3177,7 +3755,9 @@ export const allProducts: Product[] = [
     material: "Alloy Steel",
     threadType: "UNF",
     specification: "NAS1171 - Pan Head Self Locking",
-    description: "Self-locking pan head screw with offset cruciform"
+    description: "Self-locking pan head screw with offset cruciform",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Pan Head Screw, Full Thread",
@@ -3188,7 +3768,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "UNC",
     specification: "NAS1216 - Pan Head Full Thread",
-    description: "Pan head screw with full thread length"
+    description: "Pan head screw with full thread length",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   // SCREWS - Flush Head (100 degree)
   {
@@ -3200,7 +3782,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "Metric",
     specification: "NA0038 - 100° Flush Head",
-    description: "Close tolerance 100-degree flush head screw, metric"
+    description: "Close tolerance 100-degree flush head screw, metric",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "A286 CRES 100° Flush Head",
@@ -3211,7 +3795,9 @@ export const allProducts: Product[] = [
     material: "A286 CRES",
     threadType: "Metric",
     specification: "NA0070 - A286 CRES 100°",
-    description: "A286 CRES 100-degree flush head with offset cruciform"
+    description: "A286 CRES 100-degree flush head with offset cruciform",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "100° Head Screw, Self Locking",
@@ -3222,7 +3808,9 @@ export const allProducts: Product[] = [
     material: "Alloy Steel",
     threadType: "UNC",
     specification: "NAS1161 - 100° Self Locking",
-    description: "Self-locking 100-degree head screw"
+    description: "Self-locking 100-degree head screw",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "100° Flush Head, Full Thread",
@@ -3233,7 +3821,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "UNC",
     specification: "NAS1219 - 100° Full Thread",
-    description: "100-degree flush head with full thread and dovetail slot"
+    description: "100-degree flush head with full thread and dovetail slot",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "100° Flush Head, Close Tolerance",
@@ -3244,7 +3834,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "UNC",
     specification: "NAS583 - 100° Close Tolerance",
-    description: "Close tolerance 100-degree flush head screw"
+    description: "Close tolerance 100-degree flush head screw",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Flat Fillister Head Screw",
@@ -3255,7 +3847,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "UNC",
     specification: "NAS1121 - Flat Fillister",
-    description: "Flat fillister head with short thread and offset cruciform"
+    description: "Flat fillister head with short thread and offset cruciform",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   // SCREWS - Hex Head
   {
@@ -3267,7 +3861,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "Metric",
     specification: "NA0067 - Dual Hex",
-    description: "Dual hex head with offset cruciform, metric"
+    description: "Dual hex head with offset cruciform, metric",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Hex Head Screw, Offset Cruciform",
@@ -3278,7 +3874,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "Metric",
     specification: "NA0113 - Hex Head Metric",
-    description: "Hex head screw with offset cruciform, metric threads"
+    description: "Hex head screw with offset cruciform, metric threads",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   // SCREWS - Specialty
   {
@@ -3290,7 +3888,9 @@ export const allProducts: Product[] = [
     material: "A286 CRES",
     threadType: "Metric",
     specification: "NA0069 - A286 Socket Head",
-    description: "A286 CRES socket head with full thread, metric"
+    description: "A286 CRES socket head with full thread, metric",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Externally Relieved Body Screw",
@@ -3301,7 +3901,9 @@ export const allProducts: Product[] = [
     material: "Alloy Steel",
     threadType: "UNC",
     specification: "MS25087 - Relieved Body",
-    description: "Externally relieved body screw for weight reduction"
+    description: "Externally relieved body screw for weight reduction",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Captive Screw",
@@ -3312,7 +3914,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "UNC",
     specification: "MS90402 - Captive",
-    description: "Captive screw with retention feature"
+    description: "Captive screw with retention feature",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Shoulder Screw, Brazier Head",
@@ -3323,7 +3927,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "UNC",
     specification: "NAS1298 - Brazier Head",
-    description: "Shoulder screw with brazier head and cruciform recess"
+    description: "Shoulder screw with brazier head and cruciform recess",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   // STUDS
   {
@@ -3335,7 +3941,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "UNC",
     specification: "AN126 - Straight Stud",
-    description: "Straight threaded stud, drilled or undrilled"
+    description: "Straight threaded stud, drilled or undrilled",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Stepped Stud",
@@ -3346,7 +3954,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "UNC",
     specification: "AN151 - Stepped Stud",
-    description: "Stepped stud with .250-20 x .190-32 threads"
+    description: "Stepped stud with .250-20 x .190-32 threads",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Shouldered Hexagon Wrenching Stud",
@@ -3357,7 +3967,9 @@ export const allProducts: Product[] = [
     material: "Alloy Steel",
     threadType: "UNC",
     specification: "MS9303 - Shouldered Hex",
-    description: "Shouldered hexagon wrenching stud, drilled or undrilled"
+    description: "Shouldered hexagon wrenching stud, drilled or undrilled",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Stepped Stud, Drilled",
@@ -3368,7 +3980,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "UNC",
     specification: "MS9834 - Stepped Drilled",
-    description: "Stepped stud, drilled, steel construction"
+    description: "Stepped stud, drilled, steel construction",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "Stud, Coarse or Fine Thread",
@@ -3379,7 +3993,9 @@ export const allProducts: Product[] = [
     material: "Alloy Steel",
     threadType: "UNC",
     specification: "NAS183 - Coarse/Fine",
-    description: "Stud with coarse or fine thread, drilled or undrilled"
+    description: "Stud with coarse or fine thread, drilled or undrilled",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
 
   // Hex Head Bolts
@@ -3392,7 +4008,9 @@ export const allProducts: Product[] = [
     material: "Carbon Steel",
     threadType: "UNC",
     specification: "AN173 - 3/16\" x 3/8\"",
-    description: "Standard hex head bolt, cadmium plated"
+    description: "Standard hex head bolt, cadmium plated",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "AN173-5 Hex Bolt",
@@ -3403,7 +4021,9 @@ export const allProducts: Product[] = [
     material: "Carbon Steel",
     threadType: "UNC",
     specification: "AN173 - 3/16\" x 5/8\"",
-    description: "Standard hex head bolt, cadmium plated"
+    description: "Standard hex head bolt, cadmium plated",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "AN174-4 Hex Bolt",
@@ -3414,7 +4034,9 @@ export const allProducts: Product[] = [
     material: "Carbon Steel",
     threadType: "UNC",
     specification: "AN174 - 1/4\" x 1/2\"",
-    description: "Standard hex head bolt, cadmium plated"
+    description: "Standard hex head bolt, cadmium plated",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "AN175-6 Hex Bolt",
@@ -3425,7 +4047,9 @@ export const allProducts: Product[] = [
     material: "Carbon Steel",
     threadType: "UNC",
     specification: "AN175 - 5/16\" x 3/4\"",
-    description: "Standard hex head bolt, cadmium plated"
+    description: "Standard hex head bolt, cadmium plated",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "NAS1003-4 Hex Bolt",
@@ -3436,7 +4060,9 @@ export const allProducts: Product[] = [
     material: "Alloy Steel",
     threadType: "UNF",
     specification: "NAS1003 - 1/4-28 UNF",
-    description: "Hex head bolt, drilled or undrilled, high strength"
+    description: "Hex head bolt, drilled or undrilled, high strength",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "NAS6303-4 A286 Hex Bolt",
@@ -3447,7 +4073,9 @@ export const allProducts: Product[] = [
     material: "A286 CRES",
     threadType: "UNF",
     specification: "NAS6303 - 1/4-28 UNF",
-    description: "Hex head bolt, A286 steel, high temperature"
+    description: "Hex head bolt, A286 steel, high temperature",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "NAS6403-4 Titanium Hex Bolt",
@@ -3458,7 +4086,9 @@ export const allProducts: Product[] = [
     material: "Titanium",
     threadType: "UNF",
     specification: "NAS6403 - 1/4-28 UNF",
-    description: "Hex head bolt, titanium, lightweight"
+    description: "Hex head bolt, titanium, lightweight",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "MS20033-4 Hex Bolt",
@@ -3469,7 +4099,9 @@ export const allProducts: Product[] = [
     material: "Alloy Steel",
     threadType: "UNF",
     specification: "MS20033 - 1/4-28 UNF",
-    description: "Hex head bolt, drilled head"
+    description: "Hex head bolt, drilled head",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "MS9631-4 Hex Bolt",
@@ -3480,7 +4112,9 @@ export const allProducts: Product[] = [
     material: "Alloy Steel",
     threadType: "UNF",
     specification: "MS9631 - 1/4-28 UNF",
-    description: "Hex head bolt, high strength"
+    description: "Hex head bolt, high strength",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
 
   // 12-Point Head Bolts
@@ -3493,7 +4127,9 @@ export const allProducts: Product[] = [
     material: "Alloy Steel",
     threadType: "UNF",
     specification: "MS14181 - 1/4-28 UNF",
-    description: "12-point tension bolt, 220 ksi, high stress applications"
+    description: "12-point tension bolt, 220 ksi, high stress applications",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "MS21098-4 Self-Locking 12-Point",
@@ -3504,7 +4140,9 @@ export const allProducts: Product[] = [
     material: "Alloy Steel",
     threadType: "UNF",
     specification: "MS21098 - 1/4-28 UNF",
-    description: "12-point self-locking bolt, steel"
+    description: "12-point self-locking bolt, steel",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "MS21099-4 Self-Locking 12-Point CRES",
@@ -3515,7 +4153,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "UNF",
     specification: "MS21099 - 1/4-28 UNF",
-    description: "12-point self-locking bolt, corrosion resistant"
+    description: "12-point self-locking bolt, corrosion resistant",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "MS21250-4 12-Point Bolt",
@@ -3526,7 +4166,9 @@ export const allProducts: Product[] = [
     material: "Alloy Steel",
     threadType: "UNF",
     specification: "MS21250 - 1/4-28 UNF",
-    description: "12-point head bolt, high torque"
+    description: "12-point head bolt, high torque",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "MS9146-4 12-Point Bolt",
@@ -3537,7 +4179,9 @@ export const allProducts: Product[] = [
     material: "Alloy Steel",
     threadType: "UNF",
     specification: "MS9146 - 1/4-28 UNF",
-    description: "12-point head bolt, steel"
+    description: "12-point head bolt, steel",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "MS9694-4 12-Point CRES Bolt",
@@ -3548,7 +4192,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "UNF",
     specification: "MS9694 - 1/4-28 UNF",
-    description: "12-point head bolt, corrosion resistant"
+    description: "12-point head bolt, corrosion resistant",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "MS9883-4 12-Point CRES Bolt",
@@ -3559,7 +4205,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "UNF",
     specification: "MS9883 - 1/4-28 UNF",
-    description: "12-point bolt, CRES"
+    description: "12-point bolt, CRES",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "NAS1271-4 12-Point Bolt",
@@ -3570,7 +4218,9 @@ export const allProducts: Product[] = [
     material: "Alloy Steel",
     threadType: "UNF",
     specification: "NAS1271 - 1/4-28 UNF",
-    description: "12-point bolt, drilled or undrilled"
+    description: "12-point bolt, drilled or undrilled",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "NAS624-4 12-Point High Strength",
@@ -3581,7 +4231,9 @@ export const allProducts: Product[] = [
     material: "Alloy Steel",
     threadType: "UNF",
     specification: "NAS624 - 1/4-28 UNF",
-    description: "12-point bolt, 180 ksi, drilled or undrilled"
+    description: "12-point bolt, 180 ksi, drilled or undrilled",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
 
   // Flush Head Bolts (100° Countersunk)
@@ -3594,7 +4246,9 @@ export const allProducts: Product[] = [
     material: "Alloy Steel",
     threadType: "UNF",
     specification: "NAS1083 - 1/4-28 UNF",
-    description: "100° flush head bolt, close tolerance"
+    description: "100° flush head bolt, close tolerance",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "NAS1220-4 Flush Bolt Dovetail Slot",
@@ -3605,7 +4259,9 @@ export const allProducts: Product[] = [
     material: "Alloy Steel",
     threadType: "UNF",
     specification: "NAS1220 - 1/4-28 UNF",
-    description: "100° flush head bolt, short thread, dovetail slot"
+    description: "100° flush head bolt, short thread, dovetail slot",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "NAS1503-4 Flush Bolt Short Thread",
@@ -3616,7 +4272,9 @@ export const allProducts: Product[] = [
     material: "Alloy Steel",
     threadType: "UNF",
     specification: "NAS1503 - 1/4-28 UNF",
-    description: "100° flush head bolt, short thread"
+    description: "100° flush head bolt, short thread",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "NAS1580-4 Flush Bolt Standard",
@@ -3627,7 +4285,9 @@ export const allProducts: Product[] = [
     material: "Alloy Steel",
     threadType: "UNF",
     specification: "NAS1580 - 1/4-28 UNF",
-    description: "100° flush head bolt"
+    description: "100° flush head bolt",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "NAS1581-4 Flush Reduced Head",
@@ -3638,7 +4298,9 @@ export const allProducts: Product[] = [
     material: "Alloy Steel",
     threadType: "UNF",
     specification: "NAS1581 - 1/4-28 UNF",
-    description: "100° flush reduced head bolt"
+    description: "100° flush reduced head bolt",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "NAS1582-4 Flush Tension Head",
@@ -3649,7 +4311,9 @@ export const allProducts: Product[] = [
     material: "Alloy Steel",
     threadType: "UNF",
     specification: "NAS1582 - 1/4-28 UNF",
-    description: "100° flush tension head bolt"
+    description: "100° flush tension head bolt",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "NAS1724-4 Taper-Lok Flush Shear Bolt",
@@ -3660,7 +4324,9 @@ export const allProducts: Product[] = [
     material: "Alloy Steel",
     threadType: "UNF",
     specification: "NAS1724 - 1/4-28 UNF",
-    description: "100° flush shear bolt, tapered shank, Taper-Lok"
+    description: "100° flush shear bolt, tapered shank, Taper-Lok",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "NAS7203-4 Flush Cruciform",
@@ -3671,7 +4337,9 @@ export const allProducts: Product[] = [
     material: "Alloy Steel",
     threadType: "UNF",
     specification: "NAS7203 - 1/4-28 UNF",
-    description: "100° flush head bolt, cruciform recess"
+    description: "100° flush head bolt, cruciform recess",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "NAS7400-4 Flush Cruciform",
@@ -3682,7 +4350,9 @@ export const allProducts: Product[] = [
     material: "Alloy Steel",
     threadType: "UNF",
     specification: "NAS7400 - 1/4-28 UNF",
-    description: "100° flush head bolt, cruciform recess"
+    description: "100° flush head bolt, cruciform recess",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
 
   // Pan Head Bolts
@@ -3695,7 +4365,9 @@ export const allProducts: Product[] = [
     material: "Alloy Steel",
     threadType: "UNF",
     specification: "NAS1728 - 1/4-28 UNF",
-    description: "Pan head bolt, tapered shank, Taper-Lok"
+    description: "Pan head bolt, tapered shank, Taper-Lok",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "NAS1729-4 Pan Head Taper-Lok Oversize",
@@ -3706,7 +4378,9 @@ export const allProducts: Product[] = [
     material: "Alloy Steel",
     threadType: "UNF",
     specification: "NAS1729 - 1/4-28 UNF",
-    description: "Pan head bolt, oversize, tapered shank, Taper-Lok"
+    description: "Pan head bolt, oversize, tapered shank, Taper-Lok",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "NAS7700-4 Pan Head Cruciform Short Thread",
@@ -3717,7 +4391,9 @@ export const allProducts: Product[] = [
     material: "Alloy Steel",
     threadType: "UNF",
     specification: "NAS7700 - 1/4-28 UNF",
-    description: "Pan head bolt, cruciform recess, short thread"
+    description: "Pan head bolt, cruciform recess, short thread",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "NAS7800-4 Pan Head Cruciform Short Thread",
@@ -3728,7 +4404,9 @@ export const allProducts: Product[] = [
     material: "Alloy Steel",
     threadType: "UNF",
     specification: "NAS7800 - 1/4-28 UNF",
-    description: "Pan head bolt, cruciform recess, short thread"
+    description: "Pan head bolt, cruciform recess, short thread",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
 
   // Eye Bolts
@@ -3741,7 +4419,9 @@ export const allProducts: Product[] = [
     material: "Carbon Steel",
     threadType: "UNC",
     specification: "AN42 - 1/4\" thread",
-    description: "Eye bolt for lifting and rigging"
+    description: "Eye bolt for lifting and rigging",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "AN43-5 Eye Bolt",
@@ -3752,7 +4432,9 @@ export const allProducts: Product[] = [
     material: "Carbon Steel",
     threadType: "UNC",
     specification: "AN43 - 5/16\" thread",
-    description: "Eye bolt for lifting and rigging"
+    description: "Eye bolt for lifting and rigging",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
 
   // Clevis Bolts
@@ -3765,7 +4447,9 @@ export const allProducts: Product[] = [
     material: "Carbon Steel",
     threadType: "UNC",
     specification: "AN21 - 1/4\" x 1.25\"",
-    description: "Clevis bolt with cotter pin hole"
+    description: "Clevis bolt with cotter pin hole",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "AN22-12 Clevis Bolt",
@@ -3776,7 +4460,9 @@ export const allProducts: Product[] = [
     material: "Carbon Steel",
     threadType: "UNC",
     specification: "AN22 - 5/16\" x 1.50\"",
-    description: "Clevis bolt with cotter pin hole"
+    description: "Clevis bolt with cotter pin hole",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "AN23-14 Clevis Bolt",
@@ -3787,7 +4473,9 @@ export const allProducts: Product[] = [
     material: "Carbon Steel",
     threadType: "UNC",
     specification: "AN23 - 3/8\" x 1.75\"",
-    description: "Clevis bolt with cotter pin hole"
+    description: "Clevis bolt with cotter pin hole",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
 
   // Close Tolerance Bolts
@@ -3800,7 +4488,9 @@ export const allProducts: Product[] = [
     material: "Alloy Steel",
     threadType: "UNF",
     specification: "NAS464 - 1/4-28 UNF",
-    description: "Shear bolt, close tolerance, drilled or undrilled"
+    description: "Shear bolt, close tolerance, drilled or undrilled",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "NAS673-4 Hex Bolt Close Tolerance",
@@ -3811,7 +4501,9 @@ export const allProducts: Product[] = [
     material: "Alloy Steel",
     threadType: "UNF",
     specification: "NAS673 - 1/4-28 UNF",
-    description: "Hex head bolt, close tolerance, drilled or undrilled"
+    description: "Hex head bolt, close tolerance, drilled or undrilled",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "NAS333-4 Flush Close Tolerance",
@@ -3822,7 +4514,9 @@ export const allProducts: Product[] = [
     material: "Alloy Steel",
     threadType: "UNF",
     specification: "NAS333 - 1/4-28 UNF",
-    description: "100° flush head bolt, close tolerance"
+    description: "100° flush head bolt, close tolerance",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
 
   // Internal Wrenching Bolts
@@ -3835,7 +4529,9 @@ export const allProducts: Product[] = [
     material: "Alloy Steel",
     threadType: "UNF",
     specification: "MS20004 - 1/4-28 UNF",
-    description: "External wrenching bolt"
+    description: "External wrenching bolt",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "NAS144-4 Internal Wrenching Bolt",
@@ -3846,7 +4542,9 @@ export const allProducts: Product[] = [
     material: "Alloy Steel",
     threadType: "UNF",
     specification: "NAS144 - 1/4-28 UNF",
-    description: "Internal wrenching bolt, drilled or undrilled head or shank"
+    description: "Internal wrenching bolt, drilled or undrilled head or shank",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
 
   // High Temperature Bolts
@@ -3859,7 +4557,9 @@ export const allProducts: Product[] = [
     material: "A286 CRES",
     threadType: "UNF",
     specification: "MS9033 - 1/4-28 UNF",
-    description: "12-point head bolt, high temperature"
+    description: "12-point head bolt, high temperature",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "MS9224-4 Heat Resistant 12-Point",
@@ -3870,7 +4570,9 @@ export const allProducts: Product[] = [
     material: "A286 CRES",
     threadType: "UNF",
     specification: "MS9224 - 1/4-28 UNF",
-    description: "12-point head bolt, heat resistant"
+    description: "12-point head bolt, heat resistant",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
 
   // Black Oxide Finish Bolts
@@ -3883,7 +4585,9 @@ export const allProducts: Product[] = [
     material: "Alloy Steel",
     threadType: "UNF",
     specification: "MS9281 - 1/4-28 UNF",
-    description: "Hex head bolt, black oxide finish"
+    description: "Hex head bolt, black oxide finish",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "MS9169-4 12-Point Bolt Black Oxide",
@@ -3894,7 +4598,9 @@ export const allProducts: Product[] = [
     material: "Alloy Steel",
     threadType: "UNF",
     specification: "MS9169 - 1/4-28 UNF",
-    description: "12-point head bolt, drilled, black oxide finish"
+    description: "12-point head bolt, drilled, black oxide finish",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
 
   // Shoulder Hex Head Bolts
@@ -3907,7 +4613,9 @@ export const allProducts: Product[] = [
     material: "Alloy Steel",
     threadType: "UNF",
     specification: "NAS1297 - 1/4-28 UNF",
-    description: "Shoulder bolt with hex head"
+    description: "Shoulder bolt with hex head",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
 
   // Fluid Passage Bolts
@@ -3920,7 +4628,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "UNF",
     specification: "MS24387 - 1/4-28 UNF",
-    description: "Fluid passage bolt, precision type"
+    description: "Fluid passage bolt, precision type",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
 
   // ========== PINS SECTION ==========
@@ -3935,7 +4645,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "N/A",
     specification: "MS24665 - Cadmium Plated",
-    description: "Standard cotter pin with cadmium plating"
+    description: "Standard cotter pin with cadmium plating",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "MS24665-4 Cotter Pin",
@@ -3946,7 +4658,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "N/A",
     specification: "MS24665 - Cadmium Plated",
-    description: "Standard cotter pin with cadmium plating"
+    description: "Standard cotter pin with cadmium plating",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "MS9245-3 Cotter Pin CRES",
@@ -3957,7 +4671,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "N/A",
     specification: "MS9245 - CRES",
-    description: "Corrosion resistant steel cotter pin"
+    description: "Corrosion resistant steel cotter pin",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "AS9245-4 Cotter Pin",
@@ -3968,7 +4684,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "N/A",
     specification: "AS9245 - CRES",
-    description: "Aerospace standard cotter pin"
+    description: "Aerospace standard cotter pin",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
 
   // Dowel Pins
@@ -3981,7 +4699,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "N/A",
     specification: "MS16555 - Hardened Steel",
-    description: "Precision hardened dowel pin"
+    description: "Precision hardened dowel pin",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "MS16555-200 Dowel Pin",
@@ -3992,7 +4712,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "N/A",
     specification: "MS16555 - Hardened Steel",
-    description: "Precision hardened dowel pin"
+    description: "Precision hardened dowel pin",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "MS16556-50 Dowel Pin",
@@ -4003,7 +4725,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "N/A",
     specification: "MS16556 - Hardened Steel",
-    description: "Precision hardened dowel pin"
+    description: "Precision hardened dowel pin",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "MS16562-4 Dowel Pin",
@@ -4014,7 +4738,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "N/A",
     specification: "MS16562 - Hardened Steel",
-    description: "Precision alignment dowel pin"
+    description: "Precision alignment dowel pin",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "AA554881-3 Dowel Pin",
@@ -4025,7 +4751,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "N/A",
     specification: "AA554881 - Hardened",
-    description: "Military standard dowel pin"
+    description: "Military standard dowel pin",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "D10 Precision Dowel",
@@ -4036,7 +4764,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "N/A",
     specification: "D Series - Precision Ground",
-    description: "High precision ground dowel pin"
+    description: "High precision ground dowel pin",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "D25 Precision Dowel",
@@ -4047,7 +4777,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "N/A",
     specification: "D Series - Precision Ground",
-    description: "High precision ground dowel pin"
+    description: "High precision ground dowel pin",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "D63478-1 Precision Dowel",
@@ -4058,7 +4790,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "N/A",
     specification: "D63478 - Precision",
-    description: "High tolerance precision dowel"
+    description: "High tolerance precision dowel",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
 
   // Spring Pins
@@ -4071,7 +4805,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "N/A",
     specification: "MS17430 - Carbon Steel",
-    description: "Coiled spring pin for quick assembly"
+    description: "Coiled spring pin for quick assembly",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "MS17430-100 Spring Pin",
@@ -4082,7 +4818,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "N/A",
     specification: "MS17430 - Carbon Steel",
-    description: "Coiled spring pin for quick assembly"
+    description: "Coiled spring pin for quick assembly",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "MS9047-4 Spring Pin",
@@ -4093,7 +4831,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "N/A",
     specification: "MS9047 - Spring Steel",
-    description: "Slotted spring pin"
+    description: "Slotted spring pin",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "MS9048-5 Spring Pin",
@@ -4104,7 +4844,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "N/A",
     specification: "MS9048 - Spring Steel",
-    description: "Slotted spring pin"
+    description: "Slotted spring pin",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "MS51923-4 Spring Pin",
@@ -4115,7 +4857,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "N/A",
     specification: "MS51923 - Carbon Steel",
-    description: "Heavy duty spring pin"
+    description: "Heavy duty spring pin",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "NAS561-5 Spring Pin",
@@ -4126,7 +4870,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "N/A",
     specification: "NAS561 - CRES",
-    description: "Aerospace spring pin"
+    description: "Aerospace spring pin",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
 
   // Clevis/Hitch Pins
@@ -4139,7 +4885,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "N/A",
     specification: "MS20253 - Cadmium Plated",
-    description: "Standard clevis pin with cotter hole"
+    description: "Standard clevis pin with cotter hole",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "MS20253-4 Clevis Pin",
@@ -4150,7 +4898,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "N/A",
     specification: "MS20253 - Cadmium Plated",
-    description: "Standard clevis pin with cotter hole"
+    description: "Standard clevis pin with cotter hole",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "MS24692-3 Hitch Pin",
@@ -4161,7 +4911,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "N/A",
     specification: "MS24692 - Alloy Steel",
-    description: "Heavy duty hitch pin"
+    description: "Heavy duty hitch pin",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "MS27074-4 Clevis Pin",
@@ -4172,7 +4924,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "N/A",
     specification: "MS27074 - Steel",
-    description: "Precision clevis pin"
+    description: "Precision clevis pin",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "MS51400-3 Clevis Pin",
@@ -4183,7 +4937,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "N/A",
     specification: "MS51400 - CRES",
-    description: "Corrosion resistant clevis pin"
+    description: "Corrosion resistant clevis pin",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "MS9105-4 Clevis Pin",
@@ -4194,7 +4950,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "N/A",
     specification: "MS9105 - Alloy Steel",
-    description: "High strength clevis pin"
+    description: "High strength clevis pin",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "NAS607-4 Clevis Pin",
@@ -4205,7 +4963,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "N/A",
     specification: "NAS607 - Alloy Steel",
-    description: "NAS standard clevis pin"
+    description: "NAS standard clevis pin",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "NAS427W-5 Clevis Pin",
@@ -4216,7 +4976,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "N/A",
     specification: "NAS427W - Alloy Steel",
-    description: "Wide head clevis pin"
+    description: "Wide head clevis pin",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "AN122690 Clevis Pin",
@@ -4227,7 +4989,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "N/A",
     specification: "AN122 Series",
-    description: "AN standard clevis pin"
+    description: "AN standard clevis pin",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "AN150240 Clevis Pin",
@@ -4238,7 +5002,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "N/A",
     specification: "AN150 Series",
-    description: "AN standard clevis pin"
+    description: "AN standard clevis pin",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "M21143-1 Clevis Pin",
@@ -4249,7 +5015,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "N/A",
     specification: "M21143 - Alloy Steel",
-    description: "Military spec clevis pin"
+    description: "Military spec clevis pin",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "MDP3-3 Clevis Pin",
@@ -4260,7 +5028,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "N/A",
     specification: "MDP Series",
-    description: "Modular design clevis pin"
+    description: "Modular design clevis pin",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "MA4018-3 Clevis Pin",
@@ -4271,7 +5041,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "N/A",
     specification: "MA4018 - Alloy Steel",
-    description: "Heavy duty clevis pin"
+    description: "Heavy duty clevis pin",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
 
   // ========== NUTS SECTION ==========
@@ -4286,7 +5058,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "UNF",
     specification: "AN310 - 1/4-28 UNF",
-    description: "Castle nut with slotted crown for cotter pin"
+    description: "Castle nut with slotted crown for cotter pin",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "AN310-6 Castle Nut",
@@ -4297,7 +5071,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "UNF",
     specification: "AN310 - 3/8-24 UNF",
-    description: "Castle nut with slotted crown for cotter pin"
+    description: "Castle nut with slotted crown for cotter pin",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "MS20365-4 Castle Nut",
@@ -4308,7 +5084,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "UNF",
     specification: "MS20365 - 1/4-28 UNF",
-    description: "Cadmium plated castle nut"
+    description: "Cadmium plated castle nut",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "NAS1291-4 Castle Nut",
@@ -4319,7 +5097,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "UNF",
     specification: "NAS1291 - 1/4-28 UNF",
-    description: "NAS standard castle nut"
+    description: "NAS standard castle nut",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
 
   // Self-Locking Nuts
@@ -4332,7 +5112,9 @@ export const allProducts: Product[] = [
     material: "Aluminum",
     threadType: "UNF",
     specification: "MS21042 - 1/4-28 UNF",
-    description: "Aluminum self-locking nut with nylon insert"
+    description: "Aluminum self-locking nut with nylon insert",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "MS21043-4 Self-Locking Nut CRES",
@@ -4343,7 +5125,9 @@ export const allProducts: Product[] = [
     material: "Stainless Steel",
     threadType: "UNF",
     specification: "MS21043 - 1/4-28 UNF",
-    description: "CRES self-locking nut with nylon insert"
+    description: "CRES self-locking nut with nylon insert",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "MS21044-4 Self-Locking Nut Steel",
@@ -4354,7 +5138,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "UNC",
     specification: "MS21044 - 1/4-20 UNC",
-    description: "Steel self-locking nut with nylon insert"
+    description: "Steel self-locking nut with nylon insert",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "AN365-4 Self-Locking Nut",
@@ -4365,7 +5151,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "UNF",
     specification: "AN365 - 1/4-28 UNF",
-    description: "AN standard self-locking nut"
+    description: "AN standard self-locking nut",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "NAS1021-4 Self-Locking Nut",
@@ -4376,7 +5164,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "UNF",
     specification: "NAS1021 - 1/4-28 UNF",
-    description: "NAS standard self-locking hex nut"
+    description: "NAS standard self-locking hex nut",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "BACN10-4 Self-Locking Nut",
@@ -4387,7 +5177,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "UNF",
     specification: "BACN10 - 1/4-28 UNF",
-    description: "Boeing approved self-locking nut"
+    description: "Boeing approved self-locking nut",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
 
   // Wing Nuts
@@ -4400,7 +5192,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "UNF",
     specification: "AN315 - 1/4-28 UNF",
-    description: "Wing nut for hand-tightening applications"
+    description: "Wing nut for hand-tightening applications",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "AN315-6 Wing Nut",
@@ -4411,7 +5205,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "UNF",
     specification: "AN315 - 3/8-24 UNF",
-    description: "Wing nut for hand-tightening applications"
+    description: "Wing nut for hand-tightening applications",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
 
   // Flange Nuts
@@ -4424,7 +5220,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "UNF",
     specification: "MS21047 - 1/4-28 UNF",
-    description: "Self-locking flange nut with integral washer"
+    description: "Self-locking flange nut with integral washer",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "NAS1473-4 Flange Nut",
@@ -4435,7 +5233,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "UNF",
     specification: "NAS1473 - 1/4-28 UNF",
-    description: "NAS standard flange lock nut"
+    description: "NAS standard flange lock nut",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
 
   // Hex Nuts
@@ -4448,7 +5248,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "UNF",
     specification: "AN363 - 1/4-28 UNF",
-    description: "Standard hex nut"
+    description: "Standard hex nut",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "MS20364-4 Hex Nut",
@@ -4459,7 +5261,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "UNF",
     specification: "MS20364 - 1/4-28 UNF",
-    description: "Thin hex nut with slots"
+    description: "Thin hex nut with slots",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "NAS679-4 Hex Nut",
@@ -4470,7 +5274,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "UNF",
     specification: "NAS679 - 1/4-28 UNF",
-    description: "NAS standard hex nut"
+    description: "NAS standard hex nut",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
 
   // Square Nuts
@@ -4483,7 +5289,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "UNF",
     specification: "AN361 - 1/4-28 UNF",
-    description: "Square nut for anti-rotation applications"
+    description: "Square nut for anti-rotation applications",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
 
   // Jam Nuts
@@ -4496,7 +5304,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "UNF",
     specification: "AN316 - 1/4-28 UNF",
-    description: "Thin jam nut for lock wiring"
+    description: "Thin jam nut for lock wiring",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
   {
     title: "NAS1778-4 Jam Nut",
@@ -4507,7 +5317,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "UNF",
     specification: "NAS1778 - 1/4-28 UNF",
-    description: "NAS standard thin jam nut"
+    description: "NAS standard thin jam nut",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
 
   // Slotted Nuts
@@ -4520,7 +5332,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "UNF",
     specification: "AN320 - 1/4-28 UNF",
-    description: "Slotted shear nut for rod ends"
+    description: "Slotted shear nut for rod ends",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
 
   // Acorn/Cap Nuts
@@ -4533,7 +5347,9 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "UNF",
     specification: "MS51972 - 1/4-28 UNF",
-    description: "Acorn cap nut for smooth finish"
+    description: "Acorn cap nut for smooth finish",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   },
 
   // Coupling Nuts
@@ -4546,6 +5362,8 @@ export const allProducts: Product[] = [
     material: "Steel",
     threadType: "UNF",
     specification: "MS51866 - 1/4-28 UNF",
-    description: "Long coupling nut for joining threaded rods"
+    description: "Long coupling nut for joining threaded rods",
+    condition: "FN",
+    certs: ["mfg_cert", "8130-3"]
   }
 ];

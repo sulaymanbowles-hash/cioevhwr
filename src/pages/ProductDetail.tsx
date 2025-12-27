@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Package, Shield, Truck, FileText, ShoppingCart, Factory, Tag, Phone, Mail } from "lucide-react";
+import { Package, Shield, ShieldCheck, Truck, FileText, ShoppingCart, Factory, Tag, Phone, Mail } from "lucide-react";
 import { Product3DViewer } from "../components/ui/Product3DViewer";
 import { TechLabel } from "../components/ui/TechLabel";
 import { useState, useEffect } from "react";
@@ -9,6 +9,7 @@ import { useRecentlyViewedStore } from "../stores/recentlyViewedStore";
 import { Breadcrumbs } from "../components/ui/Breadcrumbs";
 import { RecentlyViewed } from "../components/ui/RecentlyViewed";
 import { allProducts } from "../lib/products";
+import { ErrorBoundary } from "../components/ui/ErrorBoundary";
 
 interface ProductInfo {
   title: string;
@@ -25,6 +26,8 @@ interface ProductInfo {
   fittingType?: string;
   screwType?: string;
   boltType?: string;
+  condition?: "FN" | "NS" | "OH" | "SV" | "AR";
+  certs?: string[];
 }
 
 const productsData: Record<string, ProductInfo> = {
@@ -1325,6 +1328,8 @@ export const ProductDetail = () => {
         modelType: type,
         modelFile: found.modelFile,
         description: found.description,
+        condition: found.condition,
+        certs: found.certs,
         specifications: [
           { label: "Specification", value: found.specification },
           { label: "Material", value: found.material },
@@ -1367,37 +1372,38 @@ export const ProductDetail = () => {
   }
 
   return (
-    <div className="min-h-screen pt-24 pb-20">
-      {/* Breadcrumbs */}
-      <div className="max-w-[1600px] mx-auto px-6 md:px-8 mt-8">
-        <Breadcrumbs
-          items={[
-            { label: "Catalog", path: "/catalog" },
-            { label: product.category, path: "/catalog" },
-            { label: product.partNumber },
-          ]}
-        />
-      </div>
+    <ErrorBoundary>
+      <div className="min-h-screen pt-24 pb-20">
+        {/* Breadcrumbs */}
+        <div className="max-w-[1600px] mx-auto px-6 md:px-8 mt-8">
+          <Breadcrumbs
+            items={[
+              { label: "Catalog", path: "/catalog" },
+              { label: product.category, path: "/catalog" },
+              { label: product.partNumber },
+            ]}
+          />
+        </div>
 
-      <div className="max-w-[1600px] mx-auto px-6 md:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-          {/* 3D Viewer Section */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className="sticky top-32 self-start"
-          >
-            <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-50 rounded-lg border border-gray-200 shadow-xl overflow-hidden">
-              <Product3DViewer type={product.modelType} modelPath={product.modelFile} />
-            </div>
-            <div className="mt-6 p-6 bg-gray-50 rounded-lg border border-gray-200">
-              <TechLabel className="mb-4 block">Interactive 3D Model</TechLabel>
-              <p className="text-sm text-gray-600">
-                Click and drag to rotate. This is a detailed 3D representation of the actual component.
-              </p>
-            </div>
-          </motion.div>
+        <div className="max-w-[1600px] mx-auto px-6 md:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            {/* 3D Viewer Section */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="sticky top-32 self-start"
+            >
+              <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-50 rounded-lg border border-gray-200 shadow-xl overflow-hidden">
+                <Product3DViewer type={product.modelType} modelPath={product.modelFile} />
+              </div>
+              <div className="mt-6 p-6 bg-gray-50 rounded-lg border border-gray-200">
+                <TechLabel className="mb-4 block">Interactive 3D Model</TechLabel>
+                <p className="text-sm text-gray-600">
+                  Click and drag to rotate. This is a detailed 3D representation of the actual component.
+                </p>
+              </div>
+            </motion.div>
 
           {/* Product Info Section */}
           <motion.div
@@ -1414,6 +1420,21 @@ export const ProductDetail = () => {
               <span className="px-3 py-1 bg-green-100 text-green-800 text-xs font-semibold rounded-full">
                 In Stock
               </span>
+              {product.condition && (
+                <span className={`px-3 py-1 text-xs font-semibold rounded-full ${
+                  product.condition === 'FN' ? 'bg-green-100 text-green-800' :
+                  product.condition === 'NS' ? 'bg-blue-100 text-blue-800' :
+                  product.condition === 'OH' ? 'bg-amber-100 text-amber-800' :
+                  product.condition === 'SV' ? 'bg-yellow-100 text-yellow-800' :
+                  'bg-red-100 text-red-800'
+                }`}>
+                  {product.condition === 'FN' ? 'Factory New' :
+                   product.condition === 'NS' ? 'New Surplus' :
+                   product.condition === 'OH' ? 'Overhauled' :
+                   product.condition === 'SV' ? 'Serviceable' :
+                   'As Removed'}
+                </span>
+              )}
             </div>
 
             <p className="text-lg text-gray-600 leading-relaxed mb-12">
@@ -1548,6 +1569,28 @@ export const ProductDetail = () => {
               </div>
             </div>
 
+            {/* Certifications */}
+            {product.certs && product.certs.length > 0 && (
+              <div className="mb-12">
+                <h2 className="text-2xl font-semibold mb-6 flex items-center gap-2">
+                  <ShieldCheck className="w-5 h-5" />
+                  Certifications & Traceability
+                </h2>
+                <div className="flex flex-wrap gap-3">
+                  {product.certs.map((cert, i) => (
+                    <div key={i} className="flex items-center gap-2 px-4 py-3 bg-blue-50 border border-blue-100 rounded-lg">
+                      <ShieldCheck className="w-4 h-4 text-blue-600" />
+                      <span className="text-sm font-medium text-blue-900">
+                        {cert === 'mfg_cert' ? 'Manufacturer Cert' :
+                         cert === '8130-3' ? 'FAA Form 8130-3' :
+                         cert.toUpperCase()}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
             {/* Add to RFQ Section */}
             <div className="border-2 border-gray-200 rounded-xl overflow-hidden shadow-lg">
               {/* Header */}
@@ -1648,5 +1691,6 @@ export const ProductDetail = () => {
       {/* Recently Viewed Products */}
       <RecentlyViewed />
     </div>
+    </ErrorBoundary>
   );
 };

@@ -91,14 +91,13 @@ def create_self_locking_nut():
         thread.apply_translation([0, 0, z_pos])
         threads.append(thread)
     
-    # Locking collar (nylon insert)
+    # Locking collar (metal deformation)
     collar = trimesh.creation.cylinder(
-        radius=inner_radius + 0.02,
-        height=0.09,
-        sections=32
+        radius=outer_radius, # Same as body
+        height=0.06,
+        sections=6
     )
-    collar.apply_translation([0, 0, 0.09])
-    collar.visual.vertex_colors = [30, 60, 90, 255]  # Blue for nylon
+    collar.apply_translation([0, 0, nut_height/2 + 0.03])
     
     # Combine
     meshes = [nut, collar] + threads
@@ -110,28 +109,29 @@ def create_self_locking_nut():
     return final_nut
 
 def create_hydraulic_fitting():
-    """Create a hydraulic fitting (AN818 style)"""
-    # Main body
-    body = trimesh.creation.cylinder(
+    """Create a hydraulic fitting (AN815 Union style)"""
+    # Central Hex
+    hex_center = trimesh.creation.cylinder(
+        radius=0.28,
+        height=0.22,
+        sections=6
+    )
+
+    # Top Body
+    body_top = trimesh.creation.cylinder(
         radius=0.16,
-        height=1.1,
+        height=0.5,
         sections=32
     )
-    
-    # Hex grip sections
-    hex1 = trimesh.creation.cylinder(
-        radius=0.21,
-        height=0.25,
-        sections=6
+    body_top.apply_translation([0, 0, 0.36])
+
+    # Bottom Body
+    body_bottom = trimesh.creation.cylinder(
+        radius=0.16,
+        height=0.5,
+        sections=32
     )
-    hex1.apply_translation([0, 0, 0.3])
-    
-    hex2 = trimesh.creation.cylinder(
-        radius=0.21,
-        height=0.25,
-        sections=6
-    )
-    hex2.apply_translation([0, 0, -0.3])
+    body_bottom.apply_translation([0, 0, -0.36])
     
     # Flared ends (cones)
     flare1 = trimesh.creation.cone(
@@ -139,7 +139,7 @@ def create_hydraulic_fitting():
         height=0.2,
         sections=32
     )
-    flare1.apply_translation([0, 0, 0.65])
+    flare1.apply_translation([0, 0, 0.61])
     
     flare2 = trimesh.creation.cone(
         radius=0.2,
@@ -147,10 +147,10 @@ def create_hydraulic_fitting():
         sections=32
     )
     flare2.apply_transform(trimesh.transformations.rotation_matrix(np.pi, [1, 0, 0]))
-    flare2.apply_translation([0, 0, -0.65])
+    flare2.apply_translation([0, 0, -0.61])
     
     # Combine
-    fitting = trimesh.util.concatenate([body, hex1, hex2, flare1, flare2])
+    fitting = trimesh.util.concatenate([hex_center, body_top, body_bottom, flare1, flare2])
     
     # Brass color
     fitting.visual.vertex_colors = [224, 183, 92, 255]
@@ -158,7 +158,7 @@ def create_hydraulic_fitting():
     return fitting
 
 def create_precision_pin():
-    """Create a precision pin (MS16555 style)"""
+    """Create a precision pin (MS16555 Dowel style)"""
     # Main shaft
     shaft_radius = 0.09
     shaft_length = 1.6
@@ -169,34 +169,31 @@ def create_precision_pin():
     )
     shaft.apply_transform(trimesh.transformations.rotation_matrix(np.pi/2, [0, 1, 0]))
     
-    # Rounded head
-    head = trimesh.creation.icosphere(
-        subdivisions=3,
-        radius=0.12
-    )
-    head.apply_translation([0.82, 0, 0])
-    
-    # Groove for retaining clip
-    groove = trimesh.creation.torus(
-        major_radius=shaft_radius - 0.01,
-        minor_radius=0.015,
-        major_sections=32,
-        minor_sections=8
-    )
-    groove.apply_transform(trimesh.transformations.rotation_matrix(np.pi/2, [0, 1, 0]))
-    groove.apply_translation([-0.65, 0, 0])
-    
-    # Chamfered tip
-    tip = trimesh.creation.cone(
+    # Chamfer Left
+    chamfer1 = trimesh.creation.cone(
         radius=shaft_radius,
-        height=0.12,
+        height=0.1,
         sections=32
     )
-    tip.apply_transform(trimesh.transformations.rotation_matrix(-np.pi/2, [0, 1, 0]))
-    tip.apply_translation([-0.86, 0, 0])
+    chamfer1.apply_transform(trimesh.transformations.rotation_matrix(-np.pi/2, [0, 1, 0]))
+    chamfer1.apply_translation([-0.85, 0, 0])
+
+    # Chamfer Right
+    chamfer2 = trimesh.creation.cone(
+        radius=shaft_radius,
+        height=0.1,
+        sections=32
+    )
+    chamfer2.apply_transform(trimesh.transformations.rotation_matrix(np.pi/2, [0, 1, 0]))
+    chamfer2.apply_translation([0.85, 0, 0])
     
     # Combine
-    pin = trimesh.util.concatenate([shaft, head, groove, tip])
+    pin = trimesh.util.concatenate([shaft, chamfer1, chamfer2])
+    
+    # Stainless steel color
+    pin.visual.vertex_colors = [199, 209, 224, 255]
+    
+    return pin
     
     # Stainless steel color
     pin.visual.vertex_colors = [133, 133, 133, 255]

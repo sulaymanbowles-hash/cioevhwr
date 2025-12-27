@@ -3,16 +3,17 @@ import { TechLabel } from "../components/ui/TechLabel";
 import { TechnicalBorder } from "../components/ui/TechnicalBorder";
 import { Search, Filter, Download, ShoppingCart, ArrowUpRight, GitCompare } from "lucide-react";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useQuoteStore } from "../stores/quoteStore";
 import { useComparisonStore } from "../stores/comparisonStore";
 import { ToastNotification } from "../components/ui/ToastNotification";
 import type { ToastType } from "../components/ui/ToastNotification";
-import { Catalog3DViewer, preloadCatalogModels } from "../components/ui/Catalog3DViewer";
+import { preloadCatalogModels } from "../components/ui/Catalog3DViewer";
 import { ComparisonBar } from "../components/ui/ComparisonBar";
 import { Breadcrumbs } from "../components/ui/Breadcrumbs";
 
-import { type Product, categories, materials, threadTypes, allProducts } from "../lib/products";
+import { type Product, categories, materials, threadTypes, conditions, allProducts } from "../lib/products";
+import { ShieldCheck } from "lucide-react";
 
 
 
@@ -25,12 +26,31 @@ export const Catalog = () => {
   const [selectedCategory, setSelectedCategory] = useState("All Categories");
   const [selectedMaterial, setSelectedMaterial] = useState("All Materials");
   const [selectedThreadType, setSelectedThreadType] = useState("All Thread Types");
+  const [selectedCondition, setSelectedCondition] = useState("All Conditions");
   const [showFilters, setShowFilters] = useState(false);
   const [addedToCart, setAddedToCart] = useState<string | null>(null);
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
   const [toastType, setToastType] = useState<ToastType>("success");
   const [visibleCount, setVisibleCount] = useState(12);
+  const [searchParams] = useSearchParams();
+
+  // Handle URL parameters for filtering
+  useEffect(() => {
+    const categoryParam = searchParams.get("category");
+    const searchParam = searchParams.get("search");
+
+    if (categoryParam) {
+      // Decode URI component to handle special characters like &
+      setSelectedCategory(decodeURIComponent(categoryParam));
+    } else {
+      setSelectedCategory("All Categories");
+    }
+    
+    if (searchParam) {
+      setSearchTerm(decodeURIComponent(searchParam));
+    }
+  }, [searchParams]);
 
   // Preload models for above-the-fold products on mount
   useEffect(() => {
@@ -44,7 +64,8 @@ export const Catalog = () => {
     const matchesCategory = selectedCategory === "All Categories" || product.category === selectedCategory;
     const matchesMaterial = selectedMaterial === "All Materials" || product.material === selectedMaterial;
     const matchesThread = selectedThreadType === "All Thread Types" || product.threadType === selectedThreadType;
-    return matchesSearch && matchesCategory && matchesMaterial && matchesThread;
+    const matchesCondition = selectedCondition === "All Conditions" || product.condition === selectedCondition;
+    return matchesSearch && matchesCategory && matchesMaterial && matchesThread && matchesCondition;
   });
 
   const displayedProducts = filteredProducts.slice(0, visibleCount);
@@ -94,7 +115,12 @@ export const Catalog = () => {
     setShowToast(true);
   };
 
-  const activeFiltersCount = [selectedCategory !== "All Categories", selectedMaterial !== "All Materials", selectedThreadType !== "All Thread Types"].filter(Boolean).length;
+  const activeFiltersCount = [
+    selectedCategory !== "All Categories", 
+    selectedMaterial !== "All Materials", 
+    selectedThreadType !== "All Thread Types",
+    selectedCondition !== "All Conditions"
+  ].filter(Boolean).length;
 
   return (
     <div className="min-h-screen pt-24 pb-32 bg-gradient-to-br from-gray-50 to-white">
@@ -170,13 +196,14 @@ export const Catalog = () => {
                           setSelectedCategory("All Categories");
                           setSelectedMaterial("All Materials");
                           setSelectedThreadType("All Thread Types");
+                          setSelectedCondition("All Conditions");
                         }}
                         className="text-sm text-gray-600 hover:text-black transition-colors font-mono"
                       >
                         Clear All
                       </button>
                     </div>
-                    <div className="grid md:grid-cols-3 gap-4">
+                    <div className="grid md:grid-cols-4 gap-4">
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2 uppercase tracking-wide">Category</label>
                         <select
@@ -210,6 +237,18 @@ export const Catalog = () => {
                         >
                           {threadTypes.map(thread => (
                             <option key={thread} value={thread}>{thread}</option>
+                          ))}
+                        </select>
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2 uppercase tracking-wide">Condition</label>
+                        <select
+                          value={selectedCondition}
+                          onChange={(e) => setSelectedCondition(e.target.value)}
+                          className="w-full px-4 py-3 border-2 border-gray-200 bg-white rounded-sm focus:border-black focus:outline-none transition-colors appearance-none text-black cursor-pointer font-mono text-sm"
+                        >
+                          {conditions.map(cond => (
+                            <option key={cond} value={cond}>{cond}</option>
                           ))}
                         </select>
                       </div>
@@ -250,6 +289,7 @@ export const Catalog = () => {
                     setSelectedCategory("All Categories");
                     setSelectedMaterial("All Materials");
                     setSelectedThreadType("All Thread Types");
+                    setSelectedCondition("All Conditions");
                   }}
                   className="px-8 py-4 bg-black hover:bg-gray-800 text-white font-bold rounded-sm transition-colors uppercase tracking-wide"
                 >
@@ -280,21 +320,44 @@ export const Catalog = () => {
                       </div>
 
                       {/* Header */}
-                      <div className="flex justify-between items-start mb-8 relative z-10">
-                        <TechLabel>{product.category}</TechLabel>
+                      <div className="flex justify-between items-start mb-4 relative z-10">
+                        <div className="flex flex-col gap-1">
+                          <TechLabel>{product.category}</TechLabel>
+                          <div className="flex gap-2 mt-1">
+                            <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded border ${
+                              product.condition === 'FN' ? 'bg-green-50 text-green-700 border-green-200' :
+                              product.condition === 'NS' ? 'bg-blue-50 text-blue-700 border-blue-200' :
+                              'bg-gray-50 text-gray-700 border-gray-200'
+                            }`}>
+                              {product.condition}
+                            </span>
+                            {product.certs?.includes('8130-3') && (
+                              <span className="text-[10px] font-bold px-1.5 py-0.5 rounded border bg-amber-50 text-amber-700 border-amber-200 flex items-center gap-1">
+                                <ShieldCheck className="w-3 h-3" /> 8130
+                              </span>
+                            )}
+                          </div>
+                        </div>
                         <span className="font-mono text-[10px] text-gray-500 tracking-wide group-hover:text-gray-900 transition-colors duration-300">
                           {product.partNumber}
                         </span>
                       </div>
                       
-                      {/* 3D Model Viewer */}
-                      <div className="aspect-square bg-gradient-to-br from-gray-50 to-gray-100/50 mb-6 flex items-center justify-center overflow-hidden relative rounded-sm border border-gray-200 group-hover:border-gray-300 transition-all duration-500 group-hover:shadow-inner">
-                        <div className="absolute inset-0 opacity-[0.03] group-hover:opacity-[0.05] transition-opacity duration-500" 
-                             style={{ backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '12px 12px' }} 
-                        />
-                        
-                        <div className="w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out">
-                          <Catalog3DViewer modelPath={product.modelFile} scale={1.3} />
+                      {/* Product Info - No 3D Model */}
+                      <div className="mb-6">
+                        <h3 className="text-lg font-bold mb-2 group-hover:text-blue-600 transition-colors">{product.title}</h3>
+                        <p className="text-sm text-gray-500 line-clamp-2">{product.description}</p>
+                      </div>
+
+                      {/* Specs Grid */}
+                      <div className="grid grid-cols-2 gap-2 mb-6 text-[10px] uppercase tracking-wider text-gray-500">
+                        <div className="bg-gray-50 p-2 rounded">
+                          <span className="block text-gray-400 mb-1">Material</span>
+                          <span className="font-bold text-gray-900">{product.material}</span>
+                        </div>
+                        <div className="bg-gray-50 p-2 rounded">
+                          <span className="block text-gray-400 mb-1">Thread</span>
+                          <span className="font-bold text-gray-900">{product.threadType || 'N/A'}</span>
                         </div>
                       </div>
 

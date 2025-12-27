@@ -36,14 +36,6 @@ export const SelfLockingNut = ({ scale = 1, autoRotate = true }: SelfLockingNutP
     roughness: material.roughness + 0.06,
   }), []);
 
-  // Blue nylon insert material
-  const nylonMaterial = useMemo(() => new MeshStandardMaterial({
-    color: new Color(...MATERIAL_PRESETS.nylon.color),
-    metalness: MATERIAL_PRESETS.nylon.metalness,
-    roughness: MATERIAL_PRESETS.nylon.roughness,
-    envMapIntensity: MATERIAL_PRESETS.nylon.envMapIntensity,
-  }), []);
-
   // Generate hex geometry parametrically
   const hexGeometry = useMemo(() => {
     const shape = new Shape();
@@ -126,7 +118,7 @@ export const SelfLockingNut = ({ scale = 1, autoRotate = true }: SelfLockingNutP
         );
       })}
 
-      {/* Nylon locking collar (blue) - top portion (parametric) */}
+      {/* Locking collar - top portion (parametric) */}
       <mesh 
         position={[0, metalHeight / 2 + (spec.lockingCollarHeight || 0) / 2, 0]} 
         rotation={[Math.PI / 2, 0, 0]}
@@ -134,17 +126,7 @@ export const SelfLockingNut = ({ scale = 1, autoRotate = true }: SelfLockingNutP
         receiveShadow
       >
         <primitive object={collarGeometry} attach="geometry" />
-        <primitive object={nylonMaterial} attach="material" />
-      </mesh>
-
-      {/* Nylon insert detail - textured surface */}
-      <mesh position={[0, metalHeight / 2 + (spec.lockingCollarHeight || 0) / 2, 0]}>
-        <torusGeometry args={[spec.innerDiameter / 2 + 0.02, 0.015, 12, 32]} />
-        <meshStandardMaterial 
-          color="#0d1a28"
-          metalness={0.02}
-          roughness={0.85}
-        />
+        <primitive object={cadmiumMaterial} attach="material" />
       </mesh>
 
       {/* Locking feature detail rings */}

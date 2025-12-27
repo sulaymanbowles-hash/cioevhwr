@@ -54,30 +54,15 @@ export const PrecisionPin = ({ scale = 1, autoRotate = true }: PrecisionPinProps
         <primitive object={stainlessMaterial} attach="material" />
       </mesh>
 
-      {/* Head (larger end) - precision machined */}
-      <mesh 
-        position={[-spec.length / 2 - (spec.headHeight || 0) / 2, 0, 0]} 
-        rotation={[0, 0, Math.PI / 2]} 
-        castShadow 
-        receiveShadow
-      >
-        <cylinderGeometry args={[(spec.headDiameter || 0) / 2, (spec.headDiameter || 0) / 2, spec.headHeight || 0, 64]} />
-        <primitive object={stainlessGroundMaterial} attach="material" />
+      {/* Chamfer End 1 (Left) */}
+      <mesh position={[-spec.length / 2, 0, 0]} rotation={[0, 0, Math.PI / 2]} castShadow>
+        <cylinderGeometry args={[spec.diameter / 2, spec.diameter / 2 - 0.02, 0.02, 64]} />
+        <primitive object={stainlessMaterial} attach="material" />
       </mesh>
 
-      {/* Head chamfer edge */}
-      <mesh 
-        position={[-spec.length / 2 - (spec.headHeight || 0) - 0.015, 0, 0]} 
-        rotation={[0, 0, Math.PI / 2]} 
-        castShadow
-      >
-        <cylinderGeometry args={[(spec.headDiameter || 0) / 2 - 0.01, (spec.headDiameter || 0) / 2, 0.03, 64]} />
-        <primitive object={stainlessGroundMaterial} attach="material" />
-      </mesh>
-
-      {/* Head fillet radius */}
-      <mesh position={[-spec.length / 2 - 0.01, 0, 0]} rotation={[0, 0, Math.PI / 2]}>
-        <torusGeometry args={[spec.diameter / 2 + 0.015, 0.02, 16, 64]} />
+      {/* Chamfer End 2 (Right) */}
+      <mesh position={[spec.length / 2, 0, 0]} rotation={[0, 0, Math.PI / 2]} castShadow>
+        <cylinderGeometry args={[spec.diameter / 2 - 0.02, spec.diameter / 2, 0.02, 64]} />
         <primitive object={stainlessMaterial} attach="material" />
       </mesh>
 

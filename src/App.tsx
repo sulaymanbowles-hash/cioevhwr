@@ -15,6 +15,8 @@ import { Security } from "./pages/Security";
 import { ITARCompliance } from "./pages/ITARCompliance";
 import { Quote } from "./pages/Quote";
 import { Certifications } from "./pages/Certifications";
+import { LineCard } from "./pages/LineCard";
+import { ClientPortal } from "./pages/ClientPortal";
 import { FAQ } from "./pages/FAQ";
 
 // Scroll to top component
@@ -72,6 +74,8 @@ function App() {
             <Route path="/itar-compliance" element={<ITARCompliance />} />
             <Route path="/quote" element={<Quote />} />
             <Route path="/certifications" element={<Certifications />} />
+            <Route path="/line-card" element={<LineCard />} />
+            <Route path="/portal" element={<ClientPortal />} />
             <Route path="/faq" element={<FAQ />} />
           </Routes>
         </main>

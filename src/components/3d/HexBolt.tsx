@@ -1,7 +1,7 @@
 import { useRef, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
 import { Mesh, MeshStandardMaterial, Color, Shape, ExtrudeGeometry } from "three";
-import { STANDARD_SPECS, MATERIAL_PRESETS, generateSocketGeometry } from "@/lib/parametricModels";
+import { STANDARD_SPECS, MATERIAL_PRESETS } from "@/lib/parametricModels";
 
 interface HexBoltProps {
   scale?: number;
@@ -67,11 +67,6 @@ export const HexBolt = ({ scale = 1, autoRotate = true }: HexBoltProps) => {
     });
   }, [spec]);
 
-  // Socket drive geometry
-  const socketGeometry = useMemo(() => 
-    generateSocketGeometry(spec.socketSize!, spec.headHeight * 0.64, 6),
-  [spec]);
-
   return (
     <group scale={scale} ref={groupRef}>
       {/* Parametric Hex Head */}
@@ -90,34 +85,6 @@ export const HexBolt = ({ scale = 1, autoRotate = true }: HexBoltProps) => {
         <cylinderGeometry args={[spec.headDiameter / 2 - 0.01, spec.headDiameter / 2, 0.02, 6]} />
         <primitive object={titaniumDarkMaterial} attach="material" />
       </mesh>
-
-      {/* Socket drive recess */}
-      <mesh position={[0, spec.shaftLength / 2 + spec.headHeight / 2 + spec.headHeight * 0.18, 0]}>
-        <primitive object={socketGeometry} attach="geometry" />
-        <meshStandardMaterial 
-          color="#3a404a"
-          metalness={0.85}
-          roughness={0.45}
-        />
-      </mesh>
-
-      {/* Socket drive detail lines */}
-      {Array.from({ length: 6 }).map((_, i) => {
-        const angle = (i * Math.PI) / 3;
-        return (
-          <mesh 
-            key={`socket-${i}`}
-            position={[
-              Math.cos(angle) * (spec.socketSize! / 2 - 0.01),
-              spec.shaftLength / 2 + spec.headHeight / 2 + spec.headHeight * 0.18,
-              Math.sin(angle) * (spec.socketSize! / 2 - 0.01)
-            ]}
-          >
-            <boxGeometry args={[0.004, spec.headHeight * 0.64 - 0.01, 0.06]} />
-            <meshStandardMaterial color="#2a2e35" metalness={0.8} roughness={0.5} />
-          </mesh>
-        );
-      })}
 
       {/* Main shaft with subtle taper */}
       <mesh position={[0, 0, 0]} castShadow receiveShadow>

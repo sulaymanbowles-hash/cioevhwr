@@ -1,8 +1,10 @@
 import { motion } from "framer-motion";
 import { TechLabel } from "../components/ui/TechLabel";
-import { Shield, Award, FileCheck, CheckCircle, Download } from "lucide-react";
+import { CheckCircle, Download } from "lucide-react";
 import { useState } from "react";
 import { ToastNotification } from "../components/ui/ToastNotification";
+import { TechnicalBorder } from "../components/ui/TechnicalBorder";
+import { QualityIcon, CertifiedIcon, DefenseIcon } from "../components/ui/TechnicalIcons";
 
 export const Certifications = () => {
   const [showToast, setShowToast] = useState(false);
@@ -18,7 +20,7 @@ export const Certifications = () => {
       issuer: "SAE International",
       validUntil: "2025",
       description: "Quality Management Systems for Aviation, Space, and Defense Organizations",
-      icon: Shield,
+      icon: QualityIcon,
       details: [
         "Comprehensive quality management system",
         "Full material traceability requirements",
@@ -32,7 +34,7 @@ export const Certifications = () => {
       issuer: "International Organization for Standardization",
       validUntil: "December 2025",
       description: "Quality Management Systems - Requirements",
-      icon: Award,
+      icon: CertifiedIcon,
       details: [
         "Customer focus and satisfaction",
         "Process approach methodology",
@@ -46,7 +48,7 @@ export const Certifications = () => {
       issuer: "U.S. Department of State",
       validUntil: "Ongoing",
       description: "Compliant with International Traffic in Arms Regulations (not ITAR certified)",
-      icon: FileCheck,
+      icon: DefenseIcon,
       details: [
         "Defense article handling authorization",
         "Export control procedures",
@@ -87,15 +89,17 @@ export const Certifications = () => {
   return (
     <div className="min-h-screen pt-24 pb-20">
       {/* Hero Section */}
-      <section className="py-24 px-6 md:px-8 bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white">
-        <div className="max-w-[1400px] mx-auto">
+      <section className="py-24 px-6 md:px-8 bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white relative overflow-hidden">
+        {/* Subtle overlay instead of grid */}
+        <div className="absolute inset-0 bg-black/20" />
+        <div className="max-w-[1400px] mx-auto relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="text-center"
           >
-            <TechLabel className="mb-6 text-gray-400">Quality Assurance</TechLabel>
+            <TechLabel className="mb-6 !text-gray-400">Quality Assurance</TechLabel>
             <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-8 leading-tight">
               Certified Excellence in<br/>Aerospace Distribution
             </h1>
@@ -117,30 +121,31 @@ export const Certifications = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="bg-white border-2 border-gray-200 rounded-lg p-8 hover:border-black transition-all hover:shadow-xl"
               >
-                <div className="w-16 h-16 bg-black text-white rounded-lg flex items-center justify-center mb-6">
-                  <cert.icon className="w-8 h-8" />
-                </div>
-                <h3 className="text-2xl font-bold mb-2">{cert.title}</h3>
-                <p className="text-sm text-gray-600 mb-1">Issued by: {cert.issuer}</p>
-                <p className="text-sm text-green-600 font-semibold mb-4">Valid until: {cert.validUntil}</p>
-                <p className="text-gray-700 mb-6">{cert.description}</p>
-                <div className="space-y-2">
-                  {cert.details.map((detail, j) => (
-                    <div key={j} className="flex items-start gap-2">
-                      <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span className="text-sm text-gray-600">{detail}</span>
-                    </div>
-                  ))}
-                </div>
-                <button 
-                  onClick={handleDownload}
-                  className="mt-6 w-full border-2 border-black px-6 py-3 text-xs font-bold uppercase tracking-widest hover:bg-black hover:text-white transition-all rounded flex items-center justify-center gap-2"
-                >
-                  <Download className="w-4 h-4" />
-                  Download Certificate
-                </button>
+                <TechnicalBorder className="bg-white p-8 h-full hover:shadow-xl transition-all group">
+                  <div className="w-16 h-16 text-gray-900 group-hover:text-black transition-colors mb-6">
+                    <cert.icon className="w-full h-full" />
+                  </div>
+                  <h3 className="text-2xl font-bold mb-2">{cert.title}</h3>
+                  <p className="text-sm text-gray-600 mb-1">Issued by: {cert.issuer}</p>
+                  <p className="text-sm text-green-600 font-semibold mb-4">Valid until: {cert.validUntil}</p>
+                  <p className="text-gray-700 mb-6">{cert.description}</p>
+                  <div className="space-y-2 mb-8">
+                    {cert.details.map((detail, j) => (
+                      <div key={j} className="flex items-start gap-2">
+                        <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+                        <span className="text-sm text-gray-600">{detail}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <button 
+                    onClick={handleDownload}
+                    className="w-full border-2 border-black px-6 py-3 text-xs font-bold uppercase tracking-widest hover:bg-black hover:text-white transition-all rounded flex items-center justify-center gap-2"
+                  >
+                    <Download className="w-4 h-4" />
+                    Download Certificate
+                  </button>
+                </TechnicalBorder>
               </motion.div>
             ))}
           </div>
@@ -173,17 +178,18 @@ export const Certifications = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.05 }}
-                className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow"
               >
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 bg-black text-white rounded flex items-center justify-center flex-shrink-0 font-bold text-sm">
-                    {i + 1}
+                <TechnicalBorder className="bg-white p-6 hover:shadow-lg transition-all h-full">
+                  <div className="flex items-start gap-4">
+                    <div className="w-8 h-8 bg-black text-white rounded flex items-center justify-center flex-shrink-0 font-bold text-sm font-mono">
+                      {String(i + 1).padStart(2, '0')}
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-lg mb-2">{process.title}</h3>
+                      <p className="text-sm text-gray-600 leading-relaxed">{process.desc}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-lg mb-2">{process.title}</h3>
-                    <p className="text-sm text-gray-600">{process.desc}</p>
-                  </div>
-                </div>
+                </TechnicalBorder>
               </motion.div>
             ))}
           </div>
@@ -193,7 +199,9 @@ export const Certifications = () => {
       {/* Audit & Compliance */}
       <section className="py-20 px-6 md:px-8">
         <div className="max-w-[1200px] mx-auto">
-          <div className="bg-gradient-to-br from-black to-gray-900 text-white rounded-2xl p-12 md:p-16">
+          <div className="bg-gradient-to-br from-black to-gray-900 text-white rounded-2xl p-12 md:p-16 relative overflow-hidden">
+            {/* Subtle overlay */}
+            <div className="absolute inset-0 bg-white/5" />
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}

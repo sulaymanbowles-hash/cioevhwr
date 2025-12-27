@@ -9,6 +9,9 @@ import { ArrowRight } from "lucide-react";
 import { CertifiedIcon, DeliveryIcon, CustomersIcon } from "../components/ui/TechnicalIcons";
 import { ProcessTimeline } from "../components/home/ProcessTimeline";
 import { IndustriesGrid } from "../components/home/IndustriesGrid";
+import { SupplyChainAnimation } from "../components/home/SupplyChainAnimation";
+import { OperationalStatus } from "../components/ui/OperationalStatus";
+import { DataStream } from "../components/ui/DataStream";
 
 import boltImage from "../assets/products/bolt.svg";
 import nutImage from "../assets/products/nut.svg";
@@ -150,10 +153,13 @@ export const Home = () => {
         </div>
       </section>
 
+      <SupplyChainAnimation />
+
       {/* Technical Excellence */}
       <section className="relative py-40 px-6 md:px-8 bg-black text-white overflow-hidden">
         {/* Subtle grid pattern */}
         <GridBackground pattern="lines" opacity={0.03} className="-z-10" />
+        <OperationalStatus />
         
         <div className="max-w-[1400px] mx-auto relative">
           <motion.div
@@ -239,6 +245,7 @@ export const Home = () => {
       <section className="relative py-40 px-6 md:px-8 bg-white overflow-hidden">
         {/* Subtle dot pattern */}
         <GridBackground pattern="radial" opacity={0.02} />
+        <DataStream />
         
         <div className="max-w-[1600px] mx-auto relative">
           <motion.div 
@@ -331,6 +338,7 @@ export const Home = () => {
       <section className="relative py-40 px-6 md:px-8 bg-black text-white overflow-hidden">
         {/* Subtle grid overlay */}
         <GridBackground pattern="lines" opacity={0.03} className="-z-10" />
+        <OperationalStatus showText={false} className="opacity-10" />
         
         <div className="max-w-[1400px] mx-auto relative">
           <motion.div 

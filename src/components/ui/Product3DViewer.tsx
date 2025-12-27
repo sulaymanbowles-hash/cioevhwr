@@ -1,8 +1,38 @@
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, PerspectiveCamera, Environment, ContactShadows } from "@react-three/drei";
-import { Suspense } from "react";
+import { Suspense, Component, type ReactNode, type ErrorInfo } from "react";
 import { ModelWrapper } from "../3d/ModelWrapper";
 import { GLTFDirectLoader } from "../3d/GLTFDirectLoader";
+
+class ErrorBoundary extends Component<{ children: ReactNode, fallback: ReactNode }, { hasError: boolean }> {
+  constructor(props: any) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(_: Error) {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+    console.error("3D Model Error:", error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return this.props.fallback;
+    }
+
+    return this.props.children;
+  }
+}
+
+const SafeFallback = () => (
+  <mesh>
+    <boxGeometry args={[1, 1, 1]} />
+    <meshStandardMaterial color="#cccccc" wireframe />
+  </mesh>
+);
 
 interface Product3DViewerProps {
   type: "bolt" | "nut" | "fitting" | "pin" | "screw";
@@ -66,11 +96,13 @@ export const Product3DViewer = ({ type, modelPath }: Product3DViewerProps) => {
           <pointLight position={[0, 5, 0]} intensity={0.8} />
           
           {/* Model with GLTF support */}
-          {modelPath ? (
-            <GLTFDirectLoader modelPath={modelPath} scale={1.3} autoRotate={true} />
-          ) : (
-            <ModelWrapper modelType={type} autoRotate={true} />
-          )}
+          <ErrorBoundary fallback={<SafeFallback />}>
+            {modelPath ? (
+              <GLTFDirectLoader modelPath={modelPath} scale={1.3} autoRotate={true} />
+            ) : (
+              <ModelWrapper modelType={type} autoRotate={true} />
+            )}
+          </ErrorBoundary>
           
           {/* High quality contact shadows */}
           <ContactShadows
