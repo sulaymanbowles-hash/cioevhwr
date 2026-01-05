@@ -14,7 +14,7 @@ export const Breadcrumbs = ({ items }: BreadcrumbsProps) => {
   const navigate = useNavigate();
 
   return (
-    <nav className="flex items-center gap-2 text-sm mb-8" aria-label="Breadcrumb">
+    <nav className="flex flex-wrap items-center gap-2 text-sm mb-8" aria-label="Breadcrumb">
       <button
         onClick={() => navigate('/')}
         className="flex items-center gap-1 text-gray-600 hover:text-black transition-colors"

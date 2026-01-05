@@ -14,12 +14,12 @@ export const CustomCursor = () => {
   const cursorY = useMotionValue(-100);
   
   // Outer ring - slower, more fluid
-  const springConfigOuter = { damping: 28, stiffness: 200, mass: 0.8 };
+  const springConfigOuter = { damping: 20, stiffness: 150, mass: 0.6 };
   const outerX = useSpring(cursorX, springConfigOuter);
   const outerY = useSpring(cursorY, springConfigOuter);
   
   // Inner dot - snappy
-  const springConfigInner = { damping: 35, stiffness: 800 };
+  const springConfigInner = { damping: 40, stiffness: 1000 };
   const innerX = useSpring(cursorX, springConfigInner);
   const innerY = useSpring(cursorY, springConfigInner);
 
@@ -115,9 +115,9 @@ export const CustomCursor = () => {
 
   const getOuterSize = () => {
     switch (variant) {
-      case 'hover': return 48;
-      case 'link': return 56;
-      case 'text': return 4;
+      case 'hover': return 64;
+      case 'link': return 80;
+      case 'text': return 0;
       case 'hidden': return 0;
       default: return 32;
     }
@@ -125,11 +125,11 @@ export const CustomCursor = () => {
 
   const getInnerSize = () => {
     switch (variant) {
-      case 'hover': return 6;
+      case 'hover': return 8;
       case 'link': return 8;
-      case 'text': return 2;
+      case 'text': return 32;
       case 'hidden': return 0;
-      default: return 4;
+      default: return 8;
     }
   };
 
@@ -146,12 +146,13 @@ export const CustomCursor = () => {
         }}
       >
         <motion.div
-          className="rounded-full border border-black/30"
+          className="rounded-full border border-black/20 backdrop-blur-[1px]"
           animate={{
             width: getOuterSize(),
             height: getOuterSize(),
-            opacity: isVisible && variant !== 'hidden' ? 1 : 0,
-            borderColor: variant === 'link' ? 'rgba(255, 95, 0, 0.6)' : 'rgba(0, 0, 0, 0.3)',
+            opacity: isVisible && variant !== 'hidden' && variant !== 'text' ? 1 : 0,
+            borderColor: variant === 'link' ? 'rgba(255, 95, 0, 0.4)' : 'rgba(0, 0, 0, 0.2)',
+            backgroundColor: variant === 'link' ? 'rgba(255, 95, 0, 0.05)' : 'transparent',
           }}
           transition={{
             type: "spring",
@@ -169,7 +170,7 @@ export const CustomCursor = () => {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -5, scale: 0.8 }}
               transition={{ duration: 0.2 }}
-              className="absolute top-full left-1/2 -translate-x-1/2 mt-2 whitespace-nowrap bg-black text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1.5"
+              className="absolute top-full left-1/2 -translate-x-1/2 mt-4 whitespace-nowrap bg-black text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1.5"
             >
               {cursorLabel}
             </motion.div>
@@ -191,8 +192,10 @@ export const CustomCursor = () => {
           className="bg-white rounded-full"
           animate={{
             width: getInnerSize(),
-            height: getInnerSize(),
+            height: variant === 'text' ? 32 : getInnerSize(),
             opacity: isVisible && variant !== 'hidden' ? 1 : 0,
+            borderRadius: variant === 'text' ? 2 : '50%',
+            scaleX: variant === 'text' ? 0.1 : 1,
           }}
           transition={{
             type: "spring",

@@ -13,6 +13,7 @@ import { SupplyChainAnimation } from "../components/home/SupplyChainAnimation";
 import { OperationalStatus } from "../components/ui/OperationalStatus";
 import { DataStream } from "../components/ui/DataStream";
 import { PrecisionEngineering } from "../components/home/PrecisionEngineering";
+import { PerformanceMetrics } from "../components/home/PerformanceMetrics";
 import { DocumentationSection } from "../components/home/DocumentationSection";
 import { Button } from "../components/ui/Button";
 
@@ -160,6 +161,8 @@ export const Home = () => {
       </section>
 
       <SupplyChainAnimation />
+
+      <PerformanceMetrics />
 
       <PrecisionEngineering />
 

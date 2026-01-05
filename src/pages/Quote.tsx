@@ -26,7 +26,7 @@ export const Quote = () => {
 
   if (submitted) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-white px-6">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-white px-4 sm:px-6">
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -36,45 +36,45 @@ export const Quote = () => {
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ delay: 0.2, type: "spring" }}
-            className="w-24 h-24 mx-auto mb-8 text-green-600"
+            className="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-6 sm:mb-8 text-green-600"
           >
             <CertifiedIcon className="w-full h-full" />
           </motion.div>
-          <h2 className="text-4xl font-bold mb-4">Quote Request Submitted!</h2>
-          <p className="text-lg text-gray-600 mb-6">
+          <h2 className="text-3xl sm:text-4xl font-bold mb-3 sm:mb-4">Quote Request Submitted!</h2>
+          <p className="text-base sm:text-lg text-gray-600 mb-4 sm:mb-6">
             Our team will review your request and respond within 24 hours.
           </p>
-          <p className="text-sm text-gray-500">Redirecting to home...</p>
+          <p className="text-xs sm:text-sm text-gray-500">Redirecting to home...</p>
         </motion.div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen pt-24 pb-20 bg-gradient-to-br from-gray-50 via-white to-gray-50 relative overflow-x-hidden">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-8">
+    <div className="min-h-screen pt-20 sm:pt-24 pb-16 sm:pb-20 bg-gradient-to-br from-gray-50 via-white to-gray-50 relative overflow-x-hidden">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8">
         {/* Header */}
-        <div className="mb-12">
+        <div className="mb-8 sm:mb-12">
           <button
             onClick={() => navigate(-1)}
-            className="flex items-center gap-2 text-sm text-gray-600 hover:text-black transition-colors mb-6"
+            className="flex items-center gap-2 text-xs sm:text-sm text-gray-600 hover:text-black transition-colors mb-4 sm:mb-6"
           >
-            <ArrowLeft className="w-4 h-4" />
+            <ArrowLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             Back
           </button>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <TechLabel className="mb-4">Request for Quote</TechLabel>
-            <h1 className="text-5xl md:text-6xl font-bold tracking-tight mb-4">
+            <TechLabel className="mb-3 sm:mb-4">Request for Quote</TechLabel>
+            <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-3 sm:mb-4">
               Your RFQ Cart
             </h1>
-            <div className="flex items-center gap-6 text-lg text-gray-600">
+            <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-base sm:text-lg text-gray-600">
               <p>
                 <span className="font-bold text-black">{items.length}</span> {items.length === 1 ? 'line item' : 'line items'}
               </p>
-              <div className="w-1 h-1 bg-gray-300 rounded-full" />
+              <div className="w-1 h-1 bg-gray-300 rounded-full hidden sm:block" />
               <p>
                 <span className="font-bold text-black">{items.reduce((acc, item) => acc + item.quantity, 0)}</span> total units
               </p>
@@ -88,26 +88,26 @@ export const Quote = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center py-20"
+            className="text-center py-12 sm:py-20"
           >
-            <div className="w-32 h-32 mx-auto mb-8 text-gray-300">
+            <div className="w-24 h-24 sm:w-32 sm:h-32 mx-auto mb-6 sm:mb-8 text-gray-300">
               <LogisticsIcon className="w-full h-full" />
             </div>
-            <h2 className="text-2xl font-semibold mb-4">Your RFQ cart is empty</h2>
-            <p className="text-gray-600 mb-8">
+            <h2 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">Your RFQ cart is empty</h2>
+            <p className="text-sm sm:text-base text-gray-600 mb-6 sm:mb-8">
               Browse our catalog and add items to request a quote.
             </p>
             <button
               onClick={() => navigate('/catalog')}
-              className="bg-black text-white px-8 py-4 text-xs font-bold uppercase tracking-widest hover:bg-gray-800 transition-all"
+              className="bg-black text-white px-6 sm:px-8 py-3 sm:py-4 text-xs font-bold uppercase tracking-widest hover:bg-gray-800 transition-all"
             >
               Browse Catalog
             </button>
           </motion.div>
         ) : (
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 sm:gap-12">
             {/* Items List */}
-            <div className="lg:col-span-2 space-y-4">
+            <div className="lg:col-span-2 space-y-3 sm:space-y-4">
               <AnimatePresence mode="popLayout">
                 {items.map((item, index) => {
                   const product = allProducts.find(p => p.partNumber === item.partNumber);
@@ -119,29 +119,29 @@ export const Quote = () => {
                       exit={{ opacity: 0, x: 20 }}
                       transition={{ delay: index * 0.05 }}
                     >
-                      <TechnicalBorder className="bg-white p-6 hover:shadow-md transition-shadow group">
-                        <div className="flex items-center justify-between gap-6">
+                      <TechnicalBorder className="bg-white p-4 sm:p-6 hover:shadow-md transition-shadow group">
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-6">
                           {/* Product Info */}
                           <div className="flex-1">
-                            <div className="flex items-center gap-4 mb-2">
-                              <h3 className="font-bold text-lg">{item.title}</h3>
-                              <span className="px-2 py-1 bg-gray-100 text-xs font-mono rounded text-gray-600">
+                            <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-2">
+                              <h3 className="font-bold text-base sm:text-lg">{item.title}</h3>
+                              <span className="px-2 py-0.5 sm:py-1 bg-gray-100 text-[10px] sm:text-xs font-mono rounded text-gray-600">
                                 {item.partNumber}
                               </span>
                             </div>
                             {product && (
-                              <p className="text-sm text-gray-500 line-clamp-1">
+                              <p className="text-xs sm:text-sm text-gray-500 line-clamp-1">
                                 {product.description}
                               </p>
                             )}
                           </div>
                           
-                          <div className="flex items-center gap-6">
+                          <div className="flex items-center gap-4 sm:gap-6">
                             {/* Quantity Control */}
                             <div className="flex items-center border border-gray-200 rounded-lg overflow-hidden">
                               <button
                                 onClick={() => updateQuantity(item.partNumber, Math.max(1, item.quantity - 1))}
-                                className="p-3 hover:bg-gray-50 transition-colors border-r border-gray-200"
+                                className="p-2 sm:p-3 hover:bg-gray-50 transition-colors border-r border-gray-200"
                               >
                                 <Minus className="w-3 h-3" />
                               </button>
@@ -155,11 +155,11 @@ export const Quote = () => {
                                     updateQuantity(item.partNumber, val);
                                   }
                                 }}
-                                className="w-20 text-center font-mono font-bold text-sm py-2 focus:outline-none focus:bg-gray-50"
+                                className="w-14 sm:w-20 text-center font-mono font-bold text-xs sm:text-sm py-2 focus:outline-none focus:bg-gray-50"
                               />
                               <button
                                 onClick={() => updateQuantity(item.partNumber, item.quantity + 1)}
-                                className="p-3 hover:bg-gray-50 transition-colors border-l border-gray-200"
+                                className="p-2 sm:p-3 hover:bg-gray-50 transition-colors border-l border-gray-200"
                               >
                                 <Plus className="w-3 h-3" />
                               </button>
@@ -170,7 +170,7 @@ export const Quote = () => {
                               onClick={() => removeItem(item.partNumber)}
                               className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all"
                             >
-                              <X className="w-5 h-5" />
+                              <X className="w-4 h-4 sm:w-5 sm:h-5" />
                             </button>
                           </div>
                         </div>
@@ -181,12 +181,12 @@ export const Quote = () => {
               </AnimatePresence>
 
               {items.length > 0 && (
-                <div className="flex justify-end pt-4">
+                <div className="flex justify-end pt-3 sm:pt-4">
                   <button
                     onClick={clearQuote}
-                    className="text-xs font-bold uppercase tracking-widest text-red-600 hover:text-red-700 flex items-center gap-2"
+                    className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-red-600 hover:text-red-700 flex items-center gap-1.5 sm:gap-2"
                   >
-                    <Trash2 className="w-4 h-4" />
+                    <Trash2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                     Clear Cart
                   </button>
                 </div>
@@ -195,32 +195,32 @@ export const Quote = () => {
 
             {/* Quote Summary / Action */}
             <div className="lg:col-span-1">
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-8 sticky top-24">
-                <h3 className="text-xl font-bold mb-6">Quote Summary</h3>
+              <div className="bg-gray-50 border border-gray-200 rounded-lg p-5 sm:p-8 sticky top-24">
+                <h3 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6">Quote Summary</h3>
                 
-                <div className="space-y-4 mb-8">
-                  <div className="flex justify-between text-sm">
+                <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
+                  <div className="flex justify-between text-xs sm:text-sm">
                     <span className="text-gray-600">Line Items</span>
                     <span className="font-mono font-bold">{items.length}</span>
                   </div>
-                  <div className="flex justify-between text-sm">
+                  <div className="flex justify-between text-xs sm:text-sm">
                     <span className="text-gray-600">Total Units</span>
                     <span className="font-mono font-bold">{items.reduce((acc, item) => acc + item.quantity, 0)}</span>
                   </div>
-                  <div className="pt-4 border-t border-gray-200">
+                  <div className="pt-3 sm:pt-4 border-t border-gray-200">
                     <div className="flex justify-between items-center">
-                      <span className="font-bold">Estimated Total</span>
-                      <span className="text-xs text-gray-500 uppercase tracking-wider">Calculated at Quote</span>
+                      <span className="font-bold text-sm sm:text-base">Estimated Total</span>
+                      <span className="text-[10px] sm:text-xs text-gray-500 uppercase tracking-wider">Calculated at Quote</span>
                     </div>
                   </div>
                 </div>
 
                 <button
                   onClick={() => setShowForm(true)}
-                  className="w-full bg-black text-white px-6 py-4 text-xs font-bold uppercase tracking-widest hover:bg-gray-800 transition-all rounded flex items-center justify-center gap-2 group"
+                  className="w-full bg-black text-white px-5 sm:px-6 py-3 sm:py-4 text-xs font-bold uppercase tracking-widest hover:bg-gray-800 transition-all rounded flex items-center justify-center gap-2 group"
                 >
                   Proceed to Checkout
-                  <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  <ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" />
                 </button>
               </div>
             </div>
@@ -246,35 +246,35 @@ export const Quote = () => {
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
               className="fixed top-0 right-0 h-full w-full max-w-md bg-white shadow-2xl z-50 overflow-y-auto"
             >
-              <div className="p-8">
-                <div className="flex justify-between items-center mb-8">
-                  <h2 className="text-2xl font-bold">Finalize Request</h2>
+              <div className="p-5 sm:p-8">
+                <div className="flex justify-between items-center mb-6 sm:mb-8">
+                  <h2 className="text-xl sm:text-2xl font-bold">Finalize Request</h2>
                   <button
                     onClick={() => setShowForm(false)}
                     className="p-2 hover:bg-gray-100 rounded-full transition-colors"
                   >
-                    <X className="w-6 h-6" />
+                    <X className="w-5 h-5 sm:w-6 sm:h-6" />
                   </button>
                 </div>
 
-                <form onSubmit={handleSubmitQuote} className="space-y-6">
-                  <div className="space-y-4">
+                <form onSubmit={handleSubmitQuote} className="space-y-4 sm:space-y-6">
+                  <div className="space-y-3 sm:space-y-4">
                     <div>
-                      <label className="block text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-2">Company Name *</label>
+                      <label className="block text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-1.5 sm:mb-2">Company Name *</label>
                       <input
                         type="text"
                         required
-                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded text-sm focus:border-black focus:outline-none transition-colors"
+                        className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-gray-50 border border-gray-200 rounded text-sm focus:border-black focus:outline-none transition-colors"
                         placeholder="Acme Aerospace Inc."
                       />
                     </div>
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-2 gap-3 sm:gap-4">
                       <div>
-                        <label className="block text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-2">First Name *</label>
+                        <label className="block text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-1.5 sm:mb-2">First Name *</label>
                         <input
                           type="text"
                           required
-                          className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded text-sm focus:border-black focus:outline-none transition-colors"
+                          className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-gray-50 border border-gray-200 rounded text-sm focus:border-black focus:outline-none transition-colors"
                         />
                       </div>
                       <div>

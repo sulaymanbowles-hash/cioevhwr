@@ -9,12 +9,12 @@ const TechnicalStat = ({ label, value, sub, delay }: { label: string, value: str
     whileInView={{ opacity: 1, x: 0 }}
     viewport={{ once: true }}
     transition={{ duration: 0.5, delay }}
-    className="relative pl-4 border-l border-white/10 group hover:border-white/40 transition-colors duration-500"
+    className="relative pl-3 sm:pl-4 border-l border-white/10 group hover:border-white/40 transition-colors duration-500"
   >
     <div className="absolute left-0 top-0 w-[1px] h-0 bg-white group-hover:h-full transition-all duration-500 ease-out" />
-    <div className="text-[10px] font-mono uppercase tracking-widest text-white/40 mb-1 group-hover:text-white/60 transition-colors">{label}</div>
-    <div className="text-2xl font-light text-white tracking-tight">{value}</div>
-    {sub && <div className="text-[10px] text-white/30 mt-1 font-mono">{sub}</div>}
+    <div className="text-[9px] sm:text-[10px] font-mono uppercase tracking-widest text-white/40 mb-1 group-hover:text-white/60 transition-colors">{label}</div>
+    <div className="text-xl sm:text-2xl font-light text-white tracking-tight">{value}</div>
+    {sub && <div className="text-[9px] sm:text-[10px] text-white/30 mt-1 font-mono">{sub}</div>}
   </motion.div>
 );
 

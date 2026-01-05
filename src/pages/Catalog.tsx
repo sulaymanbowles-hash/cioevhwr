@@ -151,112 +151,102 @@ export const Catalog = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="max-w-4xl mx-auto"
+            className="flex flex-col lg:flex-row gap-8 mb-12"
           >
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-              <div className="flex-1 relative">
+            {/* Mobile Filter Toggle */}
+            <button
+              onClick={() => setShowFilters(!showFilters)}
+              className="lg:hidden flex items-center justify-center gap-2 w-full py-3 border border-gray-200 bg-white text-sm font-bold uppercase tracking-widest hover:bg-gray-50 transition-colors"
+            >
+              <Filter className="w-4 h-4" />
+              {showFilters ? 'Hide Filters' : 'Show Filters'}
+            </button>
+
+            {/* Filters Sidebar */}
+            <div className={`lg:w-64 flex-shrink-0 space-y-8 ${showFilters ? 'block' : 'hidden lg:block'}`}>
+              <div className="bg-white p-6 border border-gray-100 shadow-sm sticky top-24">
+                <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-100">
+                  <div className="flex items-center gap-2">
+                    <Filter className="w-4 h-4" />
+                    <span className="text-xs font-bold uppercase tracking-widest">Filters</span>
+                  </div>
+                  {(activeFiltersCount > 0 || searchTerm) && (
+                    <button
+                      onClick={() => {
+                        setSelectedCategory("All Categories");
+                        setSelectedMaterial("All Materials");
+                        setSelectedThreadType("All Thread Types");
+                        setSelectedCondition("All Conditions");
+                        setSearchTerm("");
+                      }}
+                      className="text-[10px] font-bold uppercase tracking-widest text-red-500 hover:text-red-600 transition-colors"
+                    >
+                      Clear
+                    </button>
+                  )}
+                </div>
+                
+                <div className="space-y-6">
+                  <div>
+                    <label className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-3 block">Category</label>
+                    <select 
+                      value={selectedCategory}
+                      onChange={(e) => setSelectedCategory(e.target.value)}
+                      className="w-full p-2 bg-gray-50 border border-gray-200 text-sm focus:outline-none focus:border-black transition-colors"
+                    >
+                      {categories.map(c => <option key={c}>{c}</option>)}
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-3 block">Material</label>
+                    <select 
+                      value={selectedMaterial}
+                      onChange={(e) => setSelectedMaterial(e.target.value)}
+                      className="w-full p-2 bg-gray-50 border border-gray-200 text-sm focus:outline-none focus:border-black transition-colors"
+                    >
+                      {materials.map(m => <option key={m}>{m}</option>)}
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-3 block">Thread Type</label>
+                    <select 
+                      value={selectedThreadType}
+                      onChange={(e) => setSelectedThreadType(e.target.value)}
+                      className="w-full p-2 bg-gray-50 border border-gray-200 text-sm focus:outline-none focus:border-black transition-colors"
+                    >
+                      {threadTypes.map(t => <option key={t}>{t}</option>)}
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-3 block">Condition</label>
+                    <select 
+                      value={selectedCondition}
+                      onChange={(e) => setSelectedCondition(e.target.value)}
+                      className="w-full p-2 bg-gray-50 border border-gray-200 text-sm focus:outline-none focus:border-black transition-colors"
+                    >
+                      {conditions.map(c => <option key={c}>{c}</option>)}
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Product Grid */}
+            <div className="flex-1">
+              <div className="mb-6 relative">
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
                 <input
                   type="text"
-                  placeholder="Search by part number or name..."
+                  placeholder="Search by part number, name, or spec..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-12 pr-4 py-3 sm:py-4 border-2 border-gray-200 bg-white rounded-sm focus:border-black focus:outline-none transition-colors text-black placeholder:text-gray-400 font-mono text-sm"
+                  className="w-full pl-12 pr-4 py-4 bg-white border border-gray-200 focus:outline-none focus:border-black transition-colors text-lg"
                 />
               </div>
-              <button
-                onClick={() => setShowFilters(!showFilters)}
-                className="relative px-6 py-3 sm:py-4 border-2 border-gray-200 bg-white rounded-sm hover:border-black transition-colors flex items-center justify-center gap-3 text-black font-semibold"
-              >
-                <Filter className="w-5 h-5" />
-                <span>Filters</span>
-                {activeFiltersCount > 0 && (
-                  <span className="absolute -top-2 -right-2 w-6 h-6 bg-black text-white text-xs rounded-full flex items-center justify-center font-bold">
-                    {activeFiltersCount}
-                  </span>
-                )}
-              </button>
             </div>
-
-            {/* Advanced Filters Panel */}
-            <AnimatePresence>
-              {showFilters && (
-                <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: "auto", opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="overflow-hidden"
-                >
-                  <div className="mt-4 p-6 bg-white border-2 border-gray-200 rounded-sm">
-                    <div className="flex items-center justify-between mb-6">
-                      <h3 className="text-lg font-semibold text-black">Advanced Filters</h3>
-                      <button
-                        onClick={() => {
-                          setSelectedCategory("All Categories");
-                          setSelectedMaterial("All Materials");
-                          setSelectedThreadType("All Thread Types");
-                          setSelectedCondition("All Conditions");
-                        }}
-                        className="text-sm text-gray-600 hover:text-black transition-colors font-mono"
-                      >
-                        Clear All
-                      </button>
-                    </div>
-                    <div className="grid md:grid-cols-4 gap-4">
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2 uppercase tracking-wide">Category</label>
-                        <select
-                          value={selectedCategory}
-                          onChange={(e) => setSelectedCategory(e.target.value)}
-                          className="w-full px-4 py-3 border-2 border-gray-200 bg-white rounded-sm focus:border-black focus:outline-none transition-colors appearance-none text-black cursor-pointer font-mono text-sm"
-                        >
-                          {categories.map(cat => (
-                            <option key={cat} value={cat}>{cat}</option>
-                          ))}
-                        </select>
-                      </div>
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2 uppercase tracking-wide">Material</label>
-                        <select
-                          value={selectedMaterial}
-                          onChange={(e) => setSelectedMaterial(e.target.value)}
-                          className="w-full px-4 py-3 border-2 border-gray-200 bg-white rounded-sm focus:border-black focus:outline-none transition-colors appearance-none text-black cursor-pointer font-mono text-sm"
-                        >
-                          {materials.map(mat => (
-                            <option key={mat} value={mat}>{mat}</option>
-                          ))}
-                        </select>
-                      </div>
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2 uppercase tracking-wide">Thread Type</label>
-                        <select
-                          value={selectedThreadType}
-                          onChange={(e) => setSelectedThreadType(e.target.value)}
-                          className="w-full px-4 py-3 border-2 border-gray-200 bg-white rounded-sm focus:border-black focus:outline-none transition-colors appearance-none text-black cursor-pointer font-mono text-sm"
-                        >
-                          {threadTypes.map(thread => (
-                            <option key={thread} value={thread}>{thread}</option>
-                          ))}
-                        </select>
-                      </div>
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2 uppercase tracking-wide">Condition</label>
-                        <select
-                          value={selectedCondition}
-                          onChange={(e) => setSelectedCondition(e.target.value)}
-                          className="w-full px-4 py-3 border-2 border-gray-200 bg-white rounded-sm focus:border-black focus:outline-none transition-colors appearance-none text-black cursor-pointer font-mono text-sm"
-                        >
-                          {conditions.map(cond => (
-                            <option key={cond} value={cond}>{cond}</option>
-                          ))}
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
           </motion.div>
         </div>
       </section>

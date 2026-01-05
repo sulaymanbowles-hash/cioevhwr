@@ -206,6 +206,7 @@ export const Header = () => {
                     <button 
                       onClick={() => { navigate('/catalog'); setMobileMenuOpen(false); }} 
                       className="flex items-center justify-between w-full p-4 text-left text-base font-semibold hover:bg-gray-50 transition-colors rounded-lg"
+                      data-cursor-label="View Catalog"
                     >
                       Products
                       <ArrowRight className="w-4 h-4 text-gray-400" />

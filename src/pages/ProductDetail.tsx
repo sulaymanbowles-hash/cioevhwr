@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Package, Shield, ShieldCheck, Truck, FileText, ShoppingCart, Factory, Tag, Phone, Mail } from "lucide-react";
+import { Package, Shield, ShieldCheck, Truck, FileText, ShoppingCart, Factory, Tag, Phone, Mail, Check } from "lucide-react";
 import { Product3DViewer } from "../components/ui/Product3DViewer";
 import { TechLabel } from "../components/ui/TechLabel";
 import { useState, useEffect } from "react";
@@ -1373,9 +1373,9 @@ export const ProductDetail = () => {
 
   return (
     <ErrorBoundary>
-      <div className="min-h-screen pt-24 pb-20">
+      <div className="min-h-screen pt-20 sm:pt-24 pb-32 md:pb-20">
         {/* Breadcrumbs */}
-        <div className="max-w-[1600px] mx-auto px-6 md:px-8 mt-8">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 md:px-8 mt-4 sm:mt-8">
           <Breadcrumbs
             items={[
               { label: "Catalog", path: "/catalog" },
@@ -1385,21 +1385,21 @@ export const ProductDetail = () => {
           />
         </div>
 
-        <div className="max-w-[1600px] mx-auto px-6 md:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 md:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16">
             {/* 3D Viewer Section */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="sticky top-32 self-start"
+              className="lg:sticky lg:top-32 self-start"
             >
               <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-50 rounded-lg border border-gray-200 shadow-xl overflow-hidden">
                 <Product3DViewer type={product.modelType} modelPath={product.modelFile} />
               </div>
-              <div className="mt-6 p-6 bg-gray-50 rounded-lg border border-gray-200">
-                <TechLabel className="mb-4 block">Interactive 3D Model</TechLabel>
-                <p className="text-sm text-gray-600">
+              <div className="mt-4 sm:mt-6 p-4 sm:p-6 bg-gray-50 rounded-lg border border-gray-200">
+                <TechLabel className="mb-3 sm:mb-4 block">Interactive 3D Model</TechLabel>
+                <p className="text-xs sm:text-sm text-gray-600">
                   Click and drag to rotate. This is a detailed 3D representation of the actual component.
                 </p>
               </div>
@@ -1411,17 +1411,17 @@ export const ProductDetail = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <TechLabel className="mb-4">{product.category}</TechLabel>
-            <h1 className="text-5xl font-bold tracking-tight mb-4 text-gray-900">
+            <TechLabel className="mb-3 sm:mb-4">{product.category}</TechLabel>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-3 sm:mb-4 text-gray-900">
               {product.title}
             </h1>
-            <div className="flex items-center gap-4 mb-8">
-              <span className="font-mono text-lg text-gray-700">Part #: {product.partNumber}</span>
-              <span className="px-3 py-1 bg-green-100 text-green-800 text-xs font-semibold rounded-full">
+            <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-6 sm:mb-8">
+              <span className="font-mono text-sm sm:text-lg text-gray-700">Part #: {product.partNumber}</span>
+              <span className="px-2 sm:px-3 py-0.5 sm:py-1 bg-green-100 text-green-800 text-[10px] sm:text-xs font-semibold rounded-full">
                 In Stock
               </span>
               {product.condition && (
-                <span className={`px-3 py-1 text-xs font-semibold rounded-full ${
+                <span className={`px-2 sm:px-3 py-0.5 sm:py-1 text-[10px] sm:text-xs font-semibold rounded-full ${
                   product.condition === 'FN' ? 'bg-green-100 text-green-800' :
                   product.condition === 'NS' ? 'bg-blue-100 text-blue-800' :
                   product.condition === 'OH' ? 'bg-amber-100 text-amber-800' :
@@ -1437,62 +1437,62 @@ export const ProductDetail = () => {
               )}
             </div>
 
-            <p className="text-lg text-gray-600 leading-relaxed mb-12">
+            <p className="text-base sm:text-lg text-gray-600 leading-relaxed mb-8 sm:mb-12">
               {product.description}
             </p>
 
             {/* Fitting Type (for fittings only) */}
             {product.fittingType && (
-              <div className="mb-12">
-                <h2 className="text-2xl font-semibold mb-6 flex items-center gap-2">
-                  <Tag className="w-5 h-5" />
+              <div className="mb-8 sm:mb-12">
+                <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 flex items-center gap-2">
+                  <Tag className="w-4 h-4 sm:w-5 sm:h-5" />
                   Fitting Type
                 </h2>
-                <div className="p-4 bg-blue-50 border-2 border-blue-200 rounded-lg">
-                  <span className="text-lg font-semibold text-blue-900">{product.fittingType}</span>
+                <div className="p-3 sm:p-4 bg-blue-50 border-2 border-blue-200 rounded-lg">
+                  <span className="text-base sm:text-lg font-semibold text-blue-900">{product.fittingType}</span>
                 </div>
               </div>
             )}
 
             {/* Screw Type (for screws only) */}
             {product.screwType && (
-              <div className="mb-12">
-                <h2 className="text-2xl font-semibold mb-6 flex items-center gap-2">
-                  <Tag className="w-5 h-5" />
+              <div className="mb-8 sm:mb-12">
+                <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 flex items-center gap-2">
+                  <Tag className="w-4 h-4 sm:w-5 sm:h-5" />
                   Screw Type
                 </h2>
-                <div className="p-4 bg-green-50 border-2 border-green-200 rounded-lg">
-                  <span className="text-lg font-semibold text-green-900">{product.screwType}</span>
+                <div className="p-3 sm:p-4 bg-green-50 border-2 border-green-200 rounded-lg">
+                  <span className="text-base sm:text-lg font-semibold text-green-900">{product.screwType}</span>
                 </div>
               </div>
             )}
 
             {/* Bolt Type (for bolts only) */}
             {product.boltType && (
-              <div className="mb-12">
-                <h2 className="text-2xl font-semibold mb-6 flex items-center gap-2">
-                  <Tag className="w-5 h-5" />
+              <div className="mb-8 sm:mb-12">
+                <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 flex items-center gap-2">
+                  <Tag className="w-4 h-4 sm:w-5 sm:h-5" />
                   Bolt Type
                 </h2>
-                <div className="p-4 bg-orange-50 border-2 border-orange-200 rounded-lg">
-                  <span className="text-lg font-semibold text-orange-900">{product.boltType}</span>
+                <div className="p-3 sm:p-4 bg-orange-50 border-2 border-orange-200 rounded-lg">
+                  <span className="text-base sm:text-lg font-semibold text-orange-900">{product.boltType}</span>
                 </div>
               </div>
             )}
 
             {/* Specifications */}
-            <div className="mb-12">
-              <h2 className="text-2xl font-semibold mb-6 flex items-center gap-2">
-                <Package className="w-5 h-5" />
+            <div className="mb-8 sm:mb-12">
+              <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 flex items-center gap-2">
+                <Package className="w-4 h-4 sm:w-5 sm:h-5" />
                 Technical Specifications
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                 {product.specifications.map((spec, i) => (
-                  <div key={i} className="p-4 bg-gray-50 rounded border border-gray-200">
-                    <div className="text-xs uppercase tracking-wider text-gray-500 mb-1">
+                  <div key={i} className="p-3 sm:p-4 bg-gray-50 rounded border border-gray-200">
+                    <div className="text-[10px] sm:text-xs uppercase tracking-wider text-gray-500 mb-1">
                       {spec.label}
                     </div>
-                    <div className="font-mono text-sm font-medium text-gray-900">
+                    <div className="font-mono text-xs sm:text-sm font-medium text-gray-900">
                       {spec.value}
                     </div>
                   </div>
@@ -1501,16 +1501,16 @@ export const ProductDetail = () => {
             </div>
 
             {/* Materials */}
-            <div className="mb-12">
-              <h2 className="text-2xl font-semibold mb-6 flex items-center gap-2">
-                <Shield className="w-5 h-5" />
+            <div className="mb-8 sm:mb-12">
+              <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 flex items-center gap-2">
+                <Shield className="w-4 h-4 sm:w-5 sm:h-5" />
                 Materials & Finish
               </h2>
               <ul className="space-y-2">
                 {product.materials.map((material, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <span className="w-1.5 h-1.5 bg-black rounded-full mt-2 flex-shrink-0"></span>
-                    <span className="text-gray-700">{material}</span>
+                  <li key={i} className="flex items-start gap-2 sm:gap-3">
+                    <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-black rounded-full mt-2 flex-shrink-0"></span>
+                    <span className="text-sm sm:text-base text-gray-700">{material}</span>
                   </li>
                 ))}
               </ul>
@@ -1518,33 +1518,33 @@ export const ProductDetail = () => {
 
             {/* Manufacturers (for fittings) */}
             {product.manufacturers && product.manufacturers.length > 0 && (
-              <div className="mb-12">
-                <h2 className="text-2xl font-semibold mb-6 flex items-center gap-2">
-                  <Factory className="w-5 h-5" />
+              <div className="mb-8 sm:mb-12">
+                <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 flex items-center gap-2">
+                  <Factory className="w-4 h-4 sm:w-5 sm:h-5" />
                   Approved Manufacturers
                 </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-3">
                   {product.manufacturers.map((manufacturer, i) => (
-                    <div key={i} className="p-4 bg-white border-2 border-gray-200 rounded-lg hover:border-gray-400 transition-colors">
-                      <span className="text-sm font-medium text-gray-900">{manufacturer}</span>
+                    <div key={i} className="p-3 sm:p-4 bg-white border-2 border-gray-200 rounded-lg hover:border-gray-400 transition-colors">
+                      <span className="text-xs sm:text-sm font-medium text-gray-900">{manufacturer}</span>
                     </div>
                   ))}
                 </div>
-                <p className="mt-4 text-sm text-gray-600 italic">
+                <p className="mt-3 sm:mt-4 text-xs sm:text-sm text-gray-600 italic">
                   All manufacturers meet or exceed aerospace quality standards and are approved for use in critical applications.
                 </p>
               </div>
             )}
 
             {/* Applications */}
-            <div className="mb-12">
-              <h2 className="text-2xl font-semibold mb-6 flex items-center gap-2">
-                <Truck className="w-5 h-5" />
+            <div className="mb-8 sm:mb-12">
+              <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 flex items-center gap-2">
+                <Truck className="w-4 h-4 sm:w-5 sm:h-5" />
                 Typical Applications
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-3">
                 {product.applications.map((app, i) => (
-                  <div key={i} className="p-3 bg-white border border-gray-200 rounded text-sm text-gray-700">
+                  <div key={i} className="p-2.5 sm:p-3 bg-white border border-gray-200 rounded text-xs sm:text-sm text-gray-700">
                     {app}
                   </div>
                 ))}
@@ -1552,16 +1552,16 @@ export const ProductDetail = () => {
             </div>
 
             {/* Standards */}
-            <div className="mb-12">
-              <h2 className="text-2xl font-semibold mb-6 flex items-center gap-2">
-                <FileText className="w-5 h-5" />
+            <div className="mb-8 sm:mb-12">
+              <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 flex items-center gap-2">
+                <FileText className="w-4 h-4 sm:w-5 sm:h-5" />
                 Compliance Standards
               </h2>
               <div className="flex flex-wrap gap-2">
                 {product.standards.map((standard, i) => (
                   <span
                     key={i}
-                    className="px-4 py-2 bg-black text-white text-xs font-mono rounded"
+                    className="px-3 sm:px-4 py-1.5 sm:py-2 bg-black text-white text-[10px] sm:text-xs font-mono rounded"
                   >
                     {standard}
                   </span>
@@ -1571,16 +1571,16 @@ export const ProductDetail = () => {
 
             {/* Certifications */}
             {product.certs && product.certs.length > 0 && (
-              <div className="mb-12">
-                <h2 className="text-2xl font-semibold mb-6 flex items-center gap-2">
-                  <ShieldCheck className="w-5 h-5" />
+              <div className="mb-8 sm:mb-12">
+                <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 flex items-center gap-2">
+                  <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5" />
                   Certifications & Traceability
                 </h2>
-                <div className="flex flex-wrap gap-3">
+                <div className="flex flex-wrap gap-2 sm:gap-3">
                   {product.certs.map((cert, i) => (
-                    <div key={i} className="flex items-center gap-2 px-4 py-3 bg-blue-50 border border-blue-100 rounded-lg">
-                      <ShieldCheck className="w-4 h-4 text-blue-600" />
-                      <span className="text-sm font-medium text-blue-900">
+                    <div key={i} className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 sm:py-3 bg-blue-50 border border-blue-100 rounded-lg">
+                      <ShieldCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-600" />
+                      <span className="text-xs sm:text-sm font-medium text-blue-900">
                         {cert === 'mfg_cert' ? 'Manufacturer Cert' :
                          cert === '8130-3' ? 'FAA Form 8130-3' :
                          cert.toUpperCase()}
@@ -1594,30 +1594,30 @@ export const ProductDetail = () => {
             {/* Add to RFQ Section */}
             <div className="border-2 border-gray-200 rounded-xl overflow-hidden shadow-lg">
               {/* Header */}
-              <div className="bg-gradient-to-r from-gray-900 via-gray-800 to-black px-8 py-6">
-                <h3 className="text-2xl font-bold text-white mb-2">Request a Quote</h3>
-                <p className="text-gray-300 text-sm">
+              <div className="bg-gradient-to-r from-gray-900 via-gray-800 to-black px-5 sm:px-8 py-4 sm:py-6">
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-1 sm:mb-2">Request a Quote</h3>
+                <p className="text-gray-300 text-xs sm:text-sm">
                   Add to your RFQ cart or contact our sales team for pricing and lead times.
                 </p>
               </div>
 
               {/* Main Content */}
-              <div className="bg-white px-8 py-6">
-                <div className="flex flex-col lg:flex-row gap-6 items-start lg:items-center justify-between">
+              <div className="bg-white px-5 sm:px-8 py-4 sm:py-6">
+                <div className="flex flex-col lg:flex-row gap-4 sm:gap-6 items-start lg:items-center justify-between">
                   {/* Quantity Selector */}
-                  <div className="flex items-center gap-4">
-                    <label className="text-sm font-semibold text-gray-700 uppercase tracking-wide">Quantity:</label>
+                  <div className="flex items-center gap-3 sm:gap-4">
+                    <label className="text-xs sm:text-sm font-semibold text-gray-700 uppercase tracking-wide">Quantity:</label>
                     <input
                       type="number"
                       min="1"
                       value={quantity}
                       onChange={(e) => setQuantity(parseInt(e.target.value) || 1)}
-                      className="w-24 px-4 py-3 border-2 border-gray-300 rounded-lg text-center font-mono text-lg font-semibold focus:border-black focus:outline-none transition-colors"
+                      className="w-20 sm:w-24 px-3 sm:px-4 py-2 sm:py-3 border-2 border-gray-300 rounded-lg text-center font-mono text-base sm:text-lg font-semibold focus:border-black focus:outline-none transition-colors"
                     />
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
+                  <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 w-full lg:w-auto">
                     <button
                       onClick={() => {
                         addItem({ 
@@ -1628,7 +1628,7 @@ export const ProductDetail = () => {
                         setAddedToCart(true);
                         setTimeout(() => setAddedToCart(false), 2000);
                       }}
-                      className="group flex items-center justify-center gap-3 bg-black text-white px-8 py-4 text-sm font-bold uppercase tracking-wider hover:bg-gray-800 transition-all rounded-lg shadow-md hover:shadow-xl"
+                      className="group flex items-center justify-center gap-2 sm:gap-3 bg-black text-white px-6 sm:px-8 py-3 sm:py-4 text-xs sm:text-sm font-bold uppercase tracking-wider hover:bg-gray-800 transition-all rounded-lg shadow-md hover:shadow-xl"
                     >
                       {addedToCart ? (
                         <>
@@ -1636,7 +1636,7 @@ export const ProductDetail = () => {
                             initial={{ scale: 0, rotate: -180 }}
                             animate={{ scale: 1, rotate: 0 }}
                             transition={{ type: "spring", stiffness: 200 }}
-                            className="inline-block w-6 h-6 text-green-400"
+                            className="inline-block w-5 h-5 sm:w-6 sm:h-6 text-green-400"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -1647,16 +1647,16 @@ export const ProductDetail = () => {
                         </>
                       ) : (
                         <>
-                          <ShoppingCart className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                          <ShoppingCart className="w-4 h-4 sm:w-5 sm:h-5 group-hover:scale-110 transition-transform" />
                           Add to RFQ Cart
                         </>
                       )}
                     </button>
                     <button
                       onClick={() => navigate('/quote')}
-                      className="flex items-center justify-center gap-2 border-2 border-black text-black px-8 py-4 text-sm font-bold uppercase tracking-wider hover:bg-black hover:text-white transition-all rounded-lg"
+                      className="flex items-center justify-center gap-2 border-2 border-black text-black px-6 sm:px-8 py-3 sm:py-4 text-xs sm:text-sm font-bold uppercase tracking-wider hover:bg-black hover:text-white transition-all rounded-lg"
                     >
-                      <ShoppingCart className="w-5 h-5" />
+                      <ShoppingCart className="w-4 h-4 sm:w-5 sm:h-5" />
                       View Cart
                     </button>
                   </div>
@@ -1664,22 +1664,22 @@ export const ProductDetail = () => {
               </div>
 
               {/* Contact Footer */}
-              <div className="bg-gray-50 px-8 py-6 border-t-2 border-gray-200">
-                <p className="text-sm font-semibold text-gray-700 mb-4">Need immediate assistance?</p>
-                <div className="flex flex-col sm:flex-row gap-4">
+              <div className="bg-gray-50 px-5 sm:px-8 py-4 sm:py-6 border-t-2 border-gray-200">
+                <p className="text-xs sm:text-sm font-semibold text-gray-700 mb-3 sm:mb-4">Need immediate assistance?</p>
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                   <a 
                     href="tel:+19037230693" 
-                    className="group flex items-center gap-3 px-6 py-3 bg-white border-2 border-gray-300 rounded-lg hover:border-black hover:bg-gray-900 hover:text-white transition-all"
+                    className="group flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2.5 sm:py-3 bg-white border-2 border-gray-300 rounded-lg hover:border-black hover:bg-gray-900 hover:text-white transition-all"
                   >
-                    <Phone className="w-5 h-5 flex-shrink-0" />
-                    <span className="font-semibold text-sm">(903) 723-0693</span>
+                    <Phone className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
+                    <span className="font-semibold text-xs sm:text-sm">(903) 723-0693</span>
                   </a>
                   <a 
                     href="mailto:sales@afastinc.com" 
-                    className="group flex items-center gap-3 px-6 py-3 bg-white border-2 border-gray-300 rounded-lg hover:border-black hover:bg-gray-900 hover:text-white transition-all"
+                    className="group flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2.5 sm:py-3 bg-white border-2 border-gray-300 rounded-lg hover:border-black hover:bg-gray-900 hover:text-white transition-all"
                   >
-                    <Mail className="w-5 h-5 flex-shrink-0" />
-                    <span className="font-semibold text-sm">sales@afastinc.com</span>
+                    <Mail className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
+                    <span className="font-semibold text-xs sm:text-sm">sales@afastinc.com</span>
                   </a>
                 </div>
               </div>
@@ -1690,6 +1690,47 @@ export const ProductDetail = () => {
 
       {/* Recently Viewed Products */}
       <RecentlyViewed />
+
+      {/* Mobile Sticky Action Bar */}
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 md:hidden z-40 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
+        <div className="flex gap-3">
+           {/* Quantity Input */}
+           <div className="w-20">
+              <input
+                type="number"
+                min="1"
+                value={quantity}
+                onChange={(e) => setQuantity(parseInt(e.target.value) || 1)}
+                className="w-full h-12 px-3 border-2 border-gray-300 rounded-lg text-center font-mono font-bold focus:border-black focus:outline-none"
+              />
+           </div>
+           {/* Add Button */}
+           <button
+              onClick={() => {
+                addItem({ 
+                  partNumber: product!.partNumber, 
+                  title: product!.title,
+                  quantity: quantity 
+                });
+                setAddedToCart(true);
+                setTimeout(() => setAddedToCart(false), 2000);
+              }}
+              className="flex-1 bg-black text-white h-12 rounded-lg font-bold uppercase tracking-wider text-sm flex items-center justify-center gap-2 active:scale-95 transition-transform"
+           >
+              {addedToCart ? (
+                <>
+                  <Check className="w-5 h-5 text-green-400" />
+                  <span className="text-green-400">Added</span>
+                </>
+              ) : (
+                <>
+                  <ShoppingCart className="w-5 h-5" />
+                  Add to Quote
+                </>
+              )}
+           </button>
+        </div>
+      </div>
     </div>
     </ErrorBoundary>
   );
