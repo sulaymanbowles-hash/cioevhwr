@@ -12,6 +12,7 @@ import { IndustriesGrid } from "../components/home/IndustriesGrid";
 import { SupplyChainAnimation } from "../components/home/SupplyChainAnimation";
 import { OperationalStatus } from "../components/ui/OperationalStatus";
 import { DataStream } from "../components/ui/DataStream";
+import { PrecisionEngineering } from "../components/home/PrecisionEngineering";
 
 import boltImage from "../assets/products/bolt.svg";
 import nutImage from "../assets/products/nut.svg";
@@ -155,88 +156,7 @@ export const Home = () => {
 
       <SupplyChainAnimation />
 
-      {/* Technical Excellence */}
-      <section className="relative py-40 px-6 md:px-8 bg-black text-white overflow-hidden">
-        {/* Subtle grid pattern */}
-        <GridBackground pattern="lines" opacity={0.03} className="-z-10" />
-        <OperationalStatus />
-        
-        <div className="max-w-[1400px] mx-auto relative">
-          <motion.div
-            {...getAnimation()}
-            viewport={{ once: true, margin: "-100px" }}
-            className="max-w-4xl mx-auto text-center mb-24"
-          >
-            <div className="flex items-center justify-center gap-4 mb-10">
-              <div className="h-px w-16 bg-white/30" />
-              <TechLabel className="!text-white/50">Technical Excellence</TechLabel>
-              <div className="h-px w-16 bg-white/30" />
-            </div>
-            <h2 className="text-5xl md:text-7xl font-bold tracking-[-0.02em] mb-10 leading-[0.95]">
-              Precision Engineering
-              <br />
-              <span className="text-white/40">Meets Certification</span>
-            </h2>
-            <p className="text-lg text-white/60 leading-relaxed max-w-3xl mx-auto">
-              Every component meets AS9100 Rev. D and ISO 9001:2015 standards with complete material traceability and documentation.
-            </p>
-          </motion.div>
-
-          {/* Certifications Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/10">
-            {[
-              { 
-                standard: "AS9100 Rev. D",
-                title: "Aerospace Quality Management System",
-                details: "Comprehensive quality management for aviation, space, and defense industries"
-              },
-              { 
-                standard: "ISO 9001:2015",
-                title: "International Quality Standard",
-                details: "Global standard for quality management systems ensuring consistent service"
-              }
-            ].map((cert, i) => (
-              <motion.div
-                key={i}
-                {...getAnimation(i * 0.1)}
-                viewport={{ once: true, margin: "-80px" }}
-                className="group relative bg-black p-12 md:p-16 hover:bg-white hover:text-black transition-all duration-500"
-              >
-                <div className="absolute top-0 left-0 w-full h-1 bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-                <div className="relative">
-                  <div className="text-sm font-bold uppercase tracking-[0.2em] mb-6 opacity-50 group-hover:opacity-100 transition-opacity">
-                    Certified
-                  </div>
-                  <h3 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 leading-tight">
-                    {cert.standard}
-                  </h3>
-                  <p className="text-base font-semibold mb-3 opacity-90">
-                    {cert.title}
-                  </p>
-                  <p className="text-sm opacity-70 leading-relaxed">
-                    {cert.details}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* CTA */}
-          <motion.div
-            {...getAnimation(0.3)}
-            viewport={{ once: true }}
-            className="mt-16 text-center"
-          >
-            <button
-              onClick={() => navigate('/certifications')}
-              className="group inline-flex items-center gap-3 border-2 border-white px-12 py-6 text-sm font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all duration-300"
-            >
-              View Certifications
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
-            </button>
-          </motion.div>
-        </div>
-      </section>
+      <PrecisionEngineering />
 
       <ProcessTimeline />
       <IndustriesGrid />
