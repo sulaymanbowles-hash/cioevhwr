@@ -12,9 +12,9 @@ const manufacturers = [
 
 export const Marquee = () => {
   return (
-    <section className="py-16 border-y border-gray-200 bg-gray-50 overflow-hidden relative">
-      <div className="max-w-[1600px] mx-auto mb-10 px-6 md:px-8 text-center">
-        <TechLabel className="tracking-widest uppercase text-sm font-semibold">
+    <section className="py-10 sm:py-16 border-y border-gray-200 bg-gray-50 overflow-hidden relative">
+      <div className="max-w-[1600px] mx-auto mb-6 sm:mb-10 px-4 sm:px-6 md:px-8 text-center">
+        <TechLabel className="tracking-widest uppercase text-xs sm:text-sm font-semibold">
           Authorized Distributor
         </TechLabel>
       </div>
@@ -27,17 +27,17 @@ export const Marquee = () => {
         }}
       >
         <div className="flex w-max animate-[scroll_40s_linear_infinite] hover:[animation-play-state:paused]">
-          <div className="flex gap-8 px-4">
+          <div className="flex gap-4 sm:gap-8 px-2 sm:px-4">
             {manufacturers.map((m, i) => (
-              <div key={i} className="px-8 py-4 bg-white border border-gray-200 rounded-lg shadow-sm hover:border-blue-400 hover:shadow-md transition-all duration-300 min-w-[240px] flex justify-center items-center group cursor-default">
-                <span className="font-sans font-semibold text-gray-700 group-hover:text-blue-600 transition-colors text-lg whitespace-nowrap">{m}</span>
+              <div key={i} className="px-4 sm:px-8 py-3 sm:py-4 bg-white border border-gray-200 rounded-lg shadow-sm hover:border-blue-400 hover:shadow-md transition-all duration-300 min-w-[160px] sm:min-w-[240px] flex justify-center items-center group cursor-default">
+                <span className="font-sans font-semibold text-gray-700 group-hover:text-blue-600 transition-colors text-sm sm:text-lg whitespace-nowrap">{m}</span>
               </div>
             ))}
           </div>
-          <div className="flex gap-8 px-4" aria-hidden="true">
+          <div className="flex gap-4 sm:gap-8 px-2 sm:px-4" aria-hidden="true">
             {manufacturers.map((m, i) => (
-              <div key={`dup-${i}`} className="px-8 py-4 bg-white border border-gray-200 rounded-lg shadow-sm hover:border-blue-400 hover:shadow-md transition-all duration-300 min-w-[240px] flex justify-center items-center group cursor-default">
-                <span className="font-sans font-semibold text-gray-700 group-hover:text-blue-600 transition-colors text-lg whitespace-nowrap">{m}</span>
+              <div key={`dup-${i}`} className="px-4 sm:px-8 py-3 sm:py-4 bg-white border border-gray-200 rounded-lg shadow-sm hover:border-blue-400 hover:shadow-md transition-all duration-300 min-w-[160px] sm:min-w-[240px] flex justify-center items-center group cursor-default">
+                <span className="font-sans font-semibold text-gray-700 group-hover:text-blue-600 transition-colors text-sm sm:text-lg whitespace-nowrap">{m}</span>
               </div>
             ))}
           </div>

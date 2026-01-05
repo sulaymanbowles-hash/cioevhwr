@@ -18,6 +18,7 @@ import { Certifications } from "./pages/Certifications";
 import { LineCard } from "./pages/LineCard";
 import { ClientPortal } from "./pages/ClientPortal";
 import { FAQ } from "./pages/FAQ";
+import { CustomCursor } from "./components/ui/CustomCursor";
 
 // Scroll to top component
 function ScrollToTop() {
@@ -57,6 +58,7 @@ function App() {
 
   return (
     <Router>
+      <CustomCursor />
       <ScrollToTop />
       <div className="antialiased selection:bg-black selection:text-white min-h-screen flex flex-col">
         <Header />

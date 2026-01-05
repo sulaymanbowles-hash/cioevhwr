@@ -94,7 +94,7 @@ export const Services = () => {
   const processSteps = [
     {
       number: "01",
-      title: "Initial Consultation",
+      title: "Initial Assessment",
       description: "We assess your requirements, volume needs, and quality standards to develop a tailored solution."
     },
     {
@@ -175,10 +175,17 @@ export const Services = () => {
                   <p className="text-gray-600 mb-8 leading-relaxed">{service.description}</p>
                   <div className="space-y-3 pt-6 border-t border-gray-100">
                     {service.features.map((feature, j) => (
-                      <div key={j} className="flex items-start gap-3 text-sm text-gray-500">
+                      <motion.div 
+                        key={j} 
+                        initial={{ opacity: 0, x: -10 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.5 + (j * 0.1), duration: 0.3 }}
+                        className="flex items-start gap-3 text-sm text-gray-500"
+                      >
                         <div className="w-1.5 h-1.5 bg-black rounded-full mt-1.5 flex-shrink-0" />
                         <span>{feature}</span>
-                      </div>
+                      </motion.div>
                     ))}
                   </div>
                 </TechnicalBorder>
@@ -212,8 +219,12 @@ export const Services = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-white/10">
             {processSteps.map((step, i) => (
-              <div
+              <motion.div
                 key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
                 className="group bg-black p-12 hover:bg-white hover:text-black transition-all duration-700"
               >
                 <div className="inline-flex items-center justify-center w-16 h-16 border-2 border-white group-hover:border-black transition-colors duration-700 mb-10">
@@ -221,7 +232,7 @@ export const Services = () => {
                 </div>
                 <h3 className="text-xl font-bold mb-4 tracking-tight">{step.title}</h3>
                 <p className="opacity-70 leading-relaxed text-sm">{step.description}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -314,12 +325,16 @@ export const Services = () => {
               "MRO Facilities",
               "OEM Manufacturers"
             ].map((industry, i) => (
-              <div
+              <motion.div
                 key={i}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.05 }}
                 className="bg-black p-8 text-center hover:bg-white hover:text-black transition-all duration-500"
               >
                 <p className="font-semibold text-sm uppercase tracking-wider">{industry}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -346,7 +361,7 @@ export const Services = () => {
               onClick={() => navigate('/contact')}
               className="group inline-flex items-center justify-center gap-3 bg-black text-white px-12 py-6 text-xs font-bold uppercase tracking-[0.2em] hover:bg-gray-900 transition-all"
             >
-              Schedule Consultation
+              Contact Sales
               <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-500" />
             </button>
             <button 

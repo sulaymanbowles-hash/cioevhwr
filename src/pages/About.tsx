@@ -81,30 +81,32 @@ export const About = () => {
               </p>
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="grid grid-cols-1 gap-6"
-            >
+            <div className="grid grid-cols-1 gap-6">
               {[
                 { icon: QualityIcon, title: "Precision", desc: "Every component meets exact specifications" },
                 { icon: CertifiedIcon, title: "Quality", desc: "AS9100 Rev. D & ISO 9001:2015 certified" },
                 { icon: LogisticsIcon, title: "Reliability", desc: "Consistent on-time delivery" },
                 { icon: SourcingIcon, title: "Global Reach", desc: "Serving customers worldwide" }
               ].map((value, i) => (
-                <TechnicalBorder key={i} className="flex items-start gap-6 p-8 bg-white hover:shadow-lg transition-all group">
-                  <div className="w-12 h-12 text-gray-900 group-hover:text-black transition-colors flex-shrink-0">
-                    <value.icon className="w-full h-full" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-lg mb-2">{value.title}</h3>
-                    <p className="text-gray-600 text-sm leading-relaxed">{value.desc}</p>
-                  </div>
-                </TechnicalBorder>
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: i * 0.15 }}
+                >
+                  <TechnicalBorder className="flex items-start gap-6 p-8 bg-white hover:shadow-lg transition-all group">
+                    <div className="w-12 h-12 text-gray-900 group-hover:text-black transition-colors flex-shrink-0">
+                      <value.icon className="w-full h-full" />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-lg mb-2">{value.title}</h3>
+                      <p className="text-gray-600 text-sm leading-relaxed">{value.desc}</p>
+                    </div>
+                  </TechnicalBorder>
+                </motion.div>
               ))}
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>

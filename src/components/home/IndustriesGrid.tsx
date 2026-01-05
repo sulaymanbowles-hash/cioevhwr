@@ -39,15 +39,15 @@ export const IndustriesGrid = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="py-32 px-6 md:px-8 bg-black text-white overflow-hidden">
+    <section className="py-20 sm:py-32 px-4 sm:px-6 md:px-8 bg-black text-white overflow-hidden">
       <div className="max-w-[1600px] mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 sm:mb-20 gap-6 sm:gap-8">
           <div>
-            <div className="flex items-center gap-4 mb-6">
-              <div className="h-px w-12 bg-white/30" />
+            <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
+              <div className="h-px w-8 sm:w-12 bg-white/30" />
               <TechLabel className="!text-white/50">Market Reach</TechLabel>
             </div>
-            <h2 className="text-5xl md:text-7xl font-bold tracking-[-0.02em] leading-[0.95]">
+            <h2 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-[-0.02em] leading-[0.95]">
               Critical Missions
               <br />
               <span className="text-white/30">Global Impact</span>
@@ -56,14 +56,14 @@ export const IndustriesGrid = () => {
           
           <button 
             onClick={() => navigate('/about')}
-            className="group flex items-center gap-3 text-sm font-bold uppercase tracking-widest hover:text-white/70 transition-colors"
+            className="group flex items-center gap-2 sm:gap-3 text-xs sm:text-sm font-bold uppercase tracking-widest hover:text-white/70 transition-colors"
           >
             View All Industries
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </button>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-white/10 border border-white/10">
           {industries.map((industry, i) => (
             <motion.div
               key={i}
@@ -71,27 +71,29 @@ export const IndustriesGrid = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className={`${industry.colSpan} group relative bg-white/5 border border-white/10 p-10 hover:bg-white hover:text-black transition-all duration-500 rounded-sm overflow-hidden`}
+              className="group relative bg-black p-8 sm:p-12 hover:bg-white/5 transition-colors duration-500"
             >
-              <div className="absolute top-0 right-0 p-10 opacity-10 group-hover:opacity-5 transition-opacity duration-500 transform group-hover:scale-110 origin-top-right">
-                <industry.icon className="w-40 h-40" />
+              <div className="absolute top-4 sm:top-6 right-4 sm:right-6 opacity-20 group-hover:opacity-100 transition-opacity">
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-white -rotate-45 group-hover:rotate-0 transition-transform duration-500" />
               </div>
 
-              <div className="relative z-10 h-full flex flex-col justify-between">
-                <div>
-                  <industry.icon className="w-8 h-8 mb-6 text-white group-hover:text-black transition-colors" />
-                  <h3 className="text-2xl font-bold mb-4">{industry.title}</h3>
-                  <p className="text-white/60 group-hover:text-black/70 leading-relaxed max-w-md transition-colors">
-                    {industry.desc}
-                  </p>
+              <div className="mb-6 sm:mb-8">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white/10 rounded-sm flex items-center justify-center mb-4 sm:mb-6 group-hover:bg-white group-hover:text-black transition-colors duration-500">
+                  <industry.icon className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
+                <h3 className="text-xl sm:text-2xl font-bold mb-2">{industry.title}</h3>
+                <div className="h-px w-12 bg-white/20 mb-3 sm:mb-4 group-hover:w-full transition-all duration-700" />
+              </div>
 
-                <div className="mt-12 pt-6 border-t border-white/10 group-hover:border-black/10 flex justify-between items-center">
-                  <span className="text-xs font-bold uppercase tracking-widest opacity-50">
-                    {industry.highlight}
-                  </span>
-                  <ArrowRight className="w-5 h-5 opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
-                </div>
+              <p className="text-white/60 leading-relaxed mb-6 sm:mb-8 text-sm sm:text-base min-h-0 sm:min-h-[3rem]">
+                {industry.desc}
+              </p>
+
+              <div className="flex items-center gap-2 sm:gap-3">
+                <div className="w-1.5 h-1.5 bg-safety-orange rounded-full" />
+                <span className="text-[10px] sm:text-xs font-mono uppercase tracking-widest text-white/40 group-hover:text-white/80 transition-colors">
+                  {industry.highlight}
+                </span>
               </div>
             </motion.div>
           ))}

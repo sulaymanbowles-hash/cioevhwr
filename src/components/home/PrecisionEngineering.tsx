@@ -337,40 +337,57 @@ export const PrecisionEngineering = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   
   return (
-    <section ref={containerRef} className="relative py-32 bg-black overflow-hidden">
+    <section ref={containerRef} className="relative py-16 sm:py-24 lg:py-32 bg-black overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px]" />
       <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black" />
       
-      <div className="max-w-[1600px] mx-auto px-6 md:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 md:px-8 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-16 lg:gap-20 items-center">
           
-          {/* Left Content */}
-          <div className="order-2 lg:order-1">
+          {/* Left Visual - Kitting Animation */}
+          <div className="order-1 lg:order-1 relative h-full flex items-center">
+            <TechnicalFrame>
+                <div className="absolute top-3 sm:top-4 right-3 sm:right-4 z-20 flex gap-2">
+                    <div className="px-1.5 sm:px-2 py-0.5 sm:py-1 bg-black/50 border border-white/10 text-[7px] sm:text-[8px] font-mono text-white/50">
+                        CAM-01
+                    </div>
+                    <div className="px-1.5 sm:px-2 py-0.5 sm:py-1 bg-white/10 border border-white/10 text-[7px] sm:text-[8px] font-mono text-white animate-pulse">
+                        LIVE
+                    </div>
+                </div>
+                <div className="p-4 sm:p-8 md:p-12">
+                    <KittingAnimation />
+                </div>
+            </TechnicalFrame>
+          </div>
+
+          {/* Right Content */}
+          <div className="order-2 lg:order-2">
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
+              initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <div className="flex items-center gap-4 mb-8">
-                <div className="h-px w-12 bg-white/30" />
+              <div className="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
+                <div className="h-px w-8 sm:w-12 bg-white/30" />
                 <TechLabel className="!text-white/50">Custom Solutions</TechLabel>
               </div>
               
-              <h2 className="text-5xl md:text-7xl font-bold text-white tracking-[-0.02em] mb-8 leading-[0.95]">
+              <h2 className="text-3xl sm:text-5xl md:text-7xl font-bold text-white tracking-[-0.02em] mb-6 sm:mb-8 leading-[0.95]">
                 Intelligent <br />
                 <span className="text-white/30">
                   Kitting & Design
                 </span>
               </h2>
               
-              <p className="text-lg text-white/60 leading-relaxed mb-12 max-w-xl">
+              <p className="text-base sm:text-lg text-white/60 leading-relaxed mb-8 sm:mb-12 max-w-xl">
                 Streamline your assembly line with custom-designed kitting solutions. We organize complex BOMs into single-SKU packages, reducing handling time and eliminating FOD risks.
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-2 gap-x-8 gap-y-12 mb-12">
+            <div className="grid grid-cols-2 gap-x-4 sm:gap-x-8 gap-y-6 sm:gap-y-12 mb-8 sm:mb-12">
               <TechnicalStat 
                 label="Assembly Time" 
                 value="-40%" 
@@ -402,28 +419,11 @@ export const PrecisionEngineering = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.6 }}
-              className="group flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-white hover:text-white/70 transition-colors"
+              className="group flex items-center gap-3 text-xs sm:text-sm font-bold uppercase tracking-widest text-white hover:text-white/70 transition-colors"
             >
               Explore Kitting Options
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" />
             </motion.button>
-          </div>
-
-          {/* Right Visual - Kitting Animation */}
-          <div className="order-1 lg:order-2 relative h-full flex items-center">
-            <TechnicalFrame>
-                <div className="absolute top-4 right-4 z-20 flex gap-2">
-                    <div className="px-2 py-1 bg-black/50 border border-white/10 text-[8px] font-mono text-white/50">
-                        CAM-01
-                    </div>
-                    <div className="px-2 py-1 bg-white/10 border border-white/10 text-[8px] font-mono text-white animate-pulse">
-                        LIVE
-                    </div>
-                </div>
-                <div className="p-8 sm:p-12">
-                    <KittingAnimation />
-                </div>
-            </TechnicalFrame>
           </div>
 
         </div>

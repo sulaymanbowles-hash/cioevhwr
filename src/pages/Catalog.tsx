@@ -123,25 +123,25 @@ export const Catalog = () => {
   ].filter(Boolean).length;
 
   return (
-    <div className="min-h-screen pt-24 pb-32 bg-gradient-to-br from-gray-50 to-white">
+    <div className="min-h-screen pt-24 pb-20 sm:pb-32 bg-gradient-to-br from-gray-50 to-white">
       {/* Breadcrumbs */}
-      <div className="max-w-[1800px] mx-auto px-6 md:px-8 mt-8">
+      <div className="max-w-[1800px] mx-auto px-4 sm:px-6 md:px-8 mt-6 sm:mt-8">
         <Breadcrumbs items={[{ label: "Catalog" }]} />
       </div>
       {/* Hero Section */}
-      <section className="py-16 px-6 md:px-8 border-b border-gray-200">
+      <section className="py-10 sm:py-16 px-4 sm:px-6 md:px-8 border-b border-gray-200">
         <div className="max-w-[1800px] mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-12"
+            className="text-center mb-8 sm:mb-12"
           >
-            <TechLabel className="mb-6">Product Catalog</TechLabel>
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 text-black">
+            <TechLabel className="mb-4 sm:mb-6">Product Catalog</TechLabel>
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight mb-4 sm:mb-6 text-black">
               Aerospace Hardware
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4">
               Browse our complete inventory of certified aerospace fasteners, fittings, and precision hardware.
             </p>
           </motion.div>
@@ -153,7 +153,7 @@ export const Catalog = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="max-w-4xl mx-auto"
           >
-            <div className="flex flex-col md:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               <div className="flex-1 relative">
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
                 <input
@@ -161,15 +161,15 @@ export const Catalog = () => {
                   placeholder="Search by part number or name..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-12 pr-4 py-4 border-2 border-gray-200 bg-white rounded-sm focus:border-black focus:outline-none transition-colors text-black placeholder:text-gray-400 font-mono text-sm"
+                  className="w-full pl-12 pr-4 py-3 sm:py-4 border-2 border-gray-200 bg-white rounded-sm focus:border-black focus:outline-none transition-colors text-black placeholder:text-gray-400 font-mono text-sm"
                 />
               </div>
               <button
                 onClick={() => setShowFilters(!showFilters)}
-                className="relative px-6 py-4 border-2 border-gray-200 bg-white rounded-sm hover:border-black transition-colors flex items-center gap-3 text-black font-semibold"
+                className="relative px-6 py-3 sm:py-4 border-2 border-gray-200 bg-white rounded-sm hover:border-black transition-colors flex items-center justify-center gap-3 text-black font-semibold"
               >
                 <Filter className="w-5 h-5" />
-                Filters
+                <span>Filters</span>
                 {activeFiltersCount > 0 && (
                   <span className="absolute -top-2 -right-2 w-6 h-6 bg-black text-white text-xs rounded-full flex items-center justify-center font-bold">
                     {activeFiltersCount}
@@ -262,13 +262,13 @@ export const Catalog = () => {
       </section>
 
       {/* Products Grid */}
-      <section className="py-16 px-6 md:px-8">
+      <section className="py-10 sm:py-16 px-4 sm:px-6 md:px-8">
         <div className="max-w-[1800px] mx-auto">
-          <div className="mb-8 flex justify-between items-center">
-            <p className="text-gray-600 font-mono text-sm">
+          <div className="mb-6 sm:mb-8 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+            <p className="text-gray-600 font-mono text-xs sm:text-sm">
               Showing <span className="font-bold text-black">{filteredProducts.length}</span> {filteredProducts.length === 1 ? 'product' : 'products'}
             </p>
-            <TechLabel>AS9120B Certified</TechLabel>
+            <TechLabel className="hidden sm:block">AS9120B Certified</TechLabel>
           </div>
 
           {filteredProducts.length === 0 ? (
@@ -302,10 +302,12 @@ export const Catalog = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-0">
                 {displayedProducts.map((product, i) => (
                   <motion.div
+                    layout
                     key={`${product.partNumber}-${i}`}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: Math.min(i * 0.05, 0.8) }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    transition={{ duration: 0.4, delay: Math.min(i * 0.05, 0.5) }}
                   >
                     <TechnicalBorder 
                       onClick={() => navigate(`/product/${product.slug}`)}
@@ -320,7 +322,7 @@ export const Catalog = () => {
                       </div>
 
                       {/* Header */}
-                      <div className="flex justify-between items-start mb-4 relative z-10">
+                      <div className="flex justify-between items-start mb-8 relative z-10">
                         <div className="flex flex-col gap-1">
                           <TechLabel>{product.category}</TechLabel>
                           <div className="flex gap-2 mt-1">
@@ -343,33 +345,15 @@ export const Catalog = () => {
                         </span>
                       </div>
                       
-                      {/* Product Info - No 3D Model */}
-                      <div className="mb-6">
-                        <h3 className="text-lg font-bold mb-2 group-hover:text-blue-600 transition-colors">{product.title}</h3>
-                        <p className="text-sm text-gray-500 line-clamp-2">{product.description}</p>
-                      </div>
-
-                      {/* Specs Grid */}
-                      <div className="grid grid-cols-2 gap-2 mb-6 text-[10px] uppercase tracking-wider text-gray-500">
-                        <div className="bg-gray-50 p-2 rounded">
-                          <span className="block text-gray-400 mb-1">Material</span>
-                          <span className="font-bold text-gray-900">{product.material}</span>
-                        </div>
-                        <div className="bg-gray-50 p-2 rounded">
-                          <span className="block text-gray-400 mb-1">Thread</span>
-                          <span className="font-bold text-gray-900">{product.threadType || 'N/A'}</span>
-                        </div>
-                      </div>
-
                       {/* Product Info */}
-                      <div className="space-y-3 relative z-10">
+                      <div className="space-y-3 relative z-10 mb-6">
                         <h3 className="text-lg font-bold uppercase tracking-tight text-gray-900 group-hover:text-black transition-colors duration-300">
                           {product.title}
                         </h3>
                         <p className="text-sm text-gray-600 leading-relaxed font-mono">
                           {product.specification}
                         </p>
-                        <p className="text-xs text-gray-500 leading-relaxed">
+                        <p className="text-xs text-gray-500 leading-relaxed line-clamp-2">
                           {product.description}
                         </p>
 
@@ -384,9 +368,10 @@ export const Catalog = () => {
                             </span>
                           )}
                         </div>
+                      </div>
 
-                        {/* Divider */}
-                        <div className="w-full h-px bg-gradient-to-r from-gray-300 via-gray-200 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700" />
+                      {/* Divider */}
+                      <div className="w-full h-px bg-gradient-to-r from-gray-300 via-gray-200 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700 mb-4" />
 
                         {/* Actions */}
                         <div className="flex gap-2 pt-2 relative z-20">
@@ -459,7 +444,6 @@ export const Catalog = () => {
                             <Download className="w-4 h-4 text-gray-600" />
                           </motion.button>
                         </div>
-                      </div>
                     </TechnicalBorder>
                   </motion.div>
                 ))}

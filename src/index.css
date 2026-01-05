@@ -73,3 +73,27 @@ img {
 .lenis.lenis-scrolling iframe {
   pointer-events: none;
 }
+
+@media (hover: hover) and (pointer: fine) {
+  body, a, button, [role="button"], input, select, textarea {
+    cursor: none !important;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #e5e7eb;
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #000000;
+}
